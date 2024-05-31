@@ -1,0 +1,26 @@
+{
+  "name": "@vklink/web",
+  "preferUnplugged": true,
+  "private": true,
+  "scripts": {
+    "dev:admin": "turbo run dev --filter=admin",
+    "build:admin": "turbo run build --filter=admin",
+    "dev:template": "turbo run dev --filter=template",
+    "build:template": "turbo run build --filter=template",
+    "gen:protos": "turbo run gen:protos",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@vklink/eslint-config": "*",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "turbo": "latest"
+  },
+  "packageManager": "yarn@4.0.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "packages/shared/*"
+  ]
+}

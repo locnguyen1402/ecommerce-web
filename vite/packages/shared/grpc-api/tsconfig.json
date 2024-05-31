@@ -1,0 +1,8 @@
+{
+  "extends": "@vklink/typescript-config/react-library.json",
+  "compilerOptions": {
+    "baseUrl": "./src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
