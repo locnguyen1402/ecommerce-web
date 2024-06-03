@@ -6,8 +6,6 @@ import { I18n, useMakePlural } from 'i18n-js';
 
 import { en as enPlurals, vi as viPlurals } from 'make-plural';
 
-import { PlainMessage, Timestamp } from '@vklink/grpc-api';
-
 import { REPRESENTATIONS } from '@/constants';
 
 import en from './locales/en.json';
@@ -44,7 +42,7 @@ const timeFormat = REPRESENTATIONS.format.time;
 const dateTimeFormat = REPRESENTATIONS.format.dateTime;
 
 export const formatDateTime = (
-  value: Timestamp | PlainMessage<Timestamp> | string | undefined | null,
+  value: string | undefined | null,
   options?: {
     dateOnly?: boolean;
     timeOnly?: boolean;
@@ -55,7 +53,7 @@ export const formatDateTime = (
     return '';
   }
 
-  const date = dayjs(typeof value === 'object' ? new Timestamp(value).toDate() : value);
+  const date = dayjs(value);
 
   if (!date.isValid()) {
     return '';
@@ -124,6 +122,6 @@ function missingPlaceholder(_: I18n, placeholder: string): string {
   return placeholder;
 }
 
-export const formatRequestDate = (value: Date | string, options?: {format?: string}): string => {
+export const formatRequestDate = (value: Date | string, options?: { format?: string }): string => {
   return dayjs(value, options).format('YYYY-MM-DD');
 };

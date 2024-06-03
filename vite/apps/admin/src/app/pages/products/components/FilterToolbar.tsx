@@ -8,12 +8,10 @@ import {
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 
-import { FilterDropdownV2 } from '@/shared/components';
-import { ControlledPaginatedQueryParams } from '@/shared/types';
-import { ProductListQuery } from '@/shared/types/api';
 import { useI18n } from '@/hooks';
+import { FilterDropdownV2 } from '@/shared/components';
 
-type FormValues = ControlledPaginatedQueryParams<ProductListQuery>;
+type FormValues = any;
 
 type Props = {
   defaultValues: FormValues;

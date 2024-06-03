@@ -9,7 +9,3 @@ type Leaves<T> = T extends object
         : `.${Leaves<T[K]>}`}`;
     }[keyof T]
   : never;
-
-type WithLangCode<T, LangCodeKey = 'langCode'> = T & {
-  [key in LangCodeKey]: import('@vklink/grpc-api').LanguageCode;
-};

@@ -14,12 +14,6 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'section',
   },
   {
-    to: '/service-categories',
-    title: 'menu.serviceCategories',
-    icon: 'category',
-    kind: 'item',
-  },
-  {
     to: '/products',
     title: 'menu.products',
     icon: 'cube-2',

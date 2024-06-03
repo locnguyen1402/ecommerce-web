@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosInstance, CreateAxiosDefaults } from 'axios';
+import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
 
 export type HttpInstance = AxiosInstance;
 

@@ -3,35 +3,25 @@ import { Link } from 'react-router-dom';
 
 import { PageLink, KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
 import { DataTable, createColumnHelper } from '@vklink/components';
-import {
-  Combinator,
-  Operator,
-  ProductType,
-  createHttpInstance,
-  usePaginationQuery,
-  useStoreServiceClients,
-} from '@vklink/grpc-api';
+import { createHttpInstance } from '@vklink/grpc-api';
 
 import { CellLink, PageLayout, RepresentativeInfo, TableToolbar1 } from '@/shared/components';
-import { ProductListQuery } from '@/shared/types/api';
 
 import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
 import { useQueryParams, useI18n } from '@/hooks';
 import { formatDateTime, formatNumber } from '@/i18n';
 
 import FilterToolbar from './components/FilterToolbar';
-import EnableDisableButton from './components/EnableDisableButton';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const defaultQueryParams: ProductListQuery = {
+const defaultQueryParams: any = {
   ...DEFAULT_PAGING_PARAMS,
 };
 
 const Page = () => {
   const http = createHttpInstance(API_URL);
   const { t } = useI18n();
-  const { productClient } = useStoreServiceClients();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
   const getProducts = () => {
@@ -81,7 +71,7 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productManagement'),
-      path: '/services',
+      path: '/products',
       isSeparator: false,
       isActive: false,
     },
@@ -89,132 +79,7 @@ const Page = () => {
 
   const columnHelper = createColumnHelper<any>();
 
-  const columns = [
-    // columnHelper.accessor('id', {
-    //   header: () => t('label.product'),
-    //   cell: (info) => {
-    //     const product = info.row.original;
-
-    //     return (
-    //       <RepresentativeInfo
-    //         href={product.id}
-    //         avatar={product.thumbnail?.url}
-    //         title={product.name}
-    //         // description={product.shortDescription}
-    //       />
-    //     );
-    //   },
-    //   meta: {
-    //     body: {
-    //       className: 'min-w-200px mw-250px',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('id', {
-    //   header: () => t('label.category'),
-    //   cell: (info) => {
-    //     const product = info.row.original;
-    //     const category = product.categories ? product.categories[0] : null;
-    //     return (
-    //       <>
-    //         {category && (
-    //           <CellLink href={'/service-categories/' + category.categoryId}>
-    //             {category.name}
-    //           </CellLink>
-    //         )}
-    //       </>
-    //     );
-    //   },
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-100px text-center',
-    //     },
-    //     body: {
-    //       className: 'text-center',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('id', {
-    //   header: () => t('label.enable'),
-    //   cell: (info) => {
-    //     const product = info.row.original;
-    //     return (
-    //       <EnableDisableButton
-    //         id={product.id}
-    //         enabled={product.enabled}
-    //         successCb={refetch}
-    //         name={product.name}
-    //       />
-    //     );
-    //   },
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-100px text-center',
-    //     },
-    //     body: {
-    //       className: 'text-center',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('slug', {
-    //   header: () => 'Slug',
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-200px',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('order', {
-    //   header: () => t('label.order'),
-    //   cell: (info) => {
-    //     const category = info.row.original;
-
-    //     return <>{formatNumber(category.order)}</>;
-    //   },
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-80px text-center',
-    //     },
-    //     body: {
-    //       className: 'min-w-80px text-center',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('creator.displayName', {
-    //   header: () => t('label.createdBy'),
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-150px',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('creator.timestamp', {
-    //   header: () => t('label.createdAt'),
-    //   cell: (info) => formatDateTime(info.getValue(), { dateOnly: true }),
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-150px',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('updater.displayName', {
-    //   header: () => t('label.updatedBy'),
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-150px',
-    //     },
-    //   },
-    // }),
-    // columnHelper.accessor('updater.timestamp', {
-    //   header: () => t('label.updatedAt'),
-    //   cell: (info) => formatDateTime(info.getValue(), { dateOnly: true }),
-    //   meta: {
-    //     header: {
-    //       className: 'min-w-150px',
-    //     },
-    //   },
-    // }),
-  ];
+  const columns = [];
 
   return (
     <PageLayout
