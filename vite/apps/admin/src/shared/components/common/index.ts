@@ -12,7 +12,6 @@ export * from './ConfirmDialog';
 export * from './Dropdown';
 export * from './DropdownActions';
 
-export * from './TranslationDetailLayout';
 export * from './Trans';
 
 export * from './Chip';

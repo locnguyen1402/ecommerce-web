@@ -18,7 +18,7 @@ const PrivateRoutes = () => {
         <Route path="dashboard" element={<DashboardWrapper />} />
 
         <Route
-          path="services/*"
+          path="products/*"
           element={
             <SuspensedView>
               <ProductRoutes />

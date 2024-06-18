@@ -62,7 +62,8 @@
     "description": "Description",
     "email": "Email",
     "phoneNumber": "Phone number",
-    "gender": "Gender"
+    "gender": "Gender",
+    "list": "List"
   },
   "notification": {
     "info": "Information",
