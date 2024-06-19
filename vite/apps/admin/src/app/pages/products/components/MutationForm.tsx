@@ -23,24 +23,7 @@ import {
 
 import { useI18n, useToast } from '@/hooks';
 
-type CreatingProductVariantAttributeValue = {
-  attributeId: string;
-  value: string;
-};
-
-type CreatingProductVariant = {
-  stock: number;
-  price: number;
-  attributeValues: CreatingProductVariantAttributeValue[];
-};
-
-type FormValues = {
-  name: string;
-  slug: string;
-  description: string;
-  attributesIds: string[];
-  variants: CreatingProductVariant[];
-};
+type FormValues = CreateProductRequest;
 
 type Props = {
   defaultValues?: Partial<FormValues>;
@@ -48,10 +31,17 @@ type Props = {
 
 const MutationForm = ({ defaultValues }: Props) => {
   const { t } = useI18n();
-  const navigate = useNavigate();
-  const toast = useToast();
-
   const { id } = useParams();
+  const toast = useToast();
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation<any, any, FormValues>({
+    mutationKey: ['create-product'],
+    mutationFn: (data) => {
+      console.log('🚀 ~ MutationForm ~ data:', data);
+      return Promise.resolve(data);
+    },
+  });
 
   const isEditing = !!id;
 
@@ -65,9 +55,7 @@ const MutationForm = ({ defaultValues }: Props) => {
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
-  });
+  const onSubmit = handleSubmit((data) => mutate(data));
 
   const goBack = () => {
     navigate(-1);

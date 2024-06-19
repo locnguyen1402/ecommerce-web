@@ -1,0 +1,8 @@
+const PRODUCT_GROUP = '/products';
+
+export const INVENTORY_API_URLS = {
+  PRODUCTS: `${PRODUCT_GROUP}`,
+  PRODUCT_DETAIL: `${PRODUCT_GROUP}/:id`,
+
+  PRODUCT_ATTRIBUTES: `${PRODUCT_GROUP}/attributes`,
+};

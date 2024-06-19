@@ -9,6 +9,7 @@ import { CellLink, PageLayout, RepresentativeInfo, TableToolbar1 } from '@/share
 import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 import { formatDateTime, formatNumber } from '@/i18n';
+import { INVENTORY_API_URLS } from '@/api';
 
 import FilterToolbar from './components/FilterToolbar';
 
@@ -29,7 +30,7 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo } = usePaginationQuery<Product>('/products', {
+  const { data, isLoading, pagingInfo } = usePaginationQuery<Product>(INVENTORY_API_URLS.PRODUCTS, {
     paging: queryParams,
     queryKey: ['product-list-page'],
   });
