@@ -63,30 +63,20 @@
     "email": "Email",
     "phoneNumber": "Phone number",
     "gender": "Gender",
-    "list": "List"
+    "list": "List",
+    "attribute": "Attribute",
+    "attributes": "Attributes",
+    "value": "Value",
+    "actions": "Actions",
+    "variants": "Variants",
+    "price": "Price",
+    "stock": "Stock"
   },
   "notification": {
     "info": "Information",
     "success": "Success",
     "warning": "Warning",
     "error": "Error"
-  },
-  "productType": {
-    "service": "Service",
-    "product": "Product",
-    "bundle": "Bundle",
-    "unspecified": "Unspecified"
-  },
-  "orderStatus": {
-    "unspecified": "Unspecified",
-    "new": "New",
-    "confirmed": "Confirmed",
-    "picked": "Picked",
-    "processing": "Processing",
-    "qualitycheckdone": "Quality check done",
-    "delivered": "Delivered",
-    "completed": "Completed",
-    "cancelled": "Cancelled"
   },
   "successfulNotification": {
     "save": "Saved successfully",

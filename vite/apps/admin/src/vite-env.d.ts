@@ -9,3 +9,8 @@ type Leaves<T> = T extends object
         : `.${Leaves<T[K]>}`}`;
     }[keyof T]
   : never;
+
+type IdName = {
+  id: string;
+  name: string;
+};
