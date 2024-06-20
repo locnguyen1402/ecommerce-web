@@ -10,13 +10,13 @@ type CreateProductVariantRequest = {
   values: CreateProductVariantAttributeRequest[];
 };
 
-type AttributeInCreateProduct = IdName & { values: string };
+type AttributeInCreateProduct = { attributeId: string; name: string; values: string };
 
 type CreateProductRequest = {
   name: string;
   description: string;
   slug: string;
-  attributes: AttributeInCreateProduct[];
+  productAttributes: AttributeInCreateProduct[];
   //  categories: string[];
   variants: CreateProductVariantRequest[];
 };

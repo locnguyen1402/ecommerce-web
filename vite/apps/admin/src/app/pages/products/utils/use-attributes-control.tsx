@@ -11,8 +11,8 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 import { INVENTORY_API_URLS } from '@/api';
 
 type Props = {
-  control: any;
-  selectedAttributes: CreateProductRequest['attributes'];
+  control: any;   
+  selectedAttributes: CreateProductRequest['productAttributes'];
 
   onAddAttribute: (attribute: AttributeInCreateProduct) => void;
   onRemoveAttribute: (index: number) => void;
@@ -47,7 +47,7 @@ export const useAttributesControl = ({
   const columnHelper = createColumnHelper<AttributeInCreateProduct>();
 
   const columns = [
-    columnHelper.accessor('id', {
+    columnHelper.accessor('attributeId', {
       header: () => t('label.name'),
       cell: (info) => info.row.original.name,
       meta: {
@@ -72,7 +72,7 @@ export const useAttributesControl = ({
             }}
             orientation="horizontal"
             control={control}
-            name={`attributes.${index}.values`}
+            name={`productAttributes.${index}.values`}
           />
         );
       },
@@ -85,7 +85,7 @@ export const useAttributesControl = ({
         },
       },
     }),
-    columnHelper.accessor('id', {
+    columnHelper.display({
       id: 'actions',
       header: () => t('label.actions'),
       cell: (info) => (
@@ -122,7 +122,8 @@ export const useAttributesControl = ({
         onChange={(selected) => {
           if (selected) {
             onAddAttribute({
-              ...selected,
+              attributeId: selected.id,
+              name: selected.name,
               values: '',
             });
           }
@@ -138,6 +139,20 @@ export const useAttributesControl = ({
         itemCount={selectedAttributes.length}
         pageCount={1}
         hidePagination
+      />
+    ),
+    test: (
+      <TextField
+        layoutConfig={{
+          containerClass: 'm-0',
+          horizontal: {
+            labelClass: 'd-none',
+            inputClass: 'w-100',
+          },
+        }}
+        orientation="horizontal"
+        control={control}
+        name={`productAttributes.${0}.values`}
       />
     ),
   };

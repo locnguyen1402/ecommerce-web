@@ -11,6 +11,8 @@ import {
   FileUploadField,
   SearchableSelectField,
   useFieldArray,
+  DataTable,
+  createColumnHelper,
 } from '@vklink/components';
 import { useMutation } from '@vklink/grpc-api';
 
@@ -30,6 +32,7 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
 import { generateVariants } from '../utils';
+import { KTIcon } from '@vklink/metronic-core';
 
 type FormValues = CreateProductRequest;
 
@@ -60,9 +63,9 @@ const MutationForm = ({ defaultValues }: Props) => {
     setValue,
     formState: { errors },
   } = useForm<FormValues>({
-    defaultValues: {
-      ...defaultValues,
-    },
+    // defaultValues: {
+    //   ...defaultValues,
+    // },
   });
 
   const {
@@ -82,18 +85,18 @@ const MutationForm = ({ defaultValues }: Props) => {
   });
 
   const {
-    fields: attrFields,
+    fields: attributeFields,
     append: appendAttribute,
     remove: removeAttribute,
   } = useFieldArray({
     control,
-    name: 'attributes',
+    name: 'productAttributes',
   });
-  const attributeItems = watch('attributes');
-  const controlledAttributeItems = attrFields.map((field, index) => {
+  const attributeItems = watch('productAttributes');
+  const controlledAttributeItems = attributeFields.map((field, index) => {
     return {
       ...field,
-      ...(attributeItems || [])[index],
+      ...attributeItems[index],
     };
   });
 
@@ -101,7 +104,7 @@ const MutationForm = ({ defaultValues }: Props) => {
     control,
     selectedAttributes: controlledAttributeItems,
     onAddAttribute: (selected) => {
-      const isSelected = !!controlledAttributeItems.find((item) => item.id === selected.id);
+      const isSelected = attributeItems.some((item) => item.attributeId === selected.attributeId);
       if (!isSelected) {
         appendAttribute(selected);
       }
@@ -109,16 +112,16 @@ const MutationForm = ({ defaultValues }: Props) => {
     onRemoveAttribute: removeAttribute,
   });
 
-  const variantsControl = useVariantsControl({
-    control,
-    variants: controlledVariantItems,
-    selectedAttributes: controlledAttributeItems,
-    onAddVariant: () => {},
-    onRemoveVariant: removeVariant,
-  });
+  // const variantsControl = useVariantsControl({
+  //   control,
+  //   variants: controlledVariantItems,
+  //   selectedAttributes: controlledAttributeItems,
+  //   onAddVariant: () => {},
+  //   onRemoveVariant: removeVariant,
+  // });
 
   const autoGenerateVariants = () => {
-    setValue('variants', generateVariants(controlledAttributeItems));
+    // setValue('variants', generateVariants(controlledAttributeItems));
   };
 
   const onSubmit = handleSubmit((data) => mutate(data));
@@ -126,6 +129,67 @@ const MutationForm = ({ defaultValues }: Props) => {
   const goBack = () => {
     navigate(-1);
   };
+
+  const columnHelper = createColumnHelper<AttributeInCreateProduct>();
+  const columns = [
+    columnHelper.accessor('attributeId', {
+      header: () => t('label.name'),
+      cell: (info) => info.row.original.name,
+      meta: {
+        body: {
+          className: 'mw-150px',
+        },
+      },
+    }),
+    columnHelper.accessor('values', {
+      header: () => t('label.value'),
+      cell: (info) => {
+        const index = info.row.index;
+
+        return (
+          <TextField
+            layoutConfig={{
+              containerClass: 'm-0',
+              horizontal: {
+                labelClass: 'd-none',
+                inputClass: 'w-100',
+              },
+            }}
+            orientation="horizontal"
+            control={control}
+            name={`productAttributes.${index}.values`}
+          />
+        );
+      },
+      meta: {
+        header: {
+          className: 'min-w-100px mw-100px text-center',
+        },
+        body: {
+          className: 'mw-100px text-center',
+        },
+      },
+    }),
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => (
+        <button
+          onClick={() => {
+            // onRemoveAttribute(info.row.index);
+          }}
+          className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger"
+        >
+          <KTIcon iconName="abstract-11" className="fs-1" />
+        </button>
+      ),
+      meta: {
+        header: {
+          className: 'min-w-50px mw-150px',
+        },
+      },
+    }) as any,
+  ];
 
   return (
     <>
@@ -150,10 +214,22 @@ const MutationForm = ({ defaultValues }: Props) => {
           }
         />
 
-        <FormBody>{attributesControl.attributeListComponent}</FormBody>
+        <FormBody>
+          {attributesControl.test}
+          {attributesControl.attributeListComponent}
+          {/* <DataTable
+            columns={columns}
+            data={controlledAttributeItems}
+            pageIndex={0}
+            pageSize={controlledAttributeItems.length}
+            itemCount={controlledAttributeItems.length}
+            pageCount={1}
+            hidePagination
+          /> */}
+        </FormBody>
       </FormLayout>
 
-      <FormLayout className="mt-5 mt-lg-10">
+      {/* <FormLayout className="mt-5 mt-lg-10">
         <FormHeader
           title={t('label.variants')}
           action={
@@ -167,7 +243,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         />
 
         <FormBody>{variantsControl.variantListComponent}</FormBody>
-      </FormLayout>
+      </FormLayout> */}
 
       <FormLayout className="mt-5 mt-lg-10">
         <FormFooter>
