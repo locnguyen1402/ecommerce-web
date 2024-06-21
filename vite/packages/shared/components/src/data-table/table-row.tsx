@@ -4,19 +4,29 @@ import { Row } from '@tanstack/react-table';
 
 import TableCell from './table-cell';
 
-const TableRow = memo(
-  <T extends {}>({ row }: { row: Row<T> }) => {
-    return (
-      <tr>
-        {row.getVisibleCells().map((cell) => {
-          return <TableCell key={cell.id} cell={cell} />;
-        })}
-      </tr>
-    );
-  },
-  (prev, next) => {
-    return prev.row.id === next.row.id;
-  }
-);
+// const TableRow = memo(
+//   <T extends {}>({ row }: { row: Row<T> }) => {
+//     return (
+//       <tr>
+//         {row.getVisibleCells().map((cell) => {
+//           return <TableCell key={cell.id} cell={cell} />;
+//         })}
+//       </tr>
+//     );
+//   },
+//   (prev, next) => {
+//     return prev.row.id === next.row.id;
+//   }
+// );
+
+const TableRow = <T extends {}>({ row }: { row: Row<T> }) => {
+  return (
+    <tr>
+      {row.getVisibleCells().map((cell) => {
+        return <TableCell key={cell.id} cell={cell} />;
+      })}
+    </tr>
+  );
+};
 
 export default TableRow;

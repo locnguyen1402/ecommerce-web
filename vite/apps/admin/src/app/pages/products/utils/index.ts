@@ -8,8 +8,28 @@ export const retrieveAttributeValues = (valueString: string): string[] => {
   return valueString.split('--').map((value) => value.trim());
 };
 
+export const areVariantsEqual = (
+  variant1: CreateProductVariantRequest,
+  variant2: CreateProductVariantRequest
+): boolean => {
+  if (variant1.values.length !== variant2.values.length) {
+    return false;
+  }
+  for (let i = 0; i < variant1.values.length; i++) {
+    if (
+      variant1.values[i].id !== variant2.values[i].id ||
+      variant1.values[i].value !== variant2.values[i].value
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
 export const generateVariants = (
-  attributes: AttributeInCreateProduct[]
+  attributes: AttributeInCreateProduct[],
+  addedVariants: CreateProductVariantRequest[] = []
 ): CreateProductVariantRequest[] => {
   if (attributes.length === 0) {
     return [];
@@ -39,5 +59,11 @@ export const generateVariants = (
     return variants;
   }
 
-  return combine(0, []);
+  const allVariants = combine(0, []);
+
+  const remainingVariants = allVariants.filter((variant) => {
+    return !addedVariants.some((addedVariant) => areVariantsEqual(variant, addedVariant));
+  });
+
+  return remainingVariants;
 };

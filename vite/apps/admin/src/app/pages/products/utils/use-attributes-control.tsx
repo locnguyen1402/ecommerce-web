@@ -1,10 +1,12 @@
+import { useCallback } from 'react';
+
 import {
+  CellContext,
   DataTable,
   SearchableSelectInput,
   TextField,
   createColumnHelper,
   useFieldArray,
-  useWatch,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 
@@ -56,6 +58,28 @@ export const useAttributesControl = ({ control }: Props) => {
     removeAttribute(index);
   };
 
+  const renderAttributeValueInput = useCallback(
+    (info: CellContext<AttributeInCreateProduct, string>) => {
+      const index = info.row.index;
+
+      return (
+        <TextField
+          layoutConfig={{
+            containerClass: 'm-0',
+            horizontal: {
+              labelClass: 'd-none',
+              inputClass: 'w-100',
+            },
+          }}
+          orientation="horizontal"
+          control={control}
+          name={`attributes.${index}.values`}
+        />
+      );
+    },
+    []
+  );
+
   const columns = [
     columnHelper.accessor('attributeId', {
       header: () => t('label.name'),
@@ -68,24 +92,7 @@ export const useAttributesControl = ({ control }: Props) => {
     }),
     columnHelper.accessor('values', {
       header: () => t('label.value'),
-      cell: (info) => {
-        const index = info.row.index;
-
-        return (
-          <TextField
-            layoutConfig={{
-              containerClass: 'm-0',
-              horizontal: {
-                labelClass: 'd-none',
-                inputClass: 'w-100',
-              },
-            }}
-            orientation="horizontal"
-            control={control}
-            name={`attributes.${index}.values`}
-          />
-        );
-      },
+      cell: renderAttributeValueInput,
       meta: {
         header: {
           className: 'min-w-100px mw-100px text-center',
