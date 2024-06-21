@@ -29,7 +29,10 @@ export const generateVariants = (
 
     for (const value of attributeValues) {
       variants.push(
-        ...combine(index + 1, [...current, { id: attribute.id, name: attribute.name, value }])
+        ...combine(index + 1, [
+          ...current,
+          { id: attribute.attributeId, name: attribute.name, value },
+        ])
       );
     }
 

@@ -3,6 +3,8 @@ import {
   SearchableSelectInput,
   TextField,
   createColumnHelper,
+  useFieldArray,
+  useWatch,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 
@@ -11,20 +13,13 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 import { INVENTORY_API_URLS } from '@/api';
 
 type Props = {
-  control: any;   
-  selectedAttributes: CreateProductRequest['productAttributes'];
-
-  onAddAttribute: (attribute: AttributeInCreateProduct) => void;
-  onRemoveAttribute: (index: number) => void;
+  control: any;
 };
 
-export const useAttributesControl = ({
-  control,
-  selectedAttributes,
-  onAddAttribute,
-  onRemoveAttribute,
-}: Props) => {
+export const useAttributesControl = ({ control }: Props) => {
   const { t } = useI18n();
+  const columnHelper = createColumnHelper<AttributeInCreateProduct>();
+
   const {
     actualText: searchText,
     setActualText: setSearchText,
@@ -44,7 +39,22 @@ export const useAttributesControl = ({
       }),
     });
 
-  const columnHelper = createColumnHelper<AttributeInCreateProduct>();
+  const {
+    fields: attributeFields,
+    append: appendAttribute,
+    remove: removeAttribute,
+  } = useFieldArray({
+    control,
+    name: 'attributes',
+  });
+
+  const onAddAttribute = (attribute: AttributeInCreateProduct) => {
+    appendAttribute(attribute);
+  };
+
+  const onRemoveAttribute = (index: number) => {
+    removeAttribute(index);
+  };
 
   const columns = [
     columnHelper.accessor('attributeId', {
@@ -72,7 +82,7 @@ export const useAttributesControl = ({
             }}
             orientation="horizontal"
             control={control}
-            name={`productAttributes.${index}.values`}
+            name={`attributes.${index}.values`}
           />
         );
       },
@@ -133,26 +143,12 @@ export const useAttributesControl = ({
     attributeListComponent: (
       <DataTable
         columns={columns}
-        data={selectedAttributes}
+        data={attributeFields}
         pageIndex={0}
-        pageSize={selectedAttributes.length}
-        itemCount={selectedAttributes.length}
+        pageSize={attributeFields.length}
+        itemCount={attributeFields.length}
         pageCount={1}
         hidePagination
-      />
-    ),
-    test: (
-      <TextField
-        layoutConfig={{
-          containerClass: 'm-0',
-          horizontal: {
-            labelClass: 'd-none',
-            inputClass: 'w-100',
-          },
-        }}
-        orientation="horizontal"
-        control={control}
-        name={`productAttributes.${0}.values`}
       />
     ),
   };

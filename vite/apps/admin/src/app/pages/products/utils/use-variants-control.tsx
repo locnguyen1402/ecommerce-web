@@ -3,6 +3,8 @@ import {
   SearchableSelectInput,
   TextField,
   createColumnHelper,
+  useFieldArray,
+  useWatch,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 
@@ -11,32 +13,44 @@ import { formatCurrency } from '@/i18n';
 
 type Props = {
   control: any;
-  selectedAttributes: CreateProductRequest['attributes'];
-  variants: CreateProductRequest['variants'];
-
-  onAddVariant: (variant: CreateProductVariantRequest) => void;
-  onRemoveVariant: (index: number) => void;
 };
 
-export const useVariantsControl = ({
-  control,
-  variants,
-  selectedAttributes,
-  onAddVariant,
-  onRemoveVariant,
-}: Props) => {
+export const useVariantsControl = ({ control }: Props) => {
   const { t } = useI18n();
-
   const columnHelper = createColumnHelper<CreateProductVariantRequest>();
+
+  const selectedAttributes: AttributeInCreateProduct[] =
+    useWatch({
+      control,
+      name: 'attributes',
+    }) || [];
+
+  const {
+    fields: variantFields,
+    append: appendVariant,
+    remove: removeVariant,
+  } = useFieldArray({
+    control,
+    name: 'variants',
+  });
+  console.log('🚀 ~ useVariantsControl ~ variantFields:', variantFields);
+
+  const onAddVariant = () => {
+    appendVariant({});
+  };
+
+  const onRemoveVariant = (index: number) => {
+    removeVariant(index);
+  };
 
   const columns = [
     ...selectedAttributes.map((attribute) => {
       return columnHelper.display({
-        id: attribute.id,
+        id: `${attribute.attributeId}-${attribute.name}`,
         header: () => attribute.name,
         cell: (info) => {
           const attributeValue = info.row.original.values.find(
-            (value) => value.id === attribute.id
+            (value) => value.id === attribute.attributeId
           );
 
           return attributeValue?.value;
@@ -126,10 +140,10 @@ export const useVariantsControl = ({
     variantListComponent: (
       <DataTable
         columns={columns}
-        data={variants}
+        data={variantFields}
         pageIndex={0}
-        pageSize={variants.length}
-        itemCount={variants.length}
+        pageSize={variantFields.length}
+        itemCount={variantFields.length}
         pageCount={1}
         hidePagination
       />

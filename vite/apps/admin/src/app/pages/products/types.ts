@@ -16,7 +16,7 @@ type CreateProductRequest = {
   name: string;
   description: string;
   slug: string;
-  productAttributes: AttributeInCreateProduct[];
+  attributes: AttributeInCreateProduct[];
   //  categories: string[];
   variants: CreateProductVariantRequest[];
 };

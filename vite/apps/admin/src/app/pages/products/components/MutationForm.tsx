@@ -56,72 +56,40 @@ const MutationForm = ({ defaultValues }: Props) => {
     },
   });
 
+  // const schema: yup.ObjectSchema<FormValues> = yup.object({
+  //   attributes: yup.array().of(
+  //     yup.object({
+  //       values: yup.string().required(),
+  //     })
+  //   ),
+  // });
+
   const {
     control,
     handleSubmit,
     watch,
+    getValues,
     setValue,
     formState: { errors },
   } = useForm<FormValues>({
+    // resolver: yupResolver(schema),
     // defaultValues: {
     //   ...defaultValues,
     // },
   });
 
-  const {
-    fields: variantFields,
-    append: appendVariant,
-    remove: removeVariant,
-  } = useFieldArray({
-    control,
-    name: 'variants',
-  });
-  const variantItems = watch('variants');
-  const controlledVariantItems = variantFields.map((field, index) => {
-    return {
-      ...field,
-      ...variantItems[index],
-    };
-  });
-
-  const {
-    fields: attributeFields,
-    append: appendAttribute,
-    remove: removeAttribute,
-  } = useFieldArray({
-    control,
-    name: 'productAttributes',
-  });
-  const attributeItems = watch('productAttributes');
-  const controlledAttributeItems = attributeFields.map((field, index) => {
-    return {
-      ...field,
-      ...attributeItems[index],
-    };
-  });
-
   const attributesControl = useAttributesControl({
     control,
-    selectedAttributes: controlledAttributeItems,
-    onAddAttribute: (selected) => {
-      const isSelected = attributeItems.some((item) => item.attributeId === selected.attributeId);
-      if (!isSelected) {
-        appendAttribute(selected);
-      }
-    },
-    onRemoveAttribute: removeAttribute,
   });
 
-  // const variantsControl = useVariantsControl({
-  //   control,
-  //   variants: controlledVariantItems,
-  //   selectedAttributes: controlledAttributeItems,
-  //   onAddVariant: () => {},
-  //   onRemoveVariant: removeVariant,
-  // });
+  const variantsControl = useVariantsControl({
+    control,
+  });
 
   const autoGenerateVariants = () => {
-    // setValue('variants', generateVariants(controlledAttributeItems));
+    const attributes = getValues('attributes');
+
+    setValue('variants', generateVariants(attributes));
   };
 
   const onSubmit = handleSubmit((data) => mutate(data));
@@ -129,67 +97,6 @@ const MutationForm = ({ defaultValues }: Props) => {
   const goBack = () => {
     navigate(-1);
   };
-
-  const columnHelper = createColumnHelper<AttributeInCreateProduct>();
-  const columns = [
-    columnHelper.accessor('attributeId', {
-      header: () => t('label.name'),
-      cell: (info) => info.row.original.name,
-      meta: {
-        body: {
-          className: 'mw-150px',
-        },
-      },
-    }),
-    columnHelper.accessor('values', {
-      header: () => t('label.value'),
-      cell: (info) => {
-        const index = info.row.index;
-
-        return (
-          <TextField
-            layoutConfig={{
-              containerClass: 'm-0',
-              horizontal: {
-                labelClass: 'd-none',
-                inputClass: 'w-100',
-              },
-            }}
-            orientation="horizontal"
-            control={control}
-            name={`productAttributes.${index}.values`}
-          />
-        );
-      },
-      meta: {
-        header: {
-          className: 'min-w-100px mw-100px text-center',
-        },
-        body: {
-          className: 'mw-100px text-center',
-        },
-      },
-    }),
-    columnHelper.display({
-      id: 'actions',
-      header: () => t('label.actions'),
-      cell: (info) => (
-        <button
-          onClick={() => {
-            // onRemoveAttribute(info.row.index);
-          }}
-          className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger"
-        >
-          <KTIcon iconName="abstract-11" className="fs-1" />
-        </button>
-      ),
-      meta: {
-        header: {
-          className: 'min-w-50px mw-150px',
-        },
-      },
-    }) as any,
-  ];
 
   return (
     <>
@@ -214,22 +121,10 @@ const MutationForm = ({ defaultValues }: Props) => {
           }
         />
 
-        <FormBody>
-          {attributesControl.test}
-          {attributesControl.attributeListComponent}
-          {/* <DataTable
-            columns={columns}
-            data={controlledAttributeItems}
-            pageIndex={0}
-            pageSize={controlledAttributeItems.length}
-            itemCount={controlledAttributeItems.length}
-            pageCount={1}
-            hidePagination
-          /> */}
-        </FormBody>
+        <FormBody>{attributesControl.attributeListComponent}</FormBody>
       </FormLayout>
 
-      {/* <FormLayout className="mt-5 mt-lg-10">
+      <FormLayout className="mt-5 mt-lg-10">
         <FormHeader
           title={t('label.variants')}
           action={
@@ -243,7 +138,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         />
 
         <FormBody>{variantsControl.variantListComponent}</FormBody>
-      </FormLayout> */}
+      </FormLayout>
 
       <FormLayout className="mt-5 mt-lg-10">
         <FormFooter>
