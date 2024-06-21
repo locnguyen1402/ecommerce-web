@@ -16,7 +16,23 @@ type CreateProductRequest = {
   name: string;
   description: string;
   slug: string;
+  categories: IdName[];
   attributes: AttributeInCreateProduct[];
-  //  categories: string[];
   variants: CreateProductVariantRequest[];
+};
+
+type CreateProductPayload = {
+  name: string;
+  description: string;
+  slug: string;
+  categories: string[];
+  attributes: string[];
+  variants: {
+    stock: number;
+    price: number;
+    values: {
+      productAttributeId: string;
+      value: string;
+    }[];
+  }[];
 };

@@ -70,7 +70,8 @@
     "actions": "Actions",
     "variants": "Variants",
     "price": "Price",
-    "stock": "Stock"
+    "stock": "Stock",
+    "categories": "Categories"
   },
   "notification": {
     "info": "Information",

@@ -14,3 +14,7 @@ type IdName = {
   id: string;
   name: string;
 };
+
+type IdResponse = {
+  value: string;
+};

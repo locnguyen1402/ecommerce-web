@@ -25,6 +25,7 @@ import {
   FormBody,
   FormHeader,
 } from '@/shared/components';
+import { http } from '@/shared/http';
 
 import { useI18n, usePaginationQuery, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
@@ -32,6 +33,7 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
+import { useCategoriesControl } from '../utils/use-categories-control';
 
 type FormValues = CreateProductRequest;
 
@@ -47,11 +49,29 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const isEditing = !!id;
 
-  const { mutate } = useMutation<any, any, FormValues>({
+  const { mutate } = useMutation<IdResponse, any, FormValues>({
     mutationKey: ['create-product'],
     mutationFn: (data) => {
+      const payload: CreateProductPayload = {
+        name: data.name,
+        description: data.description,
+        slug: data.slug,
+        categories: data.categories.map((c) => c.id),
+        attributes: data.attributes.map((a) => a.attributeId),
+        variants: data.variants.map((v) => ({
+          stock: v.stock,
+          price: v.price,
+          values: v.values.map((vv) => ({
+            productAttributeId: vv.id,
+            value: vv.value,
+          })),
+        })),
+      };
+
+      return http.post(INVENTORY_API_URLS.PRODUCTS, payload);
+    },
+    onSuccess: (data) => {
       console.log('🚀 ~ MutationForm ~ data:', data);
-      return Promise.resolve(data);
     },
   });
 
@@ -75,6 +95,10 @@ const MutationForm = ({ defaultValues }: Props) => {
     // defaultValues: {
     //   ...defaultValues,
     // },
+  });
+
+  const categoriesControl = useCategoriesControl({
+    control,
   });
 
   const attributesControl = useAttributesControl({
@@ -101,6 +125,8 @@ const MutationForm = ({ defaultValues }: Props) => {
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
             <TextField control={control} name="slug" label={t('label.slug')} isRequired />
+
+            {categoriesControl.field}
 
             <TextField control={control} name="description" label={t('label.description')} />
           </FormContainer>
