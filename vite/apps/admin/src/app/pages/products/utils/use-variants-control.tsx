@@ -10,12 +10,14 @@ import { KTIcon } from '@vklink/metronic-core';
 
 import { useI18n } from '@/hooks';
 import { formatCurrency } from '@/i18n';
+import { generateVariants } from '.';
 
 type Props = {
   control: any;
+  getValues: any;
 };
 
-export const useVariantsControl = ({ control }: Props) => {
+export const useVariantsControl = ({ control, getValues }: Props) => {
   const { t } = useI18n();
   const columnHelper = createColumnHelper<CreateProductVariantRequest>();
 
@@ -135,7 +137,15 @@ export const useVariantsControl = ({ control }: Props) => {
     }) as any,
   ];
 
+  const generateRestVariants = () => {
+    const addedVariants = getValues('variants');
+    const attributes = getValues('attributes');
+
+    appendVariant(generateVariants(attributes, addedVariants));
+  };
+
   return {
+    generateRestVariants,
     variantListComponent: (
       <DataTable
         columns={columns}

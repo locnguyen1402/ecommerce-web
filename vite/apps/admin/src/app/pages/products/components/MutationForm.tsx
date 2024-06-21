@@ -14,6 +14,7 @@ import {
   DataTable,
   createColumnHelper,
 } from '@vklink/components';
+import { KTIcon } from '@vklink/metronic-core';
 import { useMutation } from '@vklink/grpc-api';
 
 import {
@@ -31,8 +32,6 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
-import { generateVariants } from '../utils';
-import { KTIcon } from '@vklink/metronic-core';
 
 type FormValues = CreateProductRequest;
 
@@ -84,13 +83,8 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const variantsControl = useVariantsControl({
     control,
+    getValues,
   });
-
-  const autoGenerateVariants = () => {
-    const attributes = getValues('attributes');
-
-    setValue('variants', generateVariants(attributes));
-  };
 
   const onSubmit = handleSubmit((data) => mutate(data));
 
@@ -130,7 +124,7 @@ const MutationForm = ({ defaultValues }: Props) => {
           action={
             <button
               className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
-              onClick={autoGenerateVariants}
+              onClick={() => variantsControl.generateRestVariants()}
             >
               <i className="bi bi-copy fs-1" />
             </button>
