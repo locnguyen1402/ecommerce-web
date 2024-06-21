@@ -33,7 +33,6 @@ export const useVariantsControl = ({ control }: Props) => {
     control,
     name: 'variants',
   });
-  console.log('🚀 ~ useVariantsControl ~ variantFields:', variantFields);
 
   const onAddVariant = () => {
     appendVariant({});

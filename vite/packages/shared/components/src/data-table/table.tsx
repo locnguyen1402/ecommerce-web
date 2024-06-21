@@ -18,6 +18,7 @@ import TablePagination from './table-pagination';
 import TableEmpty from './table-empty';
 import TableLoading from './table-loading';
 import TableBodySkeleton from './table-body-skeleton';
+import TableRow from './table-row';
 
 type ClassName = HTMLProps<HTMLElement>['className'];
 
@@ -114,17 +115,9 @@ const Table = <T extends {}>({
         <TableEmpty columnCount={table.getVisibleLeafColumns().length}>{emptyComponent}</TableEmpty>
       ) : (
         <>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => {
-                return (
-                  <td key={cell.id} className={clsx(tableUtils.getBodyCellClassName(cell))}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
+          {table.getRowModel().rows.map((row) => {
+            return <TableRow key={row.id} row={row} />;
+          })}
         </>
       )}
     </>
