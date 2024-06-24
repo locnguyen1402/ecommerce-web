@@ -15,25 +15,16 @@
     "gen:protos": "buf generate"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^1.7.0",
-    "@connectrpc/connect": "^1.3.0",
-    "@connectrpc/connect-query": "^1.1.3",
-    "@connectrpc/connect-web": "^1.3.0",
-    "@connectrpc/protoc-gen-connect-es": "^1.4.0",
     "@tanstack/react-query": "^5.28.9",
     "axios": "^1.7.2",
-    "qs": "6.10.3",
-    "react-dom": "^18.2.0"
+    "qs": "6.10.3"
   },
   "devDependencies": {
-    "@bufbuild/buf": "^1.29.0",
-    "@bufbuild/protoc-gen-es": "^1.7.0",
     "@types/qs": "6.9.7",
     "@vklink/eslint-config": "workspace:*",
     "@vklink/typescript-config": "workspace:*",
     "eslint": "^8.56.0",
     "react": "^18.2.0",
-    "ts-proto": "^1.167.0",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3"
   }
