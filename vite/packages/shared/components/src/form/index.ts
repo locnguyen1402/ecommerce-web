@@ -1,4 +1,5 @@
 export * from './text-field';
+export * from './number-text-field';
 export * from './textarea-field';
 export * from './select-field';
 export * from './rich-text-field';
