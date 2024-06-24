@@ -1,29 +1,20 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PageLink, KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
 import { DataTable, createColumnHelper } from '@vklink/components';
 
-import { CellLink, PageLayout, RepresentativeInfo, TableToolbar1 } from '@/shared/components';
+import { PageLayout, TableToolbar1 } from '@/shared/components';
 
 import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
-import { formatDateTime, formatNumber } from '@/i18n';
 import { INVENTORY_API_URLS } from '@/api';
+import { Product } from '@/api/responses';
 
+import { ProductListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
 
-const defaultQueryParams: any = {
+const defaultQueryParams: ProductListQuery = {
   ...DEFAULT_PAGING_PARAMS,
-};
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  stock: number;
-  createdAt: string;
-  updatedAt: string;
 };
 
 const Page = () => {
@@ -32,7 +23,12 @@ const Page = () => {
 
   const { data, isLoading, pagingInfo } = usePaginationQuery<Product>(INVENTORY_API_URLS.PRODUCTS, {
     paging: queryParams,
-    queryKey: ['product-list-page'],
+    queryKey: ['product-list-page', queryParams.keyword],
+    getAdditionalParams: () => {
+      return {
+        keyword: queryParams.keyword,
+      };
+    },
   });
 
   const breadCrumbs: PageLink[] = [
@@ -44,9 +40,13 @@ const Page = () => {
     },
   ];
 
-  const columnHelper = createColumnHelper<any>();
+  const columnHelper = createColumnHelper<Product>();
 
-  const columns = [];
+  const columns = [
+    columnHelper.accessor('name', {
+      header: () => t('label.name'),
+    }),
+  ];
 
   return (
     <PageLayout
@@ -62,7 +62,7 @@ const Page = () => {
       }
     >
       <KTCard>
-        {/* <TableToolbar1
+        <TableToolbar1
           right={
             <FilterToolbar
               isLoading={isLoading}
@@ -77,15 +77,18 @@ const Page = () => {
             />
           }
         />
+
         <KTCardBody className="py-4">
           <DataTable
             isLoading={isLoading}
             data={data || []}
             columns={columns}
             onPaginationStateChange={setQueryParams}
+            pageCount={pagingInfo.totalPages!}
+            itemCount={pagingInfo.totalItems!}
             {...pagingInfo}
           />
-        </KTCardBody> */}
+        </KTCardBody>
       </KTCard>
     </PageLayout>
   );

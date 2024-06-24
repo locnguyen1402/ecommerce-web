@@ -1,3 +1,5 @@
+import { PaginatedQueryParams } from '@/shared/types';
+
 type CreateProductVariantAttributeRequest = {
   id: string;
   name: string;
@@ -12,7 +14,7 @@ type CreateProductVariantRequest = {
 
 type AttributeInCreateProduct = { attributeId: string; name: string; values: string };
 
-type CreateProductRequest = {
+export type CreateProductRequest = {
   name: string;
   description: string;
   slug: string;
@@ -21,7 +23,7 @@ type CreateProductRequest = {
   variants: CreateProductVariantRequest[];
 };
 
-type CreateProductPayload = {
+export type CreateProductPayload = {
   name: string;
   description: string;
   slug: string;
@@ -36,3 +38,5 @@ type CreateProductPayload = {
     }[];
   }[];
 };
+
+export type ProductListQuery = PaginatedQueryParams;

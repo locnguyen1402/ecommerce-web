@@ -10,8 +10,11 @@ import { KTIcon } from '@vklink/metronic-core';
 
 import { useI18n } from '@/hooks';
 import { FilterDropdownV2 } from '@/shared/components';
+import { ControlledPaginatedQueryParams } from '@/shared/types';
 
-type FormValues = any;
+import { ProductListQuery } from '../types';
+
+type FormValues = ControlledPaginatedQueryParams<ProductListQuery>;
 
 type Props = {
   defaultValues: FormValues;
@@ -25,8 +28,6 @@ const FilterToolbar = ({ defaultValues, onChange, onReset, isLoading }: Props) =
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
     keyword: yup.string(),
-    type: yup.string(),
-    categoryId: yup.string().optional(),
   });
 
   const { control, handleSubmit, reset } = useForm<FormValues>({
@@ -78,16 +79,7 @@ const FilterToolbar = ({ defaultValues, onChange, onReset, isLoading }: Props) =
           }}
         />
 
-        <FilterDropdownV2 onSubmit={onSubmit} onReset={handleReset}>
-          <>
-            <SelectField
-              label={t('label.serviceType')}
-              name="type"
-              control={control}
-              options={[]}
-            />
-          </>
-        </FilterDropdownV2>
+        <FilterDropdownV2 onSubmit={onSubmit} onReset={handleReset} />
       </form>
     </FormContainer>
   );

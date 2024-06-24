@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { deserialize, serialize } from '../../../../packages/shared/api/src';
+import { deserialize, serialize } from '@vklink/api';
 
 export type QueryParamInit = Parameters<typeof useSearchParams>[0];
 

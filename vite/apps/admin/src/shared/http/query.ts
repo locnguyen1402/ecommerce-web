@@ -1,10 +1,8 @@
-import { PaginationInfo } from '../../../../../packages/shared/api/src';
+import { AxiosResponse, PaginationInfo, ResponseWithPagination } from '@vklink/api';
 
 import { PaginationListQuery, PaginationListResponse } from '@/hooks';
 
 import { http } from './instance';
-
-const HEADER_PAGINATION_KEY = 'X-Pagination';
 
 export const getPaginatedList = async <T>(
   url: string,
@@ -12,7 +10,7 @@ export const getPaginatedList = async <T>(
 ): Promise<PaginationListResponse<T>> => {
   const pageIndex = query.paging?.pageIndex !== undefined ? query.paging?.pageIndex : 1;
   const pageSize = query.paging?.pageSize !== undefined ? query.paging?.pageSize : 10;
-  const response = await http.get<T[]>(url, {
+  const response: AxiosResponse<ResponseWithPagination<T[]>> = await http.get(url, {
     params: {
       ...query,
       pageIndex,
@@ -20,29 +18,8 @@ export const getPaginatedList = async <T>(
     },
   });
 
-  let paginationInfo: PaginationInfo = {
-    pageIndex,
-    pageSize,
-    hasPreviousPage: false,
-    hasNextPage: false,
-  };
-
-  if (
-    response.headers[HEADER_PAGINATION_KEY] ||
-    response.headers[HEADER_PAGINATION_KEY.toLowerCase()]
-  ) {
-    try {
-      paginationInfo = JSON.parse(
-        response.headers[HEADER_PAGINATION_KEY] ||
-          response.headers[HEADER_PAGINATION_KEY.toLowerCase()]
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   return {
-    value: response.data,
-    paging: paginationInfo,
+    value: response.data.content,
+    paging: response.data.meta.pagination,
   };
 };

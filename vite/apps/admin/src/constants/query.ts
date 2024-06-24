@@ -1,4 +1,4 @@
-import { PagingParams } from '../../../../packages/shared/api/src';
+import { PagingParams } from '@vklink/api';
 
 export const DEFAULT_PAGE_SIZE = 10;
 export const FIRST_PAGE_INDEX = 0;

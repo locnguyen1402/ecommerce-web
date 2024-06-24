@@ -3,7 +3,7 @@ import {
   keepPreviousData,
   PaginationInfo,
   PagingParams,
-} from '../../../../packages/shared/api/src';
+} from '@vklink/api';
 
 import { getPaginatedList } from '@/shared/http';
 
@@ -29,11 +29,18 @@ type UsePaginationQueryOptions = {
     [key: string]: any;
   };
   enabled?: boolean;
+  fullPagingInfo?: boolean;
 };
 
 export const usePaginationQuery = <T extends {}>(
   url: string,
-  { queryKey, getAdditionalParams, paging, enabled }: UsePaginationQueryOptions
+  {
+    queryKey,
+    getAdditionalParams,
+    paging,
+    enabled,
+    fullPagingInfo = true,
+  }: UsePaginationQueryOptions
 ) => {
   const additionParams = typeof getAdditionalParams === 'function' ? getAdditionalParams() : {};
 
@@ -50,6 +57,7 @@ export const usePaginationQuery = <T extends {}>(
           pageIndex,
           pageSize,
         },
+        fullPagingInfo,
       };
 
       return getPaginatedList<T>(url, query);

@@ -8,4 +8,16 @@ export type PaginationInfo = {
   pageSize: number;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
+  totalPages?: number;
+  totalItems?: number;
+};
+
+export type Response<TData> = {
+  content: TData;
+};
+
+export type ResponseWithPagination<TData> = Response<TData> & {
+  meta: {
+    pagination: PaginationInfo;
+  };
 };

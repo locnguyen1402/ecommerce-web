@@ -12,7 +12,6 @@
     "@vklink/api": "workspace:^",
     "@vklink/components": "workspace:^",
     "@vklink/metronic-core": "workspace:^",
-    "axios": "1.6.5",
     "clsx": "2.1.0",
     "dayjs": "^1.11.10",
     "formik": "2.2.9",
