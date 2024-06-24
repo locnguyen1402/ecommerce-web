@@ -9,8 +9,8 @@
     "preview": "vite preview --port 8000"
   },
   "dependencies": {
+    "@vklink/api": "workspace:^",
     "@vklink/components": "workspace:^",
-    "@vklink/grpc-api": "workspace:^",
     "@vklink/metronic-core": "workspace:^",
     "axios": "1.6.5",
     "clsx": "2.1.0",

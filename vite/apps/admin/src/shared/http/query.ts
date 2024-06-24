@@ -1,4 +1,4 @@
-import { PaginationInfo } from '@vklink/grpc-api';
+import { PaginationInfo } from '@vklink/api';
 
 import { PaginationListQuery, PaginationListResponse } from '@/hooks';
 

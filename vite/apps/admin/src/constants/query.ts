@@ -1,4 +1,4 @@
-import { PagingParams } from '@vklink/grpc-api';
+import { PagingParams } from '@vklink/api';
 
 export const DEFAULT_PAGE_SIZE = 10;
 export const FIRST_PAGE_INDEX = 0;

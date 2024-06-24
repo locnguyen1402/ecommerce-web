@@ -1957,9 +1957,9 @@ __metadata:
     "@types/react-table": "npm:^7.7.9"
     "@types/sass-loader": "npm:8.0.3"
     "@vitejs/plugin-react-swc": "npm:^3.3.2"
+    "@vklink/api": "workspace:^"
     "@vklink/components": "workspace:^"
     "@vklink/eslint-config": "workspace:^"
-    "@vklink/grpc-api": "workspace:^"
     "@vklink/metronic-core": "workspace:^"
     "@vklink/typescript-config": "workspace:^"
     axios: "npm:1.6.5"
@@ -1992,6 +1992,32 @@ __metadata:
     webpack-cli: "npm:5.1.4"
     webpack-rtl-plugin: "npm:^2.0.0"
     yup: "npm:^1.0.0"
+  languageName: unknown
+  linkType: soft
+
+"@vklink/api@workspace:^, @vklink/api@workspace:packages/shared/grpc-api":
+  version: 0.0.0-use.local
+  resolution: "@vklink/api@workspace:packages/shared/grpc-api"
+  dependencies:
+    "@bufbuild/buf": "npm:^1.29.0"
+    "@bufbuild/protobuf": "npm:^1.7.0"
+    "@bufbuild/protoc-gen-es": "npm:^1.7.0"
+    "@connectrpc/connect": "npm:^1.3.0"
+    "@connectrpc/connect-query": "npm:^1.1.3"
+    "@connectrpc/connect-web": "npm:^1.3.0"
+    "@connectrpc/protoc-gen-connect-es": "npm:^1.4.0"
+    "@tanstack/react-query": "npm:^5.28.9"
+    "@types/qs": "npm:6.9.7"
+    "@vklink/eslint-config": "workspace:*"
+    "@vklink/typescript-config": "workspace:*"
+    axios: "npm:^1.7.2"
+    eslint: "npm:^8.56.0"
+    qs: "npm:6.10.3"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    ts-proto: "npm:^1.167.0"
+    tsup: "npm:^8.0.1"
+    typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
 
@@ -2035,32 +2061,6 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.3"
-  languageName: unknown
-  linkType: soft
-
-"@vklink/grpc-api@workspace:^, @vklink/grpc-api@workspace:packages/shared/grpc-api":
-  version: 0.0.0-use.local
-  resolution: "@vklink/grpc-api@workspace:packages/shared/grpc-api"
-  dependencies:
-    "@bufbuild/buf": "npm:^1.29.0"
-    "@bufbuild/protobuf": "npm:^1.7.0"
-    "@bufbuild/protoc-gen-es": "npm:^1.7.0"
-    "@connectrpc/connect": "npm:^1.3.0"
-    "@connectrpc/connect-query": "npm:^1.1.3"
-    "@connectrpc/connect-web": "npm:^1.3.0"
-    "@connectrpc/protoc-gen-connect-es": "npm:^1.4.0"
-    "@tanstack/react-query": "npm:^5.28.9"
-    "@types/qs": "npm:6.9.7"
-    "@vklink/eslint-config": "workspace:*"
-    "@vklink/typescript-config": "workspace:*"
-    axios: "npm:^1.7.2"
-    eslint: "npm:^8.56.0"
-    qs: "npm:6.10.3"
-    react: "npm:^18.2.0"
-    react-dom: "npm:^18.2.0"
-    ts-proto: "npm:^1.167.0"
-    tsup: "npm:^8.0.1"
-    typescript: "npm:^5.3.3"
   languageName: unknown
   linkType: soft
 

@@ -1,6 +1,6 @@
 import { PropsWithChildren, useRef } from 'react';
 
-import { ApiProvider as Base } from '@vklink/grpc-api';
+import { ApiProvider as Base } from '@vklink/api';
 
 import { useAuth } from '@/app/modules/auth';
 import { AuthUtils } from '../utils';

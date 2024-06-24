@@ -3,7 +3,7 @@ import {
   keepPreviousData,
   PaginationInfo,
   PagingParams,
-} from '@vklink/grpc-api';
+} from '@vklink/api';
 
 import { getPaginatedList } from '@/shared/http';
 

@@ -3,7 +3,7 @@ import '@vklink/metronic-core/style.scss';
 import { createRoot } from 'react-dom/client';
 
 import { Chart, registerables } from '@vklink/metronic-core';
-import { QueryClient, QueryClientProvider } from '@vklink/grpc-api';
+import { QueryClient, QueryClientProvider } from '@vklink/api';
 
 import { AppRoutes } from './app/routing/AppRoutes';
 import { AuthProvider } from './app/modules/auth';
