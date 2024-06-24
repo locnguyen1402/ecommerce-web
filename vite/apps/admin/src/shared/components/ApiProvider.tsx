@@ -1,6 +1,6 @@
 import { PropsWithChildren, useRef } from 'react';
 
-import { ApiProvider as Base } from '@vklink/api';
+import { ApiProvider as Base } from '../../../../../packages/shared/api/src';
 
 import { useAuth } from '@/app/modules/auth';
 import { AuthUtils } from '../utils';

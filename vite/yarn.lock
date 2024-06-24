@@ -1995,9 +1995,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@vklink/api@workspace:^, @vklink/api@workspace:packages/shared/grpc-api":
+"@vklink/api@workspace:^, @vklink/api@workspace:packages/shared/api":
   version: 0.0.0-use.local
-  resolution: "@vklink/api@workspace:packages/shared/grpc-api"
+  resolution: "@vklink/api@workspace:packages/shared/api"
   dependencies:
     "@bufbuild/buf": "npm:^1.29.0"
     "@bufbuild/protobuf": "npm:^1.7.0"

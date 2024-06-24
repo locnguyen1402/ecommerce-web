@@ -15,7 +15,7 @@ import {
   createColumnHelper,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
-import { useMutation } from '@vklink/api';
+import { useMutation } from '../../../../../../../packages/shared/api/src';
 
 import {
   FormFooter,

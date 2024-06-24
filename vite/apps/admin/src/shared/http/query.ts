@@ -1,4 +1,4 @@
-import { PaginationInfo } from '@vklink/api';
+import { PaginationInfo } from '../../../../../packages/shared/api/src';
 
 import { PaginationListQuery, PaginationListResponse } from '@/hooks';
 

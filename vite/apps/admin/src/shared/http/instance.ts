@@ -1,4 +1,4 @@
-import { createHttpInstance } from '@vklink/api';
+import { createHttpInstance } from '../../../../../packages/shared/api/src';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

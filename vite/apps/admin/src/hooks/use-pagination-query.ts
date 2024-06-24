@@ -3,7 +3,7 @@ import {
   keepPreviousData,
   PaginationInfo,
   PagingParams,
-} from '@vklink/api';
+} from '../../../../packages/shared/api/src';
 
 import { getPaginatedList } from '@/shared/http';
 
