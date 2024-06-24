@@ -10,5 +10,3 @@ export {
 export * from './common';
 export * from './http';
 export * from './serialization';
-
-export { ApiProvider } from './provider';

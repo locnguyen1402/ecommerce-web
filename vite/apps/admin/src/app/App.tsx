@@ -9,7 +9,7 @@ import {
   ThemeModeProvider,
 } from '@vklink/metronic-core';
 
-import { ApiProvider, ToastContainer } from '@/shared/components';
+import { ToastContainer } from '@/shared/components';
 import { MENU_ITEMS, SUPPORTED_LANGUAGES } from '@/constants';
 import { useI18n } from '@/hooks';
 
@@ -21,31 +21,29 @@ const App = () => {
 
   return (
     <Suspense fallback={<LayoutSplashScreen />}>
-      <ApiProvider>
-        <MasterLayoutDataProvider
-          data={{
-            sidebarMenuItems: MENU_ITEMS,
-            t: t as any,
-            supportedLanguages: SUPPORTED_LANGUAGES,
-            language: locale,
-            onChangeLanguage: changeLocale,
-            logoutText: t('actions.signOut'),
-            onLogout: () => {
-              auth.logout();
-            },
-          }}
-        >
-          <LayoutProvider>
-            <ThemeModeProvider>
-              <AuthInit>
-                <Outlet />
-                <MasterInit />
-                <ToastContainer />
-              </AuthInit>
-            </ThemeModeProvider>
-          </LayoutProvider>
-        </MasterLayoutDataProvider>
-      </ApiProvider>
+      <MasterLayoutDataProvider
+        data={{
+          sidebarMenuItems: MENU_ITEMS,
+          t: t as any,
+          supportedLanguages: SUPPORTED_LANGUAGES,
+          language: locale,
+          onChangeLanguage: changeLocale,
+          logoutText: t('actions.signOut'),
+          onLogout: () => {
+            auth.logout();
+          },
+        }}
+      >
+        <LayoutProvider>
+          <ThemeModeProvider>
+            <AuthInit>
+              <Outlet />
+              <MasterInit />
+              <ToastContainer />
+            </AuthInit>
+          </ThemeModeProvider>
+        </LayoutProvider>
+      </MasterLayoutDataProvider>
     </Suspense>
   );
 };
