@@ -1,6 +1,6 @@
 import { forwardRef, useId } from 'react';
 import { Controller, FieldValues } from 'react-hook-form';
-import { NumericFormat, NumericFormatProps } from 'react-number-format';
+import { NumericFormat as BaseNumericFormat, NumericFormatProps } from 'react-number-format';
 
 import clsx from 'clsx';
 
@@ -8,11 +8,23 @@ import { FormLabel } from './form-label';
 import { FormFieldLayout } from './form-field-layout';
 import { useFormFieldClassNames } from './form-utils';
 
-const BaseNumericFormatInput = forwardRef<HTMLInputElement, NumericFormatProps>(
-  function NumericFormatInput(props, ref) {
-    return <NumericFormat getInputRef={ref} {...props} />;
-  }
-);
+const NumericFormatInput = forwardRef<HTMLInputElement, NumericFormatProps>((props, ref) => {
+  return <BaseNumericFormat getInputRef={ref} {...props} />;
+});
+
+export type NumericFormatOptions = Pick<
+  NumericFormatProps,
+  | 'thousandSeparator'
+  | 'decimalSeparator'
+  | 'allowedDecimalSeparators'
+  | 'thousandsGroupStyle'
+  | 'decimalScale'
+  | 'fixedDecimalScale'
+  | 'allowNegative'
+  | 'allowLeadingZeros'
+  | 'suffix'
+  | 'prefix'
+>;
 
 export type NumberTextFieldProps<TFieldValues extends FieldValues> = FormFieldProps<TFieldValues> &
   NumericFormatProps;
@@ -81,7 +93,8 @@ const NumberTextField = <TFieldValues extends FieldValues>({
               </FormLabel>
             }
             field={
-              <BaseNumericFormatInput
+              <NumericFormatInput
+                displayType="input"
                 thousandSeparator={thousandSeparator}
                 decimalSeparator={decimalSeparator}
                 allowedDecimalSeparators={allowedDecimalSeparators}
@@ -93,8 +106,8 @@ const NumberTextField = <TFieldValues extends FieldValues>({
                 suffix={suffix}
                 prefix={prefix}
                 value={value}
-                onValueChange={({ floatValue }) => {
-                  onChange(floatValue);
+                onValueChange={({ value }) => {
+                  onChange(value);
                 }}
                 onBlur={onBlur}
                 ref={ref}
