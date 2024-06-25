@@ -4,6 +4,7 @@ import {
   CellContext,
   DataTable,
   SearchableSelectInput,
+  TagsField,
   TextField,
   createColumnHelper,
   useFieldArray,
@@ -13,6 +14,8 @@ import { KTIcon } from '@vklink/metronic-core';
 import { useDebouncedText, useI18n, usePaginationQuery } from '@/hooks';
 import { FIRST_PAGE_INDEX } from '@/constants';
 import { INVENTORY_API_URLS } from '@/api';
+
+import { AttributeInCreateProduct } from '../types';
 
 type Props = {
   control: any;
@@ -59,11 +62,11 @@ export const useAttributesControl = ({ control }: Props) => {
   };
 
   const renderAttributeValueInput = useCallback(
-    (info: CellContext<AttributeInCreateProduct, string>) => {
+    (info: CellContext<AttributeInCreateProduct, string[]>) => {
       const index = info.row.index;
 
       return (
-        <TextField
+        <TagsField
           layoutConfig={{
             containerClass: 'm-0',
             horizontal: {
@@ -72,10 +75,26 @@ export const useAttributesControl = ({ control }: Props) => {
             },
           }}
           orientation="horizontal"
+          placeholder="Press enter to add tag"
           control={control}
           name={`attributes.${index}.values`}
         />
       );
+
+      // return (
+      //   <TextField
+      //     layoutConfig={{
+      //       containerClass: 'm-0',
+      //       horizontal: {
+      //         labelClass: 'd-none',
+      //         inputClass: 'w-100',
+      //       },
+      //     }}
+      //     orientation="horizontal"
+      //     control={control}
+      //     name={`attributes.${index}.values`}
+      //   />
+      // );
     },
     []
   );
@@ -141,7 +160,7 @@ export const useAttributesControl = ({ control }: Props) => {
             onAddAttribute({
               attributeId: selected.id,
               name: selected.name,
-              values: '',
+              values: [],
             });
           }
         }}

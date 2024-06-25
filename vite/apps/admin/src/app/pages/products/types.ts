@@ -1,18 +1,18 @@
 import { PaginatedQueryParams } from '@/shared/types';
 
-type CreateProductVariantAttributeRequest = {
+export type CreateProductVariantAttributeRequest = {
   id: string;
   name: string;
   value: string;
 };
 
-type CreateProductVariantRequest = {
+export type CreateProductVariantRequest = {
   stock: number;
   price: number;
   values: CreateProductVariantAttributeRequest[];
 };
 
-type AttributeInCreateProduct = { attributeId: string; name: string; values: string };
+export type AttributeInCreateProduct = { attributeId: string; name: string; values: string[] };
 
 export type CreateProductRequest = {
   name: string;

@@ -1,5 +1,6 @@
 import {
   DataTable,
+  NumberTextField,
   SearchableSelectInput,
   TextField,
   createColumnHelper,
@@ -9,7 +10,9 @@ import {
 import { KTIcon } from '@vklink/metronic-core';
 
 import { useI18n } from '@/hooks';
-import { formatCurrency } from '@/i18n';
+import { BaseNumericFormatOptions } from '@/constants';
+
+import { AttributeInCreateProduct, CreateProductVariantRequest } from '../types';
 import { generateVariants } from '.';
 
 type Props = {
@@ -64,7 +67,8 @@ export const useVariantsControl = ({ control, getValues }: Props) => {
         const index = info.row.index;
 
         return (
-          <TextField
+          <NumberTextField
+            {...BaseNumericFormatOptions}
             layoutConfig={{
               containerClass: 'm-0',
               horizontal: {
@@ -93,7 +97,7 @@ export const useVariantsControl = ({ control, getValues }: Props) => {
         const index = info.row.index;
 
         return (
-          <TextField
+          <NumberTextField
             layoutConfig={{
               containerClass: 'm-0',
               horizontal: {

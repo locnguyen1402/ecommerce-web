@@ -1,12 +1,8 @@
-type Attribute = {
-  id: string;
-  name: string;
-  value: string[];
-};
-
-export const retrieveAttributeValues = (valueString: string): string[] => {
-  return valueString.split('--').map((value) => value.trim());
-};
+import {
+  AttributeInCreateProduct,
+  CreateProductVariantAttributeRequest,
+  CreateProductVariantRequest,
+} from '../types';
 
 export const areVariantsEqual = (
   variant1: CreateProductVariantRequest,
@@ -44,7 +40,7 @@ export const generateVariants = (
     }
 
     const attribute = attributes[index];
-    const attributeValues = retrieveAttributeValues(attribute.values);
+    const attributeValues = [...attribute.values];
     const variants: CreateProductVariantRequest[] = [];
 
     for (const value of attributeValues) {
