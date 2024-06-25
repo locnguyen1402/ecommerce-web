@@ -10,3 +10,4 @@ export * from './switch-field';
 export * from './checkbox-field';
 export * from './form-container';
 export * from './date-time-field';
+export * from './tags-field';
