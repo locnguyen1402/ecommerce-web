@@ -1,4 +1,4 @@
-import { forwardRef, useId } from 'react';
+import { ReactNode, forwardRef, useId } from 'react';
 import { Controller, FieldValues } from 'react-hook-form';
 import { NumericFormat as BaseNumericFormat, NumericFormatProps } from 'react-number-format';
 
@@ -27,7 +27,9 @@ export type NumericFormatOptions = Pick<
 >;
 
 export type NumberTextFieldProps<TFieldValues extends FieldValues> = FormFieldProps<TFieldValues> &
-  NumericFormatProps;
+  NumericFormatProps & {
+    inputRender?: (inputComponent: ReactNode) => ReactNode;
+  };
 
 const NumberTextField = <TFieldValues extends FieldValues>({
   // props is predefined in types.d.ts file
@@ -64,6 +66,8 @@ const NumberTextField = <TFieldValues extends FieldValues>({
   prefix,
   id,
 
+  inputRender,
+
   ...rest
 }: NumberTextFieldProps<TFieldValues>) => {
   const reactId = useId();
@@ -81,6 +85,40 @@ const NumberTextField = <TFieldValues extends FieldValues>({
       name={name}
       control={control}
       render={({ field: { value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => {
+        const inputComponent = (
+          <NumericFormatInput
+            displayType="input"
+            thousandSeparator={thousandSeparator}
+            decimalSeparator={decimalSeparator}
+            allowedDecimalSeparators={allowedDecimalSeparators}
+            thousandsGroupStyle={thousandsGroupStyle}
+            decimalScale={decimalScale}
+            fixedDecimalScale={fixedDecimalScale}
+            allowNegative={allowNegative}
+            allowLeadingZeros={allowLeadingZeros}
+            suffix={suffix}
+            prefix={prefix}
+            value={value}
+            onValueChange={({ value }) => {
+              onChange(value);
+            }}
+            onBlur={onBlur}
+            ref={ref}
+            id={inputId}
+            placeholder={placeholder}
+            readOnly={isReadOnly}
+            disabled={isDisabled}
+            className={clsx(
+              'form-control',
+              layoutClassNames.size,
+              layoutClassNames.variant,
+              {
+                'is-invalid': isInvalid || !!error || invalid,
+              },
+              className
+            )}
+          />
+        );
         return (
           <FormFieldLayout
             orientation={layoutClassNames.orientation}
@@ -92,40 +130,7 @@ const NumberTextField = <TFieldValues extends FieldValues>({
                 {label}
               </FormLabel>
             }
-            field={
-              <NumericFormatInput
-                displayType="input"
-                thousandSeparator={thousandSeparator}
-                decimalSeparator={decimalSeparator}
-                allowedDecimalSeparators={allowedDecimalSeparators}
-                thousandsGroupStyle={thousandsGroupStyle}
-                decimalScale={decimalScale}
-                fixedDecimalScale={fixedDecimalScale}
-                allowNegative={allowNegative}
-                allowLeadingZeros={allowLeadingZeros}
-                suffix={suffix}
-                prefix={prefix}
-                value={value}
-                onValueChange={({ value }) => {
-                  onChange(value);
-                }}
-                onBlur={onBlur}
-                ref={ref}
-                id={inputId}
-                placeholder={placeholder}
-                readOnly={isReadOnly}
-                disabled={isDisabled}
-                className={clsx(
-                  'form-control',
-                  layoutClassNames.size,
-                  layoutClassNames.variant,
-                  {
-                    'is-invalid': isInvalid || !!error || invalid,
-                  },
-                  className
-                )}
-              />
-            }
+            field={typeof inputRender === 'function' ? inputRender(inputComponent) : inputComponent}
           />
         );
       }}
