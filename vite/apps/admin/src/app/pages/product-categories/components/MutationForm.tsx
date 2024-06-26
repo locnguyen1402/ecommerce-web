@@ -61,7 +61,10 @@ const MutationForm = ({ defaultValues }: Props) => {
           generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
             id,
           }),
-          payload
+          {
+            id,
+            ...payload,
+          }
         );
       }
 

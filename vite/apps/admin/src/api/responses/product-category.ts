@@ -4,3 +4,7 @@ export type ProductCategory = {
   slug: string;
   description: string;
 };
+
+export type ProductCategoryDetail = ProductCategory & {
+  parent?: ProductCategory;
+};

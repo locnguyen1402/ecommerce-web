@@ -5,3 +5,4 @@ export * from './use-form-mode';
 export * from './use-toast';
 export * from './use-disclosure';
 export * from './use-pagination-query';
+export * from './use-detail-query';

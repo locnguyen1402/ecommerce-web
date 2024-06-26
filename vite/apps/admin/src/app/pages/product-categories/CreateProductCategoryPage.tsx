@@ -7,6 +7,7 @@ import MutationForm from './components/MutationForm';
 
 const Page = () => {
   const { t } = useI18n();
+
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productCategoryManagement'),
