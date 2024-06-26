@@ -5,7 +5,6 @@ import {
   DataTable,
   SearchableSelectInput,
   TagsField,
-  TextField,
   createColumnHelper,
   useFieldArray,
 } from '@vklink/components';
@@ -15,7 +14,7 @@ import { useDebouncedText, useI18n, usePaginationQuery } from '@/hooks';
 import { FIRST_PAGE_INDEX } from '@/constants';
 import { INVENTORY_API_URLS } from '@/api';
 
-import { AttributeInCreateProduct } from '../types';
+import { AttributeInCreateProduct, CreateProductRequest } from '../types';
 
 type Props = {
   control: any;
@@ -48,13 +47,21 @@ export const useAttributesControl = ({ control }: Props) => {
     fields: attributeFields,
     append: appendAttribute,
     remove: removeAttribute,
-  } = useFieldArray({
+  } = useFieldArray<CreateProductRequest, 'attributes'>({
     control,
     name: 'attributes',
   });
 
-  const onAddAttribute = (attribute: AttributeInCreateProduct) => {
-    appendAttribute(attribute);
+  const onAddAttribute = (attribute: IdName) => {
+    const isExist = attributeFields.some((f) => f.attributeId === attribute.id);
+
+    if (!isExist) {
+      appendAttribute({
+        attributeId: attribute.id,
+        name: attribute.name,
+        values: [],
+      });
+    }
   };
 
   const onRemoveAttribute = (index: number) => {
@@ -80,21 +87,6 @@ export const useAttributesControl = ({ control }: Props) => {
           name={`attributes.${index}.values`}
         />
       );
-
-      // return (
-      //   <TextField
-      //     layoutConfig={{
-      //       containerClass: 'm-0',
-      //       horizontal: {
-      //         labelClass: 'd-none',
-      //         inputClass: 'w-100',
-      //       },
-      //     }}
-      //     orientation="horizontal"
-      //     control={control}
-      //     name={`attributes.${index}.values`}
-      //   />
-      // );
     },
     []
   );
@@ -157,11 +149,7 @@ export const useAttributesControl = ({ control }: Props) => {
         onInputChange={setSearchText}
         onChange={(selected) => {
           if (selected) {
-            onAddAttribute({
-              attributeId: selected.id,
-              name: selected.name,
-              values: [],
-            });
+            onAddAttribute(selected);
           }
         }}
       />

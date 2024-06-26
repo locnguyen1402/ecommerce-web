@@ -1,8 +1,6 @@
 import {
   DataTable,
   NumberTextField,
-  SearchableSelectInput,
-  TextField,
   createColumnHelper,
   useFieldArray,
   useWatch,
@@ -12,7 +10,7 @@ import { KTIcon } from '@vklink/metronic-core';
 import { useI18n } from '@/hooks';
 import { BaseNumericFormatOptions } from '@/constants';
 
-import { AttributeInCreateProduct, CreateProductVariantRequest } from '../types';
+import { CreateProductRequest, CreateProductVariantRequest } from '../types';
 import { generateVariants } from '.';
 
 type Props = {
@@ -24,8 +22,8 @@ export const useVariantsControl = ({ control, getValues }: Props) => {
   const { t } = useI18n();
   const columnHelper = createColumnHelper<CreateProductVariantRequest>();
 
-  const selectedAttributes: AttributeInCreateProduct[] =
-    useWatch({
+  const selectedAttributes =
+    useWatch<CreateProductRequest, 'attributes'>({
       control,
       name: 'attributes',
     }) || [];
@@ -34,14 +32,10 @@ export const useVariantsControl = ({ control, getValues }: Props) => {
     fields: variantFields,
     append: appendVariant,
     remove: removeVariant,
-  } = useFieldArray({
+  } = useFieldArray<CreateProductRequest, 'variants'>({
     control,
     name: 'variants',
   });
-
-  const onAddVariant = () => {
-    appendVariant({});
-  };
 
   const onRemoveVariant = (index: number) => {
     removeVariant(index);
