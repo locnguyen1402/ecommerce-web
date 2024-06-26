@@ -6,6 +6,10 @@
     "productCategories": "Categories",
     "products": "Products"
   },
+  "breadcrumbs": {
+    "productManagement": "Product Management",
+    "productCategoryManagement": "Product Category Management"
+  },
   "actions": {
     "upload": "Upload",
     "confirm": "Confirm",
@@ -47,9 +51,6 @@
     "addImage": "Add image",
     "signOut": "Sign out",
     "signIn": "Sign in"
-  },
-  "breadcrumbs": {
-    "productManagement": "Product Management"
   },
   "label": {
     "generalInformation": "General Information",

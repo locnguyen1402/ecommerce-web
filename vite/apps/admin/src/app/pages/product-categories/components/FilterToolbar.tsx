@@ -5,9 +5,9 @@ import { useI18n } from '@/hooks';
 import { OkButton } from '@/shared/components';
 import { ControlledPaginatedQueryParams } from '@/shared/types';
 
-import { ProductListQuery } from '../types';
+import { ProductCategoryListQuery } from '../types';
 
-type FormValues = ControlledPaginatedQueryParams<ProductListQuery>;
+type FormValues = ControlledPaginatedQueryParams<ProductCategoryListQuery>;
 
 type Props = {
   defaultValues: FormValues;

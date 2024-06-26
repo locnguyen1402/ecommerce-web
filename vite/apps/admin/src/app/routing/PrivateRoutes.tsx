@@ -8,6 +8,9 @@ import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
 
 const PrivateRoutes = () => {
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
+  const ProductCategoryRoutes = lazy(
+    () => import('../pages/product-categories/ProductCategoryRoutes')
+  );
 
   return (
     <Routes>
@@ -22,6 +25,15 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <ProductRoutes />
+            </SuspensedView>
+          }
+        />
+
+        <Route
+          path="product-categories/*"
+          element={
+            <SuspensedView>
+              <ProductCategoryRoutes />
             </SuspensedView>
           }
         />

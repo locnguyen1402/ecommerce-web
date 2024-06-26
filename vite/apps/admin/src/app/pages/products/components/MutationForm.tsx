@@ -13,6 +13,9 @@ import {
   useFieldArray,
   DataTable,
   createColumnHelper,
+  NumberTextField,
+  TagsInput,
+  TagsField,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 import { useMutation } from '@vklink/api';
@@ -29,8 +32,9 @@ import { http } from '@/shared/http';
 
 import { useI18n, usePaginationQuery, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { FIRST_PAGE_INDEX } from '@/constants';
+import { BaseNumericFormatOptions, FIRST_PAGE_INDEX } from '@/constants';
 
+import { CreateProductRequest, CreateProductPayload } from '../types';
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
 import { useCategoriesControl } from '../utils/use-categories-control';
@@ -67,6 +71,9 @@ const MutationForm = ({ defaultValues }: Props) => {
           })),
         })),
       };
+      console.log('🚀 ~ MutationForm ~ payload:', payload);
+
+      return Promise.resolve(payload);
 
       return http.post(INVENTORY_API_URLS.PRODUCTS, payload);
     },
@@ -110,7 +117,10 @@ const MutationForm = ({ defaultValues }: Props) => {
     getValues,
   });
 
-  const onSubmit = handleSubmit((data) => mutate(data));
+  const onSubmit = handleSubmit((data) => {
+    console.log('🚀 ~ onSubmit ~ data:', data);
+    mutate(data);
+  });
 
   const goBack = () => {
     navigate(-1);
@@ -121,7 +131,7 @@ const MutationForm = ({ defaultValues }: Props) => {
       <FormLayout>
         <FormHeader title={t('label.generalInformation')} />
         <FormBody>
-          <FormContainer>
+          <FormContainer size="md" variant="outlined">
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
             <TextField control={control} name="slug" label={t('label.slug')} isRequired />

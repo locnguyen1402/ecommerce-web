@@ -19,4 +19,10 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     icon: 'cube-2',
     kind: 'item',
   },
+  {
+    to: '/product-categories',
+    title: 'menu.productCategories',
+    icon: 'category',
+    kind: 'item',
+  },
 ];
