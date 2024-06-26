@@ -1,6 +1,6 @@
 import { Route, Routes, Outlet } from 'react-router-dom';
 import ProductCategoryListPage from './ProductCategoryListPage';
-// import CreateProductCategoryPage from './CreateProductCategoryPage';
+import CreateProductCategoryPage from './CreateProductCategoryPage';
 // import EditProductCategoryPage from './EditProductCategoryPage';
 // import ProductCategoryDetailPage from './ProductCategoryDetailPage';
 
@@ -10,6 +10,7 @@ const ProductCategoryRoutes = () => (
       {/* <Route path="create" element={<CreateProductCategoryPage />} />
       <Route path=":id/edit" element={<EditProductCategoryPage />} />
       <Route path=":id" element={<ProductCategoryDetailPage />} /> */}
+      <Route path="create" element={<CreateProductCategoryPage />} />
       <Route index element={<ProductCategoryListPage />} />
     </Route>
   </Routes>

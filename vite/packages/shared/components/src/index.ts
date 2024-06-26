@@ -9,6 +9,7 @@ export {
   useForm,
   useWatch,
   useFieldArray,
+  type FieldValues,
   type ValidationMode,
   type Resolver as FormResolver,
   type UseFormGetValues,

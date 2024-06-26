@@ -7,7 +7,7 @@ export {
   keepPreviousData,
 } from '@tanstack/react-query';
 
-export { type AxiosResponse } from 'axios';
+export { type AxiosResponse, type Method as HttpMethod, type AxiosRequestConfig } from 'axios';
 
 export * from './common';
 export * from './http';

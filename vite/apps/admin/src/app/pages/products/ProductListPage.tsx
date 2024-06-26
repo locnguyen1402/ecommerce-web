@@ -21,15 +21,18 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo } = usePaginationQuery<Product>(INVENTORY_API_URLS.PRODUCTS, {
-    paging: queryParams,
-    queryKey: ['product-list-page', queryParams.keyword],
-    getAdditionalParams: () => {
-      return {
-        keyword: queryParams.keyword,
-      };
-    },
-  });
+  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<Product>(
+    INVENTORY_API_URLS.PRODUCTS,
+    {
+      paging: queryParams,
+      queryKey: ['product-list-page', queryParams.keyword],
+      getAdditionalParams: () => {
+        return {
+          keyword: queryParams.keyword,
+        };
+      },
+    }
+  );
 
   const breadCrumbs: PageLink[] = [
     {
@@ -91,6 +94,7 @@ const Page = () => {
         <KTCardBody className="py-4">
           <DataTable
             isLoading={isLoading}
+            isRefetching={isRefetching}
             data={data || []}
             columns={columns}
             onPaginationStateChange={setQueryParams}

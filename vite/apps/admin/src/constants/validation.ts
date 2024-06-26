@@ -8,6 +8,11 @@ export const ValidationPatterns = {
   password: /^(?=.*[\W])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([\w\d\W]){8,20}$/,
 };
 
+export const idNameSchema: yup.ObjectSchema<IdName> = yup.object({
+  id: yup.string().required(),
+  name: yup.string().required(),
+});
+
 export const getPhoneNumberSchema = (t: (key: any) => string) => {
   return yup
     .string()

@@ -53,7 +53,7 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const isEditing = !!id;
 
-  const { mutate } = useMutation<IdResponse, any, FormValues>({
+  const { mutate, isPending: isMutating } = useMutation<IdResponse, any, FormValues>({
     mutationKey: ['create-product'],
     mutationFn: (data) => {
       const payload: CreateProductPayload = {
@@ -171,9 +171,11 @@ const MutationForm = ({ defaultValues }: Props) => {
       </FormLayout>
 
       <FormLayout className="mt-5 mt-lg-10">
-        <FormFooter>
+        <FormFooter className="border-top-0">
           <CancelButton onClick={goBack}>{t('actions.cancel')}</CancelButton>
-          <OkButton onClick={onSubmit}>{t('actions.save')}</OkButton>
+          <OkButton isLoading={isMutating} onClick={onSubmit}>
+            {t('actions.save')}
+          </OkButton>
         </FormFooter>
       </FormLayout>
     </>

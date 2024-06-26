@@ -18,3 +18,5 @@ type IdName = {
 type IdResponse = {
   value: string;
 };
+
+type Nullable<T> = T | null;

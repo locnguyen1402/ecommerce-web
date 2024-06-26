@@ -1,4 +1,6 @@
 export const slugify = (text: string, separator?: string) => {
+  if (!text) return '';
+
   text = text.toString().toLowerCase().trim();
 
   const sets = [

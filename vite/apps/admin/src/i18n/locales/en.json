@@ -72,7 +72,8 @@
     "variants": "Variants",
     "price": "Price",
     "stock": "Stock",
-    "categories": "Categories"
+    "categories": "Categories",
+    "parent": "Parent"
   },
   "notification": {
     "info": "Information",

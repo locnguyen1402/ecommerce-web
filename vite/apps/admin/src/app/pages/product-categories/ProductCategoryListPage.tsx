@@ -21,7 +21,7 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo } = usePaginationQuery<ProductCategory>(
+  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ProductCategory>(
     INVENTORY_API_URLS.CATEGORIES,
     {
       paging: queryParams,
@@ -93,6 +93,7 @@ const Page = () => {
         <KTCardBody className="py-4">
           <DataTable
             isLoading={isLoading}
+            isRefetching={isRefetching}
             data={data || []}
             columns={columns}
             onPaginationStateChange={setQueryParams}
