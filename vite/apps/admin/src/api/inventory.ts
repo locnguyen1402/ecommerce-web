@@ -9,4 +9,5 @@ export const INVENTORY_API_URLS = {
   PRODUCT_DETAIL: `${PRODUCT_GROUP}/:id`,
 
   PRODUCT_ATTRIBUTES: `${PRODUCT_GROUP}/attributes`,
+  PRODUCT_ATTRIBUTE_DETAIL: `${PRODUCT_GROUP}/attributes/:id`,
 };

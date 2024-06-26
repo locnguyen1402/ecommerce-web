@@ -10,7 +10,7 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'item',
   },
   {
-    title: 'menu.features',
+    title: 'menu.inventory',
     kind: 'section',
   },
   {
@@ -23,6 +23,12 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     to: '/product-categories',
     title: 'menu.productCategories',
     icon: 'category',
+    kind: 'item',
+  },
+  {
+    to: '/product-attributes',
+    title: 'menu.attributes',
+    icon: 'element-plus',
     kind: 'item',
   },
 ];

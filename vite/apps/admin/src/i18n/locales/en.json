@@ -4,11 +4,14 @@
     "dashboard": "Dashboard",
     "catalogs": "Catalogs",
     "productCategories": "Categories",
-    "products": "Products"
+    "products": "Products",
+    "inventory": "Inventory",
+    "attributes": "Attributes"
   },
   "breadcrumbs": {
     "productManagement": "Product Management",
-    "productCategoryManagement": "Product Category Management"
+    "productCategoryManagement": "Product Category Management",
+    "productAttributeManagement": "Product Attribute Management"
   },
   "actions": {
     "upload": "Upload",

@@ -11,11 +11,14 @@ const PrivateRoutes = () => {
   const ProductCategoryRoutes = lazy(
     () => import('../pages/product-categories/ProductCategoryRoutes')
   );
+  const ProductAttributeRoutes = lazy(
+    () => import('../pages/product-attributes/ProductAttributeRoutes')
+  );
 
   return (
     <Routes>
       <Route element={<MasterLayout />}>
-        {/* Redirect to Dashboard after success login/registartion */}
+        {/* Redirect to Dashboard after success login/registration */}
         <Route path="auth/*" element={<Navigate to="/dashboard" />} />
         {/* Pages */}
         <Route path="dashboard" element={<DashboardWrapper />} />
@@ -23,18 +26,27 @@ const PrivateRoutes = () => {
         <Route
           path="products/*"
           element={
-            <SuspensedView>
+            <SuspendedView>
               <ProductRoutes />
-            </SuspensedView>
+            </SuspendedView>
           }
         />
 
         <Route
           path="product-categories/*"
           element={
-            <SuspensedView>
+            <SuspendedView>
               <ProductCategoryRoutes />
-            </SuspensedView>
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path="product-attributes/*"
+          element={
+            <SuspendedView>
+              <ProductAttributeRoutes />
+            </SuspendedView>
           }
         />
 
@@ -45,7 +57,7 @@ const PrivateRoutes = () => {
   );
 };
 
-const SuspensedView: FC<WithChildren> = ({ children }) => {
+const SuspendedView: FC<WithChildren> = ({ children }) => {
   const baseColor = KTUtil.getCSSVariableValue('--bs-primary');
   TopBarProgress.config({
     barColors: {
