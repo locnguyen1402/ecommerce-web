@@ -15,7 +15,7 @@ export const useDetailQuery = <T extends Record<string, any>>(
     enabled,
     queryKey,
     queryFn: async () => {
-      const response = await sendGetRequest<Response<T>>(url);
+      const response = await sendGetRequest<T>(url);
 
       return response.data.content;
     },

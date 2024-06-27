@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, HttpMethod } from '@vklink/api';
+import { AxiosRequestConfig, HttpMethod, Response, ResponseWithPagination } from '@vklink/api';
 
 import { http } from './instance';
 
@@ -18,11 +18,14 @@ const sendRequest = <TReturn = any, TData = any>(
   });
 };
 
-export const sendGetRequest = <TReturn = any>(
+export const sendGetRequest = <TReturn = any, IsPaging extends boolean = false>(
   url: string,
   options?: SendRequestOptions<undefined>
 ) => {
-  return sendRequest<TReturn, undefined>('GET', url, undefined, options);
+  return sendRequest<
+    IsPaging extends false ? Response<TReturn> : ResponseWithPagination<TReturn>,
+    undefined
+  >('GET', url, undefined, options);
 };
 
 export const sendPostRequest = <TReturn = any, TData = any>(
@@ -30,7 +33,7 @@ export const sendPostRequest = <TReturn = any, TData = any>(
   data?: TData,
   options?: SendRequestOptions<TData>
 ) => {
-  return sendRequest<TReturn, TData>('POST', url, data, options);
+  return sendRequest<Response<TReturn>, TData>('POST', url, data, options);
 };
 
 export const sendPutRequest = <TReturn = any, TData = any>(
@@ -38,12 +41,12 @@ export const sendPutRequest = <TReturn = any, TData = any>(
   data?: TData,
   options?: SendRequestOptions<TData>
 ) => {
-  return sendRequest<TReturn, TData>('PUT', url, data, options);
+  return sendRequest<Response<TReturn>, TData>('PUT', url, data, options);
 };
 
 export const sendDeleteRequest = <TReturn = any>(
   url: string,
   options?: SendRequestOptions<undefined>
 ) => {
-  return sendRequest<TReturn, undefined>('DELETE', url, undefined, options);
+  return sendRequest<Response<TReturn>, undefined>('DELETE', url, undefined, options);
 };

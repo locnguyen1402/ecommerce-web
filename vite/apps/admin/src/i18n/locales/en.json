@@ -116,6 +116,8 @@
     "newPasswordSameAsCurrentPassword": "New password should not be same as current password",
     "confirmPasswordNotMatch": "Confirm password does not match",
     "invalidEmail": "${path} must be valid",
-    "invalidPassword": "${path} must be valid"
+    "invalidPassword": "${path} must be valid",
+    "someAttributesInvalid": "Some attributes are invalid",
+    "someProductVariantsInvalid": "Some product variants are invalid"
   }
 }

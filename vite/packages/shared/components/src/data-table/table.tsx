@@ -132,7 +132,7 @@ const Table = <T extends {}>({
           position: 'relative',
         }}
       >
-        <div className="table-responsive pe-1">
+        <div className="table-responsive">
           <table className="table table-rounded border table-row-bordered align-middle gs-3">
             <thead className={headerClassName}>
               {table.getHeaderGroups().map((headerGroup) => (

@@ -28,13 +28,17 @@ import {
   FormBody,
   FormHeader,
 } from '@/shared/components';
-import { http } from '@/shared/http';
+import { http, sendPostRequest } from '@/shared/http';
 
-import { useI18n, usePaginationQuery, useToast } from '@/hooks';
+import { useI18n, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { BaseNumericFormatOptions, FIRST_PAGE_INDEX } from '@/constants';
 
-import { CreateProductRequest, CreateProductPayload } from '../types';
+import {
+  CreateProductRequest,
+  CreateProductPayload,
+  CreateProductVariantRequest,
+  AttributeInCreateProduct,
+} from '../types';
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
 import { useCategoriesControl } from '../utils/use-categories-control';
@@ -53,9 +57,14 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const isEditing = !!id;
 
-  const { mutate, isPending: isMutating } = useMutation<IdResponse, any, FormValues>({
-    mutationKey: ['create-product'],
-    mutationFn: (data) => {
+  const {
+    mutate,
+    isPending: isMutating,
+    reset: actionReset,
+  } = useMutation<any, any, FormValues>({
+    mutationKey: [isEditing ? 'update-product' : 'create-product', id],
+    mutationFn: async (data) => {
+      console.log('🚀 ~ mutationFn: ~ data:', data);
       const payload: CreateProductPayload = {
         name: data.name,
         description: data.description,
@@ -75,10 +84,20 @@ const MutationForm = ({ defaultValues }: Props) => {
 
       return Promise.resolve(payload);
 
-      return http.post(INVENTORY_API_URLS.PRODUCTS, payload);
+      return sendPostRequest<IdResponse>(INVENTORY_API_URLS.PRODUCTS, payload);
     },
     onSuccess: (data) => {
-      console.log('🚀 ~ MutationForm ~ data:', data);
+      toast.success(
+        t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
+      );
+
+      goBack();
+    },
+    onError: (err) => {
+      toast.error(t(isEditing ? 'failNotification.update' : 'failNotification.create'));
+    },
+    onSettled: () => {
+      actionReset();
     },
   });
 
@@ -117,8 +136,53 @@ const MutationForm = ({ defaultValues }: Props) => {
     getValues,
   });
 
+  const isVariantValid = (
+    variant: CreateProductVariantRequest,
+    attributes: AttributeInCreateProduct[]
+  ) => {
+    return (
+      variant.stock >= 0 &&
+      variant.price > 0 &&
+      !!variant.values.length &&
+      variant.values.length === attributes.length &&
+      variant.values.every((variantAttribute) => {
+        const attribute = attributes.find((attr) => attr.attributeId === variantAttribute.id);
+
+        return attribute ? attribute.values.includes(variantAttribute.value) : false;
+      })
+    );
+  };
+
+  const getFormState = (): {
+    isVariantsValid: boolean;
+    isAttributesValid: boolean;
+  } => {
+    const attributes = getValues('attributes');
+    const variants = getValues('variants');
+
+    if (!attributes || !variants) return { isAttributesValid: false, isVariantsValid: false };
+
+    const isAttributesValid = attributes.every((a) => !!a.values.length);
+    const isVariantsValid = variants.every((v) => isVariantValid(v, attributes));
+
+    return {
+      isAttributesValid,
+      isVariantsValid,
+    };
+  };
+
   const onSubmit = handleSubmit((data) => {
-    console.log('🚀 ~ onSubmit ~ data:', data);
+    const { isAttributesValid, isVariantsValid } = getFormState();
+
+    if (!isAttributesValid) {
+      toast.error(t('errorMessages.someAttributesInvalid'));
+      return;
+    }
+    if (!isVariantsValid) {
+      toast.error(t('errorMessages.someProductVariantsInvalid'));
+      return;
+    }
+
     mutate(data);
   });
 
