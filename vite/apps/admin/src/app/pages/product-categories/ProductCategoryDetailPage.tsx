@@ -26,7 +26,7 @@ const Page = () => {
   const breadCrumbs = [
     {
       title: t('breadcrumbs.productCategoryManagement'),
-      path: '/service-categories',
+      path: '/product-categories',
       isSeparator: false,
       isActive: false,
     },
