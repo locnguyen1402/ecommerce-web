@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
 import {
   TextField,
@@ -18,7 +18,7 @@ import {
   TagsField,
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
-import { useMutation } from '@vklink/api';
+import { useMutation, useQueryClient } from '@vklink/api';
 
 import {
   FormFooter,
@@ -27,8 +27,9 @@ import {
   FormLayout,
   FormBody,
   FormHeader,
+  SlugField,
 } from '@/shared/components';
-import { sendPostRequest } from '@/shared/http';
+import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
 import { useI18n, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
@@ -42,6 +43,7 @@ import {
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
 import { useCategoriesControl } from '../utils/use-categories-control';
+import { idNameSchema } from '@/constants';
 
 type FormValues = CreateProductRequest;
 
@@ -54,6 +56,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const { id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const isEditing = !!id;
 
@@ -66,11 +69,12 @@ const MutationForm = ({ defaultValues }: Props) => {
     mutationFn: async (data) => {
       const payload: CreateProductPayload = {
         name: data.name,
-        description: data.description,
         slug: data.slug,
+        description: data.description,
         categories: data.categories.map((c) => c.id),
         attributes: data.attributes.map((a) => a.attributeId),
         variants: data.variants.map((v) => ({
+          id: (v as any).id,
           stock: v.stock,
           price: v.price,
           values: v.values.map((vv) => ({
@@ -79,9 +83,18 @@ const MutationForm = ({ defaultValues }: Props) => {
           })),
         })),
       };
-      console.log('🚀 ~ MutationForm ~ payload:', payload);
 
-      return Promise.resolve(payload);
+      if (isEditing) {
+        return sendPutRequest(
+          generatePath(INVENTORY_API_URLS.PRODUCT_DETAIL, {
+            id,
+          }),
+          {
+            id,
+            ...payload,
+          }
+        );
+      }
 
       return sendPostRequest<IdResponse>(INVENTORY_API_URLS.PRODUCTS, payload);
     },
@@ -89,6 +102,12 @@ const MutationForm = ({ defaultValues }: Props) => {
       toast.success(
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
+
+      if (isEditing) {
+        queryClient.invalidateQueries({
+          queryKey: ['product-detail', id],
+        });
+      }
 
       goBack();
     },
@@ -100,23 +119,44 @@ const MutationForm = ({ defaultValues }: Props) => {
     },
   });
 
-  // const schema: yup.ObjectSchema<FormValues> = yup.object({
-  //   attributes: yup.array().of(
-  //     yup.object({
-  //       values: yup.string().required(),
-  //     })
-  //   ),
-  // });
+  const attributeSchema: yup.ObjectSchema<AttributeInCreateProduct> = yup.object({
+    attributeId: yup.string().required(),
+    name: yup.string().required(),
+    values: yup
+      .array(yup.string().required())
+      .required()
+      .min(1)
+      .default([])
+      .label(t('label.value')),
+  });
 
-  const {
-    control,
-    handleSubmit,
-    watch,
-    getValues,
-    setValue,
-    formState: { errors },
-  } = useForm<FormValues>({
-    // resolver: yupResolver(schema),
+  const variantSchema: yup.ObjectSchema<CreateProductVariantRequest> = yup.object({
+    stock: yup.number().required(),
+    price: yup.number().required(),
+    values: yup
+      .array()
+      .of(
+        yup.object({
+          id: yup.string().required(),
+          name: yup.string().required(),
+          value: yup.string().required(),
+        })
+      )
+      .required()
+      .default([]),
+  });
+
+  const schema: yup.ObjectSchema<FormValues> = yup.object({
+    name: yup.string().required().max(200).label(t('label.name')),
+    slug: yup.string().required().label(t('label.slug')),
+    description: yup.string().required().max(500).label(t('label.description')),
+    categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
+    attributes: yup.array(attributeSchema).required().default([]).label(t('label.attributes')),
+    variants: yup.array(variantSchema).required().default([]).label(t('label.variants')),
+  });
+
+  const { control, handleSubmit, getValues, setValue } = useForm<FormValues>({
+    resolver: yupResolver(schema),
     defaultValues,
   });
 
@@ -196,7 +236,14 @@ const MutationForm = ({ defaultValues }: Props) => {
           <FormContainer size="md" variant="outlined">
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
-            <TextField control={control} name="slug" label={t('label.slug')} isRequired />
+            <SlugField
+              control={control}
+              name="slug"
+              label={t('label.slug')}
+              isRequired
+              isEditing={isEditing}
+              setValue={setValue}
+            />
 
             {categoriesControl.field}
 
@@ -207,7 +254,7 @@ const MutationForm = ({ defaultValues }: Props) => {
 
       <FormLayout className="mt-5 mt-lg-10">
         <FormHeader
-          title={t('label.attribute')}
+          title={t('label.attributes')}
           action={
             <div className="min-w-md-350px min-w-lg-450px">{attributesControl.searchInput}</div>
           }
@@ -228,8 +275,8 @@ const MutationForm = ({ defaultValues }: Props) => {
                 className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
                 onClick={() => variantsControl.generateRestVariants()}
               >
-                  <i className="bi bi-gear fs-1" />
-                </button>
+                <i className="bi bi-gear fs-1" />
+              </button>
 
               <button
                 data-toggle="tooltip"

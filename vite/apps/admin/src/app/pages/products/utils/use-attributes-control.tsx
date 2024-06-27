@@ -116,7 +116,7 @@ export const useAttributesControl = ({ control }: Props) => {
       cell: (info) => info.row.original.name,
       meta: {
         body: {
-          className: 'mw-150px',
+          className: 'min-w-100px mw-150px',
         },
       },
     }),
@@ -125,10 +125,7 @@ export const useAttributesControl = ({ control }: Props) => {
       cell: renderAttributeValueInput,
       meta: {
         header: {
-          className: 'min-w-100px mw-100px text-center',
-        },
-        body: {
-          className: 'mw-100px text-center',
+          className: 'min-w-100px mw-100px',
         },
       },
     }),

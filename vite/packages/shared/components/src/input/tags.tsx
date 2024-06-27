@@ -19,6 +19,13 @@ export type TagsInputProps = {
     input?: string;
   };
   max?: number;
+  /**
+   *
+   * @param value new tag value
+   * @returns true if new tag is valid to add, false otherwise
+   * @default tag is valid if it is not exist in tags
+   */
+  validToAdd?: (value: string) => boolean;
 };
 
 const TagsInput = ({
@@ -33,6 +40,7 @@ const TagsInput = ({
   downKey = 'Enter',
   max,
   id,
+  validToAdd,
 }: TagsInputProps) => {
   const tags = useMemo(() => (Array.isArray(value) ? value : []), [value]);
 
@@ -44,8 +52,12 @@ const TagsInput = ({
 
   const handleKeyDown: InputAttributes['onKeyDown'] = (event) => {
     const newTag = inputValue.trim();
+
+    const isValid = validToAdd ? validToAdd(newTag) : !tags.includes(newTag);
+
     if (
       event.key === downKey &&
+      isValid &&
       newTag &&
       typeof onChange === 'function' &&
       (!max || (Number.isInteger(max) && tags.length < max))

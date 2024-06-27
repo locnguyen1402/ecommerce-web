@@ -21,7 +21,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['edit-product-category-detail-page', id],
+      queryKey: ['product-category-detail', id, 'edit'],
       enabled: !!id,
     }
   );

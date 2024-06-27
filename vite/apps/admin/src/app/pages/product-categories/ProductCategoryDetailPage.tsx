@@ -18,7 +18,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['product-category-detail-page', id],
+      queryKey: ['product-category-detail', id],
       enabled: !!id,
     }
   );

@@ -1,24 +1,17 @@
+import { useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
 
 import { TextField, useForm, yupResolver, yup, FormContainer } from '@vklink/components';
 import { useMutation } from '@vklink/api';
 
-import {
-  FormFooter,
-  OkButton,
-  CancelButton,
-  FormLayout,
-  FormBody,
-  FormHeader,
-} from '@/shared/components';
+import { OkButton, CancelButton } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
 import { useI18n, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 
 import { CreateProductAttributeRequest } from '../types';
-import { useEffect } from 'react';
 
 type FormValues = CreateProductAttributeRequest;
 
