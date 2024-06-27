@@ -10,7 +10,7 @@ import { useFormFieldClassNames } from './form-utils';
 import { TagsInput, TagsInputProps } from '../input/tags';
 
 export type TagsFieldProps<TFieldValues extends FieldValues> = FormFieldProps<TFieldValues> &
-  Pick<TagsInputProps, 'max' | 'addable' | 'removable' | 'downKey'>;
+  Pick<TagsInputProps, 'max' | 'addable' | 'removable' | 'downKey' | 'id'>;
 
 const TagsField = <TFieldValues extends FieldValues>({
   // props is predefined in types.d.ts file
@@ -37,6 +37,7 @@ const TagsField = <TFieldValues extends FieldValues>({
   addable,
   removable,
   downKey,
+  id,
 
   ...rest
 }: TagsFieldProps<TFieldValues>) => {
@@ -47,6 +48,8 @@ const TagsField = <TFieldValues extends FieldValues>({
     orientation,
     layoutConfig,
   });
+
+  const inputId = id || `tag-field-${reactId}`;
 
   return (
     <Controller
@@ -66,6 +69,7 @@ const TagsField = <TFieldValues extends FieldValues>({
             }
             field={
               <TagsInput
+                id={inputId}
                 max={max}
                 addable={addable}
                 removable={removable}

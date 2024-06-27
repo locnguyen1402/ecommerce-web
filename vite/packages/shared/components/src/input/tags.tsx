@@ -5,6 +5,7 @@ import clsx from 'clsx';
 type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
 export type TagsInputProps = {
+  id?: string;
   downKey?: string;
   value?: string[];
   onChange?: (value: string[]) => void;
@@ -31,6 +32,7 @@ const TagsInput = ({
   removable = true,
   downKey = 'Enter',
   max,
+  id,
 }: TagsInputProps) => {
   const tags = useMemo(() => (Array.isArray(value) ? value : []), [value]);
 
@@ -65,6 +67,7 @@ const TagsInput = ({
 
   return (
     <button
+      id={id}
       disabled={disabled}
       className={clsx(
         'form-control d-flex flex-wrap row-gap-2 column-gap-1',
@@ -77,7 +80,7 @@ const TagsInput = ({
         })}
       >
         {tags.map((chip, index) => (
-          <span key={index} className="badge text-gray-700 bg-gray-300 rounded-2">
+          <span key={`${chip}-${index}`} className="badge text-gray-700 bg-gray-300 rounded-2">
             {chip}
             {!disabled && !readonly && removable && (
               <button

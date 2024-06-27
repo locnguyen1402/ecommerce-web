@@ -88,7 +88,7 @@ export const useAttributesControl = ({ control }: Props) => {
         />
       );
     },
-    []
+    [attributeFields]
   );
 
   const columns = [
