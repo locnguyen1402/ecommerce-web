@@ -92,6 +92,25 @@ export const useAttributesControl = ({ control }: Props) => {
   );
 
   const columns = [
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => (
+        <button
+          onClick={() => {
+            onRemoveAttribute(info.row.index);
+          }}
+          className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger"
+        >
+          <KTIcon iconName="abstract-11" className="fs-1" />
+        </button>
+      ),
+      meta: {
+        header: {
+          className: 'min-w-50px w-75px',
+        },
+      },
+    }),
     columnHelper.accessor('attributeId', {
       header: () => t('label.name'),
       cell: (info) => info.row.original.name,
@@ -113,25 +132,6 @@ export const useAttributesControl = ({ control }: Props) => {
         },
       },
     }),
-    columnHelper.display({
-      id: 'actions',
-      header: () => t('label.actions'),
-      cell: (info) => (
-        <button
-          onClick={() => {
-            onRemoveAttribute(info.row.index);
-          }}
-          className="btn btn-sm btn-icon btn-bg-light btn-active-color-danger"
-        >
-          <KTIcon iconName="abstract-11" className="fs-1" />
-        </button>
-      ),
-      meta: {
-        header: {
-          className: 'min-w-50px mw-150px',
-        },
-      },
-    }) as any,
   ];
 
   return {

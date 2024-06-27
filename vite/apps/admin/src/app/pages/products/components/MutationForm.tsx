@@ -131,6 +131,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const variantsControl = useVariantsControl({
     control,
     getValues,
+    setValue,
   });
 
   const isVariantValid = (
@@ -139,7 +140,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   ) => {
     return (
       variant.stock >= 0 &&
-      variant.price > 0 &&
+      variant.price >= 0 &&
       !!variant.values.length &&
       variant.values.length === attributes.length &&
       variant.values.every((variantAttribute) => {
@@ -219,12 +220,37 @@ const MutationForm = ({ defaultValues }: Props) => {
         <FormHeader
           title={t('label.variants')}
           action={
-            <button
-              className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
-              onClick={() => variantsControl.generateRestVariants()}
-            >
-              <i className="bi bi-copy fs-1" />
-            </button>
+            <div className="d-flex gap-2">
+              <button
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Generate rest variants"
+                className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
+                onClick={() => variantsControl.generateRestVariants()}
+              >
+                  <i className="bi bi-gear fs-1" />
+                </button>
+
+              <button
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Regenerate all"
+                className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
+                onClick={() => variantsControl.regenerateAllVariants()}
+              >
+                <i className="bi bi-repeat fs-1" />
+              </button>
+
+              <button
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Clear all"
+                className="btn btn-sm btn-icon btn-bg-light btn-active-danger"
+                onClick={() => variantsControl.clearAllVariants()}
+              >
+                <i className="bi bi-x-circle fs-1" />
+              </button>
+            </div>
           }
         />
 
