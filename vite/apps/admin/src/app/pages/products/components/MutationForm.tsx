@@ -28,7 +28,7 @@ import {
   FormBody,
   FormHeader,
 } from '@/shared/components';
-import { http, sendPostRequest } from '@/shared/http';
+import { sendPostRequest } from '@/shared/http';
 
 import { useI18n, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
@@ -64,7 +64,6 @@ const MutationForm = ({ defaultValues }: Props) => {
   } = useMutation<any, any, FormValues>({
     mutationKey: [isEditing ? 'update-product' : 'create-product', id],
     mutationFn: async (data) => {
-      console.log('🚀 ~ mutationFn: ~ data:', data);
       const payload: CreateProductPayload = {
         name: data.name,
         description: data.description,
@@ -118,9 +117,7 @@ const MutationForm = ({ defaultValues }: Props) => {
     formState: { errors },
   } = useForm<FormValues>({
     // resolver: yupResolver(schema),
-    // defaultValues: {
-    //   ...defaultValues,
-    // },
+    defaultValues,
   });
 
   const categoriesControl = useCategoriesControl({

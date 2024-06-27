@@ -1,5 +1,6 @@
-import { ProductAttributeWithValues, ProductVariant } from '@/api/responses';
 import { DataTable, createColumnHelper } from '@vklink/components';
+
+import { ProductAttributeWithValues, ProductVariant } from '@/api/responses';
 
 import { useI18n } from '@/hooks';
 import { formatCurrency } from '@/i18n';
