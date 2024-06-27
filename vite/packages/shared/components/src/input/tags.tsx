@@ -92,15 +92,17 @@ const TagsInput = ({
         })}
       >
         {tags.map((chip, index) => (
-          <span key={`${chip}-${index}`} className="badge text-gray-700 bg-gray-300 rounded-2">
-            {chip}
+          <span key={`${chip}-${index}`} className="badge text-gray-700 bg-gray-300 rounded-2 p-0">
+            <span className='p-2'>{chip}</span>
             {!disabled && !readonly && removable && (
               <button
                 type="button"
-                className="btn-close ms-2"
+                className="btn btn-icon btn-active-color-danger btn-active-light-danger w-20px h-20px"
                 aria-label="Close"
                 onClick={() => handleRemoveChip(index)}
-              ></button>
+              >
+                <i className="bi bi-x fs-2" />
+              </button>
             )}
           </span>
         ))}
