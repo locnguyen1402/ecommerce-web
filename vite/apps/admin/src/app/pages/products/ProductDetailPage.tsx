@@ -47,6 +47,10 @@ const Page = () => {
       label: 'label.description',
       value: 'description',
     },
+    {
+      label: 'label.categories',
+      renderValue: (data) => data.categories.map((c) => c.name).join(', '),
+    },
   ];
 
   return (

@@ -86,24 +86,28 @@ const MutationModal = ({ defaultValues, isOpen, onClose, id, successCallback }: 
 
   return (
     <Modal centered show={isOpen} onHide={onClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>{t(isEditing ? 'actions.update' : 'actions.create')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <TextField
-          orientation="vertical"
-          control={control}
-          name="name"
-          label={t('label.name')}
-          isRequired
-        />
-      </Modal.Body>
-      <Modal.Footer>
-        <CancelButton onClick={onClose}>{t('actions.cancel')}</CancelButton>
-        <OkButton isLoading={isMutating} onClick={onSubmit}>
-          {t(isEditing ? 'actions.save' : 'actions.create')}
-        </OkButton>
-      </Modal.Footer>
+      <form onSubmit={onSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>{t(isEditing ? 'actions.update' : 'actions.create')}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <TextField
+            orientation="vertical"
+            control={control}
+            name="name"
+            label={t('label.name')}
+            isRequired
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <CancelButton type="button" onClick={onClose}>
+            {t('actions.cancel')}
+          </CancelButton>
+          <OkButton type="submit" isLoading={isMutating} onClick={onSubmit}>
+            {t(isEditing ? 'actions.save' : 'actions.create')}
+          </OkButton>
+        </Modal.Footer>
+      </form>
     </Modal>
   );
 };
