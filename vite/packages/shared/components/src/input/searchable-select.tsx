@@ -1,5 +1,9 @@
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
 import clsx from 'clsx';
-import Select, { Props as SelectProps } from 'react-select';
+
+import Select, { MenuListProps, MenuProps, Props as SelectProps, components } from 'react-select';
 
 export type SearchableSelectInputProps<TOption, IsMulti extends boolean> = Pick<
   SelectProps<TOption, IsMulti>,
@@ -19,7 +23,16 @@ export type SearchableSelectInputProps<TOption, IsMulti extends boolean> = Pick<
   | 'isDisabled'
   | 'onBlur'
   | 'className'
->;
+  | 'id'
+> & {
+  hasMore?: boolean;
+  loadMore?: () => void;
+};
+
+type Props = {
+  hasMore?: boolean;
+  loadMore?: () => void;
+};
 
 const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = false>({
   isLoading,
@@ -37,9 +50,44 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
   isDisabled,
   onBlur,
   className,
+  hasMore,
+  loadMore,
+  id,
 }: SearchableSelectInputProps<TOption, IsMulti>) => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  console.log('🚀 ~ menuIsOpen:', menuIsOpen);
+
+  const EndList = ({ hasMore, loadMore }: Props) => {
+    const { ref, inView } = useInView({
+      threshold: 0,
+    });
+
+    useEffect(() => {
+      if (hasMore && inView && !!loadMore) {
+        loadMore();
+      }
+    }, [inView]);
+
+    return <div ref={ref} style={{ height: 1 }} />;
+  };
+
+  const MenuList = ({ children, ...rest }: MenuListProps<TOption>) => {
+    return (
+      <components.MenuList {...rest}>
+        {children}
+        <EndList hasMore={hasMore} loadMore={loadMore} />
+      </components.MenuList>
+    );
+  };
+
+  console.log('🚀 ~ inputValue:', inputValue);
+  useEffect(() => {
+    console.log('🚀 ~ useEffect ~ useEffect:');
+  }, []);
+
   return (
     <Select<TOption, IsMulti>
+      id={id}
       classNamePrefix="react-select"
       className={clsx('react-select-styled', className)}
       classNames={classNames}
@@ -56,6 +104,11 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
       inputValue={inputValue}
       onInputChange={onInputChange}
       onBlur={onBlur}
+      // components={{ MenuList }}
+      // menuIsOpen={menuIsOpen}
+      // isSearchable
+      // filterOption={() => true}
+      // onMenuOpen={() => setMenuIsOpen(true)}
     />
   );
 };

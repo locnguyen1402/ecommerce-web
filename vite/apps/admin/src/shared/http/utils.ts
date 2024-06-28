@@ -2,7 +2,7 @@ import { AxiosRequestConfig, HttpMethod, Response, ResponseWithPagination } from
 
 import { http } from './instance';
 
-type SendRequestOptions<D = any> = Pick<AxiosRequestConfig<D>, 'headers'>;
+type SendRequestOptions<D = any> = Pick<AxiosRequestConfig<D>, 'headers' | 'params'>;
 
 const sendRequest = <TReturn = any, TData = any>(
   method: HttpMethod,

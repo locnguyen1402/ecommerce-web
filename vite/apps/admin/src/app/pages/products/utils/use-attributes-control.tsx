@@ -10,8 +10,7 @@ import {
 } from '@vklink/components';
 import { KTIcon } from '@vklink/metronic-core';
 
-import { useDebouncedText, useI18n, usePaginationQuery } from '@/hooks';
-import { FIRST_PAGE_INDEX } from '@/constants';
+import { useDebouncedText, useI18n, useInfiniteQuery } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 
 import { AttributeInCreateProduct, CreateProductRequest } from '../types';
@@ -30,18 +29,19 @@ export const useAttributesControl = ({ control }: Props) => {
     debouncedText: debouncedSearchText,
   } = useDebouncedText();
 
-  const { data: productAttributes, isLoading: isProductAttributeLoading } =
-    usePaginationQuery<IdName>(INVENTORY_API_URLS.PRODUCT_ATTRIBUTES, {
-      enabled: searchText === debouncedSearchText,
-      paging: {
-        pageIndex: FIRST_PAGE_INDEX,
-        pageSize: 1000,
-      },
-      queryKey: ['product-create-page_attribute-list', searchText],
-      getAdditionalParams: () => ({
-        keyword: searchText,
-      }),
-    });
+  const {
+    dataItems: productAttributes,
+    hasNextPage,
+    fetchNextPage,
+    isLoading: isProductAttributeLoading,
+  } = useInfiniteQuery<IdName>(INVENTORY_API_URLS.PRODUCT_ATTRIBUTES, {
+    enabled: searchText === debouncedSearchText,
+    queryKey: ['product-create-page_attribute-list', searchText],
+    getAdditionalParams: () => ({
+      keyword: searchText,
+    }),
+    pageSize: 5,
+  });
 
   const {
     fields: attributeFields,
@@ -134,12 +134,15 @@ export const useAttributesControl = ({ control }: Props) => {
   return {
     searchInput: (
       <SearchableSelectInput
+        id={'test'}
         value={null}
         isMulti={false}
         placeholder={`${t('label.searchBy')} ${t('label.name').toLowerCase()}`}
         isLoading={isProductAttributeLoading}
         isDisabled={isProductAttributeLoading}
-        options={productAttributes || []}
+        options={productAttributes}
+        hasMore={hasNextPage}
+        loadMore={fetchNextPage}
         getOptionLabel={(p) => p.name}
         getOptionValue={(p) => p.id}
         inputValue={searchText}
