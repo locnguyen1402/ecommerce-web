@@ -1,23 +1,6 @@
 import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
-import {
-  TextField,
-  useForm,
-  yupResolver,
-  yup,
-  FormContainer,
-  DateTimeField,
-  SelectField,
-  FileUploadField,
-  SearchableSelectField,
-  useFieldArray,
-  DataTable,
-  createColumnHelper,
-  NumberTextField,
-  TagsInput,
-  TagsField,
-} from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
+import { TextField, useForm, yupResolver, yup, FormContainer } from '@vklink/components';
 import { useMutation, useQueryClient } from '@vklink/api';
 
 import {
@@ -33,6 +16,7 @@ import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
 import { useI18n, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
+import { idNameSchema } from '@/constants';
 
 import {
   CreateProductRequest,
@@ -43,7 +27,6 @@ import {
 import { useAttributesControl } from '../utils/use-attributes-control';
 import { useVariantsControl } from '../utils/use-variants-control';
 import { useCategoriesControl } from '../utils/use-categories-control';
-import { idNameSchema } from '@/constants';
 
 type FormValues = CreateProductRequest;
 
