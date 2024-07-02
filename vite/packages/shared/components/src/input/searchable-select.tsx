@@ -54,9 +54,6 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
   loadMore,
   id,
 }: SearchableSelectInputProps<TOption, IsMulti>) => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  console.log('🚀 ~ menuIsOpen:', menuIsOpen);
-
   const EndList = ({ hasMore, loadMore }: Props) => {
     const { ref, inView } = useInView({
       threshold: 0,
@@ -80,13 +77,18 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
     );
   };
 
-  console.log('🚀 ~ inputValue:', inputValue);
-  useEffect(() => {
-    console.log('🚀 ~ useEffect ~ useEffect:');
-  }, []);
+  // const onSearchChange = useCallback(
+  //   ((newValue, actionMeta) => {
+  //     if (actionMeta.action === 'input-change' && onInputChange) {
+  //       onInputChange(newValue, actionMeta);
+  //     }
+  //   }) as Required<SelectProps>['onInputChange'],
+  //   [onInputChange]
+  // );
 
   return (
     <Select<TOption, IsMulti>
+      closeMenuOnScroll
       id={id}
       classNamePrefix="react-select"
       className={clsx('react-select-styled', className)}
@@ -104,11 +106,7 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
       inputValue={inputValue}
       onInputChange={onInputChange}
       onBlur={onBlur}
-      // components={{ MenuList }}
-      // menuIsOpen={menuIsOpen}
-      // isSearchable
-      // filterOption={() => true}
-      // onMenuOpen={() => setMenuIsOpen(true)}
+      components={{ MenuList }}
     />
   );
 };

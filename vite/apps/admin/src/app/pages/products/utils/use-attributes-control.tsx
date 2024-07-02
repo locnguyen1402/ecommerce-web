@@ -134,12 +134,10 @@ export const useAttributesControl = ({ control }: Props) => {
   return {
     searchInput: (
       <SearchableSelectInput
-        id={'test'}
         value={null}
         isMulti={false}
         placeholder={`${t('label.searchBy')} ${t('label.name').toLowerCase()}`}
         isLoading={isProductAttributeLoading}
-        isDisabled={isProductAttributeLoading}
         options={productAttributes}
         hasMore={hasNextPage}
         loadMore={fetchNextPage}
