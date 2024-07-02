@@ -1,11 +1,10 @@
+import { ProductAttribute } from './product-attribute';
 import { ProductCategory } from './product-category';
 
 export type ProductVariantAttributeValue = {
   attributeId: string;
   value: string;
 };
-
-export type ProductAttribute = IdName;
 
 export type ProductAttributeWithValues = ProductAttribute & {
   values: string[];
