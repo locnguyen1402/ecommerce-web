@@ -1,13 +1,22 @@
+"use client";
+
 import React from "react";
 
-import { Chip } from "@mantine/core";
+import { useMantineColorScheme, Button, Group } from "@mantine/core";
 
-const Home = () => (
-  <div className="App">
-    <Chip defaultChecked className="mr-2">
-      Awesome chip
-    </Chip>
-  </div>
-);
+const Home = () => {
+  const { setColorScheme, clearColorScheme } = useMantineColorScheme();
+
+  return (
+    <div className="App">
+      <Group>
+        <Button onClick={() => setColorScheme("light")}>Light</Button>
+        <Button onClick={() => setColorScheme("dark")}>Dark</Button>
+        <Button onClick={() => setColorScheme("auto")}>Auto</Button>
+        <Button onClick={clearColorScheme}>Clear</Button>
+      </Group>
+    </div>
+  );
+};
 
 export default Home;

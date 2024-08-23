@@ -11,8 +11,8 @@ import App from "@/components/app";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "E-commerce website",
-  description: "It's an e-commerce website",
+  title: "Mila Shop",
+  description: "Vietnamese Mila Shop",
 };
 
 const Layout = ({
