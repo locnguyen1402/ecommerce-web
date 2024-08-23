@@ -1,26 +1,25 @@
 {
-  "name": "@repo/ui",
+  "name": "@mila/shared",
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./button": "./src/button.tsx",
-    "./card": "./src/card.tsx",
-    "./code": "./src/code.tsx"
+    "./components": "./src/components/index.ts",
+    "./form": "./src/form/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@mila/eslint-config": "*",
+    "@mila/typescript-config": "*",
     "@turbo/gen": "^1.12.4",
-    "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "eslint": "^8.57.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "react": "^18.2.0"

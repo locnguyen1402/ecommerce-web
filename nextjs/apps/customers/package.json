@@ -1,6 +1,6 @@
 {
-  "name": "customers",
-  "version": "0.1.0",
+  "name": "@mila/customers",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -22,6 +22,7 @@
     "@mantine/spotlight": "^7.12.1",
     "@mantine/tiptap": "^7.12.1",
     "@mantinex/mantine-logo": "^1.0.1",
+    "@mila/shared": "workspace:*",
     "@tabler/icons": "^3.12.0",
     "@tabler/icons-react": "^3.12.0",
     "@tiptap/extension-link": "^2.6.5",
@@ -46,6 +47,6 @@
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.4.5"
   }
 }
