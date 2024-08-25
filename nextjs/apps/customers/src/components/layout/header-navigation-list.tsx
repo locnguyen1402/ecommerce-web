@@ -10,7 +10,7 @@ type Props = {
 
 const HeaderNavigationList = ({ items }: Props) => {
   return (
-    <Group gap={5} visibleFrom="sm">
+    <Group gap={0} visibleFrom="sm">
       {items.map((item) => {
         return <HeaderNavigationItem key={item.label} item={item} />;
       })}

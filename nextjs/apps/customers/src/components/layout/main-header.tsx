@@ -19,6 +19,7 @@ import {
   rem,
   useMantineTheme,
   Container,
+  ActionIcon,
 } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { useDisclosure } from "@mantine/hooks";
@@ -30,6 +31,8 @@ import {
   IconFingerprint,
   IconCoin,
   IconChevronDown,
+  IconShoppingBag,
+  IconUser,
 } from "@tabler/icons-react";
 import HeaderNavigationList from "./header-navigation-list";
 
@@ -64,46 +67,34 @@ const MainHeader = () => {
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
-  // const links = mockdata.map((item) => (
-  //   <UnstyledButton key={item.title}>
-  //     <Group wrap="nowrap" align="flex-start">
-  //       <ThemeIcon size={34} variant="default" radius="md">
-  //         <item.icon
-  //           style={{ width: rem(22), height: rem(22) }}
-  //           color={theme.colors.blue[6]}
-  //         />
-  //       </ThemeIcon>
-  //       <div>
-  //         <Text size="sm" fw={500}>
-  //           {item.title}
-  //         </Text>
-  //         <Text size="xs" c="dimmed">
-  //           {item.description}
-  //         </Text>
-  //       </div>
-  //     </Group>
-  //   </UnstyledButton>
-  // ));
-
   return (
     <>
       <header>
-        <Container>
+        <Container fluid>
           <Group justify="space-between" py="sm" h="100%">
-            <MantineLogo size={30} />
-
-            <HeaderNavigationList items={links} />
-
-            <Group visibleFrom="sm">
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
-
             <Burger
               opened={drawerOpened}
               onClick={toggleDrawer}
               hiddenFrom="sm"
             />
+
+            <MantineLogo size={30} />
+
+            <HeaderNavigationList items={links} />
+
+            {/* <Group visibleFrom="sm">
+              <Button variant="default">Log in</Button>
+              <Button>Sign up</Button>
+            </Group> */}
+
+            <Group>
+              <ActionIcon variant="default" color="minimal">
+                <IconUser />
+              </ActionIcon>
+              <ActionIcon variant="default" color="minimal">
+                <IconShoppingBag />
+              </ActionIcon>
+            </Group>
           </Group>
         </Container>
       </header>

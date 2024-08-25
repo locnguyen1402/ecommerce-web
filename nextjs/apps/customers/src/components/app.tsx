@@ -14,7 +14,11 @@ const App = ({ children }: Props) => {
 
   return (
     <StoreProvider value={rootStore}>
-      <MantineProvider defaultColorScheme="auto" theme={theme}>
+      <MantineProvider
+        classNamesPrefix="mila"
+        defaultColorScheme="auto"
+        theme={theme}
+      >
         {children}
       </MantineProvider>
     </StoreProvider>

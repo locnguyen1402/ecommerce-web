@@ -1,9 +1,11 @@
 import Link from "next/link";
 
-import { Menu, Button } from "@mantine/core";
+import { Menu, Button, Anchor } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 
 import { NavigationItem } from "@/types";
+
+import classes from "./header-navigation-item.module.scss";
 
 type Props = {
   item: NavigationItem;
@@ -15,8 +17,9 @@ const HeaderNavigationItem = ({ item }: Props) => {
     return (
       // @ts-ignore
       <Button
+        bd={0}
         variant="subtle"
-        color="gray"
+        color="minimal"
         {...(!!item.href
           ? {
               component: Link,
