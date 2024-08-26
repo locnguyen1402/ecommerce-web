@@ -1,6 +1,6 @@
 import { Group } from "@mantine/core";
 
-import { NavigationItem } from "@/types";
+import { NavigationItem } from "@/models";
 
 import HeaderNavigationItem from "./header-navigation-item";
 

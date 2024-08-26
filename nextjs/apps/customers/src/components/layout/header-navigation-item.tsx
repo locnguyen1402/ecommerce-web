@@ -3,9 +3,7 @@ import Link from "next/link";
 import { Menu, Button, Anchor } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 
-import { NavigationItem } from "@/types";
-
-import classes from "./header-navigation-item.module.scss";
+import { NavigationItem } from "@/models";
 
 type Props = {
   item: NavigationItem;
