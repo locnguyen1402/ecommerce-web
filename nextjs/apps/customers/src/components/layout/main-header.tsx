@@ -39,6 +39,7 @@ import { HEADER_NAV_LIST } from "@/constants/layout";
 import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
+import ColorSwitch from "./color-switch";
 
 const MainHeader = () => {
   const layoutStore = useStore("layoutStore");
@@ -62,6 +63,9 @@ const MainHeader = () => {
             <HeaderNavigationList items={HEADER_NAV_LIST} />
 
             <Group gap="xs">
+              <Box visibleFrom="sm">
+                <ColorSwitch />
+              </Box>
               <ActionIcon variant="subtle" color="minimal">
                 <IconUser />
               </ActionIcon>

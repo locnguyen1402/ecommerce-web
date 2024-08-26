@@ -16,7 +16,7 @@ const App = ({ children }: Props) => {
     <StoreProvider value={rootStore}>
       <MantineProvider
         classNamesPrefix="mila"
-        defaultColorScheme="auto"
+        defaultColorScheme="light"
         theme={theme}
       >
         {children}
