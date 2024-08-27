@@ -9,6 +9,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "themesflat.co",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

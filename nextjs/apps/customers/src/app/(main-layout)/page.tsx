@@ -1,13 +1,15 @@
-"use client";
-
 import React from "react";
 
-import { useMantineColorScheme, Button, Group } from "@mantine/core";
+import { Flex } from "@mantine/core";
+
+import HomeBanners from "@/components/home/banner";
 
 const Home = () => {
-  const { setColorScheme, clearColorScheme } = useMantineColorScheme();
-
-  return <div className="App"></div>;
+  return (
+    <Flex>
+      <HomeBanners />
+    </Flex>
+  );
 };
 
 export default Home;

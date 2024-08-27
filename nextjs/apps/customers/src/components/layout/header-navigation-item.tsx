@@ -16,6 +16,7 @@ const HeaderNavigationItem = ({ item }: Props) => {
       // @ts-ignore
       <Button
         bd={0}
+        size="compact-md"
         variant="subtle"
         color="minimal"
         {...(!!item.href

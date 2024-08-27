@@ -49,8 +49,8 @@ const MainHeader = () => {
   return (
     <>
       <header>
-        <Container fluid>
-          <Group justify="space-between" py="sm" h="100%">
+        <Container size="xl">
+          <Group justify="space-between" py="lg" h="100%">
             <Burger
               size="sm"
               opened={layoutStore.isSideBarOpen}
@@ -62,7 +62,7 @@ const MainHeader = () => {
 
             <HeaderNavigationList items={HEADER_NAV_LIST} />
 
-            <Group gap="xs">
+            <Group gap="2">
               <Box visibleFrom="sm">
                 <ColorSwitch />
               </Box>
