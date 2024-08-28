@@ -12,3 +12,9 @@ export const HEADER_NAV_LIST: NavigationItem[] = [
     ],
   },
 ];
+
+export const HEADER_CONFIGS = {
+  FULL_HEIGHT: 80,
+  SMALL_HEIGHT: 60,
+  Z_INDEX: 1000,
+};

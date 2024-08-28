@@ -4,6 +4,7 @@ import { Menu, Button, Anchor } from "@mantine/core";
 import { IconChevronDown } from "@tabler/icons-react";
 
 import { NavigationItem } from "@/models";
+import { HEADER_CONFIGS } from "@/constants/layout";
 
 type Props = {
   item: NavigationItem;
@@ -41,7 +42,17 @@ const HeaderNavigationItem = ({ item }: Props) => {
   }
 
   return (
-    <Menu trigger="hover" transitionProps={{ exitDuration: 0 }} withinPortal>
+    <Menu
+      styles={{
+        dropdown: {
+          zIndex: HEADER_CONFIGS.Z_INDEX + 1,
+        },
+      }}
+      offset={8}
+      trigger="hover"
+      transitionProps={{ exitDuration: 0 }}
+      withinPortal
+    >
       <Menu.Target>{renderItemContent()}</Menu.Target>
       <Menu.Dropdown>
         {item.items?.map((sub) => {

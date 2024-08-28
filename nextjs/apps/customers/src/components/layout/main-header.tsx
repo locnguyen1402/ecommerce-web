@@ -18,14 +18,11 @@ import { IconShoppingBag, IconUser } from "@tabler/icons-react";
 
 import useScrollDirection from "@/hooks/use-scroll-direction";
 import useBreakpoint from "@/hooks/use-breakpoint";
-import { HEADER_NAV_LIST } from "@/constants/layout";
+import { HEADER_CONFIGS, HEADER_NAV_LIST } from "@/constants/layout";
 import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
 import ColorSwitch from "./color-switch";
-
-const BASE_HEADER_HEIGHT = 80;
-const SMALL_HEADER_HEIGHT = 60;
 
 const MainHeader = () => {
   const [scroll] = useWindowScroll();
@@ -37,10 +34,10 @@ const MainHeader = () => {
 
   const headerHeight = useMemo(() => {
     if (!smBreakpoint) {
-      return SMALL_HEADER_HEIGHT;
+      return HEADER_CONFIGS.SMALL_HEIGHT;
     }
 
-    return !scroll.y ? BASE_HEADER_HEIGHT : SMALL_HEADER_HEIGHT;
+    return !scroll.y ? HEADER_CONFIGS.FULL_HEIGHT : HEADER_CONFIGS.SMALL_HEIGHT;
   }, [smBreakpoint, scroll.y]);
 
   return (
@@ -56,7 +53,7 @@ const MainHeader = () => {
           left: 0,
           right: 0,
           transition: "all 0.3s",
-          zIndex: 1000,
+          zIndex: HEADER_CONFIGS.Z_INDEX,
         }}
       >
         <Container
