@@ -50,7 +50,14 @@ const MainHeader = () => {
     <>
       <header>
         <Container size="xl">
-          <Group justify="space-between" py="lg" h="100%">
+          <Group
+            justify="space-between"
+            py={{
+              base: "sm",
+              md: "lg",
+            }}
+            h="100%"
+          >
             <Burger
               size="sm"
               opened={layoutStore.isSideBarOpen}
