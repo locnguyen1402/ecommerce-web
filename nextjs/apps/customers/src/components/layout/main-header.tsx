@@ -1,64 +1,73 @@
 "use client";
 
+import { useMemo } from "react";
+
+import Link from "next/link";
+
 import {
-  HoverCard,
   Group,
-  Button,
-  UnstyledButton,
-  Text,
-  SimpleGrid,
-  ThemeIcon,
-  Anchor,
-  Divider,
-  Center,
   Box,
   Burger,
-  Drawer,
-  Collapse,
-  ScrollArea,
-  rem,
-  useMantineTheme,
   Container,
   ActionIcon,
+  Paper,
 } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
-import { useDisclosure } from "@mantine/hooks";
-import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
-  IconChevronDown,
-  IconShoppingBag,
-  IconUser,
-} from "@tabler/icons-react";
+import { useWindowScroll } from "@mantine/hooks";
+import { IconShoppingBag, IconUser } from "@tabler/icons-react";
 
+import useScrollDirection from "@/hooks/use-scroll-direction";
+import useBreakpoint from "@/hooks/use-breakpoint";
 import { HEADER_NAV_LIST } from "@/constants/layout";
 import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
 import ColorSwitch from "./color-switch";
-import Link from "next/link";
+
+const BASE_HEADER_HEIGHT = 80;
+const SMALL_HEADER_HEIGHT = 60;
 
 const MainHeader = () => {
+  const [scroll] = useWindowScroll();
+  const scrollDirection = useScrollDirection(25);
   const layoutStore = useStore("layoutStore");
+  const smBreakpoint = useBreakpoint("sm");
 
   const openDrawer = () => layoutStore.openSideBar();
 
+  const headerHeight = useMemo(() => {
+    if (!smBreakpoint) {
+      return SMALL_HEADER_HEIGHT;
+    }
+
+    return !scroll.y ? BASE_HEADER_HEIGHT : SMALL_HEADER_HEIGHT;
+  }, [smBreakpoint, scroll.y]);
+
   return (
     <>
-      <header>
-        <Container size="xl">
-          <Group
-            justify="space-between"
-            py={{
-              base: "sm",
-              md: "lg",
-            }}
-            h="100%"
-          >
+      <Paper
+        shadow={scroll.y ? "xs" : "0"}
+        component="header"
+        style={{
+          height: headerHeight,
+          backgroundColor: "var(--mantine-color-body)",
+          position: "fixed",
+          top: scrollDirection === "down" ? "-100px" : "0",
+          left: 0,
+          right: 0,
+          transition: "all 0.3s",
+          zIndex: 1000,
+        }}
+      >
+        <Container
+          size="xl"
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Group w="100%" justify="space-between" h="100%">
             <Burger
               size="sm"
               opened={layoutStore.isSideBarOpen}
@@ -85,7 +94,8 @@ const MainHeader = () => {
             </Group>
           </Group>
         </Container>
-      </header>
+      </Paper>
+      <div style={{ marginTop: headerHeight }}></div>
     </>
   );
 };

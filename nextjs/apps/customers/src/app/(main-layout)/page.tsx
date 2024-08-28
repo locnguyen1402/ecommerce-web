@@ -8,6 +8,7 @@ const Home = () => {
   return (
     <Flex>
       <HomeBanners />
+      <Flex h="2000px"></Flex>
     </Flex>
   );
 };
