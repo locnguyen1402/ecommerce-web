@@ -3,9 +3,18 @@
 import { MantineSize, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
-const useBreakpoint = (size: MantineSize) => {
+type BreakpointType = "up" | "down";
+
+const BreakpointTypeMap = {
+  up: "min-width",
+  down: "max-width",
+};
+
+const useBreakpoint = (size: MantineSize, breakType: BreakpointType = "up") => {
   const theme = useMantineTheme();
-  const matches = useMediaQuery(`(min-width: ${theme.breakpoints[size]})`);
+  const matches = useMediaQuery(
+    `(${BreakpointTypeMap[breakType]}: ${theme.breakpoints[size]})`
+  );
 
   return matches;
 };
