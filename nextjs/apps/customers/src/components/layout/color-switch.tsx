@@ -4,7 +4,6 @@ import {
   rem,
   useMantineColorScheme,
 } from "@mantine/core";
-import { useColorScheme } from "@mantine/hooks";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 const ColorSwitch = () => {

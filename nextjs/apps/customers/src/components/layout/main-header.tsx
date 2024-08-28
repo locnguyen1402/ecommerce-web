@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import {
   Group,
@@ -22,7 +23,8 @@ import { HEADER_CONFIGS, HEADER_NAV_LIST } from "@/constants/layout";
 import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
-import ColorSwitch from "./color-switch";
+
+const ColorSwitch = dynamic(() => import("./color-switch"), { ssr: false });
 
 const MainHeader = () => {
   const [scroll] = useWindowScroll();
