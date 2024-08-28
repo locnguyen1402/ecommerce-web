@@ -3,7 +3,9 @@
 import { default as NextImage } from "next/image";
 
 import { Carousel } from "@mantine/carousel";
-import { Container, Image } from "@mantine/core";
+import { Image } from "@mantine/core";
+
+import AppContainer from "../layout/app-container";
 
 const BANNERS = [
   {
@@ -19,7 +21,7 @@ const BANNERS = [
 
 const HomeBanners = () => {
   return (
-    <Container size="lg">
+    <AppContainer>
       <Carousel
         style={{
           borderRadius: "",
@@ -45,7 +47,7 @@ const HomeBanners = () => {
           </Carousel.Slide>
         ))}
       </Carousel>
-    </Container>
+    </AppContainer>
   );
 };
 

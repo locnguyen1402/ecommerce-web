@@ -40,6 +40,7 @@ import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
 import ColorSwitch from "./color-switch";
+import Link from "next/link";
 
 const MainHeader = () => {
   const layoutStore = useStore("layoutStore");
@@ -65,7 +66,9 @@ const MainHeader = () => {
               hiddenFrom="sm"
             />
 
-            <MantineLogo size={30} />
+            <Box component={Link} href="/">
+              <MantineLogo size={30} />
+            </Box>
 
             <HeaderNavigationList items={HEADER_NAV_LIST} />
 
