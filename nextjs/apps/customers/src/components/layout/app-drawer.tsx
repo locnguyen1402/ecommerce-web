@@ -42,7 +42,7 @@ const AppDrawer = () => {
         <DrawerNavigationList items={HEADER_NAV_LIST} />
         <Button
           fullWidth
-          color="minimal"
+          color="neutral"
           variant="transparent"
           justify="space-between"
           rightSection={<ColorSwitch />}

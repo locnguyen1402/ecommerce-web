@@ -84,10 +84,10 @@ const MainHeader = () => {
               <Box visibleFrom="sm">
                 <ColorSwitch />
               </Box>
-              <ActionIcon variant="subtle" color="minimal">
+              <ActionIcon variant="subtle" color="neutral">
                 <IconUser />
               </ActionIcon>
-              <ActionIcon variant="subtle" color="minimal">
+              <ActionIcon variant="subtle" color="neutral">
                 <IconShoppingBag />
               </ActionIcon>
             </Group>

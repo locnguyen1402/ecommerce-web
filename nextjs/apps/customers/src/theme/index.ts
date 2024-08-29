@@ -2,6 +2,7 @@ import { createTheme } from "@mantine/core";
 
 const appTheme = createTheme({
   primaryColor: "primary",
+  // primaryShade: { light: 9, dark: 2 },
   colors: {
     primary: [
       "oklch(96.27% 0.0217 238.66)",
@@ -15,16 +16,17 @@ const appTheme = createTheme({
       "oklch(54.26% 0.2067 251.67)",
       "oklch(49.72% 0.1888 251.59)",
     ],
-    minimal: [
-      "#F2F2F2",
-      "#E8E8E8",
-      "#CCCCCC",
-      "#ADADAD",
-      "#858585",
+    neutral: [
+      "#ffffff",
+      "#fcfcfc",
+      "#fafafa",
+      "#f5f5f5",
+      "#e8e8e8",
+      "#d4d4d4",
       "#363636",
       "#303030",
       "#262626",
-      "#1A1A1A",
+      "#1a1a1a",
       "#000000",
     ],
   },

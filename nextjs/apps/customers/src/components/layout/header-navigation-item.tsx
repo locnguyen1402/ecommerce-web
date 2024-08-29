@@ -19,7 +19,7 @@ const HeaderNavigationItem = ({ item }: Props) => {
         bd={0}
         size="compact-md"
         variant="subtle"
-        color="minimal"
+        color="neutral"
         {...(!!item.href
           ? {
               component: Link,

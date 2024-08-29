@@ -23,7 +23,7 @@ const DrawerNavigationItem = ({ item }: Props) => {
         onClick={toggle}
         justify="space-between"
         variant="subtle"
-        color="minimal"
+        color="neutral"
         {...(!!item.href
           ? {
               component: Link,
@@ -52,7 +52,7 @@ const DrawerNavigationItem = ({ item }: Props) => {
                   key={sub.label}
                   justify="space-between"
                   variant="subtle"
-                  color="minimal"
+                  color="neutral"
                   component={Link}
                   href={sub.href}
                 >

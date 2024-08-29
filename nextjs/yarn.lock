@@ -665,6 +665,7 @@ __metadata:
     "@mila/shared": "workspace:*"
     "@tabler/icons": "npm:^3.12.0"
     "@tabler/icons-react": "npm:^3.12.0"
+    "@tanstack/react-query": "npm:^5.52.2"
     "@tiptap/extension-link": "npm:^2.6.5"
     "@tiptap/react": "npm:^2.6.5"
     "@tiptap/starter-kit": "npm:^2.6.5"
@@ -685,6 +686,7 @@ __metadata:
     react-dom: "npm:^18"
     recharts: "npm:2"
     sass: "npm:^1.77.8"
+    server-only: "npm:^0.0.1"
     tailwindcss: "npm:^3.4.1"
     typescript: "npm:^5.4.5"
   languageName: unknown
@@ -941,6 +943,24 @@ __metadata:
   version: 3.12.0
   resolution: "@tabler/icons@npm:3.12.0"
   checksum: a143b3bdac2bf3d144c9b8e5fc1cf97d7dc02bfe5045b536b2ba13eaf51fd30a254cc68e078c503c75887ec04dbd92127744c2fb4b67e0b86546b054bf621697
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.52.2":
+  version: 5.52.2
+  resolution: "@tanstack/query-core@npm:5.52.2"
+  checksum: 34bc28f492272642159e6eb41cc45d05669a91a7a9124dcfa4a9b721696b921c0909234373035c9f51159069d71ee449459f0d528de500cfb07e6eb8fdd8857c
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.52.2":
+  version: 5.52.2
+  resolution: "@tanstack/react-query@npm:5.52.2"
+  dependencies:
+    "@tanstack/query-core": "npm:5.52.2"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 936ecc8d4fbd2f89b5569ae9a2fe6e3c0af6ea02561de5f882b910662f1db1b0d73d7a9cbd94fd4d569a2c0773b5e629da4752dc62d4f3ebcf165f5b56d80c0e
   languageName: node
   linkType: hard
 
@@ -7167,6 +7187,13 @@ __metadata:
     no-case: "npm:^2.2.0"
     upper-case-first: "npm:^1.1.2"
   checksum: 3572fe33dd5df4156bc2e5f46a8f7642906234c448484016d5fbb8c7214bdd1f5f01d1791a7b2b1a4f5a99e6e43141d22aa097c0fdcfe41214fd56a85f1ee7f6
+  languageName: node
+  linkType: hard
+
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: 4704f0ef85da0be981af6d4ed8e739d39bcfd265b9c246a684060acda5642d0fdc6daffc2308e71e2682c5f508090978802eae0a77623c9b90a49f9ae68048d6
   languageName: node
   linkType: hard
 
