@@ -57,9 +57,16 @@ const HeaderNavigationItem = ({ item }: Props) => {
       <Menu.Dropdown>
         {item.items?.map((sub) => {
           return (
-            <Menu.Item component={Link} href={sub.href} key={sub.label}>
-              {sub.label}
-            </Menu.Item>
+            <Anchor
+              c="neutral"
+              key={sub.label}
+              variant="text"
+              component={Link}
+              href={sub.href}
+              underline="hover"
+            >
+              <Menu.Item c="neutral">{sub.label}</Menu.Item>
+            </Anchor>
           );
         })}
       </Menu.Dropdown>
