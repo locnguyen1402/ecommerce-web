@@ -2,10 +2,16 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { getProducts } from "@/actions/product";
-import AppContainer from "@/components/layout/app-container";
+import { Grid } from "@mantine/core";
 
-const ShoppingCenterPage = () => {
+import { getProducts } from "@/actions/product";
+
+import AppContainer from "@/components/layout/app-container";
+import ProductCard1List from "@/components/product/product-card-1-list";
+
+import { PRODUCTS } from "@/mock/product";
+
+const ShoppingCenterPage = ({}) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: () => getProducts({ limit: 5, skip: 10 }),
@@ -15,7 +21,24 @@ const ShoppingCenterPage = () => {
   return (
     <div>
       <AppContainer>
-        <h1>Shopping Center</h1>
+        <Grid
+          gutter={{
+            base: 0,
+            md: "sm",
+          }}
+        >
+          <Grid.Col visibleFrom="md" span={3.5}>
+            <div
+              style={{
+                backgroundColor: "blue",
+                height: "500px",
+              }}
+            ></div>
+          </Grid.Col>
+          <Grid.Col span="auto">
+            <ProductCard1List products={PRODUCTS} />
+          </Grid.Col>
+        </Grid>
       </AppContainer>
     </div>
   );
