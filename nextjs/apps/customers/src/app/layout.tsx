@@ -1,5 +1,6 @@
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
+import "../styles/animation.scss";
 import "./globals.css";
 
 import type { Metadata } from "next";
