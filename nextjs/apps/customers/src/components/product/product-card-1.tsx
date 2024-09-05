@@ -2,7 +2,7 @@ import classes from "./product-card-1.module.scss";
 
 import Link from "next/link";
 
-import { ActionIcon, Box, Flex, Paper, Text } from "@mantine/core";
+import { ActionIcon, Box, Flex, Paper, rem, Text } from "@mantine/core";
 import { IconEye, IconHeart, IconShoppingBag } from "@tabler/icons-react";
 
 type Props = {
@@ -18,7 +18,7 @@ const ProductCard1 = ({ href, img, name, price }: Props) => {
       component={Link}
       href={href}
       radius="md"
-      p="xs"
+      p={{ base: rem(8), sm: "xs" }}
       shadow="xs"
       withBorder
       className={classes.productCard}
