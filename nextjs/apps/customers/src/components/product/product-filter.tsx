@@ -1,4 +1,5 @@
 import {
+  Button,
   Checkbox,
   Group,
   Input,
@@ -18,6 +19,7 @@ const ProductFilter = () => {
           style={{
             width: "0.8rem",
             height: "0.8rem",
+            color: "var(--mantine-color-yellow-4)",
           }}
         />
 
@@ -45,7 +47,7 @@ const ProductFilter = () => {
         <Input.Label>Rating</Input.Label>
         <RangeSlider
           mb="lg"
-          color="cyan"
+          color="primary"
           min={1}
           max={5}
           step={1}
@@ -74,6 +76,11 @@ const ProductFilter = () => {
           ]}
         />
       </Stack>
+
+      <Group justify="center" grow>
+        <Button variant="default">Reset</Button>
+        <Button>Apply</Button>
+      </Group>
     </Stack>
   );
 };
