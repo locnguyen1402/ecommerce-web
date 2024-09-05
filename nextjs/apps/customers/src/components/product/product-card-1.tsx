@@ -1,5 +1,7 @@
 import classes from "./product-card-1.module.scss";
 
+import Link from "next/link";
+
 import { ActionIcon, Flex, Image, Paper, Text } from "@mantine/core";
 import { IconEye, IconHeart, IconShoppingBag } from "@tabler/icons-react";
 
@@ -7,11 +9,14 @@ type Props = {
   img: string | undefined;
   name: string;
   price: number;
+  href: string;
 };
 
-const ProductCard1 = ({ img, name, price }: Props) => {
+const ProductCard1 = ({ href, img, name, price }: Props) => {
   return (
     <Paper
+      component={Link}
+      href={href}
       radius="md"
       p="xs"
       shadow="xs"

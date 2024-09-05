@@ -17,6 +17,7 @@ const ProductCard1List = ({ products }: Props) => {
         return (
           <ProductCard1
             key={item.id}
+            href={`/products/${item.id}`}
             img={item.image}
             name={item.name}
             price={item.price}

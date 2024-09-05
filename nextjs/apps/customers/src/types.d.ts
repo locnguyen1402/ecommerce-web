@@ -7,3 +7,8 @@ declare module "@mantine/core" {
     colors: Record<ExtendedCustomColors, MantineColorsTuple>;
   }
 }
+
+type IdName = {
+  id: string;
+  name: string;
+};

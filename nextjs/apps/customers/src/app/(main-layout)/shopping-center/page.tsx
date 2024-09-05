@@ -9,6 +9,8 @@ import { getProducts } from "@/actions/product";
 
 import AppContainer from "@/components/layout/app-container";
 import ProductCard1List from "@/components/product/product-card-1-list";
+import ProductFilter from "@/components/product/product-filter";
+import ProductFilterDrawer from "@/components/product/product-filter-drawer";
 
 import { PRODUCTS } from "@/mock/product";
 
@@ -18,7 +20,6 @@ const ShoppingCenterPage = ({}) => {
     queryFn: () => getProducts({ limit: 5, skip: 10 }),
   });
 
-  console.log("🚀 ~ ShoppingCenterPage ~ data:", data);
   return (
     <div>
       <AppContainer>
@@ -29,28 +30,12 @@ const ShoppingCenterPage = ({}) => {
           }}
         >
           <Grid.Col visibleFrom="md" span={3.5}>
-            <div
-              style={{
-                backgroundColor: "blue",
-                height: "500px",
-              }}
-            ></div>
+            <ProductFilter />
           </Grid.Col>
           <Grid.Col span="auto">
             <Flex pb="xs" justify="space-between" align="center">
-              <ActionIcon
-                hiddenFrom="md"
-                size="lg"
-                variant="subtle"
-                color="neutral"
-              >
-                <IconFilter
-                  style={{
-                    width: "75%",
-                    height: "75%",
-                  }}
-                />
-              </ActionIcon>
+              <ProductFilterDrawer />
+
               <Flex ml="auto" gap={4} align="center">
                 <Text fw="bold">Sort by:</Text>
                 <Select

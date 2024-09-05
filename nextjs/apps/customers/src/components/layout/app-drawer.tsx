@@ -2,20 +2,11 @@
 
 import { observer } from "mobx-react-lite";
 
-import {
-  Button,
-  Divider,
-  Drawer,
-  Flex,
-  Group,
-  ScrollArea,
-  Text,
-} from "@mantine/core";
+import { Button, Divider, Drawer, Group, ScrollArea } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
-import { IconChevronDown } from "@tabler/icons-react";
 
 import { useStore } from "@/store";
-import { HEADER_NAV_LIST } from "@/constants/layout";
+import { HEADER_CONFIGS, HEADER_NAV_LIST } from "@/constants/layout";
 
 import DrawerNavigationList from "./drawer-navigation-list";
 import ColorSwitch from "./color-switch";
@@ -35,7 +26,7 @@ const AppDrawer = () => {
       padding="md"
       title={<MantineLogo size={30} />}
       hiddenFrom="sm"
-      zIndex={1000000}
+      zIndex={HEADER_CONFIGS.Z_INDEX + 1}
     >
       <ScrollArea mx="-md">
         <Divider mb="sm" />
