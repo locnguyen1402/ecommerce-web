@@ -11,6 +11,7 @@ import AppContainer from "@/components/layout/app-container";
 import ProductCard1List from "@/components/product/product-card-1-list";
 import ProductFilter from "@/components/product/product-filter";
 import ProductFilterDrawer from "@/components/product/product-filter-drawer";
+import HeadingBanner from "@/components/layout/heading-banner";
 
 import { PRODUCTS } from "@/mock/product";
 
@@ -22,6 +23,10 @@ const ShoppingCenterPage = ({}) => {
 
   return (
     <div>
+      <HeadingBanner
+        title="Products"
+        breadcrumbs={[{ name: "Home", href: "/" }, { name: "Products" }]}
+      />
       <AppContainer>
         <Grid
           gutter={{

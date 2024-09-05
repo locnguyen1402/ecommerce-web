@@ -59,6 +59,7 @@ const AppHeader = () => {
         }}
       >
         <Container
+          px="xs"
           size="xl"
           style={{
             height: "100%",

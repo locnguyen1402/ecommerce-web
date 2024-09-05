@@ -17,7 +17,7 @@ const ProductCard1 = ({ href, img, name, price }: Props) => {
     <Paper
       component={Link}
       href={href}
-      radius="md"
+      radius="sm"
       p={{ base: rem(8), sm: "xs" }}
       shadow="xs"
       withBorder
@@ -32,7 +32,7 @@ const ProductCard1 = ({ href, img, name, price }: Props) => {
         <Box
           component="img"
           style={{
-            borderRadius: 8,
+            borderRadius: 4,
             width: "100%",
             aspectRatio: "1 / 1.2",
           }}
