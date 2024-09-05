@@ -1,7 +1,8 @@
 import { PropsWithChildren } from "react";
 
-import MainHeader from "@/components/layout/main-header";
+import AppHeader from "@/components/layout/app-header";
 import AppDrawer from "@/components/layout/app-drawer";
+import AppFooter from "@/components/layout/app-footer";
 
 type Props = PropsWithChildren;
 
@@ -9,8 +10,9 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <AppDrawer />
-      <MainHeader />
+      <AppHeader />
       {children}
+      <AppFooter />
     </>
   );
 };

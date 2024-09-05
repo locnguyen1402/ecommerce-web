@@ -26,7 +26,7 @@ import HeaderNavigationList from "./header-navigation-list";
 
 const ColorSwitch = dynamic(() => import("./color-switch"), { ssr: false });
 
-const MainHeader = () => {
+const AppHeader = () => {
   const [scroll] = useWindowScroll();
   const scrollDirection = useScrollDirection(25);
   const layoutStore = useStore("layoutStore");
@@ -99,4 +99,4 @@ const MainHeader = () => {
   );
 };
 
-export default MainHeader;
+export default AppHeader;
