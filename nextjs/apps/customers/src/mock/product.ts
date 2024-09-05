@@ -6,6 +6,6 @@ export const PRODUCTS: ApiProduct[] = [
     name: `Product ${index}`,
     // price: Math.floor(Math.random() * 1000),
     price: 1000000,
-    image: "https://via.placeholder.com/150",
+    image: "https://placehold.co/400x480",
   })),
 ];

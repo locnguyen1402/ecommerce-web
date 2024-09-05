@@ -29,7 +29,7 @@ const ShoppingCenterPage = ({}) => {
             md: "sm",
           }}
         >
-          <Grid.Col visibleFrom="md" span={3.5}>
+          <Grid.Col visibleFrom="md" span={3}>
             <ProductFilter />
           </Grid.Col>
           <Grid.Col span="auto">

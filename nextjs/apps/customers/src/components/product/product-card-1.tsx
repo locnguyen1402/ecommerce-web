@@ -2,7 +2,7 @@ import classes from "./product-card-1.module.scss";
 
 import Link from "next/link";
 
-import { ActionIcon, Flex, Image, Paper, Text } from "@mantine/core";
+import { ActionIcon, Box, Flex, Paper, Text } from "@mantine/core";
 import { IconEye, IconHeart, IconShoppingBag } from "@tabler/icons-react";
 
 type Props = {
@@ -29,7 +29,16 @@ const ProductCard1 = ({ href, img, name, price }: Props) => {
           position: "relative",
         }}
       >
-        <Image radius="md" alt={name} src={img} />
+        <Box
+          component="img"
+          style={{
+            borderRadius: 8,
+            width: "100%",
+            aspectRatio: "1 / 1.2",
+          }}
+          alt={name}
+          src={img}
+        />
 
         <Flex
           className="actions"
