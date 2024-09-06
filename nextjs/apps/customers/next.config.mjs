@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "themesflat.co",
       },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+      },
     ],
   },
 };

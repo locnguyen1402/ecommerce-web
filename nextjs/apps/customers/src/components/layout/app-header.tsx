@@ -5,14 +5,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import {
-  Group,
-  Box,
-  Burger,
-  Container,
-  ActionIcon,
-  Paper,
-} from "@mantine/core";
+import { Group, Box, Burger, ActionIcon, Paper } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { useWindowScroll } from "@mantine/hooks";
 import { IconShoppingBag, IconUser } from "@tabler/icons-react";
@@ -23,6 +16,7 @@ import { HEADER_CONFIGS, HEADER_NAV_LIST } from "@/constants/layout";
 import { useStore } from "@/store";
 
 import HeaderNavigationList from "./header-navigation-list";
+import AppContainer from "./app-container";
 
 const ColorSwitch = dynamic(() => import("./color-switch"), { ssr: false });
 
@@ -61,8 +55,7 @@ const AppHeader = () => {
           zIndex: HEADER_CONFIGS.Z_INDEX,
         }}
       >
-        <Container
-          px="xs"
+        <AppContainer
           size="xl"
           style={{
             height: "100%",
@@ -96,7 +89,7 @@ const AppHeader = () => {
               </ActionIcon>
             </Group>
           </Group>
-        </Container>
+        </AppContainer>
       </Paper>
       <div style={{ marginTop: headerHeight }}></div>
     </>

@@ -1,0 +1,16 @@
+.productInfoContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $mantine-breakpoint-sm) {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.productAvatarsContainer {
+  top: rem(20);
+
+  @media (min-width: $mantine-breakpoint-sm) {
+    position: sticky;
+  }
+}
