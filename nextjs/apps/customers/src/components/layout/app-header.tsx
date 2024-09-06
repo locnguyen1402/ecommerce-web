@@ -45,13 +45,16 @@ const AppHeader = () => {
   return (
     <>
       <Paper
-        shadow={scroll.y ? "xs" : "0"}
+        shadow={scroll.y > HEADER_CONFIGS.FULL_HEIGHT ? "xs" : "0"}
         component="header"
         style={{
           height: headerHeight,
           backgroundColor: "var(--mantine-color-body)",
           position: "fixed",
-          top: scrollDirection === "down" ? "-100px" : "0",
+          top:
+            scroll.y > HEADER_CONFIGS.FULL_HEIGHT && scrollDirection === "down"
+              ? `-${headerHeight}px`
+              : "0",
           left: 0,
           right: 0,
           transition: "all 0.3s",

@@ -13,7 +13,7 @@ const FloatingButton = () => {
         {(transitionStyles) => (
           <ActionIcon
             radius="xl"
-            size="lg"
+            size="xl"
             style={transitionStyles}
             onClick={() => scrollTo({ y: 0 })}
           >
