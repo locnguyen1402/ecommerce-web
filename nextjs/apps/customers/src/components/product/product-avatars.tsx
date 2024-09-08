@@ -18,7 +18,14 @@ const ProductAvatars = ({ initialImg, images, productName }: Props) => {
   const [activeImg, setActiveImg] = useState(initialImg || images[0]);
 
   return (
-    <Stack gap="sm" w="100%">
+    <Stack
+      gap="sm"
+      w="100%"
+      pos={{
+        sm: "sticky",
+      }}
+      top={20}
+    >
       <Box
         pos="relative"
         w="100%"
@@ -32,7 +39,9 @@ const ProductAvatars = ({ initialImg, images, productName }: Props) => {
           fill
           src={activeImg}
           alt={productName}
-          objectFit="contain"
+          style={{
+            objectFit: "contain",
+          }}
         />
       </Box>
 
@@ -90,7 +99,15 @@ const CarouselSlideImg = ({
         aspectRatio: "1/1",
       }}
     >
-      <Image unoptimized fill alt={alt} src={src} objectFit="contain" />
+      <Image
+        unoptimized
+        fill
+        alt={alt}
+        src={src}
+        style={{
+          objectFit: "contain",
+        }}
+      />
     </Box>
   );
 };

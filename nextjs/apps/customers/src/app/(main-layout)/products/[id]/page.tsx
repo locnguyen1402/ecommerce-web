@@ -1,6 +1,6 @@
 import classes from "./page.module.scss";
 
-import { Box, Grid } from "@mantine/core";
+import { Box, Grid, Stack } from "@mantine/core";
 
 import { getProductDetail } from "@/actions/product";
 
@@ -18,7 +18,11 @@ const ProductDetail = async ({ params }: Props) => {
   const product = await getProductDetail(params.id);
 
   return (
-    <div>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       <HeadingBanner
         title="Product Detail"
         breadcrumbs={[
@@ -31,28 +35,25 @@ const ProductDetail = async ({ params }: Props) => {
         ]}
       />
       <AppContainer>
-        <Box className={classes.productInfoContainer}>
-          <Box className={classes.productAvatarsContainer}>
-            <ProductAvatars
-              productName={product.name}
-              images={product.images}
-              initialImg={product.images[0]}
-            />
+        <Stack gap="md">
+          <Box className={classes.productInfoContainer}>
+            <Box>
+              <ProductAvatars
+                productName={product.name}
+                images={product.images}
+                initialImg={product.images[0]}
+              />
+            </Box>
+            <Box></Box>
           </Box>
+
           <Box
-            bg="green"
+            bg="red"
             style={{
               height: 1000,
             }}
           ></Box>
-        </Box>
-
-        <Box
-          bg="red"
-          style={{
-            height: 1000,
-          }}
-        ></Box>
+        </Stack>
       </AppContainer>
     </div>
   );
