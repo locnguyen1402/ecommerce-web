@@ -7,6 +7,7 @@ import { getProductDetail } from "@/actions/product";
 import AppContainer from "@/components/layout/app-container";
 import HeadingBanner from "@/components/layout/heading-banner";
 import ProductAvatars from "@/components/product/product-avatars";
+import ProductGeneralInfo from "@/components/product/product-general-info";
 
 type Props = {
   params: {
@@ -44,7 +45,18 @@ const ProductDetail = async ({ params }: Props) => {
                 initialImg={product.images[0]}
               />
             </Box>
-            <Box></Box>
+            <Box
+              pl={{
+                base: 0,
+                sm: "sm",
+                lg: "lg",
+              }}
+            >
+              <ProductGeneralInfo
+                productName={product.name}
+                productPrice={product.unitPrice}
+              />
+            </Box>
           </Box>
 
           <Box
