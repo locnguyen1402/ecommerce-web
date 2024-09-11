@@ -55,16 +55,10 @@ const ProductDetail = async ({ params }: Props) => {
               <ProductGeneralInfo
                 productName={product.name}
                 productPrice={product.unitPrice}
+                attributes={product.variants}
               />
             </Box>
           </Box>
-
-          <Box
-            bg="red"
-            style={{
-              height: 1000,
-            }}
-          ></Box>
         </Stack>
       </AppContainer>
     </div>

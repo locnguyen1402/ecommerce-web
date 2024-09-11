@@ -1,4 +1,4 @@
-import { ApiProduct, ApiProductDetail } from "@/models/product";
+import { ApiProduct, ApiProductDetail } from "@/models";
 
 export const PRODUCTS: ApiProduct[] = [
   ...Array.from({ length: 100 }).map((_, index) => ({
@@ -34,7 +34,7 @@ export const PRODUCT_DETAIL: ApiProductDetail = {
   variants: [
     {
       name: "Color",
-      values: ["Red", "Blue", "Green"],
+      values: ["Red", "Blue", "Green", "Yellow", "Black"],
     },
     {
       name: "Size",

@@ -2,7 +2,7 @@ import classes from "./product-card-1-list.module.scss";
 
 import { Box } from "@mantine/core";
 
-import { ApiProduct } from "@/models/product";
+import { ApiProduct } from "@/models";
 
 import ProductCard1 from "./product-card-1";
 

@@ -23,10 +23,7 @@ export type ApiProductDetail = {
   }[];
 };
 
-export type ProductInCard = {
-  id: string;
-  image: string | undefined;
+export type WithValuesAttribute = {
   name: string;
-  price: number;
-  rawData: any;
+  values: string[];
 };
