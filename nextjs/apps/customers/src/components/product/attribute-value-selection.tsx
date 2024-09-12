@@ -8,7 +8,7 @@ type Props = {
 const AttributeValueSelection = ({ attribute }: Props) => {
   return (
     <Stack gap="4">
-      <Text size="md" fw="bold">
+      <Text size="sm" fw="bold">
         {attribute.name}
       </Text>
       <Group gap="8">

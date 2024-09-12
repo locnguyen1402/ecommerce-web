@@ -15,7 +15,7 @@ export const PRODUCT_DETAIL: ApiProductDetail = {
   name: "Product 1",
   unitPrice: 1000000,
   discountPercent: 10,
-  shortDescription: "Short description",
+  shortDescription: `Dressing up. People just don't do it anymore. We have to change that. Give me time and I'll give you a revolution. What I hate is nasty, ugly people. The market is like a language, and you have to be able to understand what they're saying.`,
   description: "Description",
   images: [
     "https://placehold.co/400?text=AAA",

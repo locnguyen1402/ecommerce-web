@@ -56,6 +56,9 @@ const ProductDetail = async ({ params }: Props) => {
                 productName={product.name}
                 productPrice={product.unitPrice}
                 attributes={product.variants}
+                shortDescription={product.shortDescription}
+                ratingAverage={product.rating.average}
+                ratingCount={product.rating.total}
               />
             </Box>
           </Box>

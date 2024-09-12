@@ -10,7 +10,7 @@ const QuantityInput = () => {
         root: classes.quantityInputContainer,
       }}
       gap={0}
-      maw={140}
+      w="100%"
     >
       <ActionIcon size="lg" variant="subtle" color="neutral">
         <IconMinus style={{ width: "75%", height: "75%" }} />
