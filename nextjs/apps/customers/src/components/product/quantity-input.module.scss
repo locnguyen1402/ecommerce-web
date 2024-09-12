@@ -1,0 +1,15 @@
+.quantityInputContainer {
+  border-width: 1px;
+  border-color: light-dark(
+    var(--mantine-color-neutral-6),
+    var(--mantine-color-neutral-4)
+  );
+  border-radius: var(--mantine-radius-default);
+}
+
+.quantityInputDivider {
+  --divider-color: light-dark(
+    var(--mantine-color-neutral-6),
+    var(--mantine-color-neutral-4)
+  ) !important;
+}

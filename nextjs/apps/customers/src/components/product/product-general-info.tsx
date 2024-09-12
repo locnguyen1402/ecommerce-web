@@ -1,20 +1,12 @@
 import classes from "./product-general-info.module.scss";
 
-import {
-  ActionIcon,
-  Button,
-  Divider,
-  Group,
-  NumberInput,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
-import { IconMinus, IconPlus, IconShoppingCartPlus } from "@tabler/icons-react";
+import { Divider, Flex, Stack, Title } from "@mantine/core";
 
-import { WithValuesAttribute } from "@/models/product";
+import { WithValuesAttribute } from "@/models";
 
 import AttributeValueSelection from "./attribute-value-selection";
+import QuantityInput from "./quantity-input";
+import ProductDetailActions from "./product-detail-actions";
 
 type Props = {
   productName: string;
@@ -60,66 +52,16 @@ const ProductGeneralInfo = ({
 
       <Divider my="md" />
 
-      <Group
-        classNames={{
-          root: classes.quantityInputContainer,
+      <Flex
+        gap="sm"
+        direction={{
+          base: "column",
+          md: "row",
         }}
-        gap={0}
-        maw={140}
       >
-        <ActionIcon size="lg" variant="subtle" color="neutral">
-          <IconMinus style={{ width: "75%", height: "75%" }} />
-        </ActionIcon>
-        <Divider
-          className={classes.quantityInputDivider}
-          color="neutral"
-          orientation="vertical"
-        />
-        <NumberInput
-          flex={1}
-          variant="unstyled"
-          min={1}
-          value={1}
-          hideControls
-          styles={{
-            input: {
-              textAlign: "center",
-            },
-          }}
-        />
-        <Divider
-          className={classes.quantityInputDivider}
-          color="neutral"
-          orientation="vertical"
-        />
-        <ActionIcon size="lg" variant="subtle" color="neutral">
-          <IconPlus style={{ width: "75%", height: "75%" }} />
-        </ActionIcon>
-      </Group>
-
-      <Group gap="sm" mt="sm" w="100%">
-        <Button
-          leftSection={<IconShoppingCartPlus />}
-          maw={{
-            md: "40%",
-          }}
-          flex={1}
-          size="md"
-        >
-          Add to cart
-        </Button>
-
-        <Button
-          maw={{
-            md: "40%",
-          }}
-          flex={1}
-          size="md"
-          variant="outline"
-        >
-          Buy now
-        </Button>
-      </Group>
+        <QuantityInput />
+        <ProductDetailActions />
+      </Flex>
     </Stack>
   );
 };
