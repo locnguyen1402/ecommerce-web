@@ -1,6 +1,6 @@
 import classes from "./page.module.scss";
 
-import { Box, Grid, Stack } from "@mantine/core";
+import { Box, Space, Stack } from "@mantine/core";
 
 import { getProductDetail } from "@/actions/product";
 
@@ -8,6 +8,7 @@ import AppContainer from "@/components/layout/app-container";
 import HeadingBanner from "@/components/layout/heading-banner";
 import ProductAvatars from "@/components/product/product-avatars";
 import ProductGeneralInfo from "@/components/product/product-general-info";
+import ProductDetailRelatedTabs from "@/components/product/product-detail-related-tabs";
 
 type Props = {
   params: {
@@ -63,6 +64,16 @@ const ProductDetail = async ({ params }: Props) => {
             </Box>
           </Box>
         </Stack>
+
+        <Space
+          h={{
+            base: "sm",
+            sm: "md",
+            md: "lg",
+          }}
+        />
+
+        <ProductDetailRelatedTabs />
       </AppContainer>
     </div>
   );
