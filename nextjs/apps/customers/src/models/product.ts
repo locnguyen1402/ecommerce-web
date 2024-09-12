@@ -1,3 +1,5 @@
+import { LabelValue } from "@/types";
+
 export type ApiProduct = {
   id: string;
   name: string;
@@ -21,9 +23,16 @@ export type ApiProductDetail = {
     name: string;
     values: string[];
   }[];
+  specifications: LabelValue[];
 };
 
 export type WithValuesAttribute = {
   name: string;
   values: string[];
 };
+
+export enum ProductTabType {
+  DESCRIPTION = "description",
+  SPECIFICATION = "specification",
+  REVIEWS = "reviews",
+}

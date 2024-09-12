@@ -12,3 +12,8 @@ type IdName = {
   id: string;
   name: string;
 };
+
+type LabelValue = {
+  label: string;
+  value: string;
+};

@@ -1,0 +1,24 @@
+.specRow {
+  &:nth-child(odd) {
+    background-color: light-dark(
+      var(--mantine-color-gray-1),
+      var(--mantine-color-dark-6)
+    );
+  }
+}
+
+.specLabel {
+  min-width: max-content;
+  max-width: 40%;
+  border-right-color: light-dark(
+    var(--mantine-color-gray-3),
+    var(--mantine-color-dark-4)
+  );
+  border-right-width: 1px;
+}
+
+.specValue {
+  font-weight: 600;
+  text-align: center;
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}

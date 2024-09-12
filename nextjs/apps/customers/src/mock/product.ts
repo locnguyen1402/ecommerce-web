@@ -41,4 +41,38 @@ export const PRODUCT_DETAIL: ApiProductDetail = {
       values: ["S", "M", "L", "XL"],
     },
   ],
+  specifications: [
+    {
+      label: "Material",
+      value: "Cotton",
+    },
+    {
+      label: "Weight",
+      value: "0.5 kg",
+    },
+    {
+      label: "Size",
+      value: "M",
+    },
+    {
+      label: "Color",
+      value: "Red",
+    },
+    {
+      label: "Origin",
+      value: "Vietnam",
+    },
+    {
+      label: "Brand",
+      value: "Adidas",
+    },
+    {
+      label: "SKU",
+      value: "123456",
+    },
+    {
+      label: "Manufacturer",
+      value: "Aditya Birla Fashion and Retail Limited",
+    },
+  ],
 };

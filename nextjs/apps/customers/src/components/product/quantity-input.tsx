@@ -4,6 +4,7 @@ import { ActionIcon, Divider, Group, NumberInput } from "@mantine/core";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 
 const QuantityInput = () => {
+  const iconStyle = { width: "60%", height: "60%" };
   return (
     <Group
       classNames={{
@@ -12,8 +13,15 @@ const QuantityInput = () => {
       gap={0}
       w="100%"
     >
-      <ActionIcon size="lg" variant="subtle" color="neutral">
-        <IconMinus style={{ width: "75%", height: "75%" }} />
+      <ActionIcon
+        classNames={{
+          root: classes.actionButton,
+        }}
+        size="lg"
+        variant="subtle"
+        color="neutral"
+      >
+        <IconMinus style={iconStyle} />
       </ActionIcon>
       <Divider
         className={classes.quantityInputDivider}
@@ -37,8 +45,15 @@ const QuantityInput = () => {
         color="neutral"
         orientation="vertical"
       />
-      <ActionIcon size="lg" variant="subtle" color="neutral">
-        <IconPlus style={{ width: "75%", height: "75%" }} />
+      <ActionIcon
+        classNames={{
+          root: classes.actionButton,
+        }}
+        size="lg"
+        variant="subtle"
+        color="neutral"
+      >
+        <IconPlus style={iconStyle} />
       </ActionIcon>
     </Group>
   );

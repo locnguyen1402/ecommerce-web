@@ -70,10 +70,11 @@ const ProductDetail = async ({ params }: Props) => {
             base: "sm",
             sm: "md",
             md: "lg",
+            lg: "xl",
           }}
         />
 
-        <ProductDetailRelatedTabs />
+        <ProductDetailRelatedTabs specifications={product.specifications} />
       </AppContainer>
     </div>
   );
