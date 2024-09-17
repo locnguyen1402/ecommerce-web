@@ -6,10 +6,10 @@ import { PageLink } from '@vklink/metronic-core';
 import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { ProductCategoryDetail } from '@/api/responses';
-import { APP_ROUTES } from '@/constants';
+import { MerchantDetail } from '@/api/responses';
 
 import MutationForm from './components/MutationForm';
+import { APP_ROUTES } from '@/constants';
 
 type FormDefaultValues = ComponentProps<typeof MutationForm>['defaultValues'];
 
@@ -17,12 +17,12 @@ const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
 
-  const { data: detail } = useDetailQuery<ProductCategoryDetail>(
-    generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
+  const { data: detail } = useDetailQuery<MerchantDetail>(
+    generatePath(INVENTORY_API_URLS.MERCHANT_DETAIL, {
       id,
     }),
     {
-      queryKey: ['product-category-detail', id, 'edit'],
+      queryKey: ['merchant-detail', id, 'edit'],
       enabled: !!id,
     }
   );
@@ -30,14 +30,14 @@ const Page = () => {
   const breadCrumbs = useMemo(() => {
     return [
       {
-        title: t('breadcrumbs.categoryManagement'),
-        path: APP_ROUTES.categories.root,
+        title: t('breadcrumbs.merchantManagement'),
+        path: APP_ROUTES.merchants.root,
         isSeparator: false,
         isActive: false,
       },
       !!detail && {
         title: detail.name,
-        path: generatePath(APP_ROUTES.categories.detail, {
+        path: generatePath(APP_ROUTES.merchants.detail, {
           id: detail.id,
         }),
         isSeparator: false,
@@ -46,16 +46,11 @@ const Page = () => {
     ].filter(Boolean) as PageLink[];
   }, [id, detail]);
 
-  const mapDetailToForm = (detail: ProductCategoryDetail): FormDefaultValues => ({
+  const mapDetailToForm = (detail: MerchantDetail): FormDefaultValues => ({
     name: detail.name,
     slug: detail.slug,
     description: detail.description,
-    parent: detail.parent?.id
-      ? {
-          id: detail.parent.id,
-          name: detail.parent.name,
-        }
-      : null,
+    categories: [],
   });
 
   return (

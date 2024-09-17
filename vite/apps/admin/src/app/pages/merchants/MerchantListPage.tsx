@@ -10,10 +10,10 @@ import { ProductCategory } from '@/api/responses';
 import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 
-import { CategoryListQuery } from './types';
+import { MerchantListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
 
-const defaultQueryParams: CategoryListQuery = {
+const defaultQueryParams: MerchantListQuery = {
   ...DEFAULT_PAGING_PARAMS,
 };
 
@@ -22,10 +22,10 @@ const Page = () => {
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
   const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ProductCategory>(
-    INVENTORY_API_URLS.CATEGORIES,
+    INVENTORY_API_URLS.MERCHANTS,
     {
       paging: queryParams,
-      queryKey: ['product-category-list-page', queryParams.keyword],
+      queryKey: ['merchant-list-page', queryParams.keyword],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -36,8 +36,8 @@ const Page = () => {
 
   const breadCrumbs: PageLink[] = [
     {
-      title: t('breadcrumbs.categoryManagement'),
-      path: APP_ROUTES.categories.root,
+      title: t('breadcrumbs.merchantManagement'),
+      path: APP_ROUTES.merchants.root,
       isSeparator: false,
       isActive: false,
     },

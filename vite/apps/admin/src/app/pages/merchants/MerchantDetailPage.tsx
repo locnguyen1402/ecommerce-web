@@ -6,7 +6,7 @@ import { LabelValueList, LabelValueListDef } from '@vklink/components';
 import { PageLayout } from '@/shared/components';
 
 import { useDetailQuery, useI18n } from '@/hooks';
-import { ProductCategoryDetail } from '@/api/responses';
+import { MerchantDetail } from '@/api/responses';
 import { INVENTORY_API_URLS } from '@/api';
 import { APP_ROUTES } from '@/constants';
 
@@ -14,26 +14,26 @@ const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
 
-  const { data: detail } = useDetailQuery<ProductCategoryDetail>(
-    generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
+  const { data: detail } = useDetailQuery<MerchantDetail>(
+    generatePath(INVENTORY_API_URLS.MERCHANT_DETAIL, {
       id,
     }),
     {
-      queryKey: ['product-category-detail', id],
+      queryKey: ['merchant-detail', id],
       enabled: !!id,
     }
   );
 
   const breadCrumbs = [
     {
-      title: t('breadcrumbs.categoryManagement'),
-      path: APP_ROUTES.categories.root,
+      title: t('breadcrumbs.merchantManagement'),
+      path: APP_ROUTES.merchants.root,
       isSeparator: false,
       isActive: false,
     },
   ];
 
-  const itemDefs: LabelValueListDef<ProductCategoryDetail> = [
+  const itemDefs: LabelValueListDef<MerchantDetail> = [
     // {
     //   label: 'label.name',
     //   value: 'name',
@@ -41,10 +41,6 @@ const Page = () => {
     {
       label: 'label.slug',
       value: 'slug',
-    },
-    {
-      label: 'label.parent',
-      renderValue: (data) => data.parent?.name,
     },
     {
       label: 'label.description',

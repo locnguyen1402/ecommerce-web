@@ -11,8 +11,8 @@ const Page = () => {
 
   const breadCrumbs: PageLink[] = [
     {
-      title: t('breadcrumbs.categoryManagement'),
-      path: APP_ROUTES.categories.root,
+      title: t('breadcrumbs.merchantManagement'),
+      path: APP_ROUTES.merchants.root,
       isSeparator: false,
       isActive: false,
     },

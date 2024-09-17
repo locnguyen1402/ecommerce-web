@@ -5,6 +5,7 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import { MasterLayout, WithChildren, KTUtil } from '@vklink/metronic-core';
 
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
+import { APP_ROUTES } from '@/constants';
 
 const PrivateRoutes = () => {
   const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
@@ -34,7 +35,7 @@ const PrivateRoutes = () => {
         />
 
         <Route
-          path="categories/*"
+          path={APP_ROUTES.categories.base}
           element={
             <SuspendedView>
               <CategoryRoutes />
