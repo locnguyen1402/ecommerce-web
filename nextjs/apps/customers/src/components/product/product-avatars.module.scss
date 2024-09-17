@@ -1,0 +1,22 @@
+.carouselControls {
+  transition: opacity 150ms ease;
+  opacity: 0;
+}
+
+.carouselRoot {
+  background-color: aqua;
+  &:hover {
+    :global(.carouselControls) {
+      opacity: 1;
+    }
+  }
+}
+
+.carouselSlideImg {
+  &[data-active] {
+    border-color: light-dark(
+      var(--mantine-color-primary-6),
+      var(--mantine-color-primary-6)
+    );
+  }
+}

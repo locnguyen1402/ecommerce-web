@@ -1,0 +1,6 @@
+/* Reference: https://github.com/PauliCZ44/MantineTW/blob/main/src/index.css */
+@layer tailwind {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;

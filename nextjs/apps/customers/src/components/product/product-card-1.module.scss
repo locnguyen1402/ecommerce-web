@@ -1,0 +1,46 @@
+.productCard {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: 0px;
+
+  :global(.actions) {
+    :nth-child(2) {
+      opacity: 0;
+      transition: all 0.5s ease;
+
+      @media (max-width: $mantine-breakpoint-xs) {
+        opacity: 1;
+      }
+    }
+
+    :nth-child(3) {
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+  }
+
+  &:hover {
+    :global(.title) {
+      color: var(--mantine-color-primary-6);
+    }
+
+    :global(.actions) {
+      :nth-child(2) {
+        opacity: 1;
+
+        &:global {
+          animation: fadeInDown 0.3s ease-in-out;
+        }
+      }
+
+      :nth-child(3) {
+        opacity: 1;
+
+        &:global {
+          animation: fadeInDown 0.7s ease-in-out;
+        }
+      }
+    }
+  }
+}
