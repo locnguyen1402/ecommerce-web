@@ -1,5 +1,7 @@
 {
   "menu": {
+    "masterData": "Master Data",
+    "categories": "Categories",
     "features": "Features",
     "dashboard": "Dashboard",
     "catalogs": "Catalogs",
@@ -10,6 +12,7 @@
   },
   "breadcrumbs": {
     "productManagement": "Product Management",
+    "categoryManagement": "Category Management",
     "productCategoryManagement": "Product Category Management",
     "productAttributeManagement": "Product Attribute Management"
   },

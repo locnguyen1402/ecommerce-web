@@ -7,6 +7,7 @@ import { MasterLayout, WithChildren, KTUtil } from '@vklink/metronic-core';
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
 
 const PrivateRoutes = () => {
+  const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
   const ProductCategoryRoutes = lazy(
     () => import('../pages/product-categories/ProductCategoryRoutes')
@@ -28,6 +29,15 @@ const PrivateRoutes = () => {
           element={
             <SuspendedView>
               <ProductRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path="categories/*"
+          element={
+            <SuspendedView>
+              <CategoryRoutes />
             </SuspendedView>
           }
         />

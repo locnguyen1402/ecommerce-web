@@ -10,6 +10,16 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'item',
   },
   {
+    title: 'menu.masterData',
+    kind: 'section',
+  },
+  {
+    to: '/categories',
+    title: 'menu.categories',
+    icon: 'category',
+    kind: 'item',
+  },
+  {
     title: 'menu.inventory',
     kind: 'section',
   },

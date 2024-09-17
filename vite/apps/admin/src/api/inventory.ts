@@ -1,5 +1,5 @@
-const PRODUCT_GROUP = '/products';
-const CATEGORY_GROUP = '/categories';
+const PRODUCT_GROUP = '/inventory/products';
+const CATEGORY_GROUP = '/inventory/categories';
 
 export const INVENTORY_API_URLS = {
   CATEGORIES: `${CATEGORY_GROUP}`,
