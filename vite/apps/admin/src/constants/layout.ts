@@ -1,3 +1,5 @@
+import { APP_ROUTES } from './routes';
+
 /**
  * Used in SidebarMenuMain.tsx
  * to display sidebar menu
@@ -14,7 +16,13 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'section',
   },
   {
-    to: '/categories',
+    to: APP_ROUTES.merchants.root,
+    title: 'menu.merchants',
+    icon: 'category',
+    kind: 'item',
+  },
+  {
+    to: APP_ROUTES.categories.root,
     title: 'menu.categories',
     icon: 'category',
     kind: 'item',

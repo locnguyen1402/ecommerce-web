@@ -8,6 +8,7 @@ import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
 import { APP_ROUTES } from '@/constants';
 
 const PrivateRoutes = () => {
+  const MerchantRoutes = lazy(() => import('../pages/merchants/MerchantRoutes'));
   const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
   const ProductCategoryRoutes = lazy(
@@ -26,10 +27,10 @@ const PrivateRoutes = () => {
         <Route path="dashboard" element={<DashboardWrapper />} />
 
         <Route
-          path="products/*"
+          path={APP_ROUTES.merchants.base}
           element={
             <SuspendedView>
-              <ProductRoutes />
+              <MerchantRoutes />
             </SuspendedView>
           }
         />
@@ -39,6 +40,15 @@ const PrivateRoutes = () => {
           element={
             <SuspendedView>
               <CategoryRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path="products/*"
+          element={
+            <SuspendedView>
+              <ProductRoutes />
             </SuspendedView>
           }
         />
