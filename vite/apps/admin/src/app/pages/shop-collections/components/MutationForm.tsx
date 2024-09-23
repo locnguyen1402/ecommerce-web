@@ -78,7 +78,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
 
-      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.shopCollection.base, id!);
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.shopCollection.base, id);
 
       goBack();
     },

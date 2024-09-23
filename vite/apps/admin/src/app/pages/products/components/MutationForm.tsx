@@ -14,9 +14,9 @@ import {
 } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
-import { useI18n, useToast } from '@/hooks';
+import { useI18n, useQueryHelpers, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { idNameSchema } from '@/constants';
+import { idNameSchema, QUERY_KEYS } from '@/constants';
 
 import {
   CreateProductRequest,
@@ -39,7 +39,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const { id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const queryHelpers = useQueryHelpers();
 
   const isEditing = !!id;
 
@@ -86,11 +86,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
 
-      if (isEditing) {
-        queryClient.invalidateQueries({
-          queryKey: ['product-detail', id],
-        });
-      }
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.product.base, id);
 
       goBack();
     },
@@ -131,7 +127,7 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
     name: yup.string().required().max(200).label(t('label.name')),
-    slug: yup.string().required().label(t('label.slug')),
+    slug: yup.string().max(200).label(t('label.slug')),
     description: yup.string().required().max(500).label(t('label.description')),
     categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
     attributes: yup.array(attributeSchema).required().default([]).label(t('label.attributes')),
@@ -219,16 +215,15 @@ const MutationForm = ({ defaultValues }: Props) => {
           <FormContainer size="md" variant="outlined">
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
-            <SlugField
+            {/* <SlugField
               control={control}
               name="slug"
               label={t('label.slug')}
-              isRequired
               isEditing={isEditing}
               setValue={setValue}
-            />
+            /> */}
 
-            {categoriesControl.field}
+            {/* {categoriesControl.field} */}
 
             <TextField control={control} name="description" label={t('label.description')} />
           </FormContainer>

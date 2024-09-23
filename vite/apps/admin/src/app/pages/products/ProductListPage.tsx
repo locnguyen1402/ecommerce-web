@@ -5,7 +5,7 @@ import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 
-import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 import { Product } from '@/api/responses';
@@ -25,7 +25,7 @@ const Page = () => {
     INVENTORY_API_URLS.PRODUCTS,
     {
       paging: queryParams,
-      queryKey: ['product-list-page', queryParams.keyword],
+      queryKey: [QUERY_KEYS.product.base, QUERY_KEYS.product.list, queryParams.keyword],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -37,7 +37,7 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productManagement'),
-      path: '/products',
+      path: APP_ROUTES.products.root,
       isSeparator: false,
       isActive: false,
     },
