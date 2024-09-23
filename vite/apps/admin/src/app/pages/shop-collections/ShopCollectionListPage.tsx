@@ -5,15 +5,16 @@ import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { INVENTORY_API_URLS } from '@/api';
-import { ProductCategory } from '@/api/responses';
+import { ShopCollection } from '@/api/responses';
 
-import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 
-import { ProductCategoryListQuery } from './types';
+import { ShopCollectionListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
+import ShopCollectionListActions from './components/ShopCollectionListActions';
 
-const defaultQueryParams: ProductCategoryListQuery = {
+const defaultQueryParams: ShopCollectionListQuery = {
   ...DEFAULT_PAGING_PARAMS,
 };
 
@@ -21,11 +22,15 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ProductCategory>(
-    INVENTORY_API_URLS.CATEGORIES,
+  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ShopCollection>(
+    INVENTORY_API_URLS.SHOP_COLLECTIONS,
     {
       paging: queryParams,
-      queryKey: ['product-category-list-page', queryParams.keyword],
+      queryKey: [
+        QUERY_KEYS.shopCollection.base,
+        QUERY_KEYS.shopCollection.list,
+        queryParams.keyword,
+      ],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -37,15 +42,24 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productCategoryManagement'),
-      path: '/product-categories',
+      path: APP_ROUTES.shopCollections.root,
       isSeparator: false,
       isActive: false,
     },
   ];
 
-  const columnHelper = createColumnHelper<ProductCategory>();
+  const columnHelper = createColumnHelper<ShopCollection>();
 
   const columns = [
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => {
+        const item = info.row.original;
+
+        return <ShopCollectionListActions {...item} />;
+      },
+    }),
     columnHelper.accessor('id', {
       header: () => t('label.name'),
       cell: (info) => {
@@ -58,6 +72,12 @@ const Page = () => {
           className: 'min-w-150px mw-250px',
         },
       },
+    }),
+    // columnHelper.accessor('slug', {
+    //   header: () => t('label.slug'),
+    // }),
+    columnHelper.accessor('description', {
+      header: () => t('label.description'),
     }),
   ];
 

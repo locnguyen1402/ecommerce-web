@@ -38,7 +38,7 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'item',
   },
   {
-    to: '/product-categories',
+    to: APP_ROUTES.shopCollections.root,
     title: 'menu.productCategories',
     icon: 'category',
     kind: 'item',

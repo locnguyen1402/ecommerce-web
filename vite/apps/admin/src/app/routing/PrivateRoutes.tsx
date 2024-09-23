@@ -11,9 +11,7 @@ const PrivateRoutes = () => {
   const MerchantRoutes = lazy(() => import('../pages/merchants/MerchantRoutes'));
   const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
-  const ProductCategoryRoutes = lazy(
-    () => import('../pages/product-categories/ProductCategoryRoutes')
-  );
+  const ShopCollectionRoutes = lazy(() => import('../pages/shop-collections/ShopCollectionRoutes'));
   const ProductAttributeRoutes = lazy(
     () => import('../pages/product-attributes/ProductAttributeRoutes')
   );
@@ -45,19 +43,18 @@ const PrivateRoutes = () => {
         />
 
         <Route
+          path={APP_ROUTES.shopCollections.base}
+          element={
+            <SuspendedView>
+              <ShopCollectionRoutes />
+            </SuspendedView>
+          }
+        />
+        <Route
           path="products/*"
           element={
             <SuspendedView>
               <ProductRoutes />
-            </SuspendedView>
-          }
-        />
-
-        <Route
-          path="product-categories/*"
-          element={
-            <SuspendedView>
-              <ProductCategoryRoutes />
             </SuspendedView>
           }
         />

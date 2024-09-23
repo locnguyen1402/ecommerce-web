@@ -22,7 +22,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: [QUERY_KEYS.merchant.detail, id, 'edit'],
+      queryKey: [QUERY_KEYS.merchant.base, QUERY_KEYS.merchant.detail, id, 'edit'],
       enabled: !!id,
     }
   );

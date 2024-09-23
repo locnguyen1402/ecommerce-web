@@ -17,4 +17,9 @@ export const QUERY_KEYS = {
     list: LIST_QUERY_KEY,
     detail: DETAIL_QUERY_KEY,
   },
+  shopCollection: {
+    base: 'shop-collection',
+    list: LIST_QUERY_KEY,
+    detail: DETAIL_QUERY_KEY,
+  },
 };

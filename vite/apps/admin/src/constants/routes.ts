@@ -13,4 +13,11 @@ export const APP_ROUTES = {
     create: '/categories/create',
     edit: '/categories/:id/edit',
   },
+  shopCollections: {
+    base: 'collections/*',
+    root: '/collections',
+    detail: '/collections/:id',
+    create: '/collections/create',
+    edit: '/collections/:id/edit',
+  },
 };

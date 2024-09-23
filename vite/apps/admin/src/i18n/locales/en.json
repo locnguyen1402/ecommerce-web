@@ -5,7 +5,7 @@
     "features": "Features",
     "dashboard": "Dashboard",
     "catalogs": "Catalogs",
-    "productCategories": "Categories",
+    "productCategories": "Merchant Categories",
     "products": "Products",
     "inventory": "Inventory",
     "attributes": "Attributes",
@@ -15,7 +15,7 @@
     "merchantManagement": "Merchant Management",
     "productManagement": "Product Management",
     "categoryManagement": "Category Management",
-    "productCategoryManagement": "Product Category Management",
+    "productCategoryManagement": "Merchant Categories Management",
     "productAttributeManagement": "Product Attribute Management"
   },
   "actions": {
@@ -82,7 +82,8 @@
     "stock": "Stock",
     "categories": "Categories",
     "parent": "Parent",
-    "detail": "Detail"
+    "detail": "Detail",
+    "subcategories": "Subcategories"
   },
   "notification": {
     "info": "Information",

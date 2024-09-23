@@ -1,6 +1,7 @@
+const MERCHANT_GROUP = '/inventory/merchants';
+const SHOP_COLLECTION_GROUP = '/inventory/merchants/shop-collections';
 const PRODUCT_GROUP = '/inventory/products';
 const CATEGORY_GROUP = '/inventory/categories';
-const MERCHANT_GROUP = '/inventory/merchants';
 
 export const INVENTORY_API_URLS = {
   CATEGORIES: `${CATEGORY_GROUP}`,
@@ -8,6 +9,10 @@ export const INVENTORY_API_URLS = {
 
   MERCHANTS: `${MERCHANT_GROUP}`,
   MERCHANT_DETAIL: `${MERCHANT_GROUP}/:id`,
+
+  SHOP_COLLECTIONS: `${SHOP_COLLECTION_GROUP}`,
+  SHOP_COLLECTION_OPTIONS: `${SHOP_COLLECTION_GROUP}/options`,
+  SHOP_COLLECTION_DETAIL: `${SHOP_COLLECTION_GROUP}/:id`,
 
   PRODUCTS: `${PRODUCT_GROUP}`,
   PRODUCT_DETAIL: `${PRODUCT_GROUP}/:id`,

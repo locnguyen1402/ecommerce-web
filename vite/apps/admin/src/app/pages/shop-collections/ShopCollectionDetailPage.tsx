@@ -8,17 +8,18 @@ import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { ProductCategoryDetail } from '@/api/responses';
 import { INVENTORY_API_URLS } from '@/api';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
 
   const { data: detail } = useDetailQuery<ProductCategoryDetail>(
-    generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
+    generatePath(INVENTORY_API_URLS.SHOP_COLLECTION_DETAIL, {
       id,
     }),
     {
-      queryKey: ['product-category-detail', id],
+      queryKey: [QUERY_KEYS.shopCollection.base, QUERY_KEYS.shopCollection.detail, id],
       enabled: !!id,
     }
   );
@@ -26,7 +27,7 @@ const Page = () => {
   const breadCrumbs = [
     {
       title: t('breadcrumbs.productCategoryManagement'),
-      path: '/product-categories',
+      path: APP_ROUTES.shopCollections.root,
       isSeparator: false,
       isActive: false,
     },

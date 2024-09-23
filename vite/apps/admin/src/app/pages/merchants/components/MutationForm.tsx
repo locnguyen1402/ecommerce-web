@@ -118,13 +118,13 @@ const MutationForm = ({ defaultValues }: Props) => {
           <FormContainer>
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
-            <SlugField
+            {/* <SlugField
               control={control}
               name="slug"
               label={t('label.slug')}
               isEditing={isEditing}
               setValue={setValue}
-            />
+            /> */}
 
             <TextareaField
               rows={3}

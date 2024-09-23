@@ -5,7 +5,7 @@ import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { INVENTORY_API_URLS } from '@/api';
-import { ProductCategory } from '@/api/responses';
+import { Merchant } from '@/api/responses';
 
 import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
@@ -22,7 +22,7 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ProductCategory>(
+  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<Merchant>(
     INVENTORY_API_URLS.MERCHANTS,
     {
       paging: queryParams,
@@ -44,7 +44,7 @@ const Page = () => {
     },
   ];
 
-  const columnHelper = createColumnHelper<ProductCategory>();
+  const columnHelper = createColumnHelper<Merchant>();
 
   const columns = [
     columnHelper.display({
@@ -53,7 +53,7 @@ const Page = () => {
       cell: (info) => {
         const item = info.row.original;
 
-        return <MerchantListActions id={item.id} />;
+        return <MerchantListActions {...item} />;
       },
     }),
     columnHelper.accessor('id', {
