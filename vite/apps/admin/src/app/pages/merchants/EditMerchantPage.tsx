@@ -7,9 +7,9 @@ import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 import { MerchantDetail } from '@/api/responses';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import MutationForm from './components/MutationForm';
-import { APP_ROUTES } from '@/constants';
 
 type FormDefaultValues = ComponentProps<typeof MutationForm>['defaultValues'];
 
@@ -22,7 +22,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['merchant-detail', id, 'edit'],
+      queryKey: [QUERY_KEYS.merchant.detail, id, 'edit'],
       enabled: !!id,
     }
   );

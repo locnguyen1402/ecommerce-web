@@ -8,7 +8,7 @@ import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { MerchantDetail } from '@/api/responses';
 import { INVENTORY_API_URLS } from '@/api';
-import { APP_ROUTES } from '@/constants';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 const Page = () => {
   const { t } = useI18n();
@@ -19,7 +19,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['merchant-detail', id],
+      queryKey: [QUERY_KEYS.merchant.base, QUERY_KEYS.merchant.detail, id],
       enabled: !!id,
     }
   );
@@ -38,10 +38,10 @@ const Page = () => {
     //   label: 'label.name',
     //   value: 'name',
     // },
-    {
-      label: 'label.slug',
-      value: 'slug',
-    },
+    // {
+    //   label: 'label.slug',
+    //   value: 'slug',
+    // },
     {
       label: 'label.description',
       value: 'description',

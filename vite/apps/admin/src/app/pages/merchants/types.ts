@@ -2,7 +2,7 @@ import { PaginatedQueryParams } from '@/shared/types';
 
 export type CreateMerchantRequest = {
   name: string;
-  slug: string;
+  slug?: string;
   description?: string;
   categories: IdName[];
 };
@@ -13,7 +13,7 @@ export type UpdateMerchantRequest = CreateMerchantRequest & {
 
 export type CreateMerchantPayload = {
   name: string;
-  slug: string;
+  slug?: string;
   description: string;
   categoryIds?: string[];
 };

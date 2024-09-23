@@ -1,4 +1,5 @@
-import { HTMLProps, PropsWithChildren, ReactNode, forwardRef } from 'react';
+import { HTMLProps, ReactNode, forwardRef, useRef, useState } from 'react';
+import { useOnClickOutside } from 'usehooks-ts';
 
 import { default as Base } from 'react-bootstrap/Dropdown';
 
@@ -27,16 +28,27 @@ const DropdownMenu = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
   }
 );
 
-type Props = PropsWithChildren<{
-  dropdownButton: ReactNode;
+type Props = {
+  dropdownButton: (options: { open: () => void }) => ReactNode;
   className?: string;
-}>;
+  children: ReactNode | ((props: { close: () => void }) => ReactNode);
+};
 
 const Dropdown = ({ children, dropdownButton, className }: Props) => {
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
+
+  const open = () => setShow(true);
+  const close = () => setShow(false);
+
+  useOnClickOutside(ref, close);
+
   return (
-    <Base className={className}>
-      <Base.Toggle as={DropdownButton}>{dropdownButton}</Base.Toggle>
-      <Base.Menu as={DropdownMenu}>{children}</Base.Menu>
+    <Base ref={ref} className={className} show={show}>
+      <Base.Toggle as={DropdownButton}>{dropdownButton({ open })}</Base.Toggle>
+      <Base.Menu show={show} as={DropdownMenu}>
+        {typeof children === 'function' ? children({ close }) : children}
+      </Base.Menu>
     </Base>
   );
 };

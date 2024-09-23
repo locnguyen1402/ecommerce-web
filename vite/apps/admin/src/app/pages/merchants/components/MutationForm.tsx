@@ -21,9 +21,9 @@ import {
 } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
-import { useI18n, useToast } from '@/hooks';
+import { useI18n, useQueryHelpers, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { idNameSchema } from '@/constants';
+import { idNameSchema, QUERY_KEYS } from '@/constants';
 
 import { CreateMerchantPayload, CreateMerchantRequest } from '../types';
 import { useCategoriesControl } from '../utils/use-categories-control';
@@ -39,6 +39,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const { id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
+  const queryHelpers = useQueryHelpers();
 
   const isEditing = !!id;
 
@@ -75,6 +76,8 @@ const MutationForm = ({ defaultValues }: Props) => {
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
 
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.merchant.base, id!);
+
       goBack();
     },
     onError: (err) => {
@@ -87,7 +90,7 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
     name: yup.string().required().max(200).label(t('label.name')),
-    slug: yup.string().required().label(t('label.slug')),
+    slug: yup.string().max(200).label(t('label.slug')),
     description: yup.string().max(500).label(t('label.description')),
     categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
   });
@@ -119,7 +122,6 @@ const MutationForm = ({ defaultValues }: Props) => {
               control={control}
               name="slug"
               label={t('label.slug')}
-              isRequired
               isEditing={isEditing}
               setValue={setValue}
             />

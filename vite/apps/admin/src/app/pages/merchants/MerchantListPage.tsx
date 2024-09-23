@@ -7,11 +7,12 @@ import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { INVENTORY_API_URLS } from '@/api';
 import { ProductCategory } from '@/api/responses';
 
-import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 
 import { MerchantListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
+import MerchantListActions from './components/MerchantListActions';
 
 const defaultQueryParams: MerchantListQuery = {
   ...DEFAULT_PAGING_PARAMS,
@@ -25,7 +26,7 @@ const Page = () => {
     INVENTORY_API_URLS.MERCHANTS,
     {
       paging: queryParams,
-      queryKey: ['merchant-list-page', queryParams.keyword],
+      queryKey: [QUERY_KEYS.merchant.base, QUERY_KEYS.merchant.list, queryParams.keyword],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -46,6 +47,15 @@ const Page = () => {
   const columnHelper = createColumnHelper<ProductCategory>();
 
   const columns = [
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => {
+        const item = info.row.original;
+
+        return <MerchantListActions id={item.id} />;
+      },
+    }),
     columnHelper.accessor('id', {
       header: () => t('label.name'),
       cell: (info) => {
@@ -59,9 +69,9 @@ const Page = () => {
         },
       },
     }),
-    columnHelper.accessor('slug', {
-      header: () => t('label.slug'),
-    }),
+    // columnHelper.accessor('slug', {
+    //   header: () => t('label.slug'),
+    // }),
     columnHelper.accessor('description', {
       header: () => t('label.description'),
     }),

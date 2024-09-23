@@ -16,43 +16,85 @@ type Props = PropsWithChildren<{
     icon?: ReactNode;
     text?: string;
   };
+
+  closeOnActionsClick?: boolean;
+  children: ReactNode | ((props: { close: () => void }) => ReactNode);
 }>;
 
-const FilterDropdownV2 = ({ children, onReset, onSubmit, dropdownButton }: Props) => {
+const FilterDropdownV2 = ({
+  children,
+  onReset,
+  onSubmit,
+  dropdownButton,
+  closeOnActionsClick = true,
+}: Props) => {
   const { t } = useI18n();
 
   return (
     <>
       <Dropdown
-        dropdownButton={
+        dropdownButton={({ open }) => (
           <OkButton
+            onClick={open}
             startDecorator={dropdownButton?.icon ?? <KTIcon iconName="filter" className="fs-2" />}
           >
             {dropdownButton?.text || t('actions.filter')}
           </OkButton>
-        }
+        )}
       >
-        <div className="w-250px w-md-300px">
-          <div className="px-5 py-5">
-            <div className="fs-5 text-gray-900 fw-bolder">{t('label.filterOptions')}</div>
-          </div>
+        {(props) => (
+          <div className="w-250px w-md-300px">
+            <div className="px-5 py-5 d-flex justify-content-between align-items-center">
+              <div className="fs-5 text-gray-900 fw-bolder">{t('label.filterOptions')}</div>
 
-          <div className="separator border-gray-200"></div>
+              <button
+                type="button"
+                onClick={() => {
+                  setTimeout(() => {
+                    props.close();
+                  }, 50);
+                }}
+                className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
+              >
+                <i className="bi bi-x fs-2" />
+              </button>
+            </div>
 
-          <div className="px-5 py-5">
-            {children}
+            <div className="separator border-gray-200"></div>
 
-            <div className="mt-8 d-flex justify-content-end">
-              <BaseDropdown.Item className="p-0 w-auto me-2" onClick={onReset}>
-                <CancelButton>{t('actions.reset')}</CancelButton>
-              </BaseDropdown.Item>
+            <div className="px-5 py-5">
+              {typeof children === 'function' ? children({ close: props.close }) : children}
 
-              <BaseDropdown.Item className="p-0 w-auto" onClick={onSubmit}>
-                <OkButton>{t('actions.apply')}</OkButton>
-              </BaseDropdown.Item>
+              <div className="mt-8 d-flex justify-content-end">
+                <BaseDropdown.Item
+                  className="p-0 w-auto me-2"
+                  onClick={() => {
+                    if (closeOnActionsClick) {
+                      props.close();
+                    }
+
+                    onReset?.();
+                  }}
+                >
+                  <CancelButton>{t('actions.reset')}</CancelButton>
+                </BaseDropdown.Item>
+
+                <BaseDropdown.Item
+                  className="p-0 w-auto"
+                  onClick={() => {
+                    if (closeOnActionsClick) {
+                      props.close();
+                    }
+
+                    onSubmit?.();
+                  }}
+                >
+                  <OkButton>{t('actions.apply')}</OkButton>
+                </BaseDropdown.Item>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </Dropdown>
     </>
   );
