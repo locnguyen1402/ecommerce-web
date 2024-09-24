@@ -63,6 +63,8 @@
     "removeProducts": "Remove products"
   },
   "label": {
+    "hasVariants": "Has variants",
+    "listPrice": "List Price",
     "generalInformation": "General Information",
     "filterOptions": "Filter options",
     "searchBy": "Search by",

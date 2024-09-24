@@ -21,6 +21,9 @@ export type CreateProductRequest = {
   // categories: IdName[];
   attributes: AttributeInCreateProduct[];
   variants: CreateProductVariantRequest[];
+  hasVariants: boolean;
+  stock?: number;
+  price?: number;
 };
 
 export type CreateProductPayload = {
@@ -28,6 +31,8 @@ export type CreateProductPayload = {
   slug?: string;
   description?: string;
   // categories: string[];
+  stock?: number;
+  price?: number;
   attributes: string[];
   variants: {
     stock: number;

@@ -44,29 +44,41 @@ const Page = () => {
     ].filter(Boolean) as PageLink[];
   }, [id, detail]);
 
-  const mapDetailToForm = (detail: ProductDetail): FormDefaultValues => ({
-    name: detail.name,
-    slug: detail.slug,
-    description: detail.description,
-    attributes: detail.attributes.map((item) => ({
-      attributeId: item.id,
-      name: item.name,
-      values: item.values,
-    })),
-    variants: detail.variants.map((item) => ({
-      stock: item.stock,
-      price: item.price,
-      values: item.values.map((v) => {
-        const attribute = detail.attributes.find((a) => a.id === v.attributeId)!;
+  const mapDetailToForm = (detail: ProductDetail): FormDefaultValues => {
+    const hasVariants = detail.variants.length > 1;
+    const defaultVariant = detail.variants[0];
 
-        return {
-          id: attribute.id,
-          name: attribute.name,
-          value: v.value,
-        };
-      }),
-    })),
-  });
+    return {
+      name: detail.name,
+      slug: detail.slug,
+      description: detail.description,
+      hasVariants,
+      stock: !hasVariants ? defaultVariant?.stock : 0,
+      price: !hasVariants ? defaultVariant?.price : 0,
+      attributes: hasVariants
+        ? detail.attributes.map((item) => ({
+            attributeId: item.id,
+            name: item.name,
+            values: item.values,
+          }))
+        : [],
+      variants: hasVariants
+        ? detail.variants.map((item) => ({
+            stock: item.stock,
+            price: item.price,
+            values: item.values.map((v) => {
+              const attribute = detail.attributes.find((a) => a.id === v.attributeId)!;
+
+              return {
+                id: attribute.id,
+                name: attribute.name,
+                value: v.value,
+              };
+            }),
+          }))
+        : [],
+    };
+  };
 
   return (
     <PageLayout pageTitle={t('actions.edit')} breadCrumbs={breadCrumbs}>

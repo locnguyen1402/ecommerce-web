@@ -7,3 +7,9 @@ export const BaseNumericFormatOptions: NumericFormatOptions = {
   thousandSeparator: '.',
   thousandsGroupStyle: 'thousand',
 };
+
+export const CurrencyFormatOptions: NumericFormatOptions = {
+  ...BaseNumericFormatOptions,
+  allowNegative: false,
+  allowLeadingZeros: false,
+};
