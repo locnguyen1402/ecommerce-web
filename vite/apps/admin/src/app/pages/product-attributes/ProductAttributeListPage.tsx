@@ -7,7 +7,7 @@ import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { INVENTORY_API_URLS } from '@/api';
 import { ProductAttribute } from '@/api/responses';
 
-import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 
 import { ProductAttributeListQuery } from './types';
@@ -34,7 +34,11 @@ const Page = () => {
   const { data, isLoading, pagingInfo, isRefetching, refetch } =
     usePaginationQuery<ProductAttribute>(INVENTORY_API_URLS.PRODUCT_ATTRIBUTES, {
       paging: queryParams,
-      queryKey: ['product-attribute-list-page', queryParams.keyword],
+      queryKey: [
+        QUERY_KEYS.productAttribute.base,
+        QUERY_KEYS.productAttribute.list,
+        queryParams.keyword,
+      ],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -45,7 +49,7 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productAttributeManagement'),
-      path: '/product-attributes',
+      path: APP_ROUTES.productAttributes.root,
       isSeparator: false,
       isActive: false,
     },

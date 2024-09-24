@@ -22,4 +22,19 @@ export const QUERY_KEYS = {
     list: LIST_QUERY_KEY,
     detail: DETAIL_QUERY_KEY,
   },
+  product: {
+    base: 'product',
+    list: LIST_QUERY_KEY,
+    detail: DETAIL_QUERY_KEY,
+  },
+  // category: {
+  //   base: 'category',
+  //   list: LIST_QUERY_KEY,
+  //   detail: DETAIL_QUERY_KEY,
+  // },
+  productAttribute: {
+    base: 'product-attribute',
+    list: LIST_QUERY_KEY,
+    detail: DETAIL_QUERY_KEY,
+  },
 };

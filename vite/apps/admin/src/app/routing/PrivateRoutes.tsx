@@ -51,7 +51,7 @@ const PrivateRoutes = () => {
           }
         />
         <Route
-          path="products/*"
+          path={APP_ROUTES.products.base}
           element={
             <SuspendedView>
               <ProductRoutes />
@@ -60,7 +60,7 @@ const PrivateRoutes = () => {
         />
 
         <Route
-          path="product-attributes/*"
+          path={APP_ROUTES.productAttributes.base}
           element={
             <SuspendedView>
               <ProductAttributeRoutes />
