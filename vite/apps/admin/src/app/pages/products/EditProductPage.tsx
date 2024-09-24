@@ -48,10 +48,6 @@ const Page = () => {
     name: detail.name,
     slug: detail.slug,
     description: detail.description,
-    categories: detail.categories.map((item) => ({
-      id: item.id,
-      name: item.name,
-    })),
     attributes: detail.attributes.map((item) => ({
       attributeId: item.id,
       name: item.name,

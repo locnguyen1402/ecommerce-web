@@ -32,12 +32,6 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'section',
   },
   {
-    to: '/products',
-    title: 'menu.products',
-    icon: 'cube-2',
-    kind: 'item',
-  },
-  {
     to: APP_ROUTES.shopCollections.root,
     title: 'menu.productCategories',
     icon: 'category',
@@ -47,6 +41,12 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     to: '/product-attributes',
     title: 'menu.attributes',
     icon: 'element-plus',
+    kind: 'item',
+  },
+  {
+    to: '/products',
+    title: 'menu.products',
+    icon: 'cube-2',
     kind: 'item',
   },
 ];

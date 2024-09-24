@@ -18,7 +18,7 @@ export type CreateProductRequest = {
   name: string;
   slug?: string;
   description?: string;
-  categories: IdName[];
+  // categories: IdName[];
   attributes: AttributeInCreateProduct[];
   variants: CreateProductVariantRequest[];
 };
@@ -27,7 +27,7 @@ export type CreateProductPayload = {
   name: string;
   slug?: string;
   description?: string;
-  categories: string[];
+  // categories: string[];
   attributes: string[];
   variants: {
     stock: number;

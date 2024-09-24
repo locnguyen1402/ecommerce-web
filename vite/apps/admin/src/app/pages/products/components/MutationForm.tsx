@@ -54,7 +54,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         name: data.name,
         slug: data.slug,
         description: data.description,
-        categories: data.categories.map((c) => c.id),
+        // categories: data.categories.map((c) => c.id),
         attributes: data.attributes.map((a) => a.attributeId),
         variants: data.variants.map((v) => ({
           id: (v as any).id,
@@ -129,7 +129,7 @@ const MutationForm = ({ defaultValues }: Props) => {
     name: yup.string().required().max(200).label(t('label.name')),
     slug: yup.string().max(200).label(t('label.slug')),
     description: yup.string().required().max(500).label(t('label.description')),
-    categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
+    // categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
     attributes: yup.array(attributeSchema).required().default([]).label(t('label.attributes')),
     variants: yup.array(variantSchema).required().default([]).label(t('label.variants')),
   });
@@ -139,9 +139,9 @@ const MutationForm = ({ defaultValues }: Props) => {
     defaultValues,
   });
 
-  const categoriesControl = useCategoriesControl({
-    control,
-  });
+  // const categoriesControl = useCategoriesControl({
+  //   control,
+  // });
 
   const attributesControl = useAttributesControl({
     control,

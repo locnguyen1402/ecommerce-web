@@ -40,18 +40,18 @@ const Page = () => {
     //   label: 'label.name',
     //   value: 'name',
     // },
-    {
-      label: 'label.slug',
-      value: 'slug',
-    },
+    // {
+    //   label: 'label.slug',
+    //   value: 'slug',
+    // },
     {
       label: 'label.description',
       value: 'description',
     },
-    {
-      label: 'label.categories',
-      renderValue: (data) => data.categories.map((c) => c.name).join(', '),
-    },
+    // {
+    //   label: 'label.categories',
+    //   renderValue: (data) => data.categories.map((c) => c.name).join(', '),
+    // },
   ];
 
   return (
@@ -74,21 +74,6 @@ const Page = () => {
               <span className="fw-bold text-muted fs-6 me-2">{t('label.name')}:</span>
               <span className="fw-bolder">{detail?.name}</span>
             </div>
-            {/* <div className="card-toolbar">
-              {detail && (
-                <EnableDisableButton
-                  id={detail.id}
-                  name={detail.name}
-                  enabled={detail.enabled}
-                  successCb={refetch}
-                  render={({ onClick, isLoading }) => (
-                    <OkButton isLoading={isLoading} onClick={onClick}>
-                      {t(detail.enabled ? 'label.disable' : 'label.enable')}
-                    </OkButton>
-                  )}
-                />
-              )}
-            </div> */}
           </div>
           <div className="card-body">
             <LabelValueList t={t as any} data={detail} def={itemDefs} />
