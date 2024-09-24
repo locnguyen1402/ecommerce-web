@@ -7,6 +7,7 @@ import { ProductDetail } from '@/api/responses';
 import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import MutationForm from './components/MutationForm';
 
@@ -21,7 +22,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['product-detail', id, 'edit'],
+      queryKey: [QUERY_KEYS.product.base, QUERY_KEYS.product.detail, id, 'edit'],
       enabled: !!id,
     }
   );
@@ -30,13 +31,13 @@ const Page = () => {
     return [
       {
         title: t('breadcrumbs.productManagement'),
-        path: '/products',
+        path: APP_ROUTES.products.root,
         isSeparator: false,
         isActive: false,
       },
       !!detail && {
         title: detail.name,
-        path: `/products/${detail.id}`,
+        path: generatePath(APP_ROUTES.products.edit, { id }),
         isSeparator: false,
         isActive: false,
       },

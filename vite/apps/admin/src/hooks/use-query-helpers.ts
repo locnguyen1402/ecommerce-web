@@ -4,13 +4,13 @@ import { useQueryClient } from '@vklink/api';
 export const useQueryHelpers = () => {
   const queryClient = useQueryClient();
 
-  const invalidateListAndDetailQueries = (baseKey: string, id: string) => {
+  const invalidateListAndDetailQueries = (baseKey: string, id?: string) => {
     queryClient.invalidateQueries({
       predicate: ({ queryKey }) => {
         return (
           queryKey.includes(baseKey) &&
           (queryKey.includes(LIST_QUERY_KEY) ||
-            (queryKey.includes(DETAIL_QUERY_KEY) && queryKey.includes(id)))
+            (queryKey.includes(DETAIL_QUERY_KEY) && (!id || queryKey.includes(id))))
         );
       },
     });

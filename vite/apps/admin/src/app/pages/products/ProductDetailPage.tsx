@@ -8,6 +8,7 @@ import { PageLayout, TableToolbar1 } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 import { ProductDetail } from '@/api/responses';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import { ProductVariantTable } from './components/ProductVariantTable';
 
@@ -20,7 +21,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['product-detail', id],
+      queryKey: [QUERY_KEYS.product.base, QUERY_KEYS.product.detail, id],
       enabled: !!id,
     }
   );
@@ -28,7 +29,7 @@ const Page = () => {
   const breadCrumbs = [
     {
       title: t('breadcrumbs.productManagement'),
-      path: '/products',
+      path: APP_ROUTES.products.root,
       isSeparator: false,
       isActive: false,
     },
