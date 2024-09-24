@@ -40,3 +40,8 @@ export type CreateProductPayload = {
 };
 
 export type ProductListQuery = PaginatedQueryParams;
+
+export type FilteredProductListQuery = PaginatedQueryParams & {
+  notInShopCollectionIds?: string[];
+  shopCollectionIds?: string[];
+};

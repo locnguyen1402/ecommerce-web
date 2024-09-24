@@ -24,6 +24,13 @@ export type Product = {
   price: number;
 };
 
+export type FilteredProduct = {
+  id: string;
+  name: string;
+  stock: number;
+  price: number;
+};
+
 export type ProductDetail = {
   id: string;
   name: string;

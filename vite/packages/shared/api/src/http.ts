@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, CreateAxiosDefaults } from 'axios';
+import qs from 'qs';
 
 export type HttpInstance = AxiosInstance;
 
@@ -11,5 +12,8 @@ export const createHttpInstance = (
   return axios.create({
     ...options,
     baseURL,
+    paramsSerializer: function (params) {
+      return qs.stringify(params, { arrayFormat: 'repeat' });
+    },
   });
 };

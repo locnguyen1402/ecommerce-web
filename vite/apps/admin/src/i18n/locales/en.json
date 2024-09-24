@@ -58,7 +58,9 @@
     "addDescription": "Add description",
     "addImage": "Add image",
     "signOut": "Sign out",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "addProducts": "Add products",
+    "removeProducts": "Remove products"
   },
   "label": {
     "generalInformation": "General Information",
@@ -83,7 +85,8 @@
     "categories": "Categories",
     "parent": "Parent",
     "detail": "Detail",
-    "subcategories": "Subcategories"
+    "subcategories": "Subcategories",
+    "productCount": "Product count"
   },
   "notification": {
     "info": "Information",

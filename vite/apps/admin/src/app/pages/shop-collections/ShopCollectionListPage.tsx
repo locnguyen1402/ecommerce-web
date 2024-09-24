@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { PageLink, KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
@@ -13,6 +14,8 @@ import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 import { ShopCollectionListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
 import ShopCollectionListActions from './components/ShopCollectionListActions';
+import AddProductsModal from './components/AddProductsModal';
+import RemoveProductsModal from './components/RemoveProductsModal';
 
 const defaultQueryParams: ShopCollectionListQuery = {
   ...DEFAULT_PAGING_PARAMS,
@@ -21,8 +24,15 @@ const defaultQueryParams: ShopCollectionListQuery = {
 const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
+  const [collectionModalState, setCollectionModalState] = useState<{
+    selectedCollection: ShopCollection | null;
+    action: 'add-products' | 'remove-products' | null;
+  }>({
+    selectedCollection: null,
+    action: null,
+  });
 
-  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ShopCollection>(
+  const { data, isLoading, pagingInfo, isRefetching, refetch } = usePaginationQuery<ShopCollection>(
     INVENTORY_API_URLS.SHOP_COLLECTIONS,
     {
       paging: queryParams,
@@ -48,8 +58,28 @@ const Page = () => {
     },
   ];
 
-  const columnHelper = createColumnHelper<ShopCollection>();
+  const onAddProducts = (collection: ShopCollection) => {
+    setCollectionModalState({
+      selectedCollection: collection,
+      action: 'add-products',
+    });
+  };
 
+  const onRemoveProducts = (collection: ShopCollection) => {
+    setCollectionModalState({
+      selectedCollection: collection,
+      action: 'remove-products',
+    });
+  };
+
+  const onCloseModal = () => {
+    setCollectionModalState({
+      selectedCollection: null,
+      action: null,
+    });
+  };
+
+  const columnHelper = createColumnHelper<ShopCollection>();
   const columns = [
     columnHelper.display({
       id: 'actions',
@@ -57,7 +87,21 @@ const Page = () => {
       cell: (info) => {
         const item = info.row.original;
 
-        return <ShopCollectionListActions {...item} />;
+        return (
+          <ShopCollectionListActions
+            onAddProducts={onAddProducts}
+            onRemoveProducts={onRemoveProducts}
+            {...item}
+          />
+        );
+      },
+      meta: {
+        header: {
+          className: 'w-50px text-center',
+        },
+        body: {
+          className: 'text-center',
+        },
       },
     }),
     columnHelper.accessor('id', {
@@ -78,6 +122,9 @@ const Page = () => {
     // }),
     columnHelper.accessor('description', {
       header: () => t('label.description'),
+    }),
+    columnHelper.accessor('productCount', {
+      header: () => t('label.productCount'),
     }),
   ];
 
@@ -123,6 +170,25 @@ const Page = () => {
           />
         </KTCardBody>
       </KTCard>
+
+      <AddProductsModal
+        isOpen={
+          !!collectionModalState.selectedCollection &&
+          collectionModalState?.action === 'add-products'
+        }
+        onClose={onCloseModal}
+        collection={collectionModalState.selectedCollection}
+        successCallback={refetch}
+      />
+      <RemoveProductsModal
+        isOpen={
+          !!collectionModalState.selectedCollection &&
+          collectionModalState?.action === 'remove-products'
+        }
+        onClose={onCloseModal}
+        collection={collectionModalState.selectedCollection}
+        successCallback={refetch}
+      />
     </PageLayout>
   );
 };
