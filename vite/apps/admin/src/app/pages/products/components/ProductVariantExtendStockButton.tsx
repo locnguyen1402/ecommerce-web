@@ -104,7 +104,7 @@ const ProductVariantExtendStockButton = ({
         {stock}
       </CellButton>
 
-      <Modal size="lg" centered show={isOpen} onHide={close}>
+      <Modal size="sm" centered show={isOpen} onHide={close}>
         <Modal.Header closeButton>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
