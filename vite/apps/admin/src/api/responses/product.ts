@@ -22,6 +22,8 @@ export type Product = {
   slug: string;
   description: string;
   price: number;
+  stock: number;
+  variants: ProductVariant[];
 };
 
 export type FilteredProduct = {

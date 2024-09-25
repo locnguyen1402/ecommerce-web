@@ -1,5 +1,11 @@
-import { DETAIL_QUERY_KEY, LIST_QUERY_KEY } from '@/constants';
 import { useQueryClient } from '@vklink/api';
+
+import { DETAIL_QUERY_KEY, LIST_QUERY_KEY } from '@/constants';
+
+enum InvalidationType {
+  ContainAll = 'contain-all',
+  ContainAny = 'contain-any',
+}
 
 export const useQueryHelpers = () => {
   const queryClient = useQueryClient();
@@ -16,5 +22,22 @@ export const useQueryHelpers = () => {
     });
   };
 
-  return { invalidateListAndDetailQueries };
+  type InvalidateOptions = {
+    type?: InvalidationType;
+  };
+  const invalidate = (queryKeys: string[], options?: InvalidateOptions) => {
+    const type = options?.type || InvalidationType.ContainAll;
+
+    queryClient.invalidateQueries({
+      predicate: ({ queryKey: base }) => {
+        if (type === InvalidationType.ContainAny) {
+          return base.some((key) => queryKeys.includes(key as string));
+        }
+
+        return queryKeys.every((key) => base.includes(key as string));
+      },
+    });
+  };
+
+  return { invalidateListAndDetailQueries, invalidate };
 };
