@@ -8,7 +8,8 @@ import { PageLayout } from '@/shared/components';
 import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { Customer } from '@/api/responses';
-import { CUSTOMER_API_URLS} from '@/api';
+import { CUSTOMER_API_URLS } from '@/api';
+import { formatDateTime, fromRequestDateToDate } from '@/i18n';
 
 const Page = () => {
   const { t } = useI18n();
@@ -34,18 +35,25 @@ const Page = () => {
   ];
 
   const itemDefs: LabelValueListDef<Customer> = [
-    // {
-    //   label: 'label.name',
-    //   value: 'name',
-    // },
-    // {
-    //   label: 'label.slug',
-    //   value: 'slug',
-    // },
-    // {
-    //   label: 'label.description',
-    //   value: 'description',
-    // },
+    {
+      label: 'label.phoneNumber',
+      value: 'phoneNumber',
+    },
+    {
+      label: 'label.email',
+      value: 'email',
+    },
+    {
+      label: 'label.birthDate',
+      value: {
+        valueGetter: (data) =>
+          data.birthDate
+            ? formatDateTime(fromRequestDateToDate(data.birthDate), {
+                dateOnly: true,
+              })
+            : undefined,
+      },
+    },
   ];
 
   return (

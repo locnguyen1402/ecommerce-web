@@ -13,6 +13,7 @@ import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 import { CustomerListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
 import CustomerListActions from './components/CustomerListActions';
+import { formatDateTime, formatPhoneNumber, fromRequestDateToDate } from '@/i18n';
 
 const defaultQueryParams: CustomerListQuery = {
   ...DEFAULT_PAGING_PARAMS,
@@ -55,6 +56,14 @@ const Page = () => {
 
         return <CustomerListActions {...item} />;
       },
+      meta: {
+        header: {
+          className: 'w-50px text-center',
+        },
+        body: {
+          className: 'text-center',
+        },
+      },
     }),
     columnHelper.accessor('id', {
       header: () => t('label.name'),
@@ -66,6 +75,49 @@ const Page = () => {
       meta: {
         body: {
           className: 'min-w-150px mw-250px',
+        },
+      },
+    }),
+    columnHelper.accessor('phoneNumber', {
+      header: () => t('label.phoneNumber'),
+      cell: (info) => formatPhoneNumber(info.getValue()),
+      meta: {
+        header: {
+          className: 'w-150px text-end',
+        },
+        body: {
+          className: 'text-end',
+        },
+      },
+    }),
+    columnHelper.accessor('email', {
+      header: () => t('label.email'),
+      meta: {
+        header: {
+          className: 'w-200px text-end',
+        },
+        body: {
+          className: 'text-end',
+        },
+      },
+    }),
+    columnHelper.accessor('birthDate', {
+      header: () => t('label.birthDate'),
+      cell: (info) => {
+        const value = info.getValue();
+
+        return value
+          ? formatDateTime(fromRequestDateToDate(value), {
+              dateOnly: true,
+            })
+          : undefined;
+      },
+      meta: {
+        header: {
+          className: 'w-150px text-end',
+        },
+        body: {
+          className: 'text-end',
         },
       },
     }),

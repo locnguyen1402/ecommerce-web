@@ -94,7 +94,10 @@
     "subcategories": "Subcategories",
     "productCount": "Product count",
     "variantCount": "Variant count",
-    "variant": "Variant"
+    "variant": "Variant",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "birthDate": "Birthday"
   },
   "notification": {
     "info": "Information",

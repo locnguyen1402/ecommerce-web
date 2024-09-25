@@ -7,6 +7,7 @@ import {
   yup,
   FormContainer,
   TextareaField,
+  DateTimeField,
 } from '@vklink/components';
 import { useMutation } from '@vklink/api';
 
@@ -22,13 +23,20 @@ import {
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
 import { useI18n, useQueryHelpers, useToast } from '@/hooks';
-import { INVENTORY_API_URLS } from '@/api';
-import { idNameSchema, QUERY_KEYS } from '@/constants';
+import { CUSTOMER_API_URLS, INVENTORY_API_URLS } from '@/api';
+import {
+  getEmailSchema,
+  getPhoneNumberSchema,
+  idNameSchema,
+  QUERY_KEYS,
+  REPRESENTATIONS,
+} from '@/constants';
 
-import { CreateCustomerPayload, CreateMerchantRequest } from '../types';
-import { useCategoriesControl } from '../utils/use-categories-control';
+import { CreateCustomerPayload, CreateCustomerRequest } from '../types';
+import { formatRequestDate } from '@/i18n';
+import { Gender } from '@/api/responses';
 
-type FormValues = CreateMerchantRequest;
+type FormValues = CreateCustomerRequest;
 
 type Props = {
   defaultValues?: FormValues;
@@ -51,15 +59,16 @@ const MutationForm = ({ defaultValues }: Props) => {
     mutationKey: [isEditing ? 'update-merchant' : 'create-merchant', id],
     mutationFn: (data) => {
       const payload: CreateCustomerPayload = {
-        name: data.name,
-        slug: data.slug,
-        description: data.description || '',
-        categoryIds: data.categories.map((item) => item.id),
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthDate: data.birthDate ? formatRequestDate(data.birthDate) : undefined,
+        phoneNumber: data.phoneNumber,
+        email: data.email,
       };
 
       if (isEditing) {
         return sendPutRequest(
-          generatePath(INVENTORY_API_URLS.MERCHANT_DETAIL, {
+          generatePath(CUSTOMER_API_URLS.CUSTOMER_DETAIL, {
             id,
           }),
           {
@@ -69,14 +78,14 @@ const MutationForm = ({ defaultValues }: Props) => {
         );
       }
 
-      return sendPostRequest(INVENTORY_API_URLS.MERCHANTS, payload);
+      return sendPostRequest(CUSTOMER_API_URLS.CUSTOMERS, payload);
     },
     onSuccess: () => {
       toast.success(
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
 
-      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.merchant.base, id);
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.customer.base, id);
 
       goBack();
     },
@@ -89,19 +98,21 @@ const MutationForm = ({ defaultValues }: Props) => {
   });
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
-    name: yup.string().required().max(200).label(t('label.name')),
-    slug: yup.string().max(200).label(t('label.slug')),
-    description: yup.string().max(500).label(t('label.description')),
-    categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
+    firstName: yup.string().required().max(200).label(t('label.firstName')),
+    lastName: yup.string().max(200).label(t('label.lastName')),
+    birthDate: yup.string().label(t('label.birthDate')),
+    phoneNumber: getPhoneNumberSchema(t).label(t('label.phoneNumber')),
+    email: getEmailSchema(t).label(t('label.email')),
+    gender: yup
+      .mixed<Gender>()
+      .transform(Number)
+      .oneOf(Object.values(Gender) as number[])
+      .label(t('label.gender')),
   });
 
   const { control, handleSubmit, setValue } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: defaultValues,
-  });
-
-  const categoriesControl = useCategoriesControl({
-    control,
   });
 
   const onSubmit = handleSubmit((data) => mutate(data));
@@ -116,24 +127,22 @@ const MutationForm = ({ defaultValues }: Props) => {
         <FormHeader title={t('label.generalInformation')} />
         <FormBody>
           <FormContainer>
-            <TextField control={control} name="name" label={t('label.name')} isRequired />
+            <TextField control={control} name="firstName" label={t('label.firstName')} isRequired />
 
-            {/* <SlugField
-              control={control}
-              name="slug"
-              label={t('label.slug')}
-              isEditing={isEditing}
-              setValue={setValue}
-            /> */}
+            <TextField control={control} name="lastName" label={t('label.lastName')} />
 
-            <TextareaField
-              rows={3}
+            <TextField control={control} name="phoneNumber" label={t('label.phoneNumber')} />
+
+            <TextField control={control} name="email" label={t('label.email')} />
+
+            <DateTimeField
               control={control}
-              name="description"
-              label={t('label.description')}
+              name="birthDate"
+              label={t('label.birthDate')}
+              options={{
+                dateFormat: REPRESENTATIONS.picker.date,
+              }}
             />
-
-            {categoriesControl.field}
           </FormContainer>
         </FormBody>
         <FormFooter>

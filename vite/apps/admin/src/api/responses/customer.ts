@@ -6,4 +6,11 @@ export type Customer = {
   birthDate?: string;
   email?: string;
   phoneNumber?: string;
+  gender?: Gender;
 };
+
+export enum Gender {
+  UNSPECIFIED,
+  MALE,
+  FEMALE,
+}
