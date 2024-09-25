@@ -11,12 +11,14 @@ import { ProductDetail } from '@/api/responses';
 import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import { ProductVariantTable } from './components/ProductVariantTable';
+import { useMemo } from 'react';
+import { formatCurrency } from '@/i18n';
 
 const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
 
-  const { data: detail } = useDetailQuery<ProductDetail>(
+  const { data: detail, isLoading } = useDetailQuery<ProductDetail>(
     generatePath(INVENTORY_API_URLS.PRODUCT_DETAIL, {
       id,
     }),
@@ -35,24 +37,39 @@ const Page = () => {
     },
   ];
 
-  const itemDefs: LabelValueListDef<ProductDetail> = [
-    // {
-    //   label: 'label.name',
-    //   value: 'name',
-    // },
-    // {
-    //   label: 'label.slug',
-    //   value: 'slug',
-    // },
-    {
-      label: 'label.description',
-      value: 'description',
-    },
-    // {
-    //   label: 'label.categories',
-    //   renderValue: (data) => data.categories.map((c) => c.name).join(', '),
-    // },
-  ];
+  const itemDefs: LabelValueListDef<ProductDetail> = useMemo(() => {
+    const hasMultipleVariants = !isLoading && detail?.attributes && !!detail?.attributes.length;
+    const defs: LabelValueListDef<ProductDetail> = [
+      // {
+      //   label: 'label.slug',
+      //   value: 'slug',
+      // },
+      {
+        label: 'label.description',
+        value: 'description',
+      },
+    ];
+
+    if (!hasMultipleVariants) {
+      const defaultVariant = detail?.variants?.[0];
+
+      if (defaultVariant) {
+        defs.push({
+          label: 'label.price',
+          value: {
+            valueGetter: (d) => formatCurrency(defaultVariant.price),
+          },
+        });
+        defs.push({
+          label: 'label.stock',
+          value: {
+            valueGetter: (d) => defaultVariant.stock,
+          },
+        });
+      }
+    }
+    return defs;
+  }, [detail, isLoading]);
 
   return (
     <>
@@ -80,15 +97,17 @@ const Page = () => {
           </div>
         </div>
 
-        <KTCard className="mt-6 mt-lg-10">
-          <TableToolbar1 left={t('label.variants')} />
-          <KTCardBody className="py-4">
-            <ProductVariantTable
-              variants={detail?.variants || []}
-              attributes={detail?.attributes || []}
-            />
-          </KTCardBody>
-        </KTCard>
+        {!!detail?.attributes.length && (
+          <KTCard className="mt-6 mt-lg-10">
+            <TableToolbar1 left={t('label.variants')} />
+            <KTCardBody className="py-4">
+              <ProductVariantTable
+                variants={detail?.variants || []}
+                attributes={detail?.attributes || []}
+              />
+            </KTCardBody>
+          </KTCard>
+        )}
       </PageLayout>
     </>
   );

@@ -37,7 +37,7 @@ const Page = () => {
       },
       !!detail && {
         title: detail.name,
-        path: generatePath(APP_ROUTES.products.edit, { id }),
+        path: generatePath(APP_ROUTES.products.detail, { id }),
         isSeparator: false,
         isActive: false,
       },
