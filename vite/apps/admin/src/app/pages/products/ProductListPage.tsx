@@ -5,13 +5,15 @@ import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 
-import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 import { Product } from '@/api/responses';
+import { formatCurrency } from '@/i18n';
 
 import { ProductListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
+import ProductListActions from './components/ProductListActions';
 
 const defaultQueryParams: ProductListQuery = {
   ...DEFAULT_PAGING_PARAMS,
@@ -25,7 +27,7 @@ const Page = () => {
     INVENTORY_API_URLS.PRODUCTS,
     {
       paging: queryParams,
-      queryKey: ['product-list-page', queryParams.keyword],
+      queryKey: [QUERY_KEYS.product.base, QUERY_KEYS.product.list, queryParams.keyword],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -37,7 +39,7 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productManagement'),
-      path: '/products',
+      path: APP_ROUTES.products.root,
       isSeparator: false,
       isActive: false,
     },
@@ -46,6 +48,23 @@ const Page = () => {
   const columnHelper = createColumnHelper<Product>();
 
   const columns = [
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => {
+        const item = info.row.original;
+
+        return <ProductListActions {...item} />;
+      },
+      meta: {
+        header: {
+          className: 'w-50px text-center',
+        },
+        body: {
+          className: 'text-center',
+        },
+      },
+    }),
     columnHelper.accessor('id', {
       header: () => t('label.name'),
       cell: (info) => {
@@ -56,6 +75,41 @@ const Page = () => {
       meta: {
         body: {
           className: 'min-w-150px mw-250px',
+        },
+      },
+    }),
+    columnHelper.accessor('variants', {
+      header: () => t('label.variantCount'),
+      cell: (info) => info.getValue()?.length,
+      meta: {
+        header: {
+          className: 'w-100px text-center',
+        },
+        body: {
+          className: 'text-center',
+        },
+      },
+    }),
+    columnHelper.accessor('stock', {
+      header: () => t('label.stock'),
+      meta: {
+        header: {
+          className: 'w-100px text-center',
+        },
+        body: {
+          className: 'text-center',
+        },
+      },
+    }),
+    columnHelper.accessor('price', {
+      header: () => t('label.price'),
+      cell: (info) => formatCurrency(info.getValue()),
+      meta: {
+        header: {
+          className: 'w-100px text-center',
+        },
+        body: {
+          className: 'text-center',
         },
       },
     }),

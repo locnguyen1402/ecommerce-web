@@ -2,6 +2,7 @@ import { PageLink } from '@vklink/metronic-core';
 
 import { PageLayout } from '@/shared/components';
 import { useI18n } from '@/hooks';
+import { APP_ROUTES } from '@/constants';
 
 import MutationForm from './components/MutationForm';
 
@@ -11,7 +12,7 @@ const Page = () => {
   const breadCrumbs: PageLink[] = [
     {
       title: t('breadcrumbs.productCategoryManagement'),
-      path: '/product-categories',
+      path: APP_ROUTES.shopCollections.root,
       isSeparator: false,
       isActive: false,
     },

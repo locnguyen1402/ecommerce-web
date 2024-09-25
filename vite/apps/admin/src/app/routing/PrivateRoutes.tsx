@@ -5,12 +5,13 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 import { MasterLayout, WithChildren, KTUtil } from '@vklink/metronic-core';
 
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
+import { APP_ROUTES } from '@/constants';
 
 const PrivateRoutes = () => {
+  const MerchantRoutes = lazy(() => import('../pages/merchants/MerchantRoutes'));
+  const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
-  const ProductCategoryRoutes = lazy(
-    () => import('../pages/product-categories/ProductCategoryRoutes')
-  );
+  const ShopCollectionRoutes = lazy(() => import('../pages/shop-collections/ShopCollectionRoutes'));
   const ProductAttributeRoutes = lazy(
     () => import('../pages/product-attributes/ProductAttributeRoutes')
   );
@@ -24,7 +25,33 @@ const PrivateRoutes = () => {
         <Route path="dashboard" element={<DashboardWrapper />} />
 
         <Route
-          path="products/*"
+          path={APP_ROUTES.merchants.base}
+          element={
+            <SuspendedView>
+              <MerchantRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path={APP_ROUTES.categories.base}
+          element={
+            <SuspendedView>
+              <CategoryRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path={APP_ROUTES.shopCollections.base}
+          element={
+            <SuspendedView>
+              <ShopCollectionRoutes />
+            </SuspendedView>
+          }
+        />
+        <Route
+          path={APP_ROUTES.products.base}
           element={
             <SuspendedView>
               <ProductRoutes />
@@ -33,16 +60,7 @@ const PrivateRoutes = () => {
         />
 
         <Route
-          path="product-categories/*"
-          element={
-            <SuspendedView>
-              <ProductCategoryRoutes />
-            </SuspendedView>
-          }
-        />
-
-        <Route
-          path="product-attributes/*"
+          path={APP_ROUTES.productAttributes.base}
           element={
             <SuspendedView>
               <ProductAttributeRoutes />

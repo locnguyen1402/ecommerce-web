@@ -8,6 +8,7 @@ import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { ProductCategoryDetail } from '@/api/responses';
 import { INVENTORY_API_URLS } from '@/api';
+import { APP_ROUTES } from '@/constants';
 
 const Page = () => {
   const { t } = useI18n();
@@ -25,8 +26,8 @@ const Page = () => {
 
   const breadCrumbs = [
     {
-      title: t('breadcrumbs.productCategoryManagement'),
-      path: '/product-categories',
+      title: t('breadcrumbs.categoryManagement'),
+      path: APP_ROUTES.categories.root,
       isSeparator: false,
       isActive: false,
     },

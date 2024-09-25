@@ -1,3 +1,5 @@
+import { APP_ROUTES } from './routes';
+
 /**
  * Used in SidebarMenuMain.tsx
  * to display sidebar menu
@@ -10,17 +12,27 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'item',
   },
   {
+    title: 'menu.masterData',
+    kind: 'section',
+  },
+  {
+    to: APP_ROUTES.merchants.root,
+    title: 'menu.merchants',
+    icon: 'category',
+    kind: 'item',
+  },
+  {
+    to: APP_ROUTES.categories.root,
+    title: 'menu.categories',
+    icon: 'category',
+    kind: 'item',
+  },
+  {
     title: 'menu.inventory',
     kind: 'section',
   },
   {
-    to: '/products',
-    title: 'menu.products',
-    icon: 'cube-2',
-    kind: 'item',
-  },
-  {
-    to: '/product-categories',
+    to: APP_ROUTES.shopCollections.root,
     title: 'menu.productCategories',
     icon: 'category',
     kind: 'item',
@@ -29,6 +41,12 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     to: '/product-attributes',
     title: 'menu.attributes',
     icon: 'element-plus',
+    kind: 'item',
+  },
+  {
+    to: '/products',
+    title: 'menu.products',
+    icon: 'cube-2',
     kind: 'item',
   },
 ];

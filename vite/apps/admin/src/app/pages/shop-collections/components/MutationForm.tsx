@@ -22,13 +22,14 @@ import {
 } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
-import { idNameSchema } from '@/constants';
-import { useI18n, useToast } from '@/hooks';
+import { idNameSchema, QUERY_KEYS } from '@/constants';
+import { useI18n, useQueryHelpers, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 
-import { CreateProductCategoryPayload, CreateProductCategoryRequest } from '../types';
+import { CreateShopCollectionPayload, CreateShopCollectionRequest } from '../types';
+import { useShopCollectionsControl } from '../utils/use-shop-collections-control';
 
-type FormValues = CreateProductCategoryRequest;
+type FormValues = CreateShopCollectionRequest;
 
 type Props = {
   defaultValues?: FormValues;
@@ -39,6 +40,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const { id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
+  const queryHelpers = useQueryHelpers();
 
   const isEditing = !!id;
 
@@ -47,18 +49,19 @@ const MutationForm = ({ defaultValues }: Props) => {
     isPending: isMutating,
     reset: actionReset,
   } = useMutation<any, any, FormValues>({
-    mutationKey: [isEditing ? 'update-product-category' : 'create-product-category', id],
+    mutationKey: [isEditing ? 'update-shop-collection' : 'create-shop-collection', id],
     mutationFn: (data) => {
-      const payload: CreateProductCategoryPayload = {
+      const payload: CreateShopCollectionPayload = {
         name: data.name,
         slug: data.slug,
         description: data.description || '',
         parentId: data.parent?.id,
+        children: data.children.map((item) => item.id),
       };
 
       if (isEditing) {
         return sendPutRequest(
-          generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
+          generatePath(INVENTORY_API_URLS.SHOP_COLLECTION_DETAIL, {
             id,
           }),
           {
@@ -68,12 +71,14 @@ const MutationForm = ({ defaultValues }: Props) => {
         );
       }
 
-      return sendPostRequest(INVENTORY_API_URLS.CATEGORIES, payload);
+      return sendPostRequest(INVENTORY_API_URLS.SHOP_COLLECTIONS, payload);
     },
     onSuccess: () => {
       toast.success(
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
+
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.shopCollection.base, id);
 
       goBack();
     },
@@ -87,21 +92,22 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
     name: yup.string().required().max(200).label(t('label.name')),
-    slug: yup.string().required().label(t('label.slug')),
+    slug: yup.string().max(200).label(t('label.slug')),
     description: yup.string().max(500).label(t('label.description')),
     parent: idNameSchema.nullable().optional().label(t('label.parent')),
+    children: yup.array().of(idNameSchema).required().label(t('label.categories')),
   });
 
-  const {
-    control,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: yupResolver(schema),
     defaultValues: defaultValues || {
       parent: null,
+      children: [],
     },
+  });
+
+  const childrenControl = useShopCollectionsControl({
+    control,
   });
 
   const onSubmit = handleSubmit((data) => mutate(data));
@@ -118,22 +124,22 @@ const MutationForm = ({ defaultValues }: Props) => {
           <FormContainer>
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
-            <SlugField
+            {/* <SlugField
               control={control}
               name="slug"
               label={t('label.slug')}
               isRequired
               isEditing={isEditing}
               setValue={setValue}
-            />
+            /> */}
 
             <ApiSearchableSelectField
               isClearable
               label={t('label.parent')}
               control={control}
               name="parent"
-              apiUrl={INVENTORY_API_URLS.CATEGORIES}
-              queryKey={['product-category-parent']}
+              apiUrl={INVENTORY_API_URLS.SHOP_COLLECTION_OPTIONS}
+              queryKey={['product-shop-collection-parent']}
             />
 
             <TextareaField
@@ -142,6 +148,8 @@ const MutationForm = ({ defaultValues }: Props) => {
               name="description"
               label={t('label.description')}
             />
+
+            {childrenControl.field}
           </FormContainer>
         </FormBody>
         <FormFooter>

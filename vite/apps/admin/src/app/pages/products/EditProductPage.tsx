@@ -7,6 +7,7 @@ import { ProductDetail } from '@/api/responses';
 import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import MutationForm from './components/MutationForm';
 
@@ -21,7 +22,7 @@ const Page = () => {
       id,
     }),
     {
-      queryKey: ['product-detail', id, 'edit'],
+      queryKey: [QUERY_KEYS.product.base, QUERY_KEYS.product.detail, id, 'edit'],
       enabled: !!id,
     }
   );
@@ -30,46 +31,54 @@ const Page = () => {
     return [
       {
         title: t('breadcrumbs.productManagement'),
-        path: '/products',
+        path: APP_ROUTES.products.root,
         isSeparator: false,
         isActive: false,
       },
       !!detail && {
         title: detail.name,
-        path: `/products/${detail.id}`,
+        path: generatePath(APP_ROUTES.products.detail, { id }),
         isSeparator: false,
         isActive: false,
       },
     ].filter(Boolean) as PageLink[];
   }, [id, detail]);
 
-  const mapDetailToForm = (detail: ProductDetail): FormDefaultValues => ({
-    name: detail.name,
-    slug: detail.slug,
-    description: detail.description,
-    categories: detail.categories.map((item) => ({
-      id: item.id,
-      name: item.name,
-    })),
-    attributes: detail.attributes.map((item) => ({
-      attributeId: item.id,
-      name: item.name,
-      values: item.values,
-    })),
-    variants: detail.variants.map((item) => ({
-      stock: item.stock,
-      price: item.price,
-      values: item.values.map((v) => {
-        const attribute = detail.attributes.find((a) => a.id === v.attributeId)!;
+  const mapDetailToForm = (detail: ProductDetail): FormDefaultValues => {
+    const hasVariants = detail.variants.length > 1;
+    const defaultVariant = detail.variants[0];
 
-        return {
-          id: attribute.id,
-          name: attribute.name,
-          value: v.value,
-        };
-      }),
-    })),
-  });
+    return {
+      name: detail.name,
+      slug: detail.slug,
+      description: detail.description,
+      hasVariants,
+      stock: !hasVariants ? defaultVariant?.stock : 0,
+      price: !hasVariants ? defaultVariant?.price : 0,
+      attributes: hasVariants
+        ? detail.attributes.map((item) => ({
+            attributeId: item.id,
+            name: item.name,
+            values: item.values,
+          }))
+        : [],
+      variants: hasVariants
+        ? detail.variants.map((item) => ({
+            stock: item.stock,
+            price: item.price,
+            values: item.values.map((v) => {
+              const attribute = detail.attributes.find((a) => a.id === v.attributeId)!;
+
+              return {
+                id: attribute.id,
+                name: attribute.name,
+                value: v.value,
+              };
+            }),
+          }))
+        : [],
+    };
+  };
 
   return (
     <PageLayout pageTitle={t('actions.edit')} breadCrumbs={breadCrumbs}>

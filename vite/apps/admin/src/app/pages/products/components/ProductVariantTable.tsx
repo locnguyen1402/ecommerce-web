@@ -1,9 +1,13 @@
+import { useParams } from 'react-router-dom';
+
 import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { ProductAttributeWithValues, ProductVariant } from '@/api/responses';
 
 import { useI18n } from '@/hooks';
 import { formatCurrency } from '@/i18n';
+
+import ProductVariantExtendStockButton from './ProductVariantExtendStockButton';
 
 type Props = {
   attributes: ProductAttributeWithValues[];
@@ -12,8 +16,9 @@ type Props = {
 
 export const ProductVariantTable = ({ attributes, variants }: Props) => {
   const { t } = useI18n();
-  const columnHelper = createColumnHelper<ProductVariant>();
+  const { id } = useParams();
 
+  const columnHelper = createColumnHelper<ProductVariant>();
   const columns = [
     ...attributes
       .filter((v) => v.values.length)
@@ -30,10 +35,22 @@ export const ProductVariantTable = ({ attributes, variants }: Props) => {
           },
         });
       }),
-    columnHelper.display({
-      id: 'stock',
+    columnHelper.accessor('stock', {
       header: () => t('label.stock'),
-      cell: (info) => info.row.original.stock,
+      cell: (info) => {
+        const item = info.row.original;
+        const modalTitle = `${t('label.variant')}: ${item.values.map((v) => v.value).join(', ')}`;
+        return (
+          <div className="d-flex justify-content-end">
+            <ProductVariantExtendStockButton
+              stock={info.getValue()}
+              productId={id!}
+              productVariantId={item.id}
+              modalTitle={modalTitle}
+            />
+          </div>
+        );
+      },
       meta: {
         header: {
           className: 'min-w-100px w-100px text-end',
@@ -43,10 +60,9 @@ export const ProductVariantTable = ({ attributes, variants }: Props) => {
         },
       },
     }),
-    columnHelper.display({
-      id: 'price',
+    columnHelper.accessor('price', {
       header: () => t('label.price'),
-      cell: (info) => formatCurrency(info.row.original.price),
+      cell: (info) => formatCurrency(info.getValue()),
       meta: {
         header: {
           className: 'min-w-150px w-150px text-end',

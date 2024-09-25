@@ -1,5 +1,4 @@
 import { ProductAttribute } from './product-attribute';
-import { ProductCategory } from './product-category';
 
 export type ProductVariantAttributeValue = {
   attributeId: string;
@@ -23,6 +22,15 @@ export type Product = {
   slug: string;
   description: string;
   price: number;
+  stock: number;
+  variants: ProductVariant[];
+};
+
+export type FilteredProduct = {
+  id: string;
+  name: string;
+  stock: number;
+  price: number;
 };
 
 export type ProductDetail = {
@@ -30,7 +38,6 @@ export type ProductDetail = {
   name: string;
   slug: string;
   description: string;
-  categories: ProductCategory[];
   variants: ProductVariant[];
   attributes: ProductAttributeWithValues[];
 };

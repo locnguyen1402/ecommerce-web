@@ -6,7 +6,8 @@ import { PageLink } from '@vklink/metronic-core';
 import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { ProductCategoryDetail } from '@/api/responses';
+import { ShopCollectionDetail } from '@/api/responses';
+import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import MutationForm from './components/MutationForm';
 
@@ -16,12 +17,12 @@ const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
 
-  const { data: detail } = useDetailQuery<ProductCategoryDetail>(
-    generatePath(INVENTORY_API_URLS.CATEGORY_DETAIL, {
+  const { data: detail } = useDetailQuery<ShopCollectionDetail>(
+    generatePath(INVENTORY_API_URLS.SHOP_COLLECTION_DETAIL, {
       id,
     }),
     {
-      queryKey: ['product-category-detail', id, 'edit'],
+      queryKey: [QUERY_KEYS.shopCollection.base, QUERY_KEYS.shopCollection.detail, id, 'edit'],
       enabled: !!id,
     }
   );
@@ -30,20 +31,22 @@ const Page = () => {
     return [
       {
         title: t('breadcrumbs.productCategoryManagement'),
-        path: '/product-categories',
+        path: APP_ROUTES.shopCollections.root,
         isSeparator: false,
         isActive: false,
       },
       !!detail && {
         title: detail.name,
-        path: `/product-categories/${detail.id}`,
+        path: generatePath(APP_ROUTES.shopCollections.detail, {
+          id: detail.id,
+        }),
         isSeparator: false,
         isActive: false,
       },
     ].filter(Boolean) as PageLink[];
   }, [id, detail]);
 
-  const mapDetailToForm = (detail: ProductCategoryDetail): FormDefaultValues => ({
+  const mapDetailToForm = (detail: ShopCollectionDetail): FormDefaultValues => ({
     name: detail.name,
     slug: detail.slug,
     description: detail.description,
@@ -53,6 +56,10 @@ const Page = () => {
           name: detail.parent.name,
         }
       : null,
+    children: detail.children.map((child) => ({
+      id: child.id,
+      name: child.name,
+    })),
   });
 
   return (

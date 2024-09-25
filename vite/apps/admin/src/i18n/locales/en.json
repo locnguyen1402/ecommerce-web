@@ -1,19 +1,25 @@
 {
   "menu": {
+    "masterData": "Master Data",
+    "categories": "Categories",
     "features": "Features",
     "dashboard": "Dashboard",
     "catalogs": "Catalogs",
-    "productCategories": "Categories",
+    "productCategories": "Merchant Categories",
     "products": "Products",
     "inventory": "Inventory",
-    "attributes": "Attributes"
+    "attributes": "Attributes",
+    "merchants": "Merchants"
   },
   "breadcrumbs": {
+    "merchantManagement": "Merchant Management",
     "productManagement": "Product Management",
-    "productCategoryManagement": "Product Category Management",
+    "categoryManagement": "Category Management",
+    "productCategoryManagement": "Merchant Categories Management",
     "productAttributeManagement": "Product Attribute Management"
   },
   "actions": {
+    "increaseStock": "Increase Stock",
     "upload": "Upload",
     "confirm": "Confirm",
     "cancel": "Cancel",
@@ -53,9 +59,13 @@
     "addDescription": "Add description",
     "addImage": "Add image",
     "signOut": "Sign out",
-    "signIn": "Sign in"
+    "signIn": "Sign in",
+    "addProducts": "Add products",
+    "removeProducts": "Remove products"
   },
   "label": {
+    "hasVariants": "Has variants",
+    "listPrice": "List Price",
     "generalInformation": "General Information",
     "filterOptions": "Filter options",
     "searchBy": "Search by",
@@ -77,7 +87,11 @@
     "stock": "Stock",
     "categories": "Categories",
     "parent": "Parent",
-    "detail": "Detail"
+    "detail": "Detail",
+    "subcategories": "Subcategories",
+    "productCount": "Product count",
+    "variantCount": "Variant count",
+    "variant": "Variant"
   },
   "notification": {
     "info": "Information",

@@ -5,15 +5,16 @@ import { DataTable, createColumnHelper } from '@vklink/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { INVENTORY_API_URLS } from '@/api';
-import { ProductCategory } from '@/api/responses';
+import { Merchant } from '@/api/responses';
 
-import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX } from '@/constants';
+import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useQueryParams, useI18n, usePaginationQuery } from '@/hooks';
 
-import { ProductCategoryListQuery } from './types';
+import { MerchantListQuery } from './types';
 import FilterToolbar from './components/FilterToolbar';
+import MerchantListActions from './components/MerchantListActions';
 
-const defaultQueryParams: ProductCategoryListQuery = {
+const defaultQueryParams: MerchantListQuery = {
   ...DEFAULT_PAGING_PARAMS,
 };
 
@@ -21,11 +22,11 @@ const Page = () => {
   const { t } = useI18n();
   const [queryParams, setQueryParams] = useQueryParams(defaultQueryParams);
 
-  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<ProductCategory>(
-    INVENTORY_API_URLS.CATEGORIES,
+  const { data, isLoading, pagingInfo, isRefetching } = usePaginationQuery<Merchant>(
+    INVENTORY_API_URLS.MERCHANTS,
     {
       paging: queryParams,
-      queryKey: ['product-category-list-page', queryParams.keyword],
+      queryKey: [QUERY_KEYS.merchant.base, QUERY_KEYS.merchant.list, queryParams.keyword],
       getAdditionalParams: () => {
         return {
           keyword: queryParams.keyword,
@@ -36,16 +37,25 @@ const Page = () => {
 
   const breadCrumbs: PageLink[] = [
     {
-      title: t('breadcrumbs.productCategoryManagement'),
-      path: '/product-categories',
+      title: t('breadcrumbs.merchantManagement'),
+      path: APP_ROUTES.merchants.root,
       isSeparator: false,
       isActive: false,
     },
   ];
 
-  const columnHelper = createColumnHelper<ProductCategory>();
+  const columnHelper = createColumnHelper<Merchant>();
 
   const columns = [
+    columnHelper.display({
+      id: 'actions',
+      header: () => t('label.actions'),
+      cell: (info) => {
+        const item = info.row.original;
+
+        return <MerchantListActions {...item} />;
+      },
+    }),
     columnHelper.accessor('id', {
       header: () => t('label.name'),
       cell: (info) => {
@@ -58,6 +68,12 @@ const Page = () => {
           className: 'min-w-150px mw-250px',
         },
       },
+    }),
+    // columnHelper.accessor('slug', {
+    //   header: () => t('label.slug'),
+    // }),
+    columnHelper.accessor('description', {
+      header: () => t('label.description'),
     }),
   ];
 

@@ -1,12 +1,26 @@
-const PRODUCT_GROUP = '/products';
-const CATEGORY_GROUP = '/categories';
+const MERCHANT_GROUP = '/inventory/merchants';
+const SHOP_COLLECTION_GROUP = '/inventory/merchants/shop-collections';
+const PRODUCT_GROUP = '/inventory/products';
+const CATEGORY_GROUP = '/inventory/categories';
 
 export const INVENTORY_API_URLS = {
   CATEGORIES: `${CATEGORY_GROUP}`,
   CATEGORY_DETAIL: `${CATEGORY_GROUP}/:id`,
 
+  MERCHANTS: `${MERCHANT_GROUP}`,
+  MERCHANT_DETAIL: `${MERCHANT_GROUP}/:id`,
+
+  SHOP_COLLECTIONS: `${SHOP_COLLECTION_GROUP}`,
+  SHOP_COLLECTION_OPTIONS: `${SHOP_COLLECTION_GROUP}/options`,
+  SHOP_COLLECTION_DETAIL: `${SHOP_COLLECTION_GROUP}/:id`,
+  PRODUCTS_IN_SHOP_COLLECTION: `${SHOP_COLLECTION_GROUP}/:id/products`,
+  SHOP_COLLECTION_ADD_PRODUCTS: `${SHOP_COLLECTION_GROUP}/:id/products/add`,
+  SHOP_COLLECTION_REMOVE_PRODUCTS: `${SHOP_COLLECTION_GROUP}/:id/products/remove`,
+
   PRODUCTS: `${PRODUCT_GROUP}`,
   PRODUCT_DETAIL: `${PRODUCT_GROUP}/:id`,
+  FILTER_PRODUCTS: `${PRODUCT_GROUP}/filter`,
+  EXTEND_PRODUCT_VARIANT_STOCK: `${PRODUCT_GROUP}/:id/variants/:variantId/extend-stock`,
 
   PRODUCT_ATTRIBUTES: `${PRODUCT_GROUP}/attributes`,
   PRODUCT_ATTRIBUTE_DETAIL: `${PRODUCT_GROUP}/attributes/:id`,

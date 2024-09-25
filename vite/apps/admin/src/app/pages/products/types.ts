@@ -16,18 +16,23 @@ export type AttributeInCreateProduct = { attributeId: string; name: string; valu
 
 export type CreateProductRequest = {
   name: string;
-  slug: string;
+  slug?: string;
   description?: string;
-  categories: IdName[];
+  // categories: IdName[];
   attributes: AttributeInCreateProduct[];
   variants: CreateProductVariantRequest[];
+  hasVariants: boolean;
+  stock?: number;
+  price?: number;
 };
 
 export type CreateProductPayload = {
   name: string;
-  slug: string;
+  slug?: string;
   description?: string;
-  categories: string[];
+  // categories: string[];
+  stock?: number;
+  price?: number;
   attributes: string[];
   variants: {
     stock: number;
@@ -39,4 +44,14 @@ export type CreateProductPayload = {
   }[];
 };
 
+export type ExtendProductVariantStockPayload = {
+  productVariantId: string;
+  quantity: number;
+};
+
 export type ProductListQuery = PaginatedQueryParams;
+
+export type FilteredProductListQuery = PaginatedQueryParams & {
+  notInShopCollectionIds?: string[];
+  shopCollectionIds?: string[];
+};

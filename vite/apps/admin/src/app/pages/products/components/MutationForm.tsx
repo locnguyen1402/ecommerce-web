@@ -1,6 +1,14 @@
 import { generatePath, useNavigate, useParams } from 'react-router-dom';
 
-import { TextField, useForm, yupResolver, yup, FormContainer } from '@vklink/components';
+import {
+  TextField,
+  useForm,
+  yupResolver,
+  yup,
+  FormContainer,
+  NumberTextField,
+  CheckboxField,
+} from '@vklink/components';
 import { useMutation, useQueryClient } from '@vklink/api';
 
 import {
@@ -14,9 +22,9 @@ import {
 } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 
-import { useI18n, useToast } from '@/hooks';
+import { useI18n, useQueryHelpers, useToast } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
-import { idNameSchema } from '@/constants';
+import { BaseNumericFormatOptions, CurrencyFormatOptions, QUERY_KEYS } from '@/constants';
 
 import {
   CreateProductRequest,
@@ -39,7 +47,7 @@ const MutationForm = ({ defaultValues }: Props) => {
   const { id } = useParams();
   const toast = useToast();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const queryHelpers = useQueryHelpers();
 
   const isEditing = !!id;
 
@@ -54,17 +62,21 @@ const MutationForm = ({ defaultValues }: Props) => {
         name: data.name,
         slug: data.slug,
         description: data.description,
-        categories: data.categories.map((c) => c.id),
-        attributes: data.attributes.map((a) => a.attributeId),
-        variants: data.variants.map((v) => ({
-          id: (v as any).id,
-          stock: v.stock,
-          price: v.price,
-          values: v.values.map((vv) => ({
-            productAttributeId: vv.id,
-            value: vv.value,
-          })),
-        })),
+        price: data.price,
+        stock: data.stock,
+        // categories: data.categories.map((c) => c.id),
+        attributes: data.hasVariants ? data.attributes.map((a) => a.attributeId) : [],
+        variants: data.hasVariants
+          ? data.variants.map((v) => ({
+              id: (v as any).id,
+              stock: v.stock,
+              price: v.price,
+              values: v.values.map((vv) => ({
+                productAttributeId: vv.id,
+                value: vv.value,
+              })),
+            }))
+          : [],
       };
 
       if (isEditing) {
@@ -86,11 +98,7 @@ const MutationForm = ({ defaultValues }: Props) => {
         t(isEditing ? 'successfulNotification.update' : 'successfulNotification.create')
       );
 
-      if (isEditing) {
-        queryClient.invalidateQueries({
-          queryKey: ['product-detail', id],
-        });
-      }
+      queryHelpers.invalidateListAndDetailQueries(QUERY_KEYS.product.base, id);
 
       goBack();
     },
@@ -131,21 +139,41 @@ const MutationForm = ({ defaultValues }: Props) => {
 
   const schema: yup.ObjectSchema<FormValues> = yup.object({
     name: yup.string().required().max(200).label(t('label.name')),
-    slug: yup.string().required().label(t('label.slug')),
-    description: yup.string().required().max(500).label(t('label.description')),
-    categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
+    slug: yup.string().max(200).label(t('label.slug')),
+    description: yup.string().max(500).label(t('label.description')),
+    // categories: yup.array().of(idNameSchema).required().default([]).label(t('label.categories')),
+    hasVariants: yup.boolean().required(),
+    stock: yup
+      .number()
+      .when('hasVariants', {
+        is: false,
+        then: () => yup.number().required(),
+      })
+      .label(t('label.stock')),
+    price: yup
+      .number()
+      .when('hasVariants', {
+        is: false,
+        then: () => yup.number().required(),
+      })
+      .label(t('label.price')),
     attributes: yup.array(attributeSchema).required().default([]).label(t('label.attributes')),
     variants: yup.array(variantSchema).required().default([]).label(t('label.variants')),
   });
 
-  const { control, handleSubmit, getValues, setValue } = useForm<FormValues>({
+  const { control, handleSubmit, getValues, setValue, watch } = useForm<FormValues>({
     resolver: yupResolver(schema),
-    defaultValues,
+    defaultValues: defaultValues || {
+      hasVariants: false,
+      attributes: [],
+      variants: [],
+    },
   });
+  const hasVariants = watch('hasVariants');
 
-  const categoriesControl = useCategoriesControl({
-    control,
-  });
+  // const categoriesControl = useCategoriesControl({
+  //   control,
+  // });
 
   const attributesControl = useAttributesControl({
     control,
@@ -219,73 +247,97 @@ const MutationForm = ({ defaultValues }: Props) => {
           <FormContainer size="md" variant="outlined">
             <TextField control={control} name="name" label={t('label.name')} isRequired />
 
-            <SlugField
+            {/* <SlugField
               control={control}
               name="slug"
               label={t('label.slug')}
-              isRequired
               isEditing={isEditing}
               setValue={setValue}
-            />
+            /> */}
 
-            {categoriesControl.field}
+            {/* {categoriesControl.field} */}
 
             <TextField control={control} name="description" label={t('label.description')} />
+
+            <CheckboxField control={control} name="hasVariants" label={t('label.hasVariants')} />
+
+            {!hasVariants && (
+              <>
+                <NumberTextField
+                  {...CurrencyFormatOptions}
+                  control={control}
+                  name="price"
+                  label={t('label.listPrice')}
+                />
+
+                <NumberTextField
+                  {...BaseNumericFormatOptions}
+                  allowNegative={false}
+                  control={control}
+                  name="stock"
+                  label={t('label.stock')}
+                />
+              </>
+            )}
           </FormContainer>
         </FormBody>
       </FormLayout>
 
-      <FormLayout className="mt-5 mt-lg-10">
-        <FormHeader
-          title={t('label.attributes')}
-          action={
-            <div className="min-w-md-350px min-w-lg-450px">{attributesControl.searchInput}</div>
-          }
-        />
+      {!!hasVariants && (
+        <>
+          <FormLayout className="mt-5 mt-lg-10">
+            <FormHeader
+              title={t('label.attributes')}
+              action={
+                <div className="min-w-md-350px min-w-lg-450px">{attributesControl.searchInput}</div>
+              }
+            />
 
-        <FormBody>{attributesControl.attributeListComponent}</FormBody>
-      </FormLayout>
+            <FormBody>{attributesControl.attributeListComponent}</FormBody>
+          </FormLayout>
 
-      <FormLayout className="mt-5 mt-lg-10">
-        <FormHeader
-          title={t('label.variants')}
-          action={
-            <div className="d-flex gap-2">
-              <button
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Generate rest variants"
-                className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
-                onClick={() => variantsControl.generateRestVariants()}
-              >
-                <i className="bi bi-gear fs-1" />
-              </button>
+          <FormLayout className="mt-5 mt-lg-10">
+            <FormHeader
+              title={t('label.variants')}
+              action={
+                <div className="d-flex gap-2">
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Generate rest variants"
+                    className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
+                    onClick={() => variantsControl.generateRestVariants()}
+                  >
+                    <i className="bi bi-gear fs-1" />
+                  </button>
 
-              <button
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Regenerate all"
-                className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
-                onClick={() => variantsControl.regenerateAllVariants()}
-              >
-                <i className="bi bi-repeat fs-1" />
-              </button>
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Regenerate all"
+                    className="btn btn-sm btn-icon btn-bg-light btn-active-primary"
+                    onClick={() => variantsControl.regenerateAllVariants()}
+                  >
+                    <i className="bi bi-repeat fs-1" />
+                  </button>
 
-              <button
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Clear all"
-                className="btn btn-sm btn-icon btn-bg-light btn-active-danger"
-                onClick={() => variantsControl.clearAllVariants()}
-              >
-                <i className="bi bi-x-circle fs-1" />
-              </button>
-            </div>
-          }
-        />
+                  <button
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Clear all"
+                    className="btn btn-sm btn-icon btn-bg-light btn-active-danger"
+                    onClick={() => variantsControl.clearAllVariants()}
+                  >
+                    <i className="bi bi-x-circle fs-1" />
+                  </button>
+                </div>
+              }
+            />
 
-        <FormBody>{variantsControl.variantListComponent}</FormBody>
-      </FormLayout>
+            <FormBody>{variantsControl.variantListComponent}</FormBody>
+          </FormLayout>
+        </>
+      )}
 
       <FormLayout className="mt-5 mt-lg-10">
         <FormFooter className="border-top-0">

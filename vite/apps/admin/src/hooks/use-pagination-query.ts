@@ -30,6 +30,7 @@ type UsePaginationQueryOptions = {
   };
   enabled?: boolean;
   fullPagingInfo?: boolean;
+  refetchOnMount?: boolean;
 };
 
 export const usePaginationQuery = <T extends {}>(
@@ -40,12 +41,14 @@ export const usePaginationQuery = <T extends {}>(
     paging,
     enabled,
     fullPagingInfo = true,
+    refetchOnMount,
   }: UsePaginationQueryOptions
 ) => {
   const additionParams = typeof getAdditionalParams === 'function' ? getAdditionalParams() : {};
 
   const primaryQueryKey = [paging.pageIndex, paging.pageSize, additionParams, ...(queryKey || [])];
   const { data, isLoading, refetch, isRefetching } = useQueryBase({
+    refetchOnMount,
     enabled,
     retry: false,
     placeholderData: keepPreviousData,
