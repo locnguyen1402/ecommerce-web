@@ -44,6 +44,11 @@ export type CreateProductPayload = {
   }[];
 };
 
+export type ExtendProductVariantStockPayload = {
+  productVariantId: string;
+  quantity: number;
+};
+
 export type ProductListQuery = PaginatedQueryParams;
 
 export type FilteredProductListQuery = PaginatedQueryParams & {

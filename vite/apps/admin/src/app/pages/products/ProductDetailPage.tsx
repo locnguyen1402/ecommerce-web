@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link, generatePath, useParams } from 'react-router-dom';
 
 import { KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
@@ -9,10 +10,10 @@ import { useDetailQuery, useI18n } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';
 import { ProductDetail } from '@/api/responses';
 import { APP_ROUTES, QUERY_KEYS } from '@/constants';
+import { formatCurrency } from '@/i18n';
 
 import { ProductVariantTable } from './components/ProductVariantTable';
-import { useMemo } from 'react';
-import { formatCurrency } from '@/i18n';
+import ProductVariantExtendStockButton from './components/ProductVariantExtendStockButton';
 
 const Page = () => {
   const { t } = useI18n();
@@ -62,8 +63,15 @@ const Page = () => {
         });
         defs.push({
           label: 'label.stock',
-          value: {
-            valueGetter: (d) => defaultVariant.stock,
+          renderValue: (d) => {
+            return (
+              <ProductVariantExtendStockButton
+                stock={defaultVariant.stock}
+                productId={id!}
+                productVariantId={defaultVariant.id}
+                modalTitle={t('actions.update')}
+              />
+            );
           },
         });
       }

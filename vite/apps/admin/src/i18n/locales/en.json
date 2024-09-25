@@ -19,6 +19,7 @@
     "productAttributeManagement": "Product Attribute Management"
   },
   "actions": {
+    "increaseStock": "Increase Stock",
     "upload": "Upload",
     "confirm": "Confirm",
     "cancel": "Cancel",
@@ -89,7 +90,8 @@
     "detail": "Detail",
     "subcategories": "Subcategories",
     "productCount": "Product count",
-    "variantCount": "Variant count"
+    "variantCount": "Variant count",
+    "variant": "Variant"
   },
   "notification": {
     "info": "Information",
