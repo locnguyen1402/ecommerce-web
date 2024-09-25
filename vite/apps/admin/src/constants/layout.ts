@@ -38,14 +38,24 @@ export const MENU_ITEMS: ISidebarMenuItem[] = [
     kind: 'item',
   },
   {
-    to: '/product-attributes',
+    to: APP_ROUTES.productAttributes.root,
     title: 'menu.attributes',
     icon: 'element-plus',
     kind: 'item',
   },
   {
-    to: '/products',
+    to: APP_ROUTES.products.root,
     title: 'menu.products',
+    icon: 'cube-2',
+    kind: 'item',
+  },
+  {
+    title: 'menu.crm',
+    kind: 'section',
+  },
+  {
+    to: APP_ROUTES.customers.root,
+    title: 'menu.customers',
     icon: 'cube-2',
     kind: 'item',
   },

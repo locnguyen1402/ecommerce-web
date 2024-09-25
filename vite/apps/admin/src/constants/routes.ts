@@ -34,4 +34,11 @@ export const APP_ROUTES = {
     create: '/product-attributes/create',
     edit: '/product-attributes/:id/edit',
   },
+  customers: {
+    base: 'customers/*',
+    root: '/customers',
+    detail: '/customers/:id',
+    create: '/customers/create',
+    edit: '/customers/:id/edit',
+  },
 };

@@ -9,9 +9,12 @@
     "products": "Products",
     "inventory": "Inventory",
     "attributes": "Attributes",
-    "merchants": "Merchants"
+    "merchants": "Merchants",
+    "crm": "CRM",
+    "customers": "Customers"
   },
   "breadcrumbs": {
+    "customerManagement": "Customer Management",
     "merchantManagement": "Merchant Management",
     "productManagement": "Product Management",
     "categoryManagement": "Category Management",
