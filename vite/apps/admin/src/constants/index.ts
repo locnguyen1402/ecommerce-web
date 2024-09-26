@@ -5,3 +5,4 @@ export * from './translation';
 export * from './input';
 export * from './validation';
 export * from './routes';
+export * from './select-option';

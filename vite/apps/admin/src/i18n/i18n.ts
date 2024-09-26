@@ -42,7 +42,7 @@ const timeFormat = REPRESENTATIONS.format.time;
 const dateTimeFormat = REPRESENTATIONS.format.dateTime;
 
 export const formatDateTime = (
-  value: string | undefined | null,
+  value: string | undefined | null | Date,
   options?: {
     dateOnly?: boolean;
     timeOnly?: boolean;
@@ -124,4 +124,15 @@ function missingPlaceholder(_: I18n, placeholder: string): string {
 
 export const formatRequestDate = (value: Date | string, options?: { format?: string }): string => {
   return dayjs(value, options).format('YYYY-MM-DD');
+};
+
+export const fromRequestDateToDate = (
+  value: Date | string,
+  options?: { format?: string }
+): Date => {
+  const format = options?.format || 'YYYY-MM-DD';
+
+  return dayjs(value, {
+    format,
+  }).toDate();
 };

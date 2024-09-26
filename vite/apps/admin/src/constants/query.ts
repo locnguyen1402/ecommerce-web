@@ -37,4 +37,9 @@ export const QUERY_KEYS = {
     list: LIST_QUERY_KEY,
     detail: DETAIL_QUERY_KEY,
   },
+  customer: {
+    base: 'customer',
+    list: LIST_QUERY_KEY,
+    detail: DETAIL_QUERY_KEY,
+  },
 };

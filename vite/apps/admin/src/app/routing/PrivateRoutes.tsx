@@ -4,10 +4,12 @@ import TopBarProgress from 'react-topbar-progress-indicator';
 
 import { MasterLayout, WithChildren, KTUtil } from '@vklink/metronic-core';
 
-import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
 import { APP_ROUTES } from '@/constants';
 
+import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper';
+
 const PrivateRoutes = () => {
+  const CustomerRoutes = lazy(() => import('../pages/customers/CustomerRoutes'));
   const MerchantRoutes = lazy(() => import('../pages/merchants/MerchantRoutes'));
   const CategoryRoutes = lazy(() => import('../pages/categories/CategoryRoutes'));
   const ProductRoutes = lazy(() => import('../pages/products/ProductRoutes'));
@@ -64,6 +66,24 @@ const PrivateRoutes = () => {
           element={
             <SuspendedView>
               <ProductAttributeRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path={APP_ROUTES.productAttributes.base}
+          element={
+            <SuspendedView>
+              <ProductAttributeRoutes />
+            </SuspendedView>
+          }
+        />
+
+        <Route
+          path={APP_ROUTES.customers.base}
+          element={
+            <SuspendedView>
+              <CustomerRoutes />
             </SuspendedView>
           }
         />
