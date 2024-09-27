@@ -7,11 +7,10 @@ import { PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n } from '@/hooks';
 import { CUSTOMER_API_URLS } from '@/api';
 import { Customer } from '@/api/responses';
+import { fromRequestDateToDate } from '@/i18n';
 import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 
 import MutationForm from './components/MutationForm';
-import dayjs from 'dayjs';
-import { fromRequestDateToDate } from '@/i18n';
 
 type FormDefaultValues = ComponentProps<typeof MutationForm>['defaultValues'];
 

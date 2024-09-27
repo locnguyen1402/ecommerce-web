@@ -17,11 +17,6 @@ export type PaginationListResponse<T> = {
   paging?: PaginationInfo;
 };
 
-export type PaginationApi<T> = (
-  url: string,
-  query: PaginationListQuery
-) => Promise<PaginationListResponse<T>>;
-
 type UsePaginationQueryOptions = {
   queryKey?: any[];
   paging: PagingParams;

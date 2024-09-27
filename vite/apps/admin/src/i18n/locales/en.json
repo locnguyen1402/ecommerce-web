@@ -139,5 +139,15 @@
     "invalidPassword": "${path} must be valid",
     "someAttributesInvalid": "Some attributes are invalid",
     "someProductVariantsInvalid": "Some product variants are invalid"
+  },
+  "gender": {
+    "unspecified": "Unspecified",
+    "male": "Male",
+    "female": "Female"
+  },
+  "addressType": {
+    "unspecified": "Unspecified",
+    "home": "Home",
+    "office": "Office"
   }
 }
