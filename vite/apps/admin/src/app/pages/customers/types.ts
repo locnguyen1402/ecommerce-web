@@ -30,16 +30,52 @@ export type AdministrativeUnit = {
 };
 
 export type CreateCustomerContactRequest = {
-  type?: AddressType;
+  /**
+   * Name of the contact
+   */
+  name?: string;
+  /**
+   * Name of the person to contact
+   */
   contactName: string;
   phoneNumber: string;
+  type?: AddressType;
   isDefault?: boolean;
-  province: AdministrativeUnit;
-  district: AdministrativeUnit;
-  ward: AdministrativeUnit;
+  province: AdministrativeUnit | null;
+  district: AdministrativeUnit | null;
+  ward: AdministrativeUnit | null;
   addressLine1: string;
-  addressLine2?: string;
-  note?: string;
+  // addressLine2?: string;
+  notes?: string;
+};
+
+export type CreateCustomerContactPayload = {
+  customerId: string;
+  /**
+   * Name of the contact
+   */
+  name?: string;
+  /**
+   * Name of the person to contact
+   */
+  contactName: string;
+  phoneNumber: string;
+  type?: AddressType;
+  isDefault?: boolean;
+  notes?: string;
+  addressInfo: {
+    provinceId: string;
+    provinceName: string;
+    provinceCode: string;
+    districtId: string;
+    districtName: string;
+    districtCode: string;
+    wardId: string;
+    wardName: string;
+    wardCode: string;
+    addressLine1: string;
+    // addressLine2?: string;
+  };
 };
 
 export type CustomerListQuery = PaginatedQueryParams;

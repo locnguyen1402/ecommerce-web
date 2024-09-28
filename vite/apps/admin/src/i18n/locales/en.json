@@ -22,6 +22,8 @@
     "productAttributeManagement": "Product Attribute Management"
   },
   "actions": {
+    "addContact": "Add contact",
+    "removeContact": "Remove contact",
     "increaseStock": "Increase Stock",
     "upload": "Upload",
     "confirm": "Confirm",
@@ -67,6 +69,7 @@
     "removeProducts": "Remove products"
   },
   "label": {
+    "contactName": "Contact name",
     "hasVariants": "Has variants",
     "listPrice": "List Price",
     "generalInformation": "General Information",
@@ -97,7 +100,15 @@
     "variant": "Variant",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "birthDate": "Birthday"
+    "birthDate": "Birthday",
+    "addressType": "Address Type",
+    "addressLine1": "Address",
+    "province": "Province",
+    "district": "District",
+    "ward": "Ward",
+    "notes": "Notes",
+    "default": "Default",
+    "fullAddress": "Full Address"
   },
   "notification": {
     "info": "Information",

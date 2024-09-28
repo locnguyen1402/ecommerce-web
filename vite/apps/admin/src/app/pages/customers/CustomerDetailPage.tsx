@@ -1,19 +1,32 @@
+import { useState } from 'react';
 import { Link, generatePath, useParams } from 'react-router-dom';
 
 import { KTIcon } from '@vklink/metronic-core';
 import { LabelValueList, LabelValueListDef } from '@vklink/components';
 
-import { PageLayout } from '@/shared/components';
+import { OkButton, PageLayout } from '@/shared/components';
 
 import { APP_ROUTES, QUERY_KEYS } from '@/constants';
 import { useDetailQuery, useI18n } from '@/hooks';
-import { Customer } from '@/api/responses';
+import { Customer, CustomerContact } from '@/api/responses';
 import { CUSTOMER_API_URLS } from '@/api';
 import { formatDateTime, fromRequestDateToDate } from '@/i18n';
+
+import ContactsTable from './components/ContactTable';
+import ContactModal from './components/ContactModal';
 
 const Page = () => {
   const { t } = useI18n();
   const { id } = useParams();
+  const [contactModalState, setContactModalState] = useState<{
+    visible: boolean;
+    action: 'add-contact' | 'update-contact' | null;
+    selected: CustomerContact | null;
+  }>({
+    visible: false,
+    selected: null,
+    action: null,
+  });
 
   const { data: detail } = useDetailQuery<Customer>(
     generatePath(CUSTOMER_API_URLS.CUSTOMER_DETAIL, {
@@ -56,6 +69,30 @@ const Page = () => {
     },
   ];
 
+  const onAddContact = () => {
+    setContactModalState({
+      visible: true,
+      action: 'add-contact',
+      selected: null,
+    });
+  };
+
+  const onUpdateContact = (contact: CustomerContact) => {
+    setContactModalState({
+      visible: true,
+      action: 'update-contact',
+      selected: contact,
+    });
+  };
+
+  const onCloseContactModal = () => {
+    setContactModalState({
+      visible: false,
+      action: null,
+      selected: null,
+    });
+  };
+
   return (
     <>
       <PageLayout
@@ -63,39 +100,39 @@ const Page = () => {
         breadCrumbs={breadCrumbs}
         action={
           <>
-            <Link to="edit" className="btn btn-sm btn-flex fw-bold btn-primary">
-              <KTIcon iconName="notepad-edit" className="fs-4 me-1" />
-              {t('actions.edit')}
-            </Link>
+            <OkButton className="btn-sm" onClick={onAddContact}>
+              {t('actions.addContact')}
+            </OkButton>
           </>
         }
       >
-        <div className="card">
+        <div className="card mb-4 mb-lg-8">
           <div className="card-header">
             <div className="card-title">
               <span className="fw-bold text-muted fs-6 me-2">{t('label.name')}:</span>
               <span className="fw-bolder">{detail?.fullName}</span>
             </div>
-            {/* <div className="card-toolbar">
-              {detail && (
-                <EnableDisableButton
-                  id={detail.id}
-                  name={detail.name}
-                  enabled={detail.enabled}
-                  successCb={refetch}
-                  render={({ onClick, isLoading }) => (
-                    <OkButton isLoading={isLoading} onClick={onClick}>
-                      {t(detail.enabled ? 'label.disable' : 'label.enable')}
-                    </OkButton>
-                  )}
-                />
-              )}
-            </div> */}
+            <div className="card-toolbar">
+              <Link to="edit" className="btn btn-sm btn-flex fw-bold btn-primary">
+                <KTIcon iconName="notepad-edit" className="fs-4 me-1" />
+                {t('actions.edit')}
+              </Link>
+            </div>
           </div>
           <div className="card-body">
             <LabelValueList t={t as any} data={detail} def={itemDefs} />
           </div>
         </div>
+
+        <ContactsTable onContactUpdate={onUpdateContact} />
+
+        <ContactModal
+          customerId={id}
+          isOpen={contactModalState.visible}
+          onClose={onCloseContactModal}
+          contact={contactModalState.selected}
+          // successCallback={onCloseContactModal}
+        />
       </PageLayout>
     </>
   );

@@ -4,7 +4,7 @@ import { FIRST_PAGE_INDEX } from '@/constants';
 import { useI18n, usePaginationQuery } from '@/hooks';
 
 type Props<T> = {
-  url: string;
+  apiUrl: string | undefined;
   name: string;
   control: any;
   label: string;
@@ -22,7 +22,7 @@ const LocationField = <T extends {}>({
   control,
   label,
   disabled,
-  url,
+  apiUrl,
   queryKey,
   dependOn,
   onChange,
@@ -32,8 +32,8 @@ const LocationField = <T extends {}>({
 }: Props<T>) => {
   const { t } = useI18n();
 
-  const { data: options, isLoading } = usePaginationQuery(url, {
-    enabled,
+  const { data: options, isLoading } = usePaginationQuery(apiUrl || '', {
+    enabled: enabled && !!apiUrl,
     paging: {
       pageIndex: FIRST_PAGE_INDEX,
       pageSize: 1000,
