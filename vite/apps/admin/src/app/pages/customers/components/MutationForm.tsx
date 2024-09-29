@@ -131,7 +131,9 @@ const MutationForm = ({ defaultValues }: Props) => {
 
             <TextField control={control} name="lastName" label={t('label.lastName')} />
 
-            <TextField control={control} name="phoneNumber" label={t('label.phoneNumber')} />
+            {!isEditing && (
+              <TextField control={control} name="phoneNumber" label={t('label.phoneNumber')} />
+            )}
 
             <TextField control={control} name="email" label={t('label.email')} />
 

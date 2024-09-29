@@ -42,4 +42,9 @@ export const QUERY_KEYS = {
     list: LIST_QUERY_KEY,
     detail: DETAIL_QUERY_KEY,
   },
+  customerContact: {
+    base: 'customer-contact',
+    list: LIST_QUERY_KEY,
+    detail: DETAIL_QUERY_KEY,
+  },
 };
