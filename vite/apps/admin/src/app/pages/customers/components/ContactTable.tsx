@@ -1,7 +1,6 @@
 import { generatePath, useParams } from 'react-router-dom';
 
 import { createColumnHelper, DataTable } from '@vklink/components';
-import { KTCard, KTCardBody } from '@vklink/metronic-core';
 
 import { DEFAULT_PAGING_PARAMS, QUERY_KEYS } from '@/constants';
 import { useFilter, useI18n, usePaginationQuery } from '@/hooks';
@@ -53,7 +52,7 @@ const ContactsTable = ({ onContactUpdate }: Props) => {
       cell: (info) => {
         const item = info.row.original;
 
-        return <ContactListActions {...item} onEdit={onContactUpdate} />;
+        return <ContactListActions {...item} customerId={id!} onEdit={onContactUpdate} />;
       },
       meta: {
         header: {

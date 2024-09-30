@@ -8,7 +8,7 @@ type Props = {
   show: boolean;
   onClose: () => void;
 
-  onCancel: () => void;
+  onCancel?: () => void;
   onConfirm: () => void;
 
   title?: ReactNode;
@@ -37,7 +37,9 @@ const ConfirmDialog = ({
         </Modal.Header>
         <Modal.Body>{message}</Modal.Body>
         <Modal.Footer>
-          <CancelButton onClick={onCancel}>{cancelText || t('actions.cancel')}</CancelButton>
+          {!!onCancel && (
+            <CancelButton onClick={onCancel}>{cancelText || t('actions.cancel')}</CancelButton>
+          )}
           <OkButton onClick={onConfirm}>{confirmText || t('actions.confirm')}</OkButton>
         </Modal.Footer>
       </Modal>
@@ -45,4 +47,5 @@ const ConfirmDialog = ({
   );
 };
 
+export type ConfirmDialogProps = Props;
 export { ConfirmDialog };
