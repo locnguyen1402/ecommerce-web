@@ -9,3 +9,4 @@ export * from './use-detail-query';
 export * from './use-infinite-query';
 export * from './use-query-helpers';
 export * from './use-filter';
+export * from './use-confirm-dialog';

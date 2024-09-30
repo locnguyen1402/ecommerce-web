@@ -51,6 +51,7 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
   };
 
   const logout = () => {
+    AuthUtils.signOut();
     saveAuth(undefined);
     setCurrentUser(undefined);
   };

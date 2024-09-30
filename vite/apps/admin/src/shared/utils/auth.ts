@@ -5,6 +5,7 @@ const AUTHORITY_URL = import.meta.env.VITE_AUTHORITY;
 const SIGN_IN_URL = `${AUTHORITY_URL}/connect/token`;
 const USER_INFO_URL = `${AUTHORITY_URL}/connect/userinfo`;
 const REVOCATION_URL = `${AUTHORITY_URL}/connect/revocation`;
+const SIGN_OUT_URL = `${AUTHORITY_URL}/connect/endsession`;
 
 const CLIENT_ID = 'admin-portal';
 
@@ -53,22 +54,17 @@ const mapSignInResponse = (response: RawSignInSuccessResponse): SignInSuccessRes
 });
 
 const signInWithPassword = async (payload: PasswordSignInPayload) => {
-  // const response = await signIn({
-  //   ...payload,
-  //   grant_type: 'password',
-  // });
-  // const responseInJson = await response.json();
+  const response = await signIn({
+    ...payload,
+    grant_type: 'password',
+  });
+  const responseInJson = await response.json();
 
-  // if (response.status !== 200 || !responseInJson.access_token) {
-  //   throw new Error('Failed to sign in');
-  // }
+  if (response.status !== 200 || !responseInJson.access_token) {
+    throw new Error('Failed to sign in');
+  }
 
-  // return mapSignInResponse(responseInJson);
-  return {
-    accessToken: 'mila',
-    refreshToken: 'mila',
-    tokenType: 'mila',
-  } as SignInSuccessResponse;
+  return mapSignInResponse(responseInJson);
 };
 
 const refreshToken = async (payload: RefreshTokenPayload) => {
@@ -88,20 +84,15 @@ const refreshToken = async (payload: RefreshTokenPayload) => {
 };
 
 const getIdentityUserInfo = async (accessToken: string, tokenType: string) => {
-  // const response = await fetch(USER_INFO_URL, {
-  //   headers: {
-  //     Authorization: `${tokenType} ${accessToken}`,
-  //   },
-  // });
-
-  // if (response.status !== 200) {
-  //   throw new Error('Failed to get user info');
-  // }
-
-  // return await response.json();
-  return {
-    id: 'mila',
-  };
+  const response = await fetch(USER_INFO_URL, {
+    headers: {
+      Authorization: `${tokenType} ${accessToken}`,
+    },
+  });
+  if (response.status !== 200) {
+    throw new Error('Failed to get user info');
+  }
+  return await response.json();
 };
 
 const credential = btoa(CLIENT_ID + ':');
@@ -123,9 +114,23 @@ const revokeToken = async (token: string, tokenTypeHint: string) => {
   });
 };
 
+const signOut = () => {
+  try {
+    fetch(SIGN_OUT_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${credential}`,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const AuthUtils = {
   signInWithPassword,
   refreshToken,
   getIdentityUserInfo,
   revokeToken,
+  signOut,
 };
