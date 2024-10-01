@@ -1,5 +1,5 @@
 {
-  "extends": "@vklink/typescript-config/vite.json",
+  "extends": "@mila/typescript-config/vite.json",
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": ["src"],
   "compilerOptions": {

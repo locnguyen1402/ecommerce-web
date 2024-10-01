@@ -1,5 +1,5 @@
 {
-  "name": "@vklink/metronic-core",
+  "name": "@mila/metronic-core",
   "description": "This package contains metronic core",
   "version": "0.0.1",
   "license": "MIT",
@@ -30,6 +30,8 @@
     "socicon": "3.0.5"
   },
   "devDependencies": {
+    "@mila/eslint-config": "workspace:^",
+    "@mila/typescript-config": "workspace:^",
     "@types/bootstrap": "5.1.10",
     "@types/chart.js": "2.9.37",
     "@types/prismjs": "1.26.0",
@@ -37,8 +39,6 @@
     "@types/react-copy-to-clipboard": "5.0.2",
     "@types/react-dom": "^18.2.7",
     "@types/sass-loader": "8.0.3",
-    "@vklink/eslint-config": "workspace:^",
-    "@vklink/typescript-config": "workspace:^",
     "react": "^18.2.0",
     "sass": "1.55.0",
     "sass-loader": "13.2.0",

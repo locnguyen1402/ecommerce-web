@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { CheckboxInput, createColumnHelper, DataTable } from '@vklink/components';
-import { KTCard, KTCardBody } from '@vklink/metronic-core';
+import { CheckboxInput, createColumnHelper, DataTable } from '@mila/components';
+import { KTCard, KTCardBody } from '@mila/metronic-core';
 
 import { DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';
 import { useFilter, useI18n, usePaginationQuery } from '@/hooks';

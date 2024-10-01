@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import clsx from 'clsx';
 
-import { KTIcon } from '@vklink/metronic-core';
+import { KTIcon } from '@mila/metronic-core';
 
 type Props = {
   banner?: string;

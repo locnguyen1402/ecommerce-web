@@ -7,8 +7,8 @@ import {
   TagsField,
   createColumnHelper,
   useFieldArray,
-} from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
+} from '@mila/components';
+import { KTIcon } from '@mila/metronic-core';
 
 import { useDebouncedText, useI18n, useInfiniteQuery } from '@/hooks';
 import { INVENTORY_API_URLS } from '@/api';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, generatePath, useParams } from 'react-router-dom';
 
-import { KTIcon } from '@vklink/metronic-core';
-import { LabelValueList, LabelValueListDef } from '@vklink/components';
+import { KTIcon } from '@mila/metronic-core';
+import { LabelValueList, LabelValueListDef } from '@mila/components';
 
 import { OkButton, PageLayout } from '@/shared/components';
 import { useDetailQuery, useI18n, useQueryHelpers } from '@/hooks';

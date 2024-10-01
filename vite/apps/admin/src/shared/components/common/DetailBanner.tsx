@@ -1,4 +1,4 @@
-import { toAbsoluteUrl } from '@vklink/metronic-core';
+import { toAbsoluteUrl } from '@mila/metronic-core';
 
 type Props = {
   url: string | undefined;

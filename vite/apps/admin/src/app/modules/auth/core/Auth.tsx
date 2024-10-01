@@ -9,7 +9,7 @@ import {
   SetStateAction,
 } from 'react';
 
-import { LayoutSplashScreen, WithChildren } from '@vklink/metronic-core';
+import { LayoutSplashScreen, WithChildren } from '@mila/metronic-core';
 
 import { AuthUtils } from '@/shared/utils';
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
-import { toAbsoluteUrl } from '@vklink/metronic-core';
+import { toAbsoluteUrl } from '@mila/metronic-core';
 
 const AuthLayout = () => {
   useEffect(() => {

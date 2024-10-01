@@ -2,7 +2,7 @@ import { lazy, FC, Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import TopBarProgress from 'react-topbar-progress-indicator';
 
-import { MasterLayout, WithChildren, KTUtil } from '@vklink/metronic-core';
+import { MasterLayout, WithChildren, KTUtil } from '@mila/metronic-core';
 
 import { APP_ROUTES } from '@/constants';
 

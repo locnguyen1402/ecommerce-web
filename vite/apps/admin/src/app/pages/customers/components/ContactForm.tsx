@@ -11,8 +11,8 @@ import {
   DateTimeField,
   CheckboxField,
   SelectField,
-} from '@vklink/components';
-import { useMutation } from '@vklink/api';
+} from '@mila/components';
+import { useMutation } from '@mila/api';
 
 import { sendPostRequest, sendPutRequest } from '@/shared/http';
 import { LocationField } from '@/shared/components';

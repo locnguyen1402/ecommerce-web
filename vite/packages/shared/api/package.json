@@ -1,5 +1,5 @@
 {
-  "name": "@vklink/api",
+  "name": "@mila/api",
   "description": "grpc api",
   "version": "0.0.1",
   "main": "src/index.ts",
@@ -20,9 +20,9 @@
     "qs": "6.10.3"
   },
   "devDependencies": {
+    "@mila/eslint-config": "workspace:*",
+    "@mila/typescript-config": "workspace:*",
     "@types/qs": "6.9.7",
-    "@vklink/eslint-config": "workspace:*",
-    "@vklink/typescript-config": "workspace:*",
     "eslint": "^8.56.0",
     "react": "^18.2.0",
     "tsup": "^8.0.1",

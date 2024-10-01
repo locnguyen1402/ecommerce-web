@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { TextField, useWatch } from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
+import { TextField, useWatch } from '@mila/components';
+import { KTIcon } from '@mila/metronic-core';
 
 import { slugify } from '@/shared/utils';
 import { useI18n } from '@/hooks';

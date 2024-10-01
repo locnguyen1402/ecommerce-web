@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { generatePath } from 'react-router-dom';
 
-import { TextField, useForm, yupResolver, yup, FormContainer } from '@vklink/components';
-import { useMutation } from '@vklink/api';
+import { TextField, useForm, yupResolver, yup, FormContainer } from '@mila/components';
+import { useMutation } from '@mila/api';
 
 import { OkButton, CancelButton } from '@/shared/components';
 import { sendPostRequest, sendPutRequest } from '@/shared/http';

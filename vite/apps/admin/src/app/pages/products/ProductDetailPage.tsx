@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Link, generatePath, useParams } from 'react-router-dom';
 
-import { KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
-import { LabelValueList, LabelValueListDef } from '@vklink/components';
+import { KTCard, KTCardBody, KTIcon } from '@mila/metronic-core';
+import { LabelValueList, LabelValueListDef } from '@mila/components';
 
 import { PageLayout, TableToolbar1 } from '@/shared/components';
 

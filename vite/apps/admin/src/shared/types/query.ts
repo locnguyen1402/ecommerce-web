@@ -1,4 +1,4 @@
-import { PagingParams } from '@vklink/api';
+import { PagingParams } from '@mila/api';
 
 export type BaseQuery = {
   keyword?: string;

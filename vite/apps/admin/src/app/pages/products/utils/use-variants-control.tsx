@@ -4,8 +4,8 @@ import {
   createColumnHelper,
   useFieldArray,
   useWatch,
-} from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
+} from '@mila/components';
+import { KTIcon } from '@mila/metronic-core';
 
 import { useI18n } from '@/hooks';
 import { BaseNumericFormatOptions } from '@/constants';

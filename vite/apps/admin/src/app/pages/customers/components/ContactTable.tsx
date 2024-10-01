@@ -1,6 +1,6 @@
 import { generatePath, useParams } from 'react-router-dom';
 
-import { createColumnHelper, DataTable } from '@vklink/components';
+import { createColumnHelper, DataTable } from '@mila/components';
 
 import { DEFAULT_PAGING_PARAMS, QUERY_KEYS } from '@/constants';
 import { useFilter, useI18n, usePaginationQuery } from '@/hooks';

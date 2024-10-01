@@ -1,4 +1,4 @@
-import { useQueryClient } from '@vklink/api';
+import { useQueryClient } from '@mila/api';
 
 import { DETAIL_QUERY_KEY, LIST_QUERY_KEY } from '@/constants';
 

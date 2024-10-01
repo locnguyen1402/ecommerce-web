@@ -8,8 +8,8 @@ import {
   FormContainer,
   TextareaField,
   DateTimeField,
-} from '@vklink/components';
-import { useMutation } from '@vklink/api';
+} from '@mila/components';
+import { useMutation } from '@mila/api';
 
 import {
   FormFooter,

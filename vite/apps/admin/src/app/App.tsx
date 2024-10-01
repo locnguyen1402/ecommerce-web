@@ -7,7 +7,7 @@ import {
   MasterInit,
   MasterLayoutDataProvider,
   ThemeModeProvider,
-} from '@vklink/metronic-core';
+} from '@mila/metronic-core';
 
 import { ToastContainer } from '@/shared/components';
 import { MENU_ITEMS, SUPPORTED_LANGUAGES } from '@/constants';

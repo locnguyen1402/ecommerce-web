@@ -1,4 +1,4 @@
-import { useQuery, Response } from '@vklink/api';
+import { useQuery, Response } from '@mila/api';
 
 import { sendGetRequest } from '@/shared/http';
 

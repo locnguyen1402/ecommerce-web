@@ -1,7 +1,7 @@
 import { generatePath, useParams } from 'react-router-dom';
 
-import { createColumnHelper, DataTable } from '@vklink/components';
-import { KTCard, KTCardBody } from '@vklink/metronic-core';
+import { createColumnHelper, DataTable } from '@mila/components';
+import { KTCard, KTCardBody } from '@mila/metronic-core';
 
 import { CellLink, TableToolbar1 } from '@/shared/components';
 import { APP_ROUTES, DEFAULT_PAGING_PARAMS, FIRST_PAGE_INDEX, QUERY_KEYS } from '@/constants';

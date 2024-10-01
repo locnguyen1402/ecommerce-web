@@ -1,7 +1,7 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['@vklink/eslint-config'],
+  extends: ['@mila/eslint-config'],
   rules: {
     'react-hooks/exhaustive-deps': 'off',
   },

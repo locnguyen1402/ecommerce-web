@@ -1,5 +1,5 @@
-import { TextField, useForm, yupResolver, yup, FormContainer } from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
+import { TextField, useForm, yupResolver, yup, FormContainer } from '@mila/components';
+import { KTIcon } from '@mila/metronic-core';
 
 import { useI18n } from '@/hooks';
 import { OkButton } from '@/shared/components';

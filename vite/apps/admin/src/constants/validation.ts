@@ -1,4 +1,4 @@
-import { yup } from '@vklink/components';
+import { yup } from '@mila/components';
 
 export const ValidationPatterns = {
   numberString: /^\d+$/,

@@ -1,7 +1,7 @@
 import { ComponentProps, useMemo } from 'react';
 import { generatePath, useParams } from 'react-router-dom';
 
-import { PageLink } from '@vklink/metronic-core';
+import { PageLink } from '@mila/metronic-core';
 
 import { ProductDetail } from '@/api/responses';
 import { PageLayout } from '@/shared/components';

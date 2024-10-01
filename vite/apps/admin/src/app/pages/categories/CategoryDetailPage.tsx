@@ -1,7 +1,7 @@
 import { Link, generatePath, useParams } from 'react-router-dom';
 
-import { KTIcon } from '@vklink/metronic-core';
-import { LabelValueList, LabelValueListDef } from '@vklink/components';
+import { KTIcon } from '@mila/metronic-core';
+import { LabelValueList, LabelValueListDef } from '@mila/components';
 
 import { PageLayout } from '@/shared/components';
 

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { LabelValueItem } from '@vklink/components';
+import { LabelValueItem } from '@mila/components';
 
 import { TransLabelValueListDef } from './type';
 

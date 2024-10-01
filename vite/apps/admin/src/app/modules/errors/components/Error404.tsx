@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { toAbsoluteUrl } from '@vklink/metronic-core';
+import { toAbsoluteUrl } from '@mila/metronic-core';
 
 const Error404: FC = () => {
   return (
