@@ -5,7 +5,7 @@ import {
   PagingParams,
   ResponseWithPagination,
   InfiniteData,
-} from '@vklink/api';
+} from '@mila/api';
 
 import { sendGetRequest } from '@/shared/http';
 import { FIRST_PAGE_INDEX } from '@/constants';

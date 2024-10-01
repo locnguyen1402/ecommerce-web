@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, HttpMethod, Response, ResponseWithPagination } from '@vklink/api';
+import { AxiosRequestConfig, HttpMethod, Response, ResponseWithPagination } from '@mila/api';
 
 import { http } from './instance';
 

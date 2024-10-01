@@ -1,5 +1,5 @@
 {
-  "name": "@vklink/admin",
+  "name": "@mila/admin",
   "private": true,
   "version": "8.2.3",
   "scripts": {
@@ -9,9 +9,9 @@
     "preview": "vite preview --port 8000"
   },
   "dependencies": {
-    "@vklink/api": "workspace:^",
-    "@vklink/components": "workspace:^",
-    "@vklink/metronic-core": "workspace:^",
+    "@mila/api": "workspace:^",
+    "@mila/components": "workspace:^",
+    "@mila/metronic-core": "workspace:^",
     "clsx": "2.1.0",
     "dayjs": "^1.11.10",
     "formik": "2.2.9",
@@ -31,6 +31,8 @@
     "yup": "^1.0.0"
   },
   "devDependencies": {
+    "@mila/eslint-config": "workspace:^",
+    "@mila/typescript-config": "workspace:^",
     "@types/jest": "29.5.2",
     "@types/node": "20.3.1",
     "@types/react": "^18.2.15",
@@ -38,8 +40,6 @@
     "@types/react-table": "^7.7.9",
     "@types/sass-loader": "8.0.3",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "@vklink/eslint-config": "workspace:^",
-    "@vklink/typescript-config": "workspace:^",
     "css-loader": "6.7.1",
     "del": "7.0.0",
     "mini-css-extract-plugin": "2.6.1",

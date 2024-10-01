@@ -1,4 +1,4 @@
-import { applyTransformResponseInterceptor, createHttpInstance } from '@vklink/api';
+import { applyTransformResponseInterceptor, createHttpInstance } from '@mila/api';
 
 const API_URL = import.meta.env.VITE_API_URL;
 

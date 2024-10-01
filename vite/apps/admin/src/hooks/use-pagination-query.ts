@@ -3,7 +3,7 @@ import {
   keepPreviousData,
   PaginationInfo,
   PagingParams,
-} from '@vklink/api';
+} from '@mila/api';
 
 import { getPaginatedList } from '@/shared/http';
 

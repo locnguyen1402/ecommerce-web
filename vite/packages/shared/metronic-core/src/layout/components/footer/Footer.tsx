@@ -13,11 +13,11 @@ const Footer = () => {
           {new Date().getFullYear().toString()}&copy;
         </span>
         <a
-          href="https://www.vklink.vn/"
+          href="#"
           target="_blank"
           className="text-gray-800 text-hover-primary"
         >
-          VK Link
+          Mila
         </a>
       </div>
 

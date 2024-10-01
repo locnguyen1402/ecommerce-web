@@ -1,4 +1,4 @@
-import { yup } from '@vklink/components';
+import { yup } from '@mila/components';
 
 export const optionSchema: yup.ObjectSchema<Pick<Option, 'label' | 'value'>> = yup.object({
   label: yup.string().defined(''),

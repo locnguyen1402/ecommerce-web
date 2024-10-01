@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import { PageLink, KTCard, KTCardBody, KTIcon } from '@vklink/metronic-core';
-import { DataTable, createColumnHelper } from '@vklink/components';
+import { PageLink, KTCard, KTCardBody, KTIcon } from '@mila/metronic-core';
+import { DataTable, createColumnHelper } from '@mila/components';
 
 import { CellLink, PageLayout, TableToolbar1 } from '@/shared/components';
 import { CUSTOMER_API_URLS } from '@/api';

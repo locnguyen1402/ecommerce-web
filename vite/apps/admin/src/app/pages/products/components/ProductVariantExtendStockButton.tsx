@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { generatePath } from 'react-router-dom';
 
-import { NumberTextField, useForm, yup, yupResolver } from '@vklink/components';
-import { KTIcon } from '@vklink/metronic-core';
-import { useMutation } from '@vklink/api';
+import { NumberTextField, useForm, yup, yupResolver } from '@mila/components';
+import { KTIcon } from '@mila/metronic-core';
+import { useMutation } from '@mila/api';
 
 import { CancelButton, CellButton, OkButton } from '@/shared/components';
 import { sendPutRequest } from '@/shared/http';

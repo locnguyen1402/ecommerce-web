@@ -1,9 +1,9 @@
-import '@vklink/metronic-core/style.scss';
+import '@mila/metronic-core/style.scss';
 
 import { createRoot } from 'react-dom/client';
 
-import { Chart, registerables } from '@vklink/metronic-core';
-import { QueryClient, QueryClientProvider } from '@vklink/api';
+import { Chart, registerables } from '@mila/metronic-core';
+import { QueryClient, QueryClientProvider } from '@mila/api';
 
 import { AppRoutes } from './app/routing/AppRoutes';
 import { AuthProvider } from './app/modules/auth';

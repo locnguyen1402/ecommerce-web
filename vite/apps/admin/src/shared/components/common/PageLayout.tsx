@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactNode } from 'react';
 
-import { Content, PageLink, PageTitle, ToolbarWrapper } from '@vklink/metronic-core';
+import { Content, PageLink, PageTitle, ToolbarWrapper } from '@mila/metronic-core';
 import { PageToolbar } from './PageToolbar';
 
 type Props = PropsWithChildren<{

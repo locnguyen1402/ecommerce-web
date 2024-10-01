@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
-/// <reference types="@vklink/metronic-core/types.d.ts" />
-/// <reference types="@vklink/components/types.d.ts" />
+/// <reference types="@mila/metronic-core/types.d.ts" />
+/// <reference types="@mila/components/types.d.ts" />
 
 type Leaves<T> = T extends object
   ? {

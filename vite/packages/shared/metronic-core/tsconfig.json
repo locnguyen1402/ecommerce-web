@@ -1,5 +1,5 @@
 {
-  "extends": "@vklink/typescript-config/react-library.json",
+  "extends": "@mila/typescript-config/react-library.json",
   "compilerOptions": {
     "resolveJsonModule": true,
     "baseUrl": "."

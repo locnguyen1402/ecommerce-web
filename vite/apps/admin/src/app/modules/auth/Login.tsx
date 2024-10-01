@@ -1,5 +1,5 @@
-import { TextField, yup, useForm, yupResolver, FormContainer } from '@vklink/components';
-import { useMutation } from '@vklink/api';
+import { TextField, yup, useForm, yupResolver, FormContainer } from '@mila/components';
+import { useMutation } from '@mila/api';
 
 import { AuthUtils } from '@/shared/utils';
 import { useI18n, useToast } from '@/hooks';

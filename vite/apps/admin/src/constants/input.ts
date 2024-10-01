@@ -1,4 +1,4 @@
-import { NumericFormatOptions } from '@vklink/components';
+import { NumericFormatOptions } from '@mila/components';
 
 export const BaseNumericFormatOptions: NumericFormatOptions = {
   decimalSeparator: ',',

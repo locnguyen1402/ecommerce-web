@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { GetObjectValueOptions, ValueType } from '@vklink/components';
+import { GetObjectValueOptions, ValueType } from '@mila/components';
 
 type GetTransItemType<TData extends Record<string, any>, TTranslationField extends keyof TData> =
   TData[TTranslationField] extends Array<infer TTranslationObject>

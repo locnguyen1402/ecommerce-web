@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { DataTable, createColumnHelper } from '@vklink/components';
+import { DataTable, createColumnHelper } from '@mila/components';
 
 import { ProductAttributeWithValues, ProductVariant } from '@/api/responses';
 

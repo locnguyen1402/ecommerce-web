@@ -1,4 +1,4 @@
-import { AxiosResponse, ResponseWithPagination } from '@vklink/api';
+import { AxiosResponse, ResponseWithPagination } from '@mila/api';
 
 import { PaginationListQuery, PaginationListResponse } from '@/hooks';
 

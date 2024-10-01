@@ -1,5 +1,5 @@
 {
-  "name": "@vklink/web",
+  "name": "@mila/web",
   "preferUnplugged": true,
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@vklink/eslint-config": "*",
+    "@mila/eslint-config": "*",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "turbo": "latest"

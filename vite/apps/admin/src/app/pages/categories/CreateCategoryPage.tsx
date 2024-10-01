@@ -1,4 +1,4 @@
-import { PageLink } from '@vklink/metronic-core';
+import { PageLink } from '@mila/metronic-core';
 
 import { PageLayout } from '@/shared/components';
 import { useI18n } from '@/hooks';

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { generatePath } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 
-import { useMutation } from '@vklink/api';
+import { useMutation } from '@mila/api';
 
 import { CancelButton, OkButton, FilteredProductsSelectionTable } from '@/shared/components';
 import { sendPutRequest } from '@/shared/http';

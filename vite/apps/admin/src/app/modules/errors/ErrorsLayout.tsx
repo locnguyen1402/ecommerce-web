@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { useThemeMode, toAbsoluteUrl } from '@vklink/metronic-core';
+import { useThemeMode, toAbsoluteUrl } from '@mila/metronic-core';
 
 const BODY_CLASSES = ['bgi-size-cover', 'bgi-position-center', 'bgi-no-repeat'];
 const ErrorsLayout = () => {

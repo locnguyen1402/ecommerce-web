@@ -8,8 +8,8 @@ import {
   FormContainer,
   NumberTextField,
   CheckboxField,
-} from '@vklink/components';
-import { useMutation, useQueryClient } from '@vklink/api';
+} from '@mila/components';
+import { useMutation, useQueryClient } from '@mila/api';
 
 import {
   FormFooter,

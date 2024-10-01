@@ -1,6 +1,6 @@
 import { generatePath, useNavigate } from 'react-router-dom';
 
-import { useMutation } from '@vklink/api';
+import { useMutation } from '@mila/api';
 
 import { sendDeleteRequest } from '@/shared/http';
 import { TableActions } from '@/shared/components';

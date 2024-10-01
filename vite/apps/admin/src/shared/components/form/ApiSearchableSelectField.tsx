@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { FieldValues, SearchableSelectField, SearchableSelectFieldProps } from '@vklink/components';
+import { FieldValues, SearchableSelectField, SearchableSelectFieldProps } from '@mila/components';
 
 import { useDebouncedText, usePaginationQuery } from '@/hooks';
 import { FIRST_PAGE_INDEX } from '@/constants';

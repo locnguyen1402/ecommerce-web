@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import { default as BaseDropdown } from 'react-bootstrap/Dropdown';
 
-import { KTIcon } from '@vklink/metronic-core';
+import { KTIcon } from '@mila/metronic-core';
 
 import { useI18n } from '@/hooks';
 

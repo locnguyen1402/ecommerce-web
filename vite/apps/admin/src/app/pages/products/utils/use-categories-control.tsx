@@ -1,4 +1,4 @@
-import { SearchableSelectField } from '@vklink/components';
+import { SearchableSelectField } from '@mila/components';
 
 import { useDebouncedText, useI18n, usePaginationQuery } from '@/hooks';
 import { FIRST_PAGE_INDEX } from '@/constants';

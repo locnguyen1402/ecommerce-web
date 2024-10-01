@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { deserialize, serialize } from '@vklink/api';
+import { deserialize, serialize } from '@mila/api';
 
 export type QueryParamInit = Parameters<typeof useSearchParams>[0];
 
