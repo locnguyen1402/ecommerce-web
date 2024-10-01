@@ -29,11 +29,6 @@ export type SearchableSelectInputProps<TOption, IsMulti extends boolean> = Pick<
   loadMore?: () => void;
 };
 
-type Props = {
-  hasMore?: boolean;
-  loadMore?: () => void;
-};
-
 const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = false>({
   isLoading,
   placeholder,
@@ -54,37 +49,43 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
   loadMore,
   id,
 }: SearchableSelectInputProps<TOption, IsMulti>) => {
-  const EndList = ({ hasMore, loadMore }: Props) => {
-    const { ref, inView } = useInView({
-      threshold: 0,
-    });
+  // const EndList = ({ hasMore, loadMore }: Props) => {
+  //   const { ref, inView } = useInView({
+  //     threshold: 0,
+  //   });
 
-    useEffect(() => {
-      if (hasMore && inView && !!loadMore) {
-        loadMore();
-      }
-    }, [inView]);
+  //   useEffect(() => {
+  //     if (hasMore && inView && !!loadMore) {
+  //       loadMore();
+  //     }
+  //   }, [inView]);
 
-    return <div ref={ref} style={{ height: 1 }} />;
-  };
+  //   return <div ref={ref} style={{ height: 1 }} />;
+  // };
 
   const MenuList = ({ children, ...rest }: MenuListProps<TOption>) => {
     return (
       <components.MenuList {...rest}>
         {children}
-        <EndList hasMore={hasMore} loadMore={loadMore} />
+        {/* <EndList hasMore={hasMore} loadMore={loadMore} /> */}
       </components.MenuList>
     );
   };
 
-  // const onSearchChange = useCallback(
-  //   ((newValue, actionMeta) => {
-  //     if (actionMeta.action === 'input-change' && onInputChange) {
-  //       onInputChange(newValue, actionMeta);
-  //     }
-  //   }) as Required<SelectProps>['onInputChange'],
-  //   [onInputChange]
-  // );
+  const onMenuScrollToBottom = useCallback(() => {
+    if (hasMore) {
+      loadMore?.();
+    }
+  }, [hasMore, loadMore]);
+
+  const onSearchChange = useCallback(
+    ((newValue, actionMeta) => {
+      if (actionMeta.action === 'input-change') {
+        onInputChange?.(newValue, actionMeta);
+      }
+    }) as Required<SelectProps>['onInputChange'],
+    [onInputChange]
+  );
 
   return (
     <Select<TOption, IsMulti>
@@ -104,9 +105,10 @@ const SearchableSelectInput = <TOption extends {}, IsMulti extends boolean = fal
       value={value}
       onChange={onChange}
       inputValue={inputValue}
-      onInputChange={onInputChange}
+      onInputChange={onSearchChange}
       onBlur={onBlur}
-      components={{ MenuList }}
+      // components={{ MenuList }}
+      onMenuScrollToBottom={onMenuScrollToBottom}
     />
   );
 };
