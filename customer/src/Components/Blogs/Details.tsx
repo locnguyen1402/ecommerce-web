@@ -9,11 +9,18 @@ const BlogDetail = () => {
   const searchParams = useSearchParams();
   const querySearchCategory = searchParams?.get('category');
   const querySearchTag = searchParams?.get('tag');
-  const breadcrumbTitle = querySearchCategory ? `Blogs:${querySearchCategory}` : querySearchTag ? `Blogs:${querySearchTag}` : 'Blogs';
+  const breadcrumbTitle = querySearchCategory
+    ? `Blogs:${querySearchCategory}`
+    : querySearchTag
+      ? `Blogs:${querySearchTag}`
+      : 'Blogs';
   return (
     <>
       <Breadcrumb title={breadcrumbTitle} subNavigation={[{ name: 'Blog', link: '/blogs' }]} />
-      <WrapperComponent classes={{ sectionClass: 'blog-section section-b-space', row: 'g-4' }} customCol={true}>
+      <WrapperComponent
+        classes={{ sectionClass: 'blog-section section-b-space', row: 'g-4' }}
+        customCol={true}
+      >
         <BlogCard />
         <Sidebar />
       </WrapperComponent>

@@ -8,11 +8,14 @@ import { productPageRelatedSliderOptions } from '../../../../Data/SliderSettings
 const RelatedProduct = ({ productState }) => {
   const { filteredProduct } = useContext(ProductIdsContext);
   return (
-    <WrapperComponent classes={{ sectionClass: 'product-list-section section-b-space pt-0' }} noRowCol={true}>
+    <WrapperComponent
+      classes={{ sectionClass: 'product-list-section section-b-space pt-0' }}
+      noRowCol={true}
+    >
       <ProductSection1
         dataAPI={{ title: 'YouMayAlsoLike', product_ids: productState?.product?.related_products }}
         ProductData={filteredProduct}
-        svgUrl={<LeafSVG className='icon-width' />}
+        svgUrl={<LeafSVG className="icon-width" />}
         noCustomClass={true}
         classObj={{ productStyle: 'product-standard', productBoxClass: 'product-box-bg' }}
         customSliderOption={productPageRelatedSliderOptions}

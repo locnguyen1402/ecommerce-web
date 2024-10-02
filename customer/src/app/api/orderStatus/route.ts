@@ -1,6 +1,6 @@
-import order_status from './order-status.json'
-import { NextResponse } from "next/server";
+import order_status from './order-status.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(order_status)
+  return NextResponse.json(order_status);
 }

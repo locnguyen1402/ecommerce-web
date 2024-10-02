@@ -12,26 +12,34 @@ const TrendingProduct = ({ dataAPI }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { filteredProduct } = useContext(ProductIdsContext);
   return (
-    <div className='section-t-space'>
-      <div className='category-menu'>
+    <div className="section-t-space">
+      <div className="category-menu">
         <h3>{dataAPI?.main_content?.sidebar?.sidebar_products?.title}</h3>
-        <ul className='product-list'>
+        <ul className="product-list">
           {filteredProduct
-            ?.filter((el) => dataAPI?.main_content?.sidebar?.sidebar_products?.product_ids.includes(el.id))
+            ?.filter((el) =>
+              dataAPI?.main_content?.sidebar?.sidebar_products?.product_ids.includes(el.id)
+            )
             ?.map((elem) => (
               <li key={elem?.id}>
-                <div className='offer-product'>
-                  <Link href={`/${i18Lang}/product/${elem?.slug}`} className='offer-image'>
-                    <Avatar data={elem?.product_thumbnail} placeHolder={placeHolderImage} name={elem?.name} height={80} width={80} />
+                <div className="offer-product">
+                  <Link href={`/${i18Lang}/product/${elem?.slug}`} className="offer-image">
+                    <Avatar
+                      data={elem?.product_thumbnail}
+                      placeHolder={placeHolderImage}
+                      name={elem?.name}
+                      height={80}
+                      width={80}
+                    />
                   </Link>
-                  <div className='offer-detail'>
+                  <div className="offer-detail">
                     <div>
-                      <Link href={`/${i18Lang}/product/${elem?.slug}`} className='text-title'>
-                        <h6 className='name'>{elem?.name}</h6>
+                      <Link href={`/${i18Lang}/product/${elem?.slug}`} className="text-title">
+                        <h6 className="name">{elem?.name}</h6>
                       </Link>
                       <span>{elem?.unit}</span>
-                      <div className='vertical-price'>
-                        <h6 className='price theme-color'>{convertCurrency(elem?.sale_price)}</h6>
+                      <div className="vertical-price">
+                        <h6 className="price theme-color">{convertCurrency(elem?.sale_price)}</h6>
                         <del>{convertCurrency(elem?.price)}</del>
                       </div>
                     </div>

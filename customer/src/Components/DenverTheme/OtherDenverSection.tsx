@@ -9,13 +9,20 @@ import { osakaSliderOption } from '../../../Data/SliderSettingsData';
 const OtherDenverSection = ({ dataAPI }) => {
   return (
     <>
-      {dataAPI?.two_column_banners?.status && <DeliveryBanner dataAPI={dataAPI?.two_column_banners} />}
+      {dataAPI?.two_column_banners?.status && (
+        <DeliveryBanner dataAPI={dataAPI?.two_column_banners} />
+      )}
 
       <SliderProduct dataAPI={dataAPI?.slider_product_with_banner} />
 
       {dataAPI?.coupon_banner?.status && (
         <WrapperComponent noRowCol={true}>
-          <SingleBanner image_url={dataAPI?.coupon_banner?.image_url} height={139} width={1585} dataAPI={dataAPI?.coupon_banner} />
+          <SingleBanner
+            image_url={dataAPI?.coupon_banner?.image_url}
+            height={139}
+            width={1585}
+            dataAPI={dataAPI?.coupon_banner}
+          />
         </WrapperComponent>
       )}
 

@@ -10,19 +10,37 @@ const ProductSection = ({ dataAPI }) => {
   const bannerTwo = dataAPI?.main_content?.sidebar?.left_side_banners?.banner_2?.image_url;
 
   return (
-    <WrapperComponent classes={{ sectionClass: 'product-section', row: 'g-sm-4 g-3' }} customCol={true}>
+    <WrapperComponent
+      classes={{ sectionClass: 'product-section', row: 'g-sm-4 g-3' }}
+      customCol={true}
+    >
       {dataAPI?.main_content?.sidebar?.status && (
-        <Col xxl={3} xl={4} className='d-none d-xl-block'>
-          <div className='p-sticky'>
-            {dataAPI?.main_content?.sidebar?.categories_icon_list?.status && dataAPI?.main_content?.sidebar?.categories_icon_list.category_ids.length > 0 && <CategoryMenu dataAPI={dataAPI} />}
+        <Col xxl={3} xl={4} className="d-none d-xl-block">
+          <div className="p-sticky">
+            {dataAPI?.main_content?.sidebar?.categories_icon_list?.status &&
+              dataAPI?.main_content?.sidebar?.categories_icon_list.category_ids.length > 0 && (
+                <CategoryMenu dataAPI={dataAPI} />
+              )}
 
             {dataAPI?.main_content?.sidebar?.left_side_banners?.status && (
               <>
-                <OfferBanner classes={{ customClass: 'ratio_156 section-t-space' }} imgUrl={bannerOne} ratioImage={true} elem={dataAPI?.main_content?.sidebar?.left_side_banners?.banner_1} />
-                <OfferBanner classes={{ customClass: 'ratio_medium section-t-space' }} imgUrl={bannerTwo} elem={dataAPI?.main_content?.sidebar?.left_side_banners?.banner_2} />
+                <OfferBanner
+                  classes={{ customClass: 'ratio_156 section-t-space' }}
+                  imgUrl={bannerOne}
+                  ratioImage={true}
+                  elem={dataAPI?.main_content?.sidebar?.left_side_banners?.banner_1}
+                />
+                <OfferBanner
+                  classes={{ customClass: 'ratio_medium section-t-space' }}
+                  imgUrl={bannerTwo}
+                  elem={dataAPI?.main_content?.sidebar?.left_side_banners?.banner_2}
+                />
               </>
             )}
-            {dataAPI?.main_content?.sidebar?.sidebar_products?.status && dataAPI?.main_content?.sidebar?.sidebar_products?.product_ids.length > 0 && <TrendingProduct dataAPI={dataAPI} />}
+            {dataAPI?.main_content?.sidebar?.sidebar_products?.status &&
+              dataAPI?.main_content?.sidebar?.sidebar_products?.product_ids.length > 0 && (
+                <TrendingProduct dataAPI={dataAPI} />
+              )}
           </div>
         </Col>
       )}

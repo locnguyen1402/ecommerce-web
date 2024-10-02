@@ -14,10 +14,24 @@ const ProductDetailAction = ({ productState, setProductState, extraOption }) => 
   const { handleIncDec } = useContext(CartContext);
   const router = useRouter();
   const addToCart = () => {
-    handleIncDec(productState?.productQty, productState?.product, false, false, false, productState);
+    handleIncDec(
+      productState?.productQty,
+      productState?.product,
+      false,
+      false,
+      false,
+      productState
+    );
   };
   const buyNow = () => {
-    handleIncDec(productState?.productQty, productState?.product, false, false, false, productState);
+    handleIncDec(
+      productState?.productQty,
+      productState?.product,
+      false,
+      false,
+      false,
+      productState
+    );
     router.push(`/${i18Lang}/checkout`);
   };
   const updateQty = (qty) => {
@@ -31,7 +45,8 @@ const ProductDetailAction = ({ productState, setProductState, extraOption }) => 
     if (productState?.selectedVariation) {
       setProductState((prevState) => {
         const tempSelectedVariation = { ...prevState.selectedVariation };
-        tempSelectedVariation.stock_status = tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempSelectedVariation.stock_status =
+          tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           selectedVariation: tempSelectedVariation,
@@ -40,7 +55,8 @@ const ProductDetailAction = ({ productState, setProductState, extraOption }) => 
     } else {
       setProductState((prevState) => {
         const tempProduct = { ...prevState.product };
-        tempProduct.stock_status = tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempProduct.stock_status =
+          tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           product: tempProduct,
@@ -50,26 +66,36 @@ const ProductDetailAction = ({ productState, setProductState, extraOption }) => 
   };
   return (
     <>
-      <div className='note-box'>
-        <div className='cart_qty qty-box product-qty'>
+      <div className="note-box">
+        <div className="cart_qty qty-box product-qty">
           <InputGroup>
-            <Btn type='button' className='qty-right-plus' onClick={() => updateQty(-1)}>
+            <Btn type="button" className="qty-right-plus" onClick={() => updateQty(-1)}>
               <RiSubtractLine />
             </Btn>
-            <Input className='input-number qty-input' type='number' value={productState?.productQty} readOnly />
-            <Btn type='button' className='qty-left-minus' onClick={() => updateQty(1)}>
+            <Input
+              className="input-number qty-input"
+              type="number"
+              value={productState?.productQty}
+              readOnly
+            />
+            <Btn type="button" className="qty-left-minus" onClick={() => updateQty(1)}>
               <RiAddLine />
             </Btn>
           </InputGroup>
         </div>
         {extraOption !== false ? (
-          <div className='wishlist-btn-group'>
+          <div className="wishlist-btn-group">
             <AddToWishlist productObj={productState?.product} customClass={'wishlist-button btn'} />
             <AddToCompare productObj={productState?.product} customClass={'wishlist-button btn'} />
           </div>
         ) : null}
       </div>
-      <AddToCartButton productState={productState} addToCart={addToCart} buyNow={buyNow} extraOption={extraOption} />
+      <AddToCartButton
+        productState={productState}
+        addToCart={addToCart}
+        buyNow={buyNow}
+        extraOption={extraOption}
+      />
     </>
   );
 };

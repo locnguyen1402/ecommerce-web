@@ -1,9 +1,7 @@
-import DenverTheme from '@/Components/DenverTheme'
+import DenverTheme from '@/Components/DenverTheme';
 
 const Denver = () => {
-    return (
-        <DenverTheme />
-    )
-}
+  return <DenverTheme />;
+};
 
-export default Denver
+export default Denver;

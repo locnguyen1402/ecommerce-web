@@ -10,7 +10,8 @@ const VariationModalQty = ({ cloneVariation, setCloneVariation }) => {
     if (cloneVariation?.selectedVariation) {
       setCloneVariation((prevState) => {
         const tempSelectedVariation = { ...prevState.selectedVariation };
-        tempSelectedVariation.stock_status = tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempSelectedVariation.stock_status =
+          tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           selectedVariation: tempSelectedVariation,
@@ -19,7 +20,8 @@ const VariationModalQty = ({ cloneVariation, setCloneVariation }) => {
     } else {
       setCloneVariation((prevState) => {
         const tempProduct = { ...prevState.product };
-        tempProduct.stock_status = tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempProduct.stock_status =
+          tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           product: tempProduct,
@@ -37,7 +39,9 @@ const VariationModalQty = ({ cloneVariation, setCloneVariation }) => {
   };
   useEffect(() => {
     if (cartProducts.length > 0) {
-      const foundProduct = cartProducts.find((elem) => elem.product_id === cloneVariation?.product?.id);
+      const foundProduct = cartProducts.find(
+        (elem) => elem.product_id === cloneVariation?.product?.id
+      );
       if (foundProduct) {
         setCloneVariation({ ...cloneVariation, productQty: foundProduct?.quantity });
       } else {
@@ -48,13 +52,19 @@ const VariationModalQty = ({ cloneVariation, setCloneVariation }) => {
     }
   }, [cartProducts]);
   return (
-    <div className='qty-box cart_qty'>
-      <div className='input-group'>
-        <Btn type='button' className='btn qty-left-minus' onClick={() => updateQuantity(-1)}>
+    <div className="qty-box cart_qty">
+      <div className="input-group">
+        <Btn type="button" className="btn qty-left-minus" onClick={() => updateQuantity(-1)}>
           <RiSubtractLine />
         </Btn>
-        <Input className='form-control input-number qty-input' type='text' name='quantity' value={cloneVariation.productQty} readOnly />
-        <Btn type='button' className='btn qty-right-plus' onClick={() => updateQuantity(1)}>
+        <Input
+          className="form-control input-number qty-input"
+          type="text"
+          name="quantity"
+          value={cloneVariation.productQty}
+          readOnly
+        />
+        <Btn type="button" className="btn qty-right-plus" onClick={() => updateQuantity(1)}>
           <RiAddLine />
         </Btn>
       </div>

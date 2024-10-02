@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Col, Row } from "reactstrap";
-import SettingContext from "@/Helper/SettingContext";
-import defaultMaintenance from "../../../public/assets/images/vegetable/bg-img.jpg"
+import React, { useContext } from 'react';
+import { Col, Row } from 'reactstrap';
+import SettingContext from '@/Helper/SettingContext';
+import defaultMaintenance from '../../../public/assets/images/vegetable/bg-img.jpg';
 
 const MaintenanceComponent = () => {
   const { settingData } = useContext(SettingContext);
@@ -9,7 +9,9 @@ const MaintenanceComponent = () => {
   return (
     <section
       className="coming-soon-section pt-0"
-      style={{backgroundImage: `url(${settingData?.maintenance?.maintenance_image?.original_url ?? defaultMaintenance})`,}}
+      style={{
+        backgroundImage: `url(${settingData?.maintenance?.maintenance_image?.original_url ?? defaultMaintenance})`,
+      }}
     >
       <div className="bg-black"></div>
       <div className="container-fluid-lg w-100">
@@ -22,9 +24,7 @@ const MaintenanceComponent = () => {
                 <div className="coming-title">
                   <h2>{settingData?.maintenance?.title}</h2>
                 </div>
-                <p className="coming-text">
-                  {settingData?.maintenance?.description}
-                </p>
+                <p className="coming-text">{settingData?.maintenance?.description}</p>
               </div>
             </div>
           </Col>

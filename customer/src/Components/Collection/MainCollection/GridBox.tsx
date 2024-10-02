@@ -6,26 +6,47 @@ import listImage from '../../../../public/assets/svg/list.svg';
 
 const GridBox = ({ grid, setGrid }) => {
   return (
-    <div className='grid-option d-none d-md-block'>
+    <div className="grid-option d-none d-md-block">
       <ul>
         <li className={`three-grid ${grid == 3 ? 'active' : ''}`} onClick={() => setGrid(3)}>
           <a>
-            <Image src={gridImage3} alt='grid image' height={13} width={15} />
+            <Image src={gridImage3} alt="grid image" height={13} width={15} />
           </a>
         </li>
-        <li className={`grid-btn d-xxl-inline-block d-none ${grid == 4 ? 'active' : ''}`} onClick={() => setGrid(4)}>
+        <li
+          className={`grid-btn d-xxl-inline-block d-none ${grid == 4 ? 'active' : ''}`}
+          onClick={() => setGrid(4)}
+        >
           <a>
-            <Image src={gridImage4} className='d-lg-inline-block d-none' alt='grid image' height={12} width={20} />
+            <Image
+              src={gridImage4}
+              className="d-lg-inline-block d-none"
+              alt="grid image"
+              height={12}
+              width={20}
+            />
           </a>
         </li>
-        <li className={`grid-btn d-xxl-inline-block d-none ${grid == 5 ? 'active' : ''}`} onClick={() => setGrid(5)}>
+        <li
+          className={`grid-btn d-xxl-inline-block d-none ${grid == 5 ? 'active' : ''}`}
+          onClick={() => setGrid(5)}
+        >
           <a>
-            <Image src={gridImage5} className='d-lg-inline-block d-none' alt='grid image' height={12} width={20} />
+            <Image
+              src={gridImage5}
+              className="d-lg-inline-block d-none"
+              alt="grid image"
+              height={12}
+              width={20}
+            />
           </a>
         </li>
-        <li className={`list-btn ${grid == 'list' ? 'active' : ''}`} onClick={() => setGrid('list')}>
+        <li
+          className={`list-btn ${grid == 'list' ? 'active' : ''}`}
+          onClick={() => setGrid('list')}
+        >
           <a>
-            <Image src={listImage} alt='listImage' height={13} width={16} />
+            <Image src={listImage} alt="listImage" height={13} width={16} />
           </a>
         </li>
       </ul>

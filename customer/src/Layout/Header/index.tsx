@@ -1,13 +1,13 @@
-"use client";
-import I18NextContext from "@/Helper/I18NextContext";
-import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
-import { usePathname } from "next/navigation";
-import { useContext, useMemo } from "react";
-import { headerOptionsMap } from "../../../Data/LayoutData";
-import StandardHeader from "./StandardHeader";
-import MinimalHeader from "./MinimalHeader";
-import BasicHeader from "./BasicHeader";
-import ClassicHeader from "./ClassicHeader";
+'use client';
+import I18NextContext from '@/Helper/I18NextContext';
+import ThemeOptionContext from '@/Helper/ThemeOptionsContext';
+import { usePathname } from 'next/navigation';
+import { useContext, useMemo } from 'react';
+import { headerOptionsMap } from '../../../Data/LayoutData';
+import StandardHeader from './StandardHeader';
+import MinimalHeader from './MinimalHeader';
+import BasicHeader from './BasicHeader';
+import ClassicHeader from './ClassicHeader';
 
 const MainHeader = () => {
   const pathName = usePathname();

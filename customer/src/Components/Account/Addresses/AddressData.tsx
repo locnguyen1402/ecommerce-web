@@ -13,35 +13,42 @@ const AddressData = ({ addressState, setAddressState, modal, setModal, setEditAd
     setModal('');
   };
   return (
-    <Row className='g-sm-4 g-3'>
+    <Row className="g-sm-4 g-3">
       {addressState?.map((address, i) => (
         <Col xxl={4} xl={6} lg={12} md={6} key={i}>
-          <div className='address-box'>
+          <div className="address-box">
             <AddressTable address={address} />
-            <div className='button-group'>
+            <div className="button-group">
               <Btn
-                className='btn-sm add-button'
+                className="btn-sm add-button"
                 title={'Edit'}
                 onClick={() => {
                   setEditAddress(address);
                   setModal('edit');
-                }}>
+                }}
+              >
                 <RiEditBoxLine />
               </Btn>
               <Btn
-                className='btn-sm add-button'
+                className="btn-sm add-button"
                 title={'Remove'}
                 onClick={() => {
                   setDeleteId(address?.id);
                   setModal('remove');
-                }}>
+                }}
+              >
                 <RiDeleteBinLine />
               </Btn>
             </div>
           </div>
         </Col>
       ))}
-      <ConfirmDeleteModal modal={modal == 'remove'} setModal={setModal} confirmFunction={removeAddress} setDeleteId={setDeleteId} />
+      <ConfirmDeleteModal
+        modal={modal == 'remove'}
+        setModal={setModal}
+        confirmFunction={removeAddress}
+        setDeleteId={setDeleteId}
+      />
     </Row>
   );
 };

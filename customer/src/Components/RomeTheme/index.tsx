@@ -21,7 +21,11 @@ import Loader from '@/Layout/Loader';
 const RomeTheme = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
-  const { data, isLoading, refetch, fetchStatus } = useQuery(['rome'], () => request({ url: `${HomePageAPI}/rome` }), { enabled: false, refetchOnWindowFocus: false, select: (res) => res?.data });
+  const { data, isLoading, refetch, fetchStatus } = useQuery(
+    ['rome'],
+    () => request({ url: `${HomePageAPI}/rome` }),
+    { enabled: false, refetchOnWindowFocus: false, select: (res) => res?.data }
+  );
   useEffect(() => {
     document.documentElement.style.setProperty('--theme-color', '#0baf9a');
     refetch();
@@ -46,24 +50,50 @@ const RomeTheme = () => {
     <>
       {<RomeHomeBanner dataAPI={data?.content} />}
 
-      {data?.content?.categories_image_list?.status && <ShopCategory dataAPI={data?.content?.categories_image_list} />}
+      {data?.content?.categories_image_list?.status && (
+        <ShopCategory dataAPI={data?.content?.categories_image_list} />
+      )}
 
-      {data?.content?.value_banners?.status && data?.content?.value_banners?.banners?.length > 0 && <BestValueBanner dataAPI={data?.content?.value_banners} />}
+      {data?.content?.value_banners?.status &&
+        data?.content?.value_banners?.banners?.length > 0 && (
+          <BestValueBanner dataAPI={data?.content?.value_banners} />
+        )}
 
-      {data?.content?.categories_products?.status && data?.content?.categories_products?.category_ids.length > 0 && <FilterProduct dataAPI={data?.content?.categories_products} />}
+      {data?.content?.categories_products?.status &&
+        data?.content?.categories_products?.category_ids.length > 0 && (
+          <FilterProduct dataAPI={data?.content?.categories_products} />
+        )}
 
-      {data?.content?.two_column_banners?.status && <TwoBanner dataAPI={data?.content?.two_column_banners} />}
+      {data?.content?.two_column_banners?.status && (
+        <TwoBanner dataAPI={data?.content?.two_column_banners} />
+      )}
 
-      {data?.content?.slider_products?.status && <TopSelling dataAPI={data?.content?.slider_products} classes={{ boxClass: 'category-menu' }} />}
+      {data?.content?.slider_products?.status && (
+        <TopSelling
+          dataAPI={data?.content?.slider_products}
+          classes={{ boxClass: 'category-menu' }}
+        />
+      )}
 
-      {data?.content?.full_width_banner?.status && <RomeFullBanner dataAPI={data?.content?.full_width_banner} />}
+      {data?.content?.full_width_banner?.status && (
+        <RomeFullBanner dataAPI={data?.content?.full_width_banner} />
+      )}
 
-      {data?.content?.products_list_1?.status && data?.content?.products_list_1?.product_ids?.length > 0 && <TopProducts dataAPI={data?.content} />}
+      {data?.content?.products_list_1?.status &&
+        data?.content?.products_list_1?.product_ids?.length > 0 && (
+          <TopProducts dataAPI={data?.content} />
+        )}
 
-      {data?.content?.featured_blogs?.status && data?.content?.featured_blogs?.blog_ids?.length > 0 && <RomeFeatureBlog dataAPI={data?.content} />}
+      {data?.content?.featured_blogs?.status &&
+        data?.content?.featured_blogs?.blog_ids?.length > 0 && (
+          <RomeFeatureBlog dataAPI={data?.content} />
+        )}
 
-      {data?.content?.news_letter?.status && <RomeNewsLetter dataAPI={data?.content?.news_letter} />}
-      {themeOption?.general?.sticky_cart_enable && themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
+      {data?.content?.news_letter?.status && (
+        <RomeNewsLetter dataAPI={data?.content?.news_letter} />
+      )}
+      {themeOption?.general?.sticky_cart_enable &&
+        themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
     </>
   );
 };

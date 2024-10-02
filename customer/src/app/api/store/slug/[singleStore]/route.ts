@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import allStore from "../../store.json";
+import { NextResponse } from 'next/server';
+import allStore from '../../store.json';
 
 export async function GET(_, { params }) {
   const singleStore = params.singleStore;

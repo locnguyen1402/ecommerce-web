@@ -1,9 +1,7 @@
-import WalletContent from "@/Components/Account/Wallet"
+import WalletContent from '@/Components/Account/Wallet';
 
 const Wallet = () => {
-    return (
-        <WalletContent />
-    )
-}
+  return <WalletContent />;
+};
 
-export default Wallet
+export default Wallet;

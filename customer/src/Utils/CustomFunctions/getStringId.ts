@@ -1,5 +1,5 @@
 function getStringId(elem) {
-  return  Array.isArray(elem)
+  return Array.isArray(elem)
     ? String(
         elem
           .sort(function (a, b) {
@@ -12,7 +12,7 @@ function getStringId(elem) {
             return 0;
           })
           ?.map((item) => item.value)
-          .join("/"),
+          .join('/')
       )
     : String(elem?.value);
 }

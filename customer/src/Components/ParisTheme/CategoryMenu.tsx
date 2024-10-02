@@ -10,15 +10,21 @@ const CategoryMenu = ({ dataAPI }) => {
   const categoryData = filterCategory('product');
   const { i18Lang } = useContext(I18NextContext);
   return (
-    <div className='category-menu'>
+    <div className="category-menu">
       <h3>{dataAPI?.main_content?.sidebar?.categories_icon_list?.title}</h3>
       <ul>
         {categoryData
-          ?.filter((el) => dataAPI?.main_content?.sidebar?.categories_icon_list?.category_ids.includes(el.id))
+          ?.filter((el) =>
+            dataAPI?.main_content?.sidebar?.categories_icon_list?.category_ids.includes(el.id)
+          )
           ?.map((elem) => (
             <li key={elem.id}>
-              <div className='category-list'>
-                <Avatar data={elem?.category_icon} placeHolder={placeHolderImage} name={elem?.name} />
+              <div className="category-list">
+                <Avatar
+                  data={elem?.category_icon}
+                  placeHolder={placeHolderImage}
+                  name={elem?.name}
+                />
                 <h5>
                   <Link href={`/${i18Lang}/collections?category=${elem?.slug}`}>{elem?.name}</Link>
                 </h5>

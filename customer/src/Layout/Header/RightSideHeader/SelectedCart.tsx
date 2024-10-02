@@ -22,7 +22,9 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
   useEffect(() => {
     cartProducts?.filter((elem) => {
       if (elem?.variation) {
-        elem.variation.selected_variation = elem?.variation?.attribute_values?.map((values) => values?.value).join('/');
+        elem.variation.selected_variation = elem?.variation?.attribute_values
+          ?.map((values) => values?.value)
+          .join('/');
       } else {
         elem;
       }
@@ -30,31 +32,48 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
   }, [modal]);
   return (
     <>
-      <ul className='cart-list'>
+      <ul className="cart-list">
         {cartProducts.map((elem, i) => (
-          <li className='product-box-contain' key={i}>
-            <div className='drop-cart'>
-              <Link href={`/${i18Lang}/product/${elem?.product?.slug}`} className='drop-image'>
-                <Avatar data={elem?.variation?.variation_image ?? elem?.product?.product_thumbnail} placeHolder={placeHolderImage} name={elem?.product?.name} height={72} width={87} />
+          <li className="product-box-contain" key={i}>
+            <div className="drop-cart">
+              <Link href={`/${i18Lang}/product/${elem?.product?.slug}`} className="drop-image">
+                <Avatar
+                  data={elem?.variation?.variation_image ?? elem?.product?.product_thumbnail}
+                  placeHolder={placeHolderImage}
+                  name={elem?.product?.name}
+                  height={72}
+                  width={87}
+                />
               </Link>
 
-              <div className='drop-contain'>
+              <div className="drop-contain">
                 <Link href={`/${i18Lang}/product/${elem?.product?.slug}`}>
                   <h5>{elem?.variation?.name ?? elem?.product?.name}</h5>
                 </Link>
                 <h6>{convertCurrency(elem?.variation?.sale_price ?? elem?.product?.sale_price)}</h6>
-                {elem?.variation && <h5 className='gram'>{elem?.variation?.selected_variation ?? elem?.product?.selected_variation}</h5>}
+                {elem?.variation && (
+                  <h5 className="gram">
+                    {elem?.variation?.selected_variation ?? elem?.product?.selected_variation}
+                  </h5>
+                )}
                 <ul>
-                  <HandleQuantity productObj={elem?.product} elem={elem} customIcon={<RiDeleteBinLine />} />
+                  <HandleQuantity
+                    productObj={elem?.product}
+                    elem={elem}
+                    customIcon={<RiDeleteBinLine />}
+                  />
                 </ul>
                 <div>
-                  <div className='header-button-group'>
+                  <div className="header-button-group">
                     {elem?.variation && (
-                      <Btn className='edit-button close_button' onClick={() => onEdit(elem)}>
+                      <Btn className="edit-button close_button" onClick={() => onEdit(elem)}>
                         <RiPencilLine />
                       </Btn>
                     )}
-                    <Btn className='delete-button close_button' onClick={() => removeCart(elem?.product_id, elem?.id)}>
+                    <Btn
+                      className="delete-button close_button"
+                      onClick={() => removeCart(elem?.product_id, elem?.id)}
+                    >
                       <RiDeleteBinLine />
                     </Btn>
                   </div>

@@ -6,7 +6,10 @@ import { osakaCategoryOption } from '../../../Data/SliderSettingsData';
 const CategoryMenu = ({ dataAPI }) => {
   return (
     <WrapperComponent>
-      <ProductSection2 dataAPI={dataAPI} classes={{ link: 'category-box-2', sliderOption: osakaCategoryOption }} />
+      <ProductSection2
+        dataAPI={dataAPI}
+        classes={{ link: 'category-box-2', sliderOption: osakaCategoryOption }}
+      />
     </WrapperComponent>
   );
 };

@@ -4,7 +4,14 @@ import { useCustomSearchParams } from '@/Utils/Hooks/useCustomSearchParams';
 
 const CollectionAttributes = ({ attributeAPIData, filter, setFilter }) => {
   const router = useRouter();
-  const [category, price, rating, sortBy, field, layout] = useCustomSearchParams(['category', 'price', 'rating', 'sortBy', 'field', 'layout']);
+  const [category, price, rating, sortBy, field, layout] = useCustomSearchParams([
+    'category',
+    'price',
+    'rating',
+    'sortBy',
+    'field',
+    'layout',
+  ]);
   const pathname = usePathname();
   const checkAttribute = (slug) => {
     if (filter?.attribute?.indexOf(slug) != -1) {
@@ -26,10 +33,25 @@ const CollectionAttributes = ({ attributeAPIData, filter, setFilter }) => {
       };
     });
     if (temp.length > 0) {
-      const queryParams = new URLSearchParams({ ...category, ...price, ...rating, ...sortBy, ...field, ...layout, attribute: temp }).toString();
+      const queryParams = new URLSearchParams({
+        ...category,
+        ...price,
+        ...rating,
+        ...sortBy,
+        ...field,
+        ...layout,
+        attribute: temp,
+      }).toString();
       router.push(`${pathname}?${queryParams}`);
     } else {
-      const queryParams = new URLSearchParams({ ...category, ...price, ...rating, ...sortBy, ...field, ...layout }).toString();
+      const queryParams = new URLSearchParams({
+        ...category,
+        ...price,
+        ...rating,
+        ...sortBy,
+        ...field,
+        ...layout,
+      }).toString();
       router.push(`${pathname}?${queryParams}`);
     }
   };
@@ -44,13 +66,25 @@ const CollectionAttributes = ({ attributeAPIData, filter, setFilter }) => {
             {attribute?.attribute_values?.length > 0 &&
               attribute?.attribute_values.map((value, index) => (
                 <AccordionBody accordionId={(i + 2).toString()} key={index}>
-                  <ul className='category-list custom-padding'>
+                  <ul className="category-list custom-padding">
                     <li>
-                      <div className='form-check m-0 category-list-box'>
-                        <Input className='checkbox_animated' type='checkbox' value={value?.slug} id={value?.value} checked={checkAttribute(value?.slug)} onChange={applyAttribute} />
-                        <Label className='form-check-label color-label-box' htmlFor={value?.value}>
-                          {attribute?.style === 'color' && <div className='color-box' style={{ backgroundColor: value?.hex_color }}></div>}
-                          <span className='name'>{value?.value}</span>
+                      <div className="form-check m-0 category-list-box">
+                        <Input
+                          className="checkbox_animated"
+                          type="checkbox"
+                          value={value?.slug}
+                          id={value?.value}
+                          checked={checkAttribute(value?.slug)}
+                          onChange={applyAttribute}
+                        />
+                        <Label className="form-check-label color-label-box" htmlFor={value?.value}>
+                          {attribute?.style === 'color' && (
+                            <div
+                              className="color-box"
+                              style={{ backgroundColor: value?.hex_color }}
+                            ></div>
+                          )}
+                          <span className="name">{value?.value}</span>
                         </Label>
                       </div>
                     </li>

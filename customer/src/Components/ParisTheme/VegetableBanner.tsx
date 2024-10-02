@@ -12,29 +12,69 @@ const VegetableBanner = ({ dataAPI }) => {
     return 'product/' + product?.slug;
   };
   return (
-    <div className='section-t-space'>
-      {dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type === 'external_url' ? (
-        <Link href={dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link || '/'} target='_blank'>
-          <div className='banner-contain hover-effect'>
-            <Image src={dataAPI?.main_content?.section8_full_width_banner?.image_url} className='img-fluid' alt='banner' width={1182} height={249} />
+    <div className="section-t-space">
+      {dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type ===
+      'external_url' ? (
+        <Link
+          href={dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link || '/'}
+          target="_blank"
+        >
+          <div className="banner-contain hover-effect">
+            <Image
+              src={dataAPI?.main_content?.section8_full_width_banner?.image_url}
+              className="img-fluid"
+              alt="banner"
+              width={1182}
+              height={249}
+            />
           </div>
         </Link>
-      ) : dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type === 'collection' ? (
-        <Link href={`/${i18Lang}/collections?category=${dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link}` || '/'}>
-          <div className='banner-contain hover-effect'>
-            <Image src={dataAPI?.main_content?.section8_full_width_banner?.image_url} className='img-fluid' alt='banner' width={1182} height={249} />
+      ) : dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type ===
+        'collection' ? (
+        <Link
+          href={
+            `/${i18Lang}/collections?category=${dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link}` ||
+            '/'
+          }
+        >
+          <div className="banner-contain hover-effect">
+            <Image
+              src={dataAPI?.main_content?.section8_full_width_banner?.image_url}
+              className="img-fluid"
+              alt="banner"
+              width={1182}
+              height={249}
+            />
           </div>
         </Link>
-      ) : dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type === 'product' ? (
-        <Link href={`/${i18Lang}/${redirectToProduct(dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link)}` || '/'}>
-          <div className='banner-contain hover-effect'>
-            <Image src={dataAPI?.main_content?.section8_full_width_banner?.image_url} className='img-fluid' alt='banner' width={1182} height={249} />
+      ) : dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link_type ===
+        'product' ? (
+        <Link
+          href={
+            `/${i18Lang}/${redirectToProduct(dataAPI?.main_content?.section8_full_width_banner?.redirect_link?.link)}` ||
+            '/'
+          }
+        >
+          <div className="banner-contain hover-effect">
+            <Image
+              src={dataAPI?.main_content?.section8_full_width_banner?.image_url}
+              className="img-fluid"
+              alt="banner"
+              width={1182}
+              height={249}
+            />
           </div>
         </Link>
       ) : (
-        <div className='banner-contain hover-effect'>
-          <div className='banner-contain hover-effect'>
-            <Image src={dataAPI?.main_content?.section8_full_width_banner?.image_url} className='img-fluid' alt='banner' width={1182} height={249} />
+        <div className="banner-contain hover-effect">
+          <div className="banner-contain hover-effect">
+            <Image
+              src={dataAPI?.main_content?.section8_full_width_banner?.image_url}
+              className="img-fluid"
+              alt="banner"
+              width={1182}
+              height={249}
+            />
           </div>
         </div>
       )}

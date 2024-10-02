@@ -13,10 +13,27 @@ import CollectionNoSidebar from './CollectionNoSidebar';
 import Loader from '@/Layout/Loader';
 
 const CollectionContain = () => {
-  const [filter, setFilter] = useState({ category: [], price: [], attribute: [], rating: [], sortBy: '', field: '' });
+  const [filter, setFilter] = useState({
+    category: [],
+    price: [],
+    attribute: [],
+    rating: [],
+    sortBy: '',
+    field: '',
+  });
   const { themeOption, isLoading } = useContext(ThemeOptionContext);
-  const [category, attribute, price, rating, sortBy, field, layout] = useCustomSearchParams(['category', 'attribute', 'price', 'rating', 'sortBy', 'field', 'layout']);
-  const collectionLayout = layout?.layout ? layout?.layout : themeOption?.collection?.collection_layout;
+  const [category, attribute, price, rating, sortBy, field, layout] = useCustomSearchParams([
+    'category',
+    'attribute',
+    'price',
+    'rating',
+    'sortBy',
+    'field',
+    'layout',
+  ]);
+  const collectionLayout = layout?.layout
+    ? layout?.layout
+    : themeOption?.collection?.collection_layout;
   useEffect(() => {
     setFilter((prev) => {
       return {

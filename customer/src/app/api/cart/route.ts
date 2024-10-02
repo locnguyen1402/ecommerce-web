@@ -1,6 +1,6 @@
-import cart from './cart.json'
-import { NextResponse } from "next/server";
+import cart from './cart.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(cart)
+  return NextResponse.json(cart);
 }

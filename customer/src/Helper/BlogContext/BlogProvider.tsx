@@ -8,7 +8,15 @@ const BlogProvider = (props) => {
   const [blogState, setBlogState] = useState([]);
   const [blogParams, setBlogParams] = useState('');
 
-  const { data: BlogData, isLoading, refetch } = useQuery([BlogAPI], () => request({ url: BlogAPI }), { enabled: true, refetchOnWindowFocus: false, select: (res) => res?.data?.data });
+  const {
+    data: BlogData,
+    isLoading,
+    refetch,
+  } = useQuery([BlogAPI], () => request({ url: BlogAPI }), {
+    enabled: true,
+    refetchOnWindowFocus: false,
+    select: (res) => res?.data?.data,
+  });
 
   useEffect(() => {
     BlogData && setBlogState(BlogData);
@@ -20,7 +28,18 @@ const BlogProvider = (props) => {
 
   return (
     <>
-      <BlogContext.Provider value={{ handleSetQueryParams, blogParams, blogState, setBlogParams, blogContextLoader: isLoading, ...props }}>{props.children}</BlogContext.Provider>
+      <BlogContext.Provider
+        value={{
+          handleSetQueryParams,
+          blogParams,
+          blogState,
+          setBlogParams,
+          blogContextLoader: isLoading,
+          ...props,
+        }}
+      >
+        {props.children}
+      </BlogContext.Provider>
     </>
   );
 };

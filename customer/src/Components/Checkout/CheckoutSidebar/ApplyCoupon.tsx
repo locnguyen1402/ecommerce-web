@@ -24,23 +24,31 @@ const ApplyCoupon = ({ setFieldValue, setStoreCoupon, storeCoupon }) => {
   return (
     <>
       {appliedCoupon == 'applied' ? (
-        <li className='coupon-sec'>
-          <div className='apply-sec mb-3'>
+        <li className="coupon-sec">
+          <div className="apply-sec mb-3">
             <div>
-              <Image src={OfferImage} className='img-fluid' height={20} width={20} alt='offer' />
+              <Image src={OfferImage} className="img-fluid" height={20} width={20} alt="offer" />
               <h4>
-                {t('Yousaved')} <span>{convertCurrency(10)}</span> {t('withthiscode')} 🎉 <p>{t('CouponApplied')}</p>
+                {t('Yousaved')} <span>{convertCurrency(10)}</span> {t('withthiscode')} 🎉{' '}
+                <p>{t('CouponApplied')}</p>
               </h4>
             </div>
             <a onClick={() => removeCoupon()}>{t('Remove')}</a>
           </div>
         </li>
       ) : (
-        <li className='coupon-sec'>
-          <div className='coupon-box mt-2 mb-3 d-flex w-100'>
-            <div className='input-group'>
-              <Input type='text' placeholder={t('EnterCoupon')} onChange={(e) => onCouponApply(e.target.value)} />
-              <Btn className='btn-apply' onClick={() => storeCoupon !== '' && setAppliedCoupon('applied')}>
+        <li className="coupon-sec">
+          <div className="coupon-box mt-2 mb-3 d-flex w-100">
+            <div className="input-group">
+              <Input
+                type="text"
+                placeholder={t('EnterCoupon')}
+                onChange={(e) => onCouponApply(e.target.value)}
+              />
+              <Btn
+                className="btn-apply"
+                onClick={() => storeCoupon !== '' && setAppliedCoupon('applied')}
+              >
                 {t('Apply')}
               </Btn>
             </div>

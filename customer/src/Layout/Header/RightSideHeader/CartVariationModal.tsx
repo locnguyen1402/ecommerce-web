@@ -15,12 +15,20 @@ const CartVariationModal = ({ modal, setModal, selectedVariation = {} }) => {
   const { replaceCart } = useContext(CartContext);
   const { t } = useTranslation(i18Lang, 'common');
 
-  const productInStock = cloneVariation?.selectedVariation ? cloneVariation?.selectedVariation?.stock_status == 'in_stock' : cloneVariation?.product?.stock_status == 'in_stock';
+  const productInStock = cloneVariation?.selectedVariation
+    ? cloneVariation?.selectedVariation?.stock_status == 'in_stock'
+    : cloneVariation?.product?.stock_status == 'in_stock';
 
   // Setting Selected Variation In Clone State
   useEffect(() => {
     setCloneVariation((prev) => {
-      return { ...selectedVariation, attributeValues: [], selectedVariation: '', variantIds: [], productQty: selectedVariation?.quantity };
+      return {
+        ...selectedVariation,
+        attributeValues: [],
+        selectedVariation: '',
+        variantIds: [],
+        productQty: selectedVariation?.quantity,
+      };
     });
   }, [selectedVariation, modal]);
 
@@ -38,7 +46,8 @@ const CartVariationModal = ({ modal, setModal, selectedVariation = {} }) => {
     if (cloneVariation?.selectedVariation) {
       setCloneVariation((prevState) => {
         const tempSelectedVariation = { ...prevState.selectedVariation };
-        tempSelectedVariation.stock_status = tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempSelectedVariation.stock_status =
+          tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           selectedVariation: tempSelectedVariation,
@@ -47,7 +56,8 @@ const CartVariationModal = ({ modal, setModal, selectedVariation = {} }) => {
     } else {
       setCloneVariation((prevState) => {
         const tempProduct = { ...prevState.product };
-        tempProduct.stock_status = tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempProduct.stock_status =
+          tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           product: tempProduct,
@@ -64,27 +74,48 @@ const CartVariationModal = ({ modal, setModal, selectedVariation = {} }) => {
     }, 0);
   };
   return (
-    <CustomModal modal={modal ? true : false} setModal={setModal} classes={{ modalClass: 'modal-md theme-modal variation-modal', modalHeaderClass: 'p-0' }}>
-      <div className='right-box-contain'>
+    <CustomModal
+      modal={modal ? true : false}
+      setModal={setModal}
+      classes={{ modalClass: 'modal-md theme-modal variation-modal', modalHeaderClass: 'p-0' }}
+    >
+      <div className="right-box-contain">
         <CartVariationNameDetails cloneVariation={cloneVariation} />
-        {cloneVariation?.product && modal && <ProductAttribute productState={cloneVariation} setProductState={setCloneVariation} selectedVariation={selectedVariation} />}
-        <div className='note-box product-package'>
-          <div className='cart_qty qty-box product-qty'>
+        {cloneVariation?.product && modal && (
+          <ProductAttribute
+            productState={cloneVariation}
+            setProductState={setCloneVariation}
+            selectedVariation={selectedVariation}
+          />
+        )}
+        <div className="note-box product-package">
+          <div className="cart_qty qty-box product-qty">
             <InputGroup>
-              <Btn type='button' className='qty-left-minus' onClick={() => updateQuantity(-1)}>
+              <Btn type="button" className="qty-left-minus" onClick={() => updateQuantity(-1)}>
                 <RiSubtractLine />
               </Btn>
-              <Input className='form-control input-number qty-input' type='text' name='quantity' value={cloneVariation?.productQty} readOnly />
-              <Btn type='button' className='qty-right-plus' onClick={() => updateQuantity(1)}>
+              <Input
+                className="form-control input-number qty-input"
+                type="text"
+                name="quantity"
+                value={cloneVariation?.productQty}
+                readOnly
+              />
+              <Btn type="button" className="qty-right-plus" onClick={() => updateQuantity(1)}>
                 <RiAddLine />
               </Btn>
             </InputGroup>
           </div>
           <Btn
-            className='btn btn-md cart-button scroll-button text-white'
-            disabled={(cloneVariation?.selectedVariation && cloneVariation?.selectedVariation?.stock_status !== 'in_stock') || (cloneVariation?.product?.stock_status !== 'in_stock' && true)}
-            onClick={() => updateCart(cloneVariation.product)}>
-            <RiShoppingCartLine className='me-1' />
+            className="btn btn-md cart-button scroll-button text-white"
+            disabled={
+              (cloneVariation?.selectedVariation &&
+                cloneVariation?.selectedVariation?.stock_status !== 'in_stock') ||
+              (cloneVariation?.product?.stock_status !== 'in_stock' && true)
+            }
+            onClick={() => updateCart(cloneVariation.product)}
+          >
+            <RiShoppingCartLine className="me-1" />
             <span>{productInStock ? t('UpdateCart') : t('SoldOut')}</span>
           </Btn>
         </div>

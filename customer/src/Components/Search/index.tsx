@@ -16,14 +16,20 @@ const SearchModule = () => {
   const { t } = useTranslation(i18Lang, 'common');
   const [searchState, setSearchState] = useState('');
   const router = useRouter();
-   const searchParams = useSearchParams()
-   const search = searchParams.get('search')
-   const { productData } = useContext(ProductContext);
-   const [data,setData]=useState([])
-   useEffect(() => {
-    search ? setData(productData?.filter(product => product.name.toLowerCase().includes(search?.toLowerCase()))) : setData(productData)
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search');
+  const { productData } = useContext(ProductContext);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    search
+      ? setData(
+          productData?.filter((product) =>
+            product.name.toLowerCase().includes(search?.toLowerCase())
+          )
+        )
+      : setData(productData);
     setSearchState(search);
-  }, [search,productData]);
+  }, [search, productData]);
   const onHandleSearch = () => {
     router.push(`/${i18Lang}/search?search=${searchState}`);
   };
@@ -36,18 +42,31 @@ const SearchModule = () => {
   return (
     <>
       <Breadcrumb title={'Search'} subNavigation={[{ name: 'Search' }]} />
-      <WrapperComponent classes={{ sectionClass: 'search-section', col: 'mx-auto' }} colProps={{ xxl: 6, xl: 8 }}>
-        <div className='title d-block text-center'>
+      <WrapperComponent
+        classes={{ sectionClass: 'search-section', col: 'mx-auto' }}
+        colProps={{ xxl: 6, xl: 8 }}
+      >
+        <div className="title d-block text-center">
           <h2>{t('Searchforproducts')}</h2>
-          <span className='title-leaf'>
+          <span className="title-leaf">
             <LeafSVG />
           </span>
         </div>
 
-        <div className='search-box'>
+        <div className="search-box">
           <InputGroup>
-            <Input type='text' className='form-control' value={searchState} onChange={(e) => onChangeHandler(e.target.value)} />
-            <Btn className='theme-bg-color text-white m-0' type='button' title='Search' onClick={onHandleSearch} />
+            <Input
+              type="text"
+              className="form-control"
+              value={searchState}
+              onChange={(e) => onChangeHandler(e.target.value)}
+            />
+            <Btn
+              className="theme-bg-color text-white m-0"
+              type="button"
+              title="Search"
+              onClick={onHandleSearch}
+            />
           </InputGroup>
         </div>
       </WrapperComponent>

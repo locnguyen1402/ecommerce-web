@@ -10,17 +10,25 @@ const ProductTab = ({ activeTab, filterCategoryData }) => {
     if (productData?.length > 0) {
       setFilterData(
         productData
-          ?.filter((product) => product?.categories?.map((category) => category.id).includes(filterCategoryData[activeTab - 1]?.id))
+          ?.filter((product) =>
+            product?.categories
+              ?.map((category) => category.id)
+              .includes(filterCategoryData[activeTab - 1]?.id)
+          )
           ?.map((product) => product)
-          .slice(0, 5),
+          .slice(0, 5)
       );
     }
   }, [productData, filterCategoryData[activeTab - 1]?.id]);
   return (
     <TabContent>
       <TabPane>
-        <Row className='g-8'>
-          <ProductSection1 ProductData={filterData} classObj={{ productStyle: 'product-standard', productBoxClass: 'product-box-bg' }} isHeadingVisible={false} />
+        <Row className="g-8">
+          <ProductSection1
+            ProductData={filterData}
+            classObj={{ productStyle: 'product-standard', productBoxClass: 'product-box-bg' }}
+            isHeadingVisible={false}
+          />
         </Row>
       </TabPane>
     </TabContent>

@@ -12,15 +12,40 @@ import { ModifyString } from '@/Utils/CustomFunctions/ModifyString';
 import Loader from '@/Layout/Loader';
 
 const SingleStoreDetail = ({ params }) => {
-  const { data: StoreData, isLoading, refetch } = useQuery([params], () => request({ url: `${StoreAPI}/slug/${params}` }), { enabled: false, refetchOnWindowFocus: false, select: (res) => res?.data });
+  const {
+    data: StoreData,
+    isLoading,
+    refetch,
+  } = useQuery([params], () => request({ url: `${StoreAPI}/slug/${params}` }), {
+    enabled: false,
+    refetchOnWindowFocus: false,
+    select: (res) => res?.data,
+  });
   useEffect(() => {
     params && refetch();
   }, [params]);
 
-  const [filter, setFilter] = useState({ category: [], price: [], attribute: [], rating: [], sortBy: '', field: '' });
+  const [filter, setFilter] = useState({
+    category: [],
+    price: [],
+    attribute: [],
+    rating: [],
+    sortBy: '',
+    field: '',
+  });
   const { themeOption } = useContext(ThemeOptionContext);
-  const [category, attribute, price, rating, sortBy, field, layout] = useCustomSearchParams(['category', 'attribute', 'price', 'rating', 'sortBy', 'field', 'layout']);
-  const sellerDetailLayout = layout?.layout ? layout?.layout : themeOption?.collection?.collection_layout;
+  const [category, attribute, price, rating, sortBy, field, layout] = useCustomSearchParams([
+    'category',
+    'attribute',
+    'price',
+    'rating',
+    'sortBy',
+    'field',
+    'layout',
+  ]);
+  const sellerDetailLayout = layout?.layout
+    ? layout?.layout
+    : themeOption?.collection?.collection_layout;
 
   useEffect(() => {
     setFilter((prev) => {
@@ -39,7 +64,10 @@ const SingleStoreDetail = ({ params }) => {
   if (isLoading) return <Loader />;
   return (
     <>
-      <Breadcrumb title={storeName} subNavigation={[{ name: 'SellerStores' }, { name: storeName }]} />
+      <Breadcrumb
+        title={storeName}
+        subNavigation={[{ name: 'SellerStores' }, { name: storeName }]}
+      />
       {sellerDetailLayout == 'basic_store_details' ? (
         <SellerDetailBasic filter={filter} setFilter={setFilter} StoreData={StoreData} />
       ) : sellerDetailLayout == 'classic_store_details' ? (

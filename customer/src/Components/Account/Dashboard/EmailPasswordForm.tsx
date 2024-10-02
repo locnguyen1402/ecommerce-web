@@ -14,12 +14,37 @@ const EmailPasswordForm = ({ isLoading, setModal }) => {
     <Row>
       <SimpleInputField
         nameList={[
-          { name: 'name', placeholder: t('EnterName'), toplabel: 'Name', colprops: { xs: 12 }, require: 'true' },
-          { name: 'email', placeholder: t('EnterEmailAddress'), toplabel: 'Email', disabled: true, colprops: { xs: 12 }, require: 'true' },
+          {
+            name: 'name',
+            placeholder: t('EnterName'),
+            toplabel: 'Name',
+            colprops: { xs: 12 },
+            require: 'true',
+          },
+          {
+            name: 'email',
+            placeholder: t('EnterEmailAddress'),
+            toplabel: 'Email',
+            disabled: true,
+            colprops: { xs: 12 },
+            require: 'true',
+          },
         ]}
       />
-      <div className='country-input'>
-        <SimpleInputField nameList={[{ name: 'phone', type: 'number', placeholder: t('EnterPhoneNumber'), require: 'true', toplabel: 'Phone', colprops: { xs: 12 }, colclass: 'country-input-box' }]} />
+      <div className="country-input">
+        <SimpleInputField
+          nameList={[
+            {
+              name: 'phone',
+              type: 'number',
+              placeholder: t('EnterPhoneNumber'),
+              require: 'true',
+              toplabel: 'Phone',
+              colprops: { xs: 12 },
+              colclass: 'country-input-box',
+            },
+          ]}
+        />
         <SearchableSelectInput
           nameList={[
             {
@@ -35,9 +60,18 @@ const EmailPasswordForm = ({ isLoading, setModal }) => {
         />
       </div>
       <Col xs={12}>
-        <ModalFooter className='ms-auto justify-content-end save-back-button pt-0'>
-          <Btn className='btn btn-md btn-theme-outline fw-bold' title='Cancel' onClick={() => setModal(false)} />
-          <Btn className='btn-md fw-bold text-light theme-bg-color' type='submit' title='Submit' loading={Number(isLoading)} />
+        <ModalFooter className="ms-auto justify-content-end save-back-button pt-0">
+          <Btn
+            className="btn btn-md btn-theme-outline fw-bold"
+            title="Cancel"
+            onClick={() => setModal(false)}
+          />
+          <Btn
+            className="btn-md fw-bold text-light theme-bg-color"
+            type="submit"
+            title="Submit"
+            loading={Number(isLoading)}
+          />
         </ModalFooter>
       </Col>
     </Row>

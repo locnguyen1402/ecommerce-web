@@ -40,25 +40,40 @@ const BankDetailForm = () => {
         }}
         onSubmit={(values) => {
           // Add Account Details Here
-        }}>
-        <Form className='themeform-auth'>
-          <AccountHeading title='BankDetails' />
+        }}
+      >
+        <Form className="themeform-auth">
+          <AccountHeading title="BankDetails" />
           <SimpleInputField
             nameList={[
-              { name: 'bank_account_no', placeholder: t('EnterBankAccountNo'), type: 'number', title: 'BankAccountNo' },
+              {
+                name: 'bank_account_no',
+                placeholder: t('EnterBankAccountNo'),
+                type: 'number',
+                title: 'BankAccountNo',
+              },
               { name: 'bank_name', placeholder: t('EnterBankName'), title: 'BankName' },
               { name: 'bank_holder_name', placeholder: t('EnterHolderName'), title: 'HolderName' },
               { name: 'swift', placeholder: t('EnterSwift'), title: 'Swift' },
               { name: 'ifsc', placeholder: t('EnterIFSC'), title: 'IFSC' },
             ]}
           />
-          <AccountHeading title='PayPalDetails' />
-          <SimpleInputField nameList={[{ name: 'paypal_email', type: 'email', placeholder: t('EnterPaypalEmail'), title: 'PaypalEmail' }]} />
-          <div className='text-end'>
-            <Btn className='theme-bg-color btn-md d-inline-block text-light' title='Save' ></Btn>
+          <AccountHeading title="PayPalDetails" />
+          <SimpleInputField
+            nameList={[
+              {
+                name: 'paypal_email',
+                type: 'email',
+                placeholder: t('EnterPaypalEmail'),
+                title: 'PaypalEmail',
+              },
+            ]}
+          />
+          <div className="text-end">
+            <Btn className="theme-bg-color btn-md d-inline-block text-light" title="Save"></Btn>
           </div>
         </Form>
-      </Formik >
+      </Formik>
     </>
   );
 };

@@ -8,7 +8,14 @@ const RomeFeatureBlog = ({ dataAPI }) => {
   return (
     <WrapperComponent classes={{ sectionClass: '' }}>
       <CustomHeading title={dataAPI?.featured_blogs?.title} />
-      <FeatureBlog dataAPI={dataAPI?.featured_blogs} classes={{ sliderClass: 'slider-3 arrow-slider', sliderOption: romeBlogSliderOption, ratioClass: 'ratio_65' }} />
+      <FeatureBlog
+        dataAPI={dataAPI?.featured_blogs}
+        classes={{
+          sliderClass: 'slider-3 arrow-slider',
+          sliderOption: romeBlogSliderOption,
+          ratioClass: 'ratio_65',
+        }}
+      />
     </WrapperComponent>
   );
 };

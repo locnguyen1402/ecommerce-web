@@ -15,13 +15,13 @@ const RightSideHeader = ({ noContactUs, wishListIcon }) => {
   const { cartCanvas, setCartCanvas } = useContext(ThemeOptionContext);
 
   return (
-    <div className='rightside-box'>
+    <div className="rightside-box">
       <ResponsiveSearch />
-      <ul className='right-side-menu'>
-        <li className='right-side'>
-          <div className='delivery-login-box'>
-            <div className='delivery-icon'>
-              <div className='search-box' onClick={() => router.push(`/${i18Lang}/search`)}>
+      <ul className="right-side-menu">
+        <li className="right-side">
+          <div className="delivery-login-box">
+            <div className="delivery-icon">
+              <div className="search-box" onClick={() => router.push(`/${i18Lang}/search`)}>
                 <RiSearchLine />
               </div>
             </div>
@@ -32,7 +32,10 @@ const RightSideHeader = ({ noContactUs, wishListIcon }) => {
         <HeaderCart />
         <HeaderProfile />
       </ul>
-      <div className={`bg-overlay  ${cartCanvas ? 'show' : ''}`} onClick={() => setCartCanvas((prev) => !prev)} />
+      <div
+        className={`bg-overlay  ${cartCanvas ? 'show' : ''}`}
+        onClick={() => setCartCanvas((prev) => !prev)}
+      />
     </div>
   );
 };

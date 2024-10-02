@@ -32,26 +32,39 @@ const BlogCard = () => {
     data: BlogData,
     isLoading,
     refetch,
-  } = useQuery([BlogAPI, querySearchCategory, querySearchTag], () => request({ url: BlogAPI, params: { page, category: querySearchCategory ?? '', tag: querySearchTag ?? '' } }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  } = useQuery(
+    [BlogAPI, querySearchCategory, querySearchTag],
+    () =>
+      request({
+        url: BlogAPI,
+        params: { page, category: querySearchCategory ?? '', tag: querySearchTag ?? '' },
+      }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   useEffect(() => {
     refetch();
   }, [page, querySearchCategory, querySearchTag]);
   return (
     <>
-      <Col {...styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.colClass} className={styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.class || ''}>
+      <Col
+        {...styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.colClass}
+        className={styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.class || ''}
+      >
         {isLoading ? (
           <BlogSkeletonComponent queryBoxStyle={queryBoxStyle} />
         ) : (
           <Row className={`g-4 `}>
             {BlogData?.data?.map((blog, i) => (
               <Col {...styleObj[queryBoxStyle ?? themeOption?.blog?.blog_style]?.colClass} key={i}>
-                <div className={`blog-box ${blog?.is_sticky === 1 ? 'sticky-blog-box' : ''} ${styleObj[queryBoxStyle ?? themeOption?.blog?.blog_style]?.class}`}>
+                <div
+                  className={`blog-box ${blog?.is_sticky === 1 ? 'sticky-blog-box' : ''} ${styleObj[queryBoxStyle ?? themeOption?.blog?.blog_style]?.class}`}
+                >
                   {blog?.is_featured ? (
-                    <div className='blog-label-tag'>
+                    <div className="blog-label-tag">
                       <span>{t('Featured')}</span>
                     </div>
                   ) : null}
@@ -62,8 +75,13 @@ const BlogCard = () => {
           </Row>
         )}
         {BlogData?.data.length > 0 && (
-          <nav className='custome-pagination'>
-            <Pagination current_page={BlogData?.current_page} total={BlogData?.total} per_page={BlogData?.per_page} setPage={setPage} />
+          <nav className="custome-pagination">
+            <Pagination
+              current_page={BlogData?.current_page}
+              total={BlogData?.total}
+              per_page={BlogData?.per_page}
+              setPage={setPage}
+            />
           </nav>
         )}
       </Col>

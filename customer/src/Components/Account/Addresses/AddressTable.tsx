@@ -6,20 +6,21 @@ const AddressTable = ({ address }) => {
   const { accountData } = useContext(AccountContext);
   return (
     <div>
-      <div className='label'>
+      <div className="label">
         <label>{address?.title}</label>
       </div>
-      <div className='table-responsive address-table'>
+      <div className="table-responsive address-table">
         <Table>
           <tbody>
             <tr>
-              <td colSpan='2'>{accountData?.name}</td>
+              <td colSpan="2">{accountData?.name}</td>
             </tr>
             <tr>
               <td>Address :</td>
               <td>
                 <p>
-                  {address?.street}, {address?.city}, {address?.state?.name},{address?.country?.name}
+                  {address?.street}, {address?.city}, {address?.state?.name},
+                  {address?.country?.name}
                 </p>
               </td>
             </tr>

@@ -1,6 +1,6 @@
-import ParisTheme from '@/Components/ParisTheme'
+import ParisTheme from '@/Components/ParisTheme';
 const Home = () => {
-    return <ParisTheme />
-}
+  return <ParisTheme />;
+};
 
-export default Home
+export default Home;

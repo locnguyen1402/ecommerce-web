@@ -16,7 +16,12 @@ const BerlinSection = ({ dataAPI }) => {
 
       {dataAPI?.product_list_1?.status && dataAPI?.product_list_1?.product_ids?.length > 0 && (
         <WrapperComponent>
-          <ProductSection4 dataAPI={dataAPI?.product_list_1} ProductData={filteredProduct} svgUrl={<LeafSVG className='icon-width' />} customClass='title' />
+          <ProductSection4
+            dataAPI={dataAPI?.product_list_1}
+            ProductData={filteredProduct}
+            svgUrl={<LeafSVG className="icon-width" />}
+            customClass="title"
+          />
         </WrapperComponent>
       )}
     </>

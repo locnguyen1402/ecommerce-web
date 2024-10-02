@@ -1,17 +1,17 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 export const ToastNotification = (type, message) => {
   switch (type) {
-    case "success":
+    case 'success':
       toast.success(message);
       break;
-    case "error":
-      toast.error(message || "Something went wrong , check api integration");
+    case 'error':
+      toast.error(message || 'Something went wrong , check api integration');
       break;
-    case "warn":
+    case 'warn':
       toast.warn(message);
       break;
-    case "info":
+    case 'info':
       toast.info(message);
       break;
     default:

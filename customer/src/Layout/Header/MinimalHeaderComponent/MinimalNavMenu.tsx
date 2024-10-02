@@ -13,21 +13,35 @@ const MinimalNavMenu = () => {
   const { mobileSideBar, setMobileSideBar } = useContext(ThemeOptionContext);
 
   return (
-    <div className='main-nav nav-left-align'>
-      <div className='main-nav navbar navbar-expand-xl navbar-light navbar-sticky p-0'>
-        <div className={`offcanvas offcanvas-collapse order-xl-2 ${mobileSideBar ? 'show' : ''}`} id='primaryMenu'>
-          <div className='offcanvas-header navbar-shadow'>
+    <div className="main-nav nav-left-align">
+      <div className="main-nav navbar navbar-expand-xl navbar-light navbar-sticky p-0">
+        <div
+          className={`offcanvas offcanvas-collapse order-xl-2 ${mobileSideBar ? 'show' : ''}`}
+          id="primaryMenu"
+        >
+          <div className="offcanvas-header navbar-shadow">
             <h5>{t('Menu')}</h5>
-            <Btn className='btn-close lead' type='button' onClick={() => setMobileSideBar(!mobileSideBar)}><RiCloseLine /></Btn>
+            <Btn
+              className="btn-close lead"
+              type="button"
+              onClick={() => setMobileSideBar(!mobileSideBar)}
+            >
+              <RiCloseLine />
+            </Btn>
           </div>
-          <div className='offcanvas-body'>
+          <div className="offcanvas-body">
             <MainHeaderMenu />
           </div>
         </div>
-        {mobileSideBar && <div className={"offcanvas-backdrop fade show"} onClick={() => setMobileSideBar(!mobileSideBar)} />}
-      </div >
+        {mobileSideBar && (
+          <div
+            className={'offcanvas-backdrop fade show'}
+            onClick={() => setMobileSideBar(!mobileSideBar)}
+          />
+        )}
+      </div>
       <MinimalRightSidebar />
-    </div >
+    </div>
   );
 };
 

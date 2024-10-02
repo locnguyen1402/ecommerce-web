@@ -14,8 +14,16 @@ const FilterProduct = ({ dataAPI }) => {
   }, [categoryData, dataAPI]);
   return (
     <WrapperComponent classes={{ sectionClass: 'product-section' }}>
-      <ProductNavLink setActiveTab={setActiveTab} activeTab={activeTab} filterCategoryData={filterCategoryData} dataAPI={dataAPI} />
-      <ProductTab activeTab={typeof activeTab == 'object' ? activeTab?.id : activeTab} filterCategoryData={filterCategoryData} />
+      <ProductNavLink
+        setActiveTab={setActiveTab}
+        activeTab={activeTab}
+        filterCategoryData={filterCategoryData}
+        dataAPI={dataAPI}
+      />
+      <ProductTab
+        activeTab={typeof activeTab == 'object' ? activeTab?.id : activeTab}
+        filterCategoryData={filterCategoryData}
+      />
     </WrapperComponent>
   );
 };

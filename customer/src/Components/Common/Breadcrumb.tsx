@@ -11,17 +11,17 @@ const Breadcrumb = ({ title, subNavigation }) => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <WrapperComponent classes={{ sectionClass: 'breadscrumb-section pt-0' }} colProps={{ md: 12 }}>
-      <div className='breadscrumb-contain'>
+      <div className="breadscrumb-contain">
         <h2>{t(title)}</h2>
         <nav>
-          <ol className='breadcrumb mb-0'>
-            <li className='breadcrumb-item'>
-              <Link href='/'>
+          <ol className="breadcrumb mb-0">
+            <li className="breadcrumb-item">
+              <Link href="/">
                 <RiHome3Fill />
               </Link>
             </li>
             {subNavigation?.map((result, i) => (
-              <li className='breadcrumb-item active text-capitalize' key={i}>
+              <li className="breadcrumb-item active text-capitalize" key={i}>
                 {t(result?.name)}
               </li>
             ))}

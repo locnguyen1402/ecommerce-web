@@ -24,25 +24,32 @@ const HeaderCategory = ({ customClass, icon, dropDownClass }) => {
   return (
     <Col xs={12}>
       <div className={`${customClass ? customClass : 'header-nav'}`}>
-        <div className='header-nav-left'>
+        <div className="header-nav-left">
           <Btn className={`dropdown-category ${dropDownClass ?? ''}`}>
             {icon ? icon : <RiAlignLeft />}
             <span>{t('AllCategories')}</span>
           </Btn>
 
-          <div className='category-dropdown'>
-            <div className='category-title'>
+          <div className="category-dropdown">
+            <div className="category-title">
               <h5>{t('Categories')}</h5>
-              <Btn type='button' className='p-0 close-button text-content'>
+              <Btn type="button" className="p-0 close-button text-content">
                 <RiCloseLine />
               </Btn>
             </div>
 
-            <ul className='category-list'>
+            <ul className="category-list">
               {filteredCategories?.map((elem, i) => (
-                <li className='onhover-category-list' key={i}>
-                  <Link href={`/${i18Lang}/collections?category=${elem?.slug}`} className='category-name'>
-                    <Avatar data={elem?.category_icon} placeHolder={placeHolderImage} name={elem.name} />
+                <li className="onhover-category-list" key={i}>
+                  <Link
+                    href={`/${i18Lang}/collections?category=${elem?.slug}`}
+                    className="category-name"
+                  >
+                    <Avatar
+                      data={elem?.category_icon}
+                      placeHolder={placeHolderImage}
+                      name={elem.name}
+                    />
                     <h6>{elem?.name}</h6>
                   </Link>
                 </li>

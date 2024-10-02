@@ -32,7 +32,12 @@ const CheckoutSidebar = ({ values, setFieldValue }) => {
   const { t } = useTranslation(i18Lang, 'common');
   // Submitting data on Checkout
   useEffect(() => {
-    if (values['billing_address_id'] && values['shipping_address_id'] && values['delivery_description'] && values['payment_method']) {
+    if (
+      values['billing_address_id'] &&
+      values['shipping_address_id'] &&
+      values['delivery_description'] &&
+      values['payment_method']
+    ) {
       values['variation_id'] = '';
       delete values['total'];
       values['products'] = cartProducts;
@@ -42,31 +47,55 @@ const CheckoutSidebar = ({ values, setFieldValue }) => {
   }, []);
 
   return (
-    <Col xxl='4' xl='5'>
-      <Card className='pos-detail-card'>
+    <Col xxl="4" xl="5">
+      <Card className="pos-detail-card">
         <SidebarProduct values={values} setFieldValue={setFieldValue} />
-        <div className='pos-loader'>
+        <div className="pos-loader">
           <ul className={`summary-total position-relative`}>
             <li>
               <h4>{t('Subtotal')}</h4>
-              <h4 className='price'>{checkoutData?.total?.sub_total ? convertCurrency(checkoutData?.total?.sub_total) : t(`Notcalculatedyet`)}</h4>
+              <h4 className="price">
+                {checkoutData?.total?.sub_total
+                  ? convertCurrency(checkoutData?.total?.sub_total)
+                  : t(`Notcalculatedyet`)}
+              </h4>
             </li>
             <li>
               <h4>{t('Shipping')}</h4>
-              <h4 className='price'>{checkoutData?.total?.shipping_total >= 0 ? convertCurrency(checkoutData?.total?.shipping_total) : t(`Notcalculatedyet`)}</h4>
+              <h4 className="price">
+                {checkoutData?.total?.shipping_total >= 0
+                  ? convertCurrency(checkoutData?.total?.shipping_total)
+                  : t(`Notcalculatedyet`)}
+              </h4>
             </li>
             <li>
               <h4>{t('Tax')}</h4>
-              <h4 className='price'>{checkoutData?.total?.tax_total ? convertCurrency(checkoutData?.total?.tax_total) : t(`Notcalculatedyet`)}</h4>
+              <h4 className="price">
+                {checkoutData?.total?.tax_total
+                  ? convertCurrency(checkoutData?.total?.tax_total)
+                  : t(`Notcalculatedyet`)}
+              </h4>
             </li>
 
-            <PointWallet values={values} setFieldValue={setFieldValue} checkoutData={checkoutData} />
+            <PointWallet
+              values={values}
+              setFieldValue={setFieldValue}
+              checkoutData={checkoutData}
+            />
 
-            <ApplyCoupon setFieldValue={setFieldValue} setStoreCoupon={setStoreCoupon} storeCoupon={storeCoupon} />
+            <ApplyCoupon
+              setFieldValue={setFieldValue}
+              setStoreCoupon={setStoreCoupon}
+              storeCoupon={storeCoupon}
+            />
 
-            <li className='list-total'>
+            <li className="list-total">
               <h4>{t('Total')}</h4>
-              <h4 className='price'>{checkoutData?.total?.total ? convertCurrency(checkoutData?.total?.total) : t(`Notcalculatedyet`)}</h4>
+              <h4 className="price">
+                {checkoutData?.total?.total
+                  ? convertCurrency(checkoutData?.total?.total)
+                  : t(`Notcalculatedyet`)}
+              </h4>
             </li>
           </ul>
         </div>

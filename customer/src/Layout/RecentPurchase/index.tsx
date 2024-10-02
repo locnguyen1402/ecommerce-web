@@ -55,21 +55,29 @@ const RecentPurchase = () => {
   }
   return (
     <Media className={`recently-purchase ${show ? 'show' : ''}`}>
-      <Image src={product?.product_thumbnail ? product?.product_thumbnail.original_url : placeHolderImage} className='media-height' alt={product?.name || 'product'} height={64} width={85} />
+      <Image
+        src={
+          product?.product_thumbnail ? product?.product_thumbnail.original_url : placeHolderImage
+        }
+        className="media-height"
+        alt={product?.name || 'product'}
+        height={64}
+        width={85}
+      />
       <Media body>
         <div>
-          <div className='title d-block mb-0'>{t('SomeoneRecentlyPurchased')}</div>
+          <div className="title d-block mb-0">{t('SomeoneRecentlyPurchased')}</div>
           {product?.name && (
             <Link href={`/${i18Lang}/product/${product?.slug}`}>
-              <span className='product-name'>{product?.name}</span>
+              <span className="product-name">{product?.name}</span>
             </Link>
           )}
-          <small className='timeAgo'>
+          <small className="timeAgo">
             {min} {t('minutesago')}
           </small>
         </div>
       </Media>
-      <RiCloseLine className='close-popup' onClick={() => setPopupEnable(false)} />
+      <RiCloseLine className="close-popup" onClick={() => setPopupEnable(false)} />
     </Media>
   );
 };

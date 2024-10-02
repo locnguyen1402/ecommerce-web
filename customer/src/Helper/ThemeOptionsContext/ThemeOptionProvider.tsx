@@ -11,11 +11,15 @@ const ThemeOptionProvider = (props) => {
   const [mobileSideBar, setMobileSideBar] = useState(false);
   const [collectionMobile, setCollectionMobile] = useState(false);
   const [themeOption, setThemeOption] = useState({});
-  const { data, isLoading, refetch } = useQuery([ThemeOptionsAPI], () => request({ url: ThemeOptionsAPI }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch } = useQuery(
+    [ThemeOptionsAPI],
+    () => request({ url: ThemeOptionsAPI }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   useEffect(() => {
     refetch();
   }, []);
@@ -27,7 +31,20 @@ const ThemeOptionProvider = (props) => {
   return (
     <>
       <ThemeOptionContext.Provider
-        value={{ ...props, themeOption, openOffCanvas, setOpenOffCanvas, cartCanvas, setCartCanvas, mobileSideBar, setMobileSideBar, collectionMobile, setCollectionMobile, isLoading }}>
+        value={{
+          ...props,
+          themeOption,
+          openOffCanvas,
+          setOpenOffCanvas,
+          cartCanvas,
+          setCartCanvas,
+          mobileSideBar,
+          setMobileSideBar,
+          collectionMobile,
+          setCollectionMobile,
+          isLoading,
+        }}
+      >
         {props.children}
       </ThemeOptionContext.Provider>
     </>

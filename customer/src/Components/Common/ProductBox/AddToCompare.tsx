@@ -1,14 +1,14 @@
-import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
-import Btn from "@/Elements/Buttons/Btn";
-import CompareContext from "@/Helper/CompareContext";
-import I18NextContext from "@/Helper/I18NextContext";
-import { RiRefreshLine } from "react-icons/ri";
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect } from 'react';
+import Btn from '@/Elements/Buttons/Btn';
+import CompareContext from '@/Helper/CompareContext';
+import I18NextContext from '@/Helper/I18NextContext';
+import { RiRefreshLine } from 'react-icons/ri';
 
 const AddToCompare = ({ productObj, customClass }) => {
   const { i18Lang } = useContext(I18NextContext);
-  const cookieUAT = Cookies.get("uat");
+  const cookieUAT = Cookies.get('uat');
   const router = useRouter();
   const addToCompare = () => {
     if (!cookieUAT) {
@@ -22,7 +22,7 @@ const AddToCompare = ({ productObj, customClass }) => {
   return (
     <>
       {customClass ? (
-        <Btn className={customClass ?? ""} onClick={addToCompare}>
+        <Btn className={customClass ?? ''} onClick={addToCompare}>
           <RiRefreshLine />
         </Btn>
       ) : (

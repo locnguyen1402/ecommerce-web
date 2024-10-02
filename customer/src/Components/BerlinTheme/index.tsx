@@ -14,11 +14,15 @@ import Loader from '@/Layout/Loader';
 const BerlinTheme = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
-  const { data, isLoading, refetch, fetchStatus } = useQuery(['berlin'], () => request({ url: `${HomePageAPI}/berlin` }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch, fetchStatus } = useQuery(
+    ['berlin'],
+    () => request({ url: `${HomePageAPI}/berlin` }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   useEffect(() => {
     document.documentElement.style.setProperty('--theme-color', '#417394');
     refetch();
@@ -45,7 +49,8 @@ const BerlinTheme = () => {
 
       <BerlinSection dataAPI={data?.content} />
       {data?.content?.news_letter?.status && <NewsLetter dataAPI={data?.content?.news_letter} />}
-      {themeOption?.general?.sticky_cart_enable && themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
+      {themeOption?.general?.sticky_cart_enable &&
+        themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
     </>
   );
 };

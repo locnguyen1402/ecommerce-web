@@ -19,14 +19,20 @@ const SearchBox = () => {
     }
   };
   return (
-    <div className='middle-box'>
-      <div className='center-box'>
-        <div className='searchbar-box-2 input-group d-xl-flex d-none'>
-          <Btn className='btn search-icon' type='button'>
+    <div className="middle-box">
+      <div className="center-box">
+        <div className="searchbar-box-2 input-group d-xl-flex d-none">
+          <Btn className="btn search-icon" type="button">
             <RiSearchLine />
           </Btn>
-          <Input type='text' className='form-control' placeholder='Search for products, styles,brands...' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-          <Btn className='btn search-button' type='button' onClick={onHandleSearch}>
+          <Input
+            type="text"
+            className="form-control"
+            placeholder="Search for products, styles,brands..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Btn className="btn search-button" type="button" onClick={onHandleSearch}>
             {t('Search')}
           </Btn>
         </div>

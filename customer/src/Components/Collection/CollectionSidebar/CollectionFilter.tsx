@@ -23,7 +23,12 @@ const CollectionFilter = ({ filter, setFilter }) => {
     rating: splitFilter('rating'),
   };
   const mergeFilter = () => {
-    setSelectedFilters([...filterObj['category'], ...filterObj['attribute'], ...filterObj['price'], ...filterObj['rating'].map((val) => (val.startsWith('rating ') ? val : `rating ${val}`))]);
+    setSelectedFilters([
+      ...filterObj['category'],
+      ...filterObj['attribute'],
+      ...filterObj['price'],
+      ...filterObj['rating'].map((val) => (val.startsWith('rating ') ? val : `rating ${val}`)),
+    ]);
   };
   useEffect(() => {
     mergeFilter();
@@ -56,15 +61,15 @@ const CollectionFilter = ({ filter, setFilter }) => {
   };
   if (selectedFilters.length <= 0) return null;
   return (
-    <div className='filter-category'>
-      <div className='filter-title'>
+    <div className="filter-category">
+      <div className="filter-title">
         <h2>{t('Filters')}</h2>
         <a onClick={() => clearParams()}>{t('ClearAll')}</a>
       </div>
       <ul>
         {selectedFilters?.map((elem, i) => (
           <li key={i}>
-            <a>{ModifyString(elem, false,'-')}</a>
+            <a>{ModifyString(elem, false, '-')}</a>
             <span onClick={() => removeParams(elem)}>
               <RiCloseLine />
             </span>

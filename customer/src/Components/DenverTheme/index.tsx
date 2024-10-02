@@ -17,11 +17,15 @@ import Loader from '@/Layout/Loader';
 const DenverTheme = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
-  const { data, isLoading, refetch, fetchStatus } = useQuery(['denver'], () => request({ url: `${HomePageAPI}/denver` }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch, fetchStatus } = useQuery(
+    ['denver'],
+    () => request({ url: `${HomePageAPI}/denver` }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
 
   useEffect(() => {
     document.documentElement.style.setProperty('--theme-color', '#417394');
@@ -49,23 +53,28 @@ const DenverTheme = () => {
 
       {data?.content?.categories_icon_list?.status && (
         <WrapperComponent noRowCol={true}>
-          <ProductSection2 dataAPI={data?.content?.categories_icon_list} classes={{ sliderOption: osakaCategoryOption, noCustomClass: true }} />
+          <ProductSection2
+            dataAPI={data?.content?.categories_icon_list}
+            classes={{ sliderOption: osakaCategoryOption, noCustomClass: true }}
+          />
         </WrapperComponent>
       )}
 
-      {data?.content?.products_list_1?.status && data?.content?.products_list_1?.product_ids.length > 0 && (
-        <ProductWrapper
-          dataAPI={data?.content?.products_list_1}
-          noSectionClass={true}
-          noWrapperRowCol={true}
-          noCustomClass={true}
-          classObj={{ productStyle: 'product-solid', productBoxClass: 'product-box-bg' }}
-          customSliderOption={osakaSliderOption}
-        />
-      )}
+      {data?.content?.products_list_1?.status &&
+        data?.content?.products_list_1?.product_ids.length > 0 && (
+          <ProductWrapper
+            dataAPI={data?.content?.products_list_1}
+            noSectionClass={true}
+            noWrapperRowCol={true}
+            noCustomClass={true}
+            classObj={{ productStyle: 'product-solid', productBoxClass: 'product-box-bg' }}
+            customSliderOption={osakaSliderOption}
+          />
+        )}
 
       <OtherDenverSection dataAPI={data?.content} />
-      {themeOption?.general?.sticky_cart_enable && themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
+      {themeOption?.general?.sticky_cart_enable &&
+        themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
     </>
   );
 };

@@ -1,9 +1,7 @@
-import AccountRefund from '@/Components/Account/Refund'
+import AccountRefund from '@/Components/Account/Refund';
 
 const Refund = () => {
-    return (
-        <AccountRefund />
-    )
-}
+  return <AccountRefund />;
+};
 
-export default Refund
+export default Refund;

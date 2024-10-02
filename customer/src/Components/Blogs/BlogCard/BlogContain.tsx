@@ -15,14 +15,14 @@ const BlogContain = ({ blog }) => {
   const { themeOption } = useContext(ThemeOptionContext);
   const router = useRouter();
   return (
-    <div className='blog-contain'>
-      <div className='blog-label'>
-        <span className='time'>
+    <div className="blog-contain">
+      <div className="blog-label">
+        <span className="time">
           <RiTimeLine />
           {dateFormate(blog?.created_at)}
         </span>
         {themeOption?.blog?.blog_author_enable && (
-          <span className='super'>
+          <span className="super">
             <RiUserLine /> {blog?.created_by?.name}
           </span>
         )}
@@ -30,9 +30,9 @@ const BlogContain = ({ blog }) => {
       <Link href={`/${i18Lang}/blogs/${blog.slug}`}>
         <h3>{blog?.title}</h3>
       </Link>
-      <TextLimit value={blog?.description} maxLength={200} tag='p' />
+      <TextLimit value={blog?.description} maxLength={200} tag="p" />
       {themeOption?.blog?.read_more_enable && (
-        <Btn className='blog-button' onClick={() => router.push(`/${i18Lang}/blogs/${blog.slug}`)}>
+        <Btn className="blog-button" onClick={() => router.push(`/${i18Lang}/blogs/${blog.slug}`)}>
           {t('ReadMore')} <RiArrowRightFill />
         </Btn>
       )}

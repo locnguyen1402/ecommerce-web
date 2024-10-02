@@ -7,9 +7,14 @@ const CategoryBox1 = ({ CategoryData, classes = {} }) => {
     <>
       {CategoryData?.map((elem) => (
         <div key={elem?.id} className={classes?.divClass || ''}>
-          <Link href='/' className='category-box category-dark'>
+          <Link href="/" className="category-box category-dark">
             <div>
-              <Avatar data={elem?.category_icon} placeHolder={placeHolderImage} name={elem.name} customeClass={classes?.customeClass} />
+              <Avatar
+                data={elem?.category_icon}
+                placeHolder={placeHolderImage}
+                name={elem.name}
+                customeClass={classes?.customeClass}
+              />
               <h5>{elem.name}</h5>
             </div>
           </Link>

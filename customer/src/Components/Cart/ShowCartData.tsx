@@ -17,9 +17,9 @@ const ShowCartData = () => {
       {cartProducts?.length > 0 ? (
         <>
           <Col xxl={9} xl={8}>
-            <div className='cart-table'>
-              <div className='table-responsive'>
-                <Table className='table'>
+            <div className="cart-table">
+              <div className="table-responsive">
+                <Table className="table">
                   <tbody>
                     {cartProducts.map((elem, i) => (
                       <CartData elem={elem} key={i} />
@@ -37,7 +37,8 @@ const ShowCartData = () => {
             customClass: 'no-data-added',
             imageUrl: emptyImage,
             title: 'No Items Added',
-            description: 'It appears that nothing has been added to your cart. Explore categories if you want to.',
+            description:
+              'It appears that nothing has been added to your cart. Explore categories if you want to.',
             height: 50,
             width: 50,
           }}

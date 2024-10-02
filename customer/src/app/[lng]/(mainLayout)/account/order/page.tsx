@@ -1,9 +1,7 @@
-import AccountOrders from '@/Components/Account/Orders'
+import AccountOrders from '@/Components/Account/Orders';
 
 const Orders = () => {
-    return (
-        <AccountOrders />
-    )
-}
+  return <AccountOrders />;
+};
 
-export default Orders
+export default Orders;

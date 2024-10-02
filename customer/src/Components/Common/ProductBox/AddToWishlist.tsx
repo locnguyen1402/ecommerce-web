@@ -22,7 +22,7 @@ const AddToWishlist = ({ productObj, customClass }) => {
           <RiHeartLine />
         </Btn>
       ) : (
-        <li title='Wishlist' onClick={() => handelWishlist(productObj)}>
+        <li title="Wishlist" onClick={() => handelWishlist(productObj)}>
           <a className={'notifi-wishlist'}>
             <RiHeartLine />
           </a>

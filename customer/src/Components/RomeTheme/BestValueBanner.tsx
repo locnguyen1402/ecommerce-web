@@ -11,11 +11,16 @@ const BestValueBanner = ({ dataAPI }) => {
       <CustomHeading title={dataAPI?.title} />
       <Row>
         <Col xs={12}>
-          <div className='no-arrow'>
+          <div className="no-arrow">
             <Slider {...bestValueSliderOption}>
               {dataAPI?.banners?.map((elem, i) => (
-                <div className='three-slider arrow-slider ratio_58' key={i}>
-                  <OfferBanner classes={{ customHoverClass: 'offer-banner hover-effect' }} imgUrl={elem?.image_url} ratioImage={true} elem={elem} />
+                <div className="three-slider arrow-slider ratio_58" key={i}>
+                  <OfferBanner
+                    classes={{ customHoverClass: 'offer-banner hover-effect' }}
+                    imgUrl={elem?.image_url}
+                    ratioImage={true}
+                    elem={elem}
+                  />
                 </div>
               ))}
             </Slider>

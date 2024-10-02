@@ -11,18 +11,24 @@ const ForgotPasswordContent = () => {
   return (
     <>
       <Breadcrumb title={'ForgotPassword'} subNavigation={[{ name: 'ForgotPassword' }]} />
-      <WrapperComponent classes={{ sectionClass: 'log-in-section section-b-space forgot-section', fluidClass: 'w-100' }} customCol={true}>
-        <Col xxl={6} xl={5} lg={6} className='d-lg-block d-none ms-auto'>
-          <div className='image-contain'>
-            <Image src={forgotPasswordImage} className='img-fluid' alt='forgotPasswordImage' />
+      <WrapperComponent
+        classes={{
+          sectionClass: 'log-in-section section-b-space forgot-section',
+          fluidClass: 'w-100',
+        }}
+        customCol={true}
+      >
+        <Col xxl={6} xl={5} lg={6} className="d-lg-block d-none ms-auto">
+          <div className="image-contain">
+            <Image src={forgotPasswordImage} className="img-fluid" alt="forgotPasswordImage" />
           </div>
         </Col>
 
-        <Col xxl={4} xl={5} lg={6} sm={8} className='mx-auto'>
-          <div className='d-flex align-items-center justify-content-center h-100'>
-            <div className='log-in-box'>
+        <Col xxl={4} xl={5} lg={6} sm={8} className="mx-auto">
+          <div className="d-flex align-items-center justify-content-center h-100">
+            <div className="log-in-box">
               <AuthHeadings heading1={'WelcomeToFastkart'} heading2={'Forgotyourpassword'} />
-              <div className='input-box'>
+              <div className="input-box">
                 <ForgotPasswordForm />
               </div>
             </div>

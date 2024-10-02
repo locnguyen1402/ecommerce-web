@@ -37,16 +37,35 @@ const TopLanguage = () => {
     i18n.changeLanguage(value.icon);
   };
   return (
-    <Dropdown className='theme-form-select' isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret className='select-dropdown' type='button' id='select-language'>
-        {selectedLang?.image && <Image src={selectedLang?.image} className='img-fluid' alt='Language Name' height={20} width={20} />}
+    <Dropdown className="theme-form-select" isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret className="select-dropdown" type="button" id="select-language">
+        {selectedLang?.image && (
+          <Image
+            src={selectedLang?.image}
+            className="img-fluid"
+            alt="Language Name"
+            height={20}
+            width={20}
+          />
+        )}
         <span>{selectedLang?.title}</span>
       </DropdownToggle>
-      <DropdownMenu className='dropdown-menu-end'>
+      <DropdownMenu className="dropdown-menu-end">
         {language.map((elem, i) => (
-          <Link href={`/${elem.icon}/${splitPathname}${searchParams ? '?' + searchParams : ''}`} onClick={() => handleChangeLang(elem)} key={i}>
+          <Link
+            href={`/${elem.icon}/${splitPathname}${searchParams ? '?' + searchParams : ''}`}
+            onClick={() => handleChangeLang(elem)}
+            key={i}
+          >
             <DropdownItem id={elem.title}>
-              <Image src={elem?.image} className='img-fluid' alt={elem.title} height={20} width={20} priority />
+              <Image
+                src={elem?.image}
+                className="img-fluid"
+                alt={elem.title}
+                height={20}
+                width={20}
+                priority
+              />
               <span>{elem.title}</span>
             </DropdownItem>
           </Link>

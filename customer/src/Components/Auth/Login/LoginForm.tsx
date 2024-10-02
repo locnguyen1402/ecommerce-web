@@ -19,30 +19,50 @@ const LoginForm = () => {
         password: '123456789',
       }}
       validationSchema={LogInSchema}
-      onSubmit={mutate}>
+      onSubmit={mutate}
+    >
       {() => (
-        <Form className='row g-4'>
+        <Form className="row g-4">
           <SimpleInputField
             nameList={[
-              { name: 'email', placeholder: t('EmailAddress'), title: 'Email', label: 'Email Address' },
-              { name: 'password', placeholder: t('EnterPassword'), type: 'password', title: 'Password', label: 'Password' },
+              {
+                name: 'email',
+                placeholder: t('EmailAddress'),
+                title: 'Email',
+                label: 'Email Address',
+              },
+              {
+                name: 'password',
+                placeholder: t('EnterPassword'),
+                type: 'password',
+                title: 'Password',
+                label: 'Password',
+              },
             ]}
           />
 
           <Col xs={12}>
-            <div className='forgot-box'>
-              <div className='form-check remember-box'>
-                <Input className='checkbox_animated check-box' type='checkbox' id='flexCheckDefault' />
-                <Label className='form-check-label' htmlFor='flexCheckDefault'>
+            <div className="forgot-box">
+              <div className="form-check remember-box">
+                <Input
+                  className="checkbox_animated check-box"
+                  type="checkbox"
+                  id="flexCheckDefault"
+                />
+                <Label className="form-check-label" htmlFor="flexCheckDefault">
                   {t('Rememberme')}
                 </Label>
               </div>
-              <Link href={`/${i18Lang}/auth/forgot-password`} className='forgot-password'>
+              <Link href={`/${i18Lang}/auth/forgot-password`} className="forgot-password">
                 {t('ForgotPassword')}?
               </Link>
             </div>
           </Col>
-          <FormBtn title={'LogIn'} classes={{ btnClass: 'btn btn-animation w-100' }} loading={isLoading} />
+          <FormBtn
+            title={'LogIn'}
+            classes={{ btnClass: 'btn btn-animation w-100' }}
+            loading={isLoading}
+          />
         </Form>
       )}
     </Formik>

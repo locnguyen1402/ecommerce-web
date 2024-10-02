@@ -9,7 +9,11 @@ const FormBtn = ({ title, classes = {}, loading }) => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <Col xs={12}>
-      <Btn className={classes.btnClass ? classes.btnClass : ''} type='submit' loading={Number(loading)}>
+      <Btn
+        className={classes.btnClass ? classes.btnClass : ''}
+        type="submit"
+        loading={Number(loading)}
+      >
         {t(title)}
       </Btn>
     </Col>

@@ -16,13 +16,23 @@ const AccountSidebar = ({ tabActive }) => {
   return (
     <Col xxl={3} lg={4}>
       <div className={`dashboard-left-sidebar ${mobileSideBar ? 'show' : ''}`}>
-        <div className='close-button d-flex d-lg-none' onClick={() => setMobileSideBar(!mobileSideBar)}>
-          <Btn className='close-sidebar'>
+        <div
+          className="close-button d-flex d-lg-none"
+          onClick={() => setMobileSideBar(!mobileSideBar)}
+        >
+          <Btn className="close-sidebar">
             <RiCloseLine />
           </Btn>
         </div>
         <SidebarProfile />
-        <NavTabTitles classes={{ navClass: 'nav-pills user-nav-pills' }} setActiveTab={setActiveTab} activeTab={activeTab} titleList={sidebarMenu} isLogout callBackFun={handelCallback} />
+        <NavTabTitles
+          classes={{ navClass: 'nav-pills user-nav-pills' }}
+          setActiveTab={setActiveTab}
+          activeTab={activeTab}
+          titleList={sidebarMenu}
+          isLogout
+          callBackFun={handelCallback}
+        />
       </div>
     </Col>
   );

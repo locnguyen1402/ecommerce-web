@@ -23,16 +23,21 @@ const ClassicStoreCard = ({ data, isLoading, setPage }) => {
             <>
               {data?.data.map((elem, i) => (
                 <Col xxl={4} md={6} key={i}>
-                  <div className='seller-grid-box'>
-                    <div className='grid-contain'>
+                  <div className="seller-grid-box">
+                    <div className="grid-contain">
                       <StoreVendor elem={elem} />
                       <StoreName classicImage={true} elem={elem} />
                     </div>
                   </div>
                 </Col>
               ))}
-              <nav className='custome-pagination'>
-                <Pagination current_page={data?.current_page} total={data?.total} per_page={data?.per_page} setPage={setPage} />
+              <nav className="custome-pagination">
+                <Pagination
+                  current_page={data?.current_page}
+                  total={data?.total}
+                  per_page={data?.per_page}
+                  setPage={setPage}
+                />
               </nav>
             </>
           )}

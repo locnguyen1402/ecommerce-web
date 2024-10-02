@@ -1,6 +1,6 @@
-import questions from './questions.json'
-import { NextResponse } from "next/server";
+import questions from './questions.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(questions)
+  return NextResponse.json(questions);
 }

@@ -4,8 +4,8 @@ import { blogSkeleton } from '../../../../../Data/CustomData';
 const SKBlogSidebar = () => {
   const toggle = () => {};
   return (
-    <Accordion className='left-accordion-box' open={'true'} toggle={toggle}>
-      <AccordionItem className='skeleton-accordion'>
+    <Accordion className="left-accordion-box" open={'true'} toggle={toggle}>
+      <AccordionItem className="skeleton-accordion">
         <AccordionHeader targetId={'1'}>
           <span></span>
         </AccordionHeader>

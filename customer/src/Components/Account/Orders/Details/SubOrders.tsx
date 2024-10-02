@@ -12,22 +12,22 @@ const SubOrders = ({ data }) => {
     <>
       <Card>
         <CardBody>
-          <div className='tracking-wrapper table-responsive'>
-            <Table className='product-table'>
+          <div className="tracking-wrapper table-responsive">
+            <Table className="product-table">
               <thead>
                 <tr>
-                  <th scope='col'>{t('OrderNumber')}</th>
-                  <th scope='col'>{t('OrderDate')}</th>
-                  <th scope='col'>{t('TotalAmount')}</th>
-                  <th scope='col'>{t('Status')}</th>
-                  <th scope='col'>{t('Action')}</th>
+                  <th scope="col">{t('OrderNumber')}</th>
+                  <th scope="col">{t('OrderDate')}</th>
+                  <th scope="col">{t('TotalAmount')}</th>
+                  <th scope="col">{t('Status')}</th>
+                  <th scope="col">{t('Action')}</th>
                 </tr>
               </thead>
               <tbody>
                 {data?.sub_orders?.map((subOrder, i) => (
                   <tr>
                     <td>
-                      <h6 className='fw-bolder'>{'#' + subOrder?.order_number}</h6>
+                      <h6 className="fw-bolder">{'#' + subOrder?.order_number}</h6>
                     </td>
                     <td>
                       <h6>{subOrder?.created_at}</h6>

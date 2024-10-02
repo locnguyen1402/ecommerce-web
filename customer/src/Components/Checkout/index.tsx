@@ -8,7 +8,10 @@ const CheckoutContent = () => {
   return (
     <Fragment>
       <Breadcrumb title={'Checkout'} subNavigation={[{ name: 'Checkout' }]} />
-      <WrapperComponent classes={{ sectionClass: 'compare-section section-b-space', row: 'g-0 compare-row' }} customCol={true}>
+      <WrapperComponent
+        classes={{ sectionClass: 'compare-section section-b-space', row: 'g-0 compare-row' }}
+        customCol={true}
+      >
         <CheckoutForm />
       </WrapperComponent>
     </Fragment>

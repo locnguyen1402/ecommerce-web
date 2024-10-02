@@ -11,12 +11,10 @@ const CategoryDropdown = () => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <>
-      <Btn className='location-button'>
-        <select className='form-select locat-name'>
-          <option>{t("AllCategory")}</option>
-          {categoryData?.map((category, i) => (
-            <option key={i}>{category.name}</option>
-          ))}
+      <Btn className="location-button">
+        <select className="form-select locat-name">
+          <option>{t('AllCategory')}</option>
+          {categoryData?.map((category, i) => <option key={i}>{category.name}</option>)}
         </select>
       </Btn>
     </>

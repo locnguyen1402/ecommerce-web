@@ -9,9 +9,9 @@ const StandardTopbar = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   return (
-    <div className='header-notification theme-bg-color overflow-hidden py-2'>
-      <TopbarSlider customClassName='text-center' />
-      <Btn className='btn close-notification'>
+    <div className="header-notification theme-bg-color overflow-hidden py-2">
+      <TopbarSlider customClassName="text-center" />
+      <Btn className="btn close-notification">
         <span>{t('Close')}</span> <RiTimeLine />
       </Btn>
     </div>

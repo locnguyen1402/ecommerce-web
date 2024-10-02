@@ -15,7 +15,7 @@ const MiddleContent = ({ dataAPI }) => {
         <WrapperComponent noRowCol={true}>
           <ProductSection1
             ProductData={filteredProduct}
-            svgUrl={<LeafSVG className='icon-width' />}
+            svgUrl={<LeafSVG className="icon-width" />}
             dataAPI={dataAPI?.products_list_1}
             noCustomClass={true}
             customSliderOption={osakaFullSlider}
@@ -26,7 +26,11 @@ const MiddleContent = ({ dataAPI }) => {
 
       {dataAPI?.offer_banner?.status && (
         <WrapperComponent colProps={{ xs: 12 }}>
-          <OfferBanner classes={{ customHoverClass: 'offer-box hover-effect' }} imgUrl={dataAPI?.offer_banner?.image_url} elem={dataAPI?.offer_banner} />
+          <OfferBanner
+            classes={{ customHoverClass: 'offer-box hover-effect' }}
+            imgUrl={dataAPI?.offer_banner?.image_url}
+            elem={dataAPI?.offer_banner}
+          />
         </WrapperComponent>
       )}
 
@@ -34,7 +38,7 @@ const MiddleContent = ({ dataAPI }) => {
         <WrapperComponent noRowCol={true}>
           <ProductSection1
             ProductData={filteredProduct}
-            svgUrl={<LeafSVG className='icon-width' />}
+            svgUrl={<LeafSVG className="icon-width" />}
             dataAPI={dataAPI?.products_list_2}
             noCustomClass={true}
             customSliderOption={osakaFullSlider}

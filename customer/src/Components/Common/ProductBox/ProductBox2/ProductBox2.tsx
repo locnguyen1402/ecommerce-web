@@ -10,20 +10,31 @@ const ProductBox2 = ({ elem, rating = true, customImageClass }) => {
   const { i18Lang } = useContext(I18NextContext);
   const { convertCurrency } = useContext(SettingContext);
   return (
-    <div className='offer-product'>
-      <Link href={`/${i18Lang}/product/${elem.slug}`} className='offer-image'>
-        <Avatar data={elem?.product_thumbnail} placeHolder={placeHolderImage} name={elem?.name} customImageClass={customImageClass} height={500} width={500} />
+    <div className="offer-product">
+      <Link href={`/${i18Lang}/product/${elem.slug}`} className="offer-image">
+        <Avatar
+          data={elem?.product_thumbnail}
+          placeHolder={placeHolderImage}
+          name={elem?.name}
+          customImageClass={customImageClass}
+          height={500}
+          width={500}
+        />
       </Link>
 
-      <div className='offer-detail'>
+      <div className="offer-detail">
         <div>
-          <Link href={`/${i18Lang}/product/${elem.slug}`} className='text-title'>
-            <h6 className='name'>{elem?.name}</h6>
+          <Link href={`/${i18Lang}/product/${elem.slug}`} className="text-title">
+            <h6 className="name">{elem?.name}</h6>
           </Link>
-          {rating ? <ProductBox1Rating totalRating={elem?.rating_count} /> : <span>{elem?.unit}</span>}
-          <h5 className='price theme-color'>
+          {rating ? (
+            <ProductBox1Rating totalRating={elem?.rating_count} />
+          ) : (
+            <span>{elem?.unit}</span>
+          )}
+          <h5 className="price theme-color">
             {convertCurrency(elem?.sale_price)}
-            <del className='text-content'>{convertCurrency(elem?.price)}</del>
+            <del className="text-content">{convertCurrency(elem?.price)}</del>
           </h5>
         </div>
       </div>

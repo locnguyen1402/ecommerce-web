@@ -13,7 +13,12 @@ const EmailPasswordModal = ({ modal, setModal }) => {
       <CustomModal
         modal={modal == 'email' || modal == 'password' ? true : false}
         setModal={setModal}
-        classes={{ modalClass: 'theme-modal', modalBodyClass: 'address-form', title: `${modal == 'email' ? 'Edit Profile' : 'ChangePassword'}` }}>
+        classes={{
+          modalClass: 'theme-modal',
+          modalBodyClass: 'address-form',
+          title: `${modal == 'email' ? 'Edit Profile' : 'ChangePassword'}`,
+        }}
+      >
         <Formik
           initialValues={{
             name: accountData?.name || '',
@@ -33,16 +38,28 @@ const EmailPasswordModal = ({ modal, setModal }) => {
             password_confirmation: modal == 'password' && nameSchema,
           })}
           onSubmit={(values) => {
-            let passwordObj = { current_password: values['current_password'], password: values['password'], password_confirmation: values['password_confirmation'], _method: 'PUT' };
-            let emailObj = { name: values['name'], email: values['email'], country_code: values['country_code'], phone: values['phone'], _method: 'PUT' };
+            let passwordObj = {
+              current_password: values['current_password'],
+              password: values['password'],
+              password_confirmation: values['password_confirmation'],
+              _method: 'PUT',
+            };
+            let emailObj = {
+              name: values['name'],
+              email: values['email'],
+              country_code: values['country_code'],
+              phone: values['phone'],
+              _method: 'PUT',
+            };
             if (modal == 'password') {
               // Add Update password here
-              setModal('')
+              setModal('');
             } else {
               // Add Update password here
-              setModal('')
+              setModal('');
             }
-          }}>
+          }}
+        >
           <Form>
             {modal == 'email' && <EmailPasswordForm setModal={setModal} />}
             {modal == 'password' && <UpdatePasswordForm setModal={setModal} />}

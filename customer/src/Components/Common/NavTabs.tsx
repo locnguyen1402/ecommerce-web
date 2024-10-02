@@ -9,7 +9,14 @@ import { RiLogoutBoxLine } from 'react-icons/ri';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import ConfirmationModal from './ConfirmationModal';
 
-const NavTabTitles = ({ classes = {}, activeTab, setActiveTab, titleList, isLogout, callBackFun }) => {
+const NavTabTitles = ({
+  classes = {},
+  activeTab,
+  setActiveTab,
+  titleList,
+  isLogout,
+  callBackFun,
+}) => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const { i18Lang } = useContext(I18NextContext);
@@ -45,7 +52,10 @@ const NavTabTitles = ({ classes = {}, activeTab, setActiveTab, titleList, isLogo
       <Nav className={classes?.navClass}>
         {titleList.map((elem, i) => (
           <NavItem key={i}>
-            <NavLink className={checkType(elem, i) ? 'active' : ''} onClick={() => onNavClick(elem, i)}>
+            <NavLink
+              className={checkType(elem, i) ? 'active' : ''}
+              onClick={() => onNavClick(elem, i)}
+            >
               {elem.icon && elem.icon}
               {t(elem?.title) || t(elem?.name)}
               {elem?.badge ? elem?.badge : null}
@@ -53,15 +63,20 @@ const NavTabTitles = ({ classes = {}, activeTab, setActiveTab, titleList, isLogo
           </NavItem>
         ))}
         {isLogout && (
-          <NavItem className='logout-cls'>
-            <a className='btn' onClick={() => setModal(true)}>
-              <RiLogoutBoxLine className='me-2' />
+          <NavItem className="logout-cls">
+            <a className="btn" onClick={() => setModal(true)}>
+              <RiLogoutBoxLine className="me-2" />
               {t('LogOut')}
             </a>
           </NavItem>
         )}
       </Nav>
-      <ConfirmationModal modal={modal} setModal={setModal} confirmFunction={handleLogout} isLoading={isLoading} />
+      <ConfirmationModal
+        modal={modal}
+        setModal={setModal}
+        confirmFunction={handleLogout}
+        isLoading={isLoading}
+      />
     </>
   );
 };

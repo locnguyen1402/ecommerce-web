@@ -1,9 +1,7 @@
-import OTPVerificationContent from "@/Components/Auth/OTPVerfication"
+import OTPVerificationContent from '@/Components/Auth/OTPVerfication';
 
 const OtpVerification = () => {
-    return (
-        <OTPVerificationContent />
-    )
-}
+  return <OTPVerificationContent />;
+};
 
-export default OtpVerification
+export default OtpVerification;

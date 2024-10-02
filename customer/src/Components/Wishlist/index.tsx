@@ -11,7 +11,11 @@ import Loader from '@/Layout/Loader';
 
 const WishlistContent = () => {
   const [wishlistState, setWishlistState] = useState([]);
-  const { data, isLoading, refetch } = useQuery([WishlistAPI], () => request({ url: WishlistAPI }), { enabled: true, refetchOnWindowFocus: false, select: (res) => res?.data });
+  const { data, isLoading, refetch } = useQuery(
+    [WishlistAPI],
+    () => request({ url: WishlistAPI }),
+    { enabled: true, refetchOnWindowFocus: false, select: (res) => res?.data }
+  );
   useEffect(() => {
     if (data?.data) {
       setWishlistState([...data?.data]);
@@ -22,9 +26,12 @@ const WishlistContent = () => {
     <>
       <Breadcrumb title={'Wishlist'} subNavigation={[{ name: 'Wishlist' }]} />
 
-      <WrapperComponent classes={{ sectionClass: 'wishlist-section section-b-space', row: 'g-sm-3 g-2' }} customCol={true}>
+      <WrapperComponent
+        classes={{ sectionClass: 'wishlist-section section-b-space', row: 'g-sm-3 g-2' }}
+        customCol={true}
+      >
         {wishlistState?.map((product) => (
-          <Col xxl={2} lg={3} md={4} xs={6} className='product-box-contain' key={product.id}>
+          <Col xxl={2} lg={3} md={4} xs={6} className="product-box-contain" key={product.id}>
             <ProductBox1
               imgUrl={product?.product_thumbnail}
               productDetail={product}

@@ -37,19 +37,37 @@ const CollectionProducts = ({ filter, grid }) => {
       enabled: true,
       refetchOnWindowFocus: false,
       select: (data) => data.data,
-    },
+    }
   );
   return (
     <>
       {fetchStatus == 'fetching' ? (
-        <Row xxl={grid !== 3 && grid !== 5 ? 4 : ''} xl={grid == 5 ? 5 : 3} lg={grid == 5 ? 4 : 2} md={3} xs={2} className={`g-sm-4 g-3 product-list-section ${grid == 'list' ? 'list-style' : ''}`}>
+        <Row
+          xxl={grid !== 3 && grid !== 5 ? 4 : ''}
+          xl={grid == 5 ? 5 : 3}
+          lg={grid == 5 ? 4 : 2}
+          md={3}
+          xs={2}
+          className={`g-sm-4 g-3 product-list-section ${grid == 'list' ? 'list-style' : ''}`}
+        >
           <ProductSkeletonComponent item={40} />
         </Row>
       ) : data?.length > 0 ? (
-        <Row xxl={grid !== 3 && grid !== 5 ? 4 : ''} xl={grid == 5 ? 5 : 3} lg={grid == 5 ? 4 : 2} md={3} xs={2} className={`g-sm-4 g-3 product-list-section ${grid == 'list' ? 'list-style' : ''}`}>
+        <Row
+          xxl={grid !== 3 && grid !== 5 ? 4 : ''}
+          xl={grid == 5 ? 5 : 3}
+          lg={grid == 5 ? 4 : 2}
+          md={3}
+          xs={2}
+          className={`g-sm-4 g-3 product-list-section ${grid == 'list' ? 'list-style' : ''}`}
+        >
           {data?.map((product, i) => (
             <Col key={i}>
-              <ProductBox1 imgUrl={product?.product_thumbnail} productDetail={{ ...product }} classObj={{ productBoxClass: 'product-box-3' }} />
+              <ProductBox1
+                imgUrl={product?.product_thumbnail}
+                productDetail={{ ...product }}
+                classObj={{ productBoxClass: 'product-box-3' }}
+              />
             </Col>
           ))}
         </Row>
@@ -59,7 +77,8 @@ const CollectionProducts = ({ filter, grid }) => {
             imageUrl: noProduct,
             customClass: 'no-data-added collection-no-data',
             title: "Sorry! Couldn't find the products you were looking For!",
-            description: 'Please check if you have misspelt something or try searching with other way.',
+            description:
+              'Please check if you have misspelt something or try searching with other way.',
             height: 345,
             width: 345,
           }}
@@ -67,8 +86,13 @@ const CollectionProducts = ({ filter, grid }) => {
       )}
 
       {data?.length > 0 && (
-        <nav className='custome-pagination'>
-          <Pagination current_page={data?.current_page} total={data?.total} per_page={data?.per_page} setPage={setPage} />
+        <nav className="custome-pagination">
+          <Pagination
+            current_page={data?.current_page}
+            total={data?.total}
+            per_page={data?.per_page}
+            setPage={setPage}
+          />
         </nav>
       )}
     </>

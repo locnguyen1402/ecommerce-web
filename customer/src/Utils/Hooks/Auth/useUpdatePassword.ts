@@ -4,9 +4,16 @@ import { useRouter } from 'next/navigation';
 import request from '../../AxiosUtils';
 import { UpdatePasswordAPI } from '../../AxiosUtils/API';
 import { ToastNotification } from '../../CustomFunctions/ToastNotification';
-import { passwordConfirmationSchema, passwordSchema, YupObject } from '../../Validation/ValidationSchemas';
+import {
+  passwordConfirmationSchema,
+  passwordSchema,
+  YupObject,
+} from '../../Validation/ValidationSchemas';
 
-export const UpdatePasswordSchema = YupObject({ password: passwordSchema, password_confirmation: passwordConfirmationSchema });
+export const UpdatePasswordSchema = YupObject({
+  password: passwordSchema,
+  password_confirmation: passwordConfirmationSchema,
+});
 
 const useUpdatePassword = () => {
   const router = useRouter();
@@ -22,9 +29,12 @@ const useUpdatePassword = () => {
         router.push('/auth/login');
         Cookies.remove('uo', { path: '/' });
         Cookies.remove('ue', { path: '/' });
-        ToastNotification('success', 'Your password has been changed successfully. Use your new password to log in.');
+        ToastNotification(
+          'success',
+          'Your password has been changed successfully. Use your new password to log in.'
+        );
       },
-    },
+    }
   );
 };
 export default useUpdatePassword;

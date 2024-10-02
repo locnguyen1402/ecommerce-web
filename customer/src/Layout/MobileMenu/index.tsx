@@ -25,10 +25,14 @@ const MobileMenu = () => {
     }
   }, [pathName, i18Lang, footerMenuItems]);
   return (
-    <div className='mobile-menu d-md-none d-block mobile-cart'>
+    <div className="mobile-menu d-md-none d-block mobile-cart">
       <ul>
         {footerMenuItems.map((data, index) => (
-          <li className={`${active?.title == data?.title ? 'active' : ''} ${data.className ? data.className : ''}`} key={index} onClick={() => setActive(data)}>
+          <li
+            className={`${active?.title == data?.title ? 'active' : ''} ${data.className ? data.className : ''}`}
+            key={index}
+            onClick={() => setActive(data)}
+          >
             <Link href={`/${i18Lang}${data.path}`}>
               {active?.title == data?.title ? data.fillIcon : data.lineIcon}
               <span>{data.title}</span>

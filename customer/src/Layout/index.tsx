@@ -15,7 +15,7 @@ import CompareProvider from '@/Helper/CompareContext/CompareProvider';
 import ProductIdsProvider from '@/Helper/ProductIdsContext/ProductIdsProvider';
 import CurrencyProvider from '@/Helper/CurrencyContext/CurrencyProvider';
 
-const MainLayout = ({ children, lng  }) => {
+const MainLayout = ({ children, lng }) => {
   const { i18Lang, setI18Lang } = useContext(I18NextContext);
   const [queryClient] = useState(() => new QueryClient());
   useEffect(() => {
@@ -37,7 +37,7 @@ const MainLayout = ({ children, lng  }) => {
                         <ProductProvider>
                           <SettingProvider>
                             <CurrencyProvider>
-                              <SubLayout children={children}  />
+                              <SubLayout children={children} />
                             </CurrencyProvider>
                           </SettingProvider>
                         </ProductProvider>
@@ -50,7 +50,7 @@ const MainLayout = ({ children, lng  }) => {
           </ThemeOptionProvider>
         </Hydrate>
       </QueryClientProvider>
-      <ToastContainer theme='colored' />
+      <ToastContainer theme="colored" />
     </>
   );
 };

@@ -40,13 +40,20 @@ const HeaderLogo = () => {
   }, [pathName, i18Lang, themeOption?.logo?.header_logo]);
   return (
     <>
-      <Btn className='navbar-toggler d-xl-none d-inline navbar-menu-button me-2' type='button'>
-        <span className='navbar-toggler-icon' onClick={() => setMobileSideBar(!mobileSideBar)}>
+      <Btn className="navbar-toggler d-xl-none d-inline navbar-menu-button me-2" type="button">
+        <span className="navbar-toggler-icon" onClick={() => setMobileSideBar(!mobileSideBar)}>
           <RiMenuLine />
         </span>
       </Btn>
-      <Link href='/' className='web-logo nav-logo'>
-        <Avatar data={logo} placeHolder={logoImage} name={'Header'} customImageClass={'img-fluid'} height={28} width={162} />
+      <Link href="/" className="web-logo nav-logo">
+        <Avatar
+          data={logo}
+          placeHolder={logoImage}
+          name={'Header'}
+          customImageClass={'img-fluid'}
+          height={28}
+          width={162}
+        />
       </Link>
     </>
   );

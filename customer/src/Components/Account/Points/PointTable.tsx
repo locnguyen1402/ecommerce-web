@@ -15,34 +15,35 @@ const PointTable = ({ data, setPage }) => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <>
-      <div className='total-box mt-0'>
+      <div className="total-box mt-0">
         <Row>
           <Col xs={12}>
-            <div className='total-contain wallet-bg'>
-              <Image src={CoinSVG} alt='CoinSVG' height={60} width={60} />
-              <div className='total-detail'>
-                <h5>{t("TotalPoints")}</h5>
+            <div className="total-contain wallet-bg">
+              <Image src={CoinSVG} alt="CoinSVG" height={60} width={60} />
+              <div className="total-detail">
+                <h5>{t('TotalPoints')}</h5>
                 <h3>{data?.balance ? data?.balance : 0}</h3>
               </div>
-              <div className='point-ratio'>
-                <h3 className='counter'>
-                  <RiInformationLine /> 1 {t("Point")} = {(1 / settingData?.wallet_points?.point_currency_ratio).toFixed(2)} Balance
+              <div className="point-ratio">
+                <h3 className="counter">
+                  <RiInformationLine /> 1 {t('Point')} ={' '}
+                  {(1 / settingData?.wallet_points?.point_currency_ratio).toFixed(2)} Balance
                 </h3>
               </div>
             </div>
           </Col>
         </Row>
-        <div className='wallet-table'>
-          <h4 className='user-dashboard-title'>{t("Transactions")}</h4>
+        <div className="wallet-table">
+          <h4 className="user-dashboard-title">{t('Transactions')}</h4>
           <div className="table-responsive">
             <Table>
               <tbody>
                 <tr>
-                  <th>{t("No.")}</th>
-                  <th>{t("Date")}</th>
-                  <th>{t("Amount")}</th>
-                  <th>{t("Remark")}</th>
-                  <th>{t("Status")}</th>
+                  <th>{t('No.')}</th>
+                  <th>{t('Date')}</th>
+                  <th>{t('Amount')}</th>
+                  <th>{t('Remark')}</th>
+                  <th>{t('Status')}</th>
                 </tr>
                 {data?.transactions?.data.map((transaction, i) => (
                   <tr key={i}>
@@ -62,8 +63,13 @@ const PointTable = ({ data, setPage }) => {
           </div>
         </div>
       </div>
-      <nav className='custome-pagination'>
-        <Pagination current_page={data?.transactions?.current_page} total={data?.transactions?.total} per_page={data?.transactions?.per_page} setPage={setPage} />
+      <nav className="custome-pagination">
+        <Pagination
+          current_page={data?.transactions?.current_page}
+          total={data?.transactions?.total}
+          per_page={data?.transactions?.per_page}
+          setPage={setPage}
+        />
       </nav>
     </>
   );

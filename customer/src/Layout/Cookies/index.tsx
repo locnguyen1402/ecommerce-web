@@ -24,18 +24,18 @@ const CookiesComponent = () => {
   };
   return (
     <div className={`cookie-bar-box ${checkCookies ? 'd-none' : ''}`}>
-      <div className='cookie-box'>
-        <div className='cookie-image'>
-          <Image height={22} width={22} src={CookiesImage} alt='cookie' />
+      <div className="cookie-box">
+        <div className="cookie-image">
+          <Image height={22} width={22} src={CookiesImage} alt="cookie" />
           <h2>{t('cookies')} </h2>
         </div>
-        <div className='cookie-contain'>
-          <h5 className='text-content'>{t('WeUseCookiesToMakeYourExperienceBetter')}</h5>
+        <div className="cookie-contain">
+          <h5 className="text-content">{t('WeUseCookiesToMakeYourExperienceBetter')}</h5>
         </div>
       </div>
-      <div className='button-group'>
-        <Btn className='privacy-button' title='privacyPolicy' />
-        <Btn className='ok-button' title='ok' onClick={handleCookie} />
+      <div className="button-group">
+        <Btn className="privacy-button" title="privacyPolicy" />
+        <Btn className="ok-button" title="ok" onClick={handleCookie} />
       </div>
     </div>
   );

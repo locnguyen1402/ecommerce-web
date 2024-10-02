@@ -15,30 +15,41 @@ const ProductBundle = ({ productState }) => {
   const { filteredProduct } = useContext(ProductIdsContext);
   const [crossSellProduct, setCrossSellProduct] = useState([]);
   useEffect(() => {
-    productState?.product?.cross_sell_products && setCrossSellProduct(filteredProduct.filter((elem) => productState?.product?.cross_sell_products?.includes(elem?.id)));
+    productState?.product?.cross_sell_products &&
+      setCrossSellProduct(
+        filteredProduct.filter((elem) =>
+          productState?.product?.cross_sell_products?.includes(elem?.id)
+        )
+      );
   }, [productState, filteredProduct]);
   return (
-    <div className='related-product bundle-sec'>
-      <div className='product-title-2'>
-        <h4>{t("FrequentlyBoughtTogether")}</h4>
+    <div className="related-product bundle-sec">
+      <div className="product-title-2">
+        <h4>{t('FrequentlyBoughtTogether')}</h4>
       </div>
-      <div className='related-box'>
-        <div className='related-image'>
+      <div className="related-box">
+        <div className="related-image">
           <ul>
             {crossSellProduct.map((elem, i) => (
               <li key={i}>
-                <div className='product-box product-box-bg'>
-                  <div className='product-image'>
+                <div className="product-box product-box-bg">
+                  <div className="product-image">
                     <Link href={`/${i18Lang}/product/${elem?.slug}`}>
-                      <Avatar data={elem?.product_thumbnail} name={elem?.name} placeHolder={placeHolderImage} height={150} width={150} />
+                      <Avatar
+                        data={elem?.product_thumbnail}
+                        name={elem?.name}
+                        placeHolder={placeHolderImage}
+                        height={150}
+                        width={150}
+                      />
                     </Link>
                   </div>
-                  <div className='product-detail'>
+                  <div className="product-detail">
                     <Link href={`/${i18Lang}/product/${elem?.slug}`}>
-                      <h6 className='name'>{elem?.name}</h6>
+                      <h6 className="name">{elem?.name}</h6>
                     </Link>
-                    <h5 className='sold text-content'>
-                      <span className='theme-color price'>{convertCurrency(elem?.sale_price)}</span>
+                    <h5 className="sold text-content">
+                      <span className="theme-color price">{convertCurrency(elem?.sale_price)}</span>
                       <del>{convertCurrency(elem?.price)}</del>
                     </h5>
                   </div>

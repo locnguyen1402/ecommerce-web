@@ -1,9 +1,7 @@
-import AccountProfile from '@/Components/Account/Profile'
+import AccountProfile from '@/Components/Account/Profile';
 
 const Profile = () => {
-    return (
-        <AccountProfile />
-    )
-}
+  return <AccountProfile />;
+};
 
-export default Profile
+export default Profile;

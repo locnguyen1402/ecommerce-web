@@ -89,7 +89,14 @@ import useOutsideDropdown from '../../Utils/Hooks/CustomHooks/useOutsideDropdown
 import { useTranslation } from '@/app/i18n/client';
 import I18NextContext from '@/Helper/I18NextContext';
 
-const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }, getValuesKey = 'id', multiple = false, setvalue, ...props }) => {
+const ReactstrapSelectInput = ({
+  field,
+  form: { touched, errors, setFieldValue },
+  getValuesKey = 'id',
+  multiple = false,
+  setvalue,
+  ...props
+}) => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   const [searchInput, setSearchInput] = useState();
@@ -109,7 +116,11 @@ const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }
       if (props.inputprops?.setsearch) {
         props.inputprops?.setsearch(searchInput);
       } else {
-        setList(props.inputprops.options.filter((item) => item.name.toLowerCase().includes(searchInput?.toLowerCase())));
+        setList(
+          props.inputprops.options.filter((item) =>
+            item.name.toLowerCase().includes(searchInput?.toLowerCase())
+          )
+        );
       }
     } else {
       props.inputprops?.setsearch && props.inputprops?.setsearch(searchInput);
@@ -136,28 +147,38 @@ const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }
       setSelectedItems(temp);
       setFieldValue(
         field?.name,
-        temp.map((elem) => elem[getValuesKey]),
+        temp.map((elem) => elem[getValuesKey])
       );
     } else {
       setIsComponentVisible(false);
       const valueToSet = props.store === 'obj' ? option : option.id;
       const { inputprops, index, title } = props;
       setSelectedItems(option);
-      setvalue ? setvalue(inputprops.name, valueToSet, index, title) : setFieldValue(inputprops.name, valueToSet, index);
+      setvalue
+        ? setvalue(inputprops.name, valueToSet, index, title)
+        : setFieldValue(inputprops.name, valueToSet, index);
     }
   };
   useEffect(() => {
     // Setting variables for type Array datas
     if (props.inputprops?.setsearch) {
-      Array.isArray(field?.value) && setSelectedItems && setSelectedItems(listOpt.filter((elem) => field?.value?.includes(elem[getValuesKey])));
+      Array.isArray(field?.value) &&
+        setSelectedItems &&
+        setSelectedItems(listOpt.filter((elem) => field?.value?.includes(elem[getValuesKey])));
     } else {
-      Array.isArray(field?.value) && setSelectedItems && setSelectedItems(list.filter((elem) => field?.value?.includes(elem[getValuesKey])));
+      Array.isArray(field?.value) &&
+        setSelectedItems &&
+        setSelectedItems(list.filter((elem) => field?.value?.includes(elem[getValuesKey])));
     }
     // Setting variables for type String datas
     if (props.inputprops?.setsearch) {
-      !Array.isArray(field?.value) && setSelectedItems && setSelectedItems(listOpt.find((elem) => field?.value == elem[getValuesKey]));
+      !Array.isArray(field?.value) &&
+        setSelectedItems &&
+        setSelectedItems(listOpt.find((elem) => field?.value == elem[getValuesKey]));
     } else {
-      !Array.isArray(field?.value) && setSelectedItems && setSelectedItems(list.find((elem) => field?.value == elem[getValuesKey]));
+      !Array.isArray(field?.value) &&
+        setSelectedItems &&
+        setSelectedItems(list.find((elem) => field?.value == elem[getValuesKey]));
     }
   }, []);
 
@@ -180,20 +201,25 @@ const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }
           {props.label}
         </Label>
       )}
-      <div className='custom-select-box' ref={ref}>
+      <div className="custom-select-box" ref={ref}>
         {Array.isArray(selectedItems) ? (
-          <div className={`category-select-box`} onClick={() => setIsComponentVisible((p) => p !== field?.name && field?.name)}>
+          <div
+            className={`category-select-box`}
+            onClick={() => setIsComponentVisible((p) => p !== field?.name && field?.name)}
+          >
             <div className={`bootstrap-tagsinput form-select`}>
               {selectedItems.length > 0 ? (
                 selectedItems?.map((item, i) => (
-                  <span className='tag label label-info' key={i}>
+                  <span className="tag label label-info" key={i}>
                     {item?.name}
-                    <a className='ms-2 text-white'>
+                    <a className="ms-2 text-white">
                       <RiCloseLine
                         onClick={(e) => {
                           e.stopPropagation();
                           RemoveSelectedItem(item[getValuesKey], item);
-                          setSelectedItems((p) => p.filter((elem) => elem[getValuesKey] !== item[getValuesKey]));
+                          setSelectedItems((p) =>
+                            p.filter((elem) => elem[getValuesKey] !== item[getValuesKey])
+                          );
                         }}
                       />
                     </a>
@@ -206,9 +232,15 @@ const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }
           </div>
         ) : (
           <Input
-            type='text'
-            className='form-control form-select cursor position-absolute'
-            value={t(setvalue !== undefined ? props.inputprops.value || selectedItems?.name : props.inputprops?.options?.find((item) => item.id === field.value)?.name) || t('Select')}
+            type="text"
+            className="form-control form-select cursor position-absolute"
+            value={
+              t(
+                setvalue !== undefined
+                  ? props.inputprops.value || selectedItems?.name
+                  : props.inputprops?.options?.find((item) => item.id === field.value)?.name
+              ) || t('Select')
+            }
             onClick={() => setIsComponentVisible(true)}
             readOnly
             invalid={Boolean(touched[field.name] && errors[field.name])}
@@ -219,55 +251,82 @@ const ReactstrapSelectInput = ({ field, form: { touched, errors, setFieldValue }
             id={props.inputprops.id}
             {...field}
             {...props}
-            placeholder='Search'
-            className='form-control form-select'
-            type='text'
+            placeholder="Search"
+            className="form-control form-select"
+            type="text"
             invalid={Boolean(touched[field.name] && errors[field.name])}
             disabled
           />
         )}
-        <p className='help-text'>{props?.inputprops?.helpertext}</p>
+        <p className="help-text">{props?.inputprops?.helpertext}</p>
         {props.inputprops?.setsearch
           ? listOpt?.length > 0
           : list?.length > 0 && (
-            <div className={`box-content custom-select ${isComponentVisible ? 'open' : ''}`}>
-              <Input type='text' className='form-control' value={searchInput || ''} onChange={(e) => setSearchInput(e.target.value)} />
-              <ul className='intl-tel-input'>
-                {(props.inputprops?.setsearch ? listOpt : list)?.map((option, index) => (
-                  <Fragment key={index}>
-                    {option?.data ? (
-                      <li
-                        onClick={() => {
-                          setIsComponentVisible(false);
-                          setvalue
-                            ? setvalue(props.inputprops.name, props.store === 'obj' ? option : option.id, props.index, props?.title)
-                            : setFieldValue(props.inputprops.name, props.store === 'obj' ? option : option.id, props.index);
-                        }}>
-                        <div className='country'>
-                          <div className='flag-box'>
-                            <div className={`iti-flag ${option?.data?.class}`}></div>
+              <div className={`box-content custom-select ${isComponentVisible ? 'open' : ''}`}>
+                <Input
+                  type="text"
+                  className="form-control"
+                  value={searchInput || ''}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                />
+                <ul className="intl-tel-input">
+                  {(props.inputprops?.setsearch ? listOpt : list)?.map((option, index) => (
+                    <Fragment key={index}>
+                      {option?.data ? (
+                        <li
+                          onClick={() => {
+                            setIsComponentVisible(false);
+                            setvalue
+                              ? setvalue(
+                                  props.inputprops.name,
+                                  props.store === 'obj' ? option : option.id,
+                                  props.index,
+                                  props?.title
+                                )
+                              : setFieldValue(
+                                  props.inputprops.name,
+                                  props.store === 'obj' ? option : option.id,
+                                  props.index
+                                );
+                          }}
+                        >
+                          <div className="country">
+                            <div className="flag-box">
+                              <div className={`iti-flag ${option?.data?.class}`}></div>
+                            </div>
+                            <span className="dial-code">{option?.data?.code}</span>
                           </div>
-                          <span className='dial-code'>{option?.data?.code}</span>
-                        </div>
-                      </li>
-                    ) : (
-                      <li onClick={() => onSelectValue(option)}>
-                        {option?.image && <Image src={option?.image} className='img-fluid category-image' alt={option?.name} height={50} width={50} />}
-                        <p className={`cursor ${(selectedItems?.[index]?.[getValuesKey] || selectedItems?.[getValuesKey]) == option[getValuesKey] ? 'selected' : ''}`}>{t(option.name)}</p>
-                      </li>
-                    )}
-                  </Fragment>
-                ))}
-              </ul>
-            </div>
-          )}
+                        </li>
+                      ) : (
+                        <li onClick={() => onSelectValue(option)}>
+                          {option?.image && (
+                            <Image
+                              src={option?.image}
+                              className="img-fluid category-image"
+                              alt={option?.name}
+                              height={50}
+                              width={50}
+                            />
+                          )}
+                          <p
+                            className={`cursor ${(selectedItems?.[index]?.[getValuesKey] || selectedItems?.[getValuesKey]) == option[getValuesKey] ? 'selected' : ''}`}
+                          >
+                            {t(option.name)}
+                          </p>
+                        </li>
+                      )}
+                    </Fragment>
+                  ))}
+                </ul>
+              </div>
+            )}
         {touch && error && (
           <FormFeedback>
             {t(props.title)} {t('IsRequired')}
           </FormFeedback>
         )}
         {props?.inputprops?.close && (
-          <div className='close-icon'>
+          <div className="close-icon">
             <RiCloseLine onClick={() => RemoveSelectedItem()} />
           </div>
         )}

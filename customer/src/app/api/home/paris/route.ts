@@ -1,6 +1,6 @@
-import paris from './paris.json'
-import { NextResponse } from "next/server";
+import paris from './paris.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(paris)
+  return NextResponse.json(paris);
 }

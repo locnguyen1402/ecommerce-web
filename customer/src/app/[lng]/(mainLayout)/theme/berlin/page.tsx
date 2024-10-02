@@ -1,9 +1,7 @@
-import BerlinTheme from '@/Components/BerlinTheme'
+import BerlinTheme from '@/Components/BerlinTheme';
 
 const Berlin = () => {
-    return (
-        <BerlinTheme />
-    )
-}
+  return <BerlinTheme />;
+};
 
-export default Berlin
+export default Berlin;

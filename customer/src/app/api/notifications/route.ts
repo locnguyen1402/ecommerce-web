@@ -1,6 +1,6 @@
-import notification from './notification.json'
-import { NextResponse } from "next/server";
+import notification from './notification.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(notification)
+  return NextResponse.json(notification);
 }

@@ -61,7 +61,8 @@ const ProductAttribute = ({ productState, setProductState, stickyAddToCart }) =>
     if (productState?.selectedVariation) {
       setProductState((prevState) => {
         const tempSelectedVariation = { ...prevState.selectedVariation };
-        tempSelectedVariation.stock_status = tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempSelectedVariation.stock_status =
+          tempSelectedVariation.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           selectedVariation: tempSelectedVariation,
@@ -70,7 +71,8 @@ const ProductAttribute = ({ productState, setProductState, stickyAddToCart }) =>
     } else {
       setProductState((prevState) => {
         const tempProduct = { ...prevState.product };
-        tempProduct.stock_status = tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
+        tempProduct.stock_status =
+          tempProduct.quantity < prevState.productQty ? 'out_of_stock' : 'in_stock';
         return {
           ...prevState,
           product: tempProduct,
@@ -86,14 +88,17 @@ const ProductAttribute = ({ productState, setProductState, stickyAddToCart }) =>
   }, [productState?.attributeValues, cartItem, selectedOptions]);
 
   useEffect(() => {
-    productState?.product && setCartItem(cartProducts?.find((elem) => elem?.product?.id == productState?.product?.id));
+    productState?.product &&
+      setCartItem(cartProducts?.find((elem) => elem?.product?.id == productState?.product?.id));
   }, [cartProducts, productState]);
 
   const setVariant = (variations, value) => {
     let tempSelected = selectedOptions;
     let tempSoldOutAttributesIds = [];
     setSoldOutAttributesIds((prev) => tempSoldOutAttributesIds);
-    const index = tempSelected?.findIndex((item) => Number(item.attribute_id) === Number(value?.attribute_id));
+    const index = tempSelected?.findIndex(
+      (item) => Number(item.attribute_id) === Number(value?.attribute_id)
+    );
     if (index === -1) {
       tempSelected.push({ id: Number(value?.id), attribute_id: Number(value?.attribute_id) });
       setSelectedOptions(tempSelected);
@@ -108,10 +113,17 @@ const ProductAttribute = ({ productState, setProductState, stickyAddToCart }) =>
       setProductState((prev) => {
         return { ...prev, variantIds: tempVariantIds };
       });
-      let doValuesMatch = attrValues.length === tempSelected.length && attrValues.every((value) => tempVariantIds.includes(value));
+      let doValuesMatch =
+        attrValues.length === tempSelected.length &&
+        attrValues.every((value) => tempVariantIds.includes(value));
       if (doValuesMatch) {
         setProductState((prev) => {
-          return { ...prev, selectedVariation: variation, variation_id: variation?.id, variation: variation };
+          return {
+            ...prev,
+            selectedVariation: variation,
+            variation_id: variation?.id,
+            variation: variation,
+          };
         });
         checkStockAvailable();
       }
@@ -146,24 +158,52 @@ const ProductAttribute = ({ productState, setProductState, stickyAddToCart }) =>
   return (
     <>
       {productState?.product?.attributes?.map((elem, i) => (
-        <div className='product-package' key={i}>
+        <div className="product-package" key={i}>
           {stickyAddToCart ? (
-            <DropdownAttribute elem={elem} setVariant={setVariant} soldOutAttributesIds={soldOutAttributesIds} i={i} productState={productState} />
+            <DropdownAttribute
+              elem={elem}
+              setVariant={setVariant}
+              soldOutAttributesIds={soldOutAttributesIds}
+              i={i}
+              productState={productState}
+            />
           ) : (
             <>
-              <div className='product-title'>
+              <div className="product-title">
                 <h4>
                   {elem?.name} : {elem?.selected_value}
                 </h4>
               </div>
               {elem?.style == 'radio' ? (
-                <RadioAttribute elem={elem} setVariant={setVariant} soldOutAttributesIds={soldOutAttributesIds} i={i} productState={productState} />
+                <RadioAttribute
+                  elem={elem}
+                  setVariant={setVariant}
+                  soldOutAttributesIds={soldOutAttributesIds}
+                  i={i}
+                  productState={productState}
+                />
               ) : elem?.style == 'dropdown' ? (
-                <DropdownAttribute elem={elem} setVariant={setVariant} soldOutAttributesIds={soldOutAttributesIds} i={i} productState={productState} />
+                <DropdownAttribute
+                  elem={elem}
+                  setVariant={setVariant}
+                  soldOutAttributesIds={soldOutAttributesIds}
+                  i={i}
+                  productState={productState}
+                />
               ) : elem?.style == 'color' ? (
-                <ColorAttribute elem={elem} setVariant={setVariant} soldOutAttributesIds={soldOutAttributesIds} productState={productState} />
+                <ColorAttribute
+                  elem={elem}
+                  setVariant={setVariant}
+                  soldOutAttributesIds={soldOutAttributesIds}
+                  productState={productState}
+                />
               ) : (
-                <ImageOtherAttributes elem={elem} setVariant={setVariant} soldOutAttributesIds={soldOutAttributesIds} productState={productState} />
+                <ImageOtherAttributes
+                  elem={elem}
+                  setVariant={setVariant}
+                  soldOutAttributesIds={soldOutAttributesIds}
+                  productState={productState}
+                />
               )}
             </>
           )}

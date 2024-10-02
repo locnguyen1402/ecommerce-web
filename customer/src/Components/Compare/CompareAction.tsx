@@ -19,13 +19,13 @@ const CompareAction = ({ product }) => {
   };
   return (
     <>
-      <div className='btn-part'>
-        <Btn className='btn-animation btn-sm' onClick={addToCart}>
+      <div className="btn-part">
+        <Btn className="btn-animation btn-sm" onClick={addToCart}>
           {t('AddToCart')}
         </Btn>
       </div>
-      <div className='remove-part' onClick={() => removeFromCompare(product)}>
-        <a className='text-content remove_column'>
+      <div className="remove-part" onClick={() => removeFromCompare(product)}>
+        <a className="text-content remove_column">
           <RiDeleteBinLine /> {t('Remove')}
         </a>
       </div>

@@ -1,9 +1,7 @@
-import Offer from '@/Components/Offer'
+import Offer from '@/Components/Offer';
 
 const OfferPage = () => {
-    return (
-        <Offer />
-    )
-}
+  return <Offer />;
+};
 
-export default OfferPage
+export default OfferPage;

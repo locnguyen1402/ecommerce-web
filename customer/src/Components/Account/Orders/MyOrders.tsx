@@ -20,20 +20,24 @@ const MyOrders = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   const { convertCurrency } = useContext(SettingContext);
-  const { data, isLoading, refetch } = useQuery([page], () => request({ url: OrderAPI, params: { page: page, paginate: 10 } }), {
-    enabled: true,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch } = useQuery(
+    [page],
+    () => request({ url: OrderAPI, params: { page: page, paginate: 10 } }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      select: (res) => res?.data,
+    }
+  );
   if (isLoading) return <Loader />;
   return (
     <>
       <AccountHeading title="MyOrders" />
       {data?.data?.length > 0 ? (
         <>
-          <div className='total-box mt-0'>
-            <div className='wallet-table mt-0'>
+          <div className="total-box mt-0">
+            <div className="wallet-table mt-0">
               <Table>
                 <tbody>
                   <tr>
@@ -49,7 +53,7 @@ const MyOrders = () => {
                     <tr key={i}>
                       <td>{i + 1}</td>
                       <td>
-                        <span className='fw-bolder'>#{order.order_number}</span>
+                        <span className="fw-bolder">#{order.order_number}</span>
                       </td>
                       <td>{dateFormate(order?.created_at)}</td>
                       <td>{convertCurrency(order?.total)} </td>
@@ -70,8 +74,13 @@ const MyOrders = () => {
               </Table>
             </div>
           </div>
-          <nav className='custome-pagination'>
-            <Pagination current_page={data?.current_page} total={data?.total} per_page={data?.per_page} setPage={setPage} />
+          <nav className="custome-pagination">
+            <Pagination
+              current_page={data?.current_page}
+              total={data?.total}
+              per_page={data?.per_page}
+              setPage={setPage}
+            />
           </nav>
         </>
       ) : (

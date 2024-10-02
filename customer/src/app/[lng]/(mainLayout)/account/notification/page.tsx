@@ -1,9 +1,7 @@
-import AccountNotificationContent from "@/Components/Account/Notification"
+import AccountNotificationContent from '@/Components/Account/Notification';
 
 const AccountNotification = () => {
-    return (
-        <AccountNotificationContent />
-    )
-}
+  return <AccountNotificationContent />;
+};
 
-export default AccountNotification
+export default AccountNotification;

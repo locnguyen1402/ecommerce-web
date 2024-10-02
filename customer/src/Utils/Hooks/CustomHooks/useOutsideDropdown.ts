@@ -3,7 +3,7 @@
  * @param initialIsVisible - The initial state of the component.
  * @returns The return value is an object with three properties:
  */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 export default function useOutsideDropdown() {
   const [isComponentVisible, setIsComponentVisible] = useState();
@@ -16,9 +16,9 @@ export default function useOutsideDropdown() {
   };
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener('click', handleClickOutside, true);
     return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
 

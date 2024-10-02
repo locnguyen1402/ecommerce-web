@@ -1,7 +1,13 @@
 import I18NextContext from '@/Helper/I18NextContext';
 import { useTranslation } from '@/app/i18n/client';
 import { useContext } from 'react';
-import { RiFacebookFill, RiLinkedinFill, RiMailFill, RiTwitterFill, RiWhatsappFill } from 'react-icons/ri';
+import {
+  RiFacebookFill,
+  RiLinkedinFill,
+  RiMailFill,
+  RiTwitterFill,
+  RiWhatsappFill,
+} from 'react-icons/ri';
 
 const ProductSocial = ({ productState }) => {
   const { i18Lang } = useContext(I18NextContext);
@@ -35,11 +41,11 @@ const ProductSocial = ({ productState }) => {
   };
   return (
     <>
-      <div className='share-option'>
-        <div className='product-title mt-0'>
-          <h4>{t("ShareIt")}</h4>
+      <div className="share-option">
+        <div className="product-title mt-0">
+          <h4>{t('ShareIt')}</h4>
         </div>
-        <ul className='product-social'>
+        <ul className="product-social">
           <li>
             <a onClick={() => shareOnFacebook(productState?.product?.slug)}>
               <RiFacebookFill />

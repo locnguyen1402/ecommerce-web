@@ -1,6 +1,6 @@
-import coupon from './coupon.json'
-import { NextResponse } from "next/server";
+import coupon from './coupon.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(coupon)
+  return NextResponse.json(coupon);
 }

@@ -9,13 +9,27 @@ import { BlogAPI } from '@/Utils/AxiosUtils/API';
 import Loader from '@/Layout/Loader';
 
 const SingleBlog = ({ params }) => {
-  const { data: Blog, isLoading, refetch } = useQuery([params], () => request({ url: `${BlogAPI}/slug/${params}` }), { enabled: true, refetchOnWindowFocus: false, select: (res) => res?.data });
-  if (isLoading) return <Loader/>
+  const {
+    data: Blog,
+    isLoading,
+    refetch,
+  } = useQuery([params], () => request({ url: `${BlogAPI}/slug/${params}` }), {
+    enabled: true,
+    refetchOnWindowFocus: false,
+    select: (res) => res?.data,
+  });
+  if (isLoading) return <Loader />;
   return (
     <>
-      <Breadcrumb title={Blog?.title} subNavigation={[{ name: 'Blogs', link: '/blogs' }, { name: Blog?.title }]} />
-      <WrapperComponent classes={{ sectionClass: 'blog-section section-b-space', row: 'g-4' }} customCol={true}>
-        <BlogCardDetails Blog={Blog} key={params}/>
+      <Breadcrumb
+        title={Blog?.title}
+        subNavigation={[{ name: 'Blogs', link: '/blogs' }, { name: Blog?.title }]}
+      />
+      <WrapperComponent
+        classes={{ sectionClass: 'blog-section section-b-space', row: 'g-4' }}
+        customCol={true}
+      >
+        <BlogCardDetails Blog={Blog} key={params} />
         <Sidebar />
       </WrapperComponent>
     </>

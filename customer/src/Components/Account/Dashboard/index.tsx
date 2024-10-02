@@ -10,13 +10,16 @@ const AccountDashboard = () => {
   return (
     <>
       <Breadcrumb title={'UserDashboard'} subNavigation={[{ name: 'UserDashboard' }]} />
-      <WrapperComponent classes={{ sectionClass: 'user-dashboard-section section-b-space' }} customCol={true}>
+      <WrapperComponent
+        classes={{ sectionClass: 'user-dashboard-section section-b-space' }}
+        customCol={true}
+      >
         <AccountSidebar tabActive={'dashboard'} />
         <Col xxl={9} lg={8}>
           <ResponsiveMenuOpen />
-          <div className='dashboard-right-sidebar'>
+          <div className="dashboard-right-sidebar">
             <TabContent>
-              <TabPane className='show active'>
+              <TabPane className="show active">
                 <DashboardContent />
               </TabPane>
             </TabContent>

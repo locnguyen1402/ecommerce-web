@@ -18,29 +18,42 @@ const ShopCategory = ({ dataAPI }) => {
   const { t } = useTranslation(i18Lang, 'common');
   const { filterCategory } = useContext(CategoryContext);
   const categoryData = useMemo(() => {
-    return dataAPI?.category_ids.length > 0 ? filterCategory('product')?.filter((category) => dataAPI?.category_ids?.includes(category.id)) : filterCategory('product');
+    return dataAPI?.category_ids.length > 0
+      ? filterCategory('product')?.filter((category) =>
+          dataAPI?.category_ids?.includes(category.id)
+        )
+      : filterCategory('product');
   }, [filterCategory('product')]);
   return (
     <WrapperComponent classes={{ sectionClass: 'category-section-3' }} noRowCol={true}>
       <CustomHeading title={dataAPI?.title} customClass={'title'} />
       <Row>
         <Col xs={12}>
-          <div className='category-slider-1 arrow-slider'>
+          <div className="category-slider-1 arrow-slider">
             <Slider {...madridCategorySlider}>
               {categoryData?.map((elem) => (
                 <div key={elem.id}>
-                  <div className='category-box-list'>
-                    <Link href={`/${i18Lang}/collections?category=${elem?.slug}`} className='category-name'>
+                  <div className="category-box-list">
+                    <Link
+                      href={`/${i18Lang}/collections?category=${elem?.slug}`}
+                      className="category-name"
+                    >
                       <h4>{elem?.name}</h4>
                       <h6>
                         {elem?.products_count} {t('items')}
                       </h6>
                     </Link>
-                    <div className='category-box-view'>
+                    <div className="category-box-view">
                       <Link href={`/${i18Lang}/collections?category=${elem?.slug}`}>
-                        <Image src={elem?.category_image?.original_url || placeHolderImage} className='img-fluid' alt='Shop Category' height={133} width={133} />
+                        <Image
+                          src={elem?.category_image?.original_url || placeHolderImage}
+                          className="img-fluid"
+                          alt="Shop Category"
+                          height={133}
+                          width={133}
+                        />
                       </Link>
-                      <Btn className='btn shop-button'>
+                      <Btn className="btn shop-button">
                         <span>{t('ShopNow')}</span>
                         <RiArrowRightSLine />
                       </Btn>

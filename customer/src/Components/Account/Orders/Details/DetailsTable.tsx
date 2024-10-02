@@ -19,37 +19,46 @@ const DetailsTable = ({ data }) => {
     <>
       <Card>
         <CardBody>
-          <div className='tracking-wrapper table-responsive'>
-            <Table className='product-table'>
+          <div className="tracking-wrapper table-responsive">
+            <Table className="product-table">
               <thead>
                 <tr>
-                  <th scope='col'>{t('Image')}</th>
-                  <th scope='col'>{t('Name')}</th>
-                  <th scope='col'>{t('Price')}</th>
-                  <th scope='col'>{t('Quantity')}</th>
-                  <th scope='col'>{t('Subtotal')}</th>
-                  <th scope='col'>{t('RefundStatus')}</th>
+                  <th scope="col">{t('Image')}</th>
+                  <th scope="col">{t('Name')}</th>
+                  <th scope="col">{t('Price')}</th>
+                  <th scope="col">{t('Quantity')}</th>
+                  <th scope="col">{t('Subtotal')}</th>
+                  <th scope="col">{t('RefundStatus')}</th>
                 </tr>
               </thead>
               <tbody>
                 {data?.products?.length > 0
                   ? data?.products?.map((product, i) => (
                       <tr key={i}>
-                        <td className='product-image'>
+                        <td className="product-image">
                           <Avatar
                             data={
-                              product?.pivot?.variation && product?.pivot?.variation?.variation_image
+                              product?.pivot?.variation &&
+                              product?.pivot?.variation?.variation_image
                                 ? product?.pivot?.variation?.variation_image
                                 : product?.product_thumbnail
-                                ? product?.product_thumbnail
-                                : placeHolderImage
+                                  ? product?.product_thumbnail
+                                  : placeHolderImage
                             }
-                            name={product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name}
-                            customImageClass='img-fluid'
+                            name={
+                              product?.pivot?.variation
+                                ? product?.pivot?.variation?.name
+                                : product?.name
+                            }
+                            customImageClass="img-fluid"
                           />
                         </td>
                         <td>
-                          <h6>{product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name}</h6>
+                          <h6>
+                            {product?.pivot?.variation
+                              ? product?.pivot?.variation?.name
+                              : product?.name}
+                          </h6>
                         </td>
                         <td>
                           <h6>{product?.pivot?.single_price}</h6>
@@ -60,7 +69,13 @@ const DetailsTable = ({ data }) => {
                         <td>
                           <h6>{product?.pivot?.subtotal}</h6>
                         </td>
-                        <td>{product?.is_return === 1 && product?.pivot?.is_refunded === 0 ? <a onClick={() => onModalOpen(product)}>{t('AskForRefund')}</a> : '-'}</td>
+                        <td>
+                          {product?.is_return === 1 && product?.pivot?.is_refunded === 0 ? (
+                            <a onClick={() => onModalOpen(product)}>{t('AskForRefund')}</a>
+                          ) : (
+                            '-'
+                          )}
+                        </td>
                       </tr>
                     ))
                   : null}

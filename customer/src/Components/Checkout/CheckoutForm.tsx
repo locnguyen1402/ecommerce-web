@@ -16,20 +16,40 @@ const CheckoutForm = () => {
   }, [accountData]);
   const addAddress = () => {
     setModal('');
-  }
+  };
   return (
     <Formik initialValues={{}}>
       {({ values, setFieldValue }) => (
         <Form>
-          <div className='pb-4 checkout-section-2'>
-            <Row className='g-sm-4 g-3'>
-              <Col xxl='8' xl='7'>
-                <div className='left-sidebar-checkout'>
-                  <div className='checkout-detail-box'>
+          <div className="pb-4 checkout-section-2">
+            <Row className="g-sm-4 g-3">
+              <Col xxl="8" xl="7">
+                <div className="left-sidebar-checkout">
+                  <div className="checkout-detail-box">
                     <ul>
-                      <DeliveryAddress key='shipping' type='shipping' title={'Shipping'} values={values} updateId={values['consumer_id']} setFieldValue={setFieldValue} address={address} modal={modal} mutate={addAddress} setModal={setModal}
+                      <DeliveryAddress
+                        key="shipping"
+                        type="shipping"
+                        title={'Shipping'}
+                        values={values}
+                        updateId={values['consumer_id']}
+                        setFieldValue={setFieldValue}
+                        address={address}
+                        modal={modal}
+                        mutate={addAddress}
+                        setModal={setModal}
                       />
-                      <DeliveryAddress key='billing' type='billing' title={'Billing'} values={values} updateId={values['consumer_id']} setFieldValue={setFieldValue} address={address} modal={modal} mutate={addAddress} setModal={setModal}
+                      <DeliveryAddress
+                        key="billing"
+                        type="billing"
+                        title={'Billing'}
+                        values={values}
+                        updateId={values['consumer_id']}
+                        setFieldValue={setFieldValue}
+                        address={address}
+                        modal={modal}
+                        mutate={addAddress}
+                        setModal={setModal}
                       />
                       <DeliveryOptions values={values} setFieldValue={setFieldValue} />
                       <PaymentOptions values={values} setFieldValue={setFieldValue} />

@@ -38,15 +38,20 @@ const LeftCategory = ({ filter, setFilter }) => {
     }
   };
   return (
-    <div className='col-custome-3'>
-      <div className='left-box'>
-        <div className='shop-left-sidebar'>
-          <Nav className='nav-pills mb-3 custom-nav-tab'>
+    <div className="col-custome-3">
+      <div className="left-box">
+        <div className="shop-left-sidebar">
+          <Nav className="nav-pills mb-3 custom-nav-tab">
             {categoryData?.map((category, i) => (
               <NavItem onClick={() => redirectToCollection(category?.slug)} key={i}>
                 <NavLink className={filter?.category?.includes(category?.slug) ? 'active' : ''}>
                   {category?.name}
-                  <Image src={category?.category_icon?.original_url || placeHolderImage} alt={category?.name} height={80} width={80} />
+                  <Image
+                    src={category?.category_icon?.original_url || placeHolderImage}
+                    alt={category?.name}
+                    height={80}
+                    width={80}
+                  />
                 </NavLink>
               </NavItem>
             ))}

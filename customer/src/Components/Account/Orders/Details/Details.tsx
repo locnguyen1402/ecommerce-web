@@ -9,11 +9,15 @@ import DetailsConsumer from './DetailsConsumer';
 import SubOrders from './SubOrders';
 
 const Details = ({ params }) => {
-  const { data, isLoading } = useQuery([OrderAPI, params], () => request({ url: `${OrderAPI}/${params}` }), {
-    enabled: true,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading } = useQuery(
+    [OrderAPI, params],
+    () => request({ url: `${OrderAPI}/${params}` }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   if (isLoading) return <Loader />;
   return (
     <>

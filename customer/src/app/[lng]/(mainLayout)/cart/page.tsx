@@ -1,9 +1,7 @@
-import CartContent from '@/Components/Cart'
+import CartContent from '@/Components/Cart';
 
 const Cart = () => {
-    return (
-        <CartContent />
-    )
-}
+  return <CartContent />;
+};
 
-export default Cart
+export default Cart;

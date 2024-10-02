@@ -1,9 +1,7 @@
-import BecomeSellerContent from "@/Components/Seller/BecomeSeller"
+import BecomeSellerContent from '@/Components/Seller/BecomeSeller';
 
 const BecomeSeller = () => {
-    return (
-        <BecomeSellerContent />
-    )
-}
+  return <BecomeSellerContent />;
+};
 
-export default BecomeSeller
+export default BecomeSeller;

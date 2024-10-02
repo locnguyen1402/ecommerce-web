@@ -1,9 +1,7 @@
-import ForgotPasswordContent from "@/Components/Auth/ForgotPassword"
+import ForgotPasswordContent from '@/Components/Auth/ForgotPassword';
 
 const ForgotPassword = () => {
-    return (
-        <ForgotPasswordContent />
-    )
-}
+  return <ForgotPasswordContent />;
+};
 
-export default ForgotPassword
+export default ForgotPassword;

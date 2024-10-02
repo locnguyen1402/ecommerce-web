@@ -5,7 +5,14 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCustomSearchParams } from '@/Utils/Hooks/useCustomSearchParams';
 
 const CollectionCategory = ({ filter, setFilter }) => {
-  const [attribute, price, rating, sortBy, field, layout] = useCustomSearchParams(['attribute', 'price', 'rating', 'sortBy', 'field', 'layout']);
+  const [attribute, price, rating, sortBy, field, layout] = useCustomSearchParams([
+    'attribute',
+    'price',
+    'rating',
+    'sortBy',
+    'field',
+    'layout',
+  ]);
   const { filterCategory } = useContext(CategoryContext);
   const categoryData = filterCategory('product');
   const router = useRouter();
@@ -25,23 +32,44 @@ const CollectionCategory = ({ filter, setFilter }) => {
       };
     });
     if (temp.length > 0) {
-      const queryParams = new URLSearchParams({ ...attribute, ...price, ...sortBy, ...field, ...rating, ...layout, category: temp }).toString();
+      const queryParams = new URLSearchParams({
+        ...attribute,
+        ...price,
+        ...sortBy,
+        ...field,
+        ...rating,
+        ...layout,
+        category: temp,
+      }).toString();
       router.push(`${pathname}?${queryParams}`);
     } else {
-      const queryParams = new URLSearchParams({ ...attribute, ...price, ...sortBy, ...field, ...rating, ...layout }).toString();
+      const queryParams = new URLSearchParams({
+        ...attribute,
+        ...price,
+        ...sortBy,
+        ...field,
+        ...rating,
+        ...layout,
+      }).toString();
       router.push(`${pathname}?${queryParams}`);
     }
   };
   return (
-    <AccordionBody accordionId='1'>
-      <ul className='category-list custom-padding custom-height'>
+    <AccordionBody accordionId="1">
+      <ul className="category-list custom-padding custom-height">
         {categoryData?.map((elem, i) => (
           <li key={i}>
-            <div className='form-check category-list-box'>
-              <Input className='checkbox_animated' type='checkbox' id={elem?.name} checked={filter?.category?.includes(elem?.slug)} onChange={(e) => redirectToCollection(e, elem?.slug)} />
-              <Label className='form-check-label' htmlFor={elem?.name}>
-                <span className='name'>{elem?.name}</span>
-                <span className='number'>({elem?.products_count})</span>
+            <div className="form-check category-list-box">
+              <Input
+                className="checkbox_animated"
+                type="checkbox"
+                id={elem?.name}
+                checked={filter?.category?.includes(elem?.slug)}
+                onChange={(e) => redirectToCollection(e, elem?.slug)}
+              />
+              <Label className="form-check-label" htmlFor={elem?.name}>
+                <span className="name">{elem?.name}</span>
+                <span className="number">({elem?.products_count})</span>
               </Label>
             </div>
           </li>

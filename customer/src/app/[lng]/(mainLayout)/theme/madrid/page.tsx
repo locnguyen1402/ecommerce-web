@@ -1,9 +1,7 @@
-import MadridTheme from '@/Components/MadridTheme'
+import MadridTheme from '@/Components/MadridTheme';
 
 const Madrid = () => {
-  return (
-    <MadridTheme />
-  )
-}
+  return <MadridTheme />;
+};
 
-export default Madrid
+export default Madrid;

@@ -1,6 +1,6 @@
 export default function NameConversion(str) {
   return str
-    ?.split("_")
+    ?.split('_')
     .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
-    .join("");
+    .join('');
 }

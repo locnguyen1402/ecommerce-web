@@ -8,11 +8,11 @@ const CategoryTagsContent = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   return (
-    <ul className='value-list'>
+    <ul className="value-list">
       {categoryTags.map((elem) => (
         <li key={elem.id}>
-          <div className='category-list'>
-            <h5 className='ms-0 text-title'>
+          <div className="category-list">
+            <h5 className="ms-0 text-title">
               <Link href={elem.path}>{t(elem.title)}</Link>
             </h5>
           </div>

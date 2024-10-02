@@ -1,29 +1,29 @@
-import { useContext, useEffect, useState } from "react";
-import { RiArrowUpSLine } from "react-icons/ri";
-import SettingBox from "../SettingBox";
-import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
+import { useContext, useEffect, useState } from 'react';
+import { RiArrowUpSLine } from 'react-icons/ri';
+import SettingBox from '../SettingBox';
+import ThemeOptionContext from '@/Helper/ThemeOptionsContext';
 
 const TapTop = () => {
-  const [taptopStyle, setTapTopStyle] = useState("none");
+  const [taptopStyle, setTapTopStyle] = useState('none');
   const { themeOption } = useContext(ThemeOptionContext);
 
   const executeScroll = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
   const handleScroll = () => {
     if (window.scrollY > 600) {
-      setTapTopStyle("block");
+      setTapTopStyle('block');
     } else {
-      setTapTopStyle("none");
+      setTapTopStyle('none');
     }
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return (

@@ -16,14 +16,18 @@ const HeaderCart = () => {
     return themeOption?.general?.cart_style ? themeOption?.general?.cart_style : 'cart_sidebar';
   });
   return (
-    <li className='right-side'>
-      <div className='onhover-dropdown header-badge'>
-        <Btn type='button' className='btn p-0 position-relative header-wishlist' onClick={() => cartStyle == 'cart_sidebar' && setCartCanvas(!cartCanvas)}>
+    <li className="right-side">
+      <div className="onhover-dropdown header-badge">
+        <Btn
+          type="button"
+          className="btn p-0 position-relative header-wishlist"
+          onClick={() => cartStyle == 'cart_sidebar' && setCartCanvas(!cartCanvas)}
+        >
           <RiShoppingCartLine />
           {cartProducts?.length > 0 && (
-            <span className='position-absolute top-0 start-100 translate-middle badge'>
+            <span className="position-absolute top-0 start-100 translate-middle badge">
               {cartProducts?.length}
-              <span className='visually-hidden'>{t('unreadmessages')}</span>
+              <span className="visually-hidden">{t('unreadmessages')}</span>
             </span>
           )}
         </Btn>

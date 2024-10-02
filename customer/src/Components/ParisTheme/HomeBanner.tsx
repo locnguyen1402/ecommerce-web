@@ -7,10 +7,15 @@ const HomeBanner = ({ bannersData }) => {
   const banners = bannersData.filter((elem) => (elem.status == true ? true : false));
   return (
     <WrapperComponent classes={{ sectionClass: 'banner-section ratio_60' }} noRowCol={true}>
-      <div className='banner-slider'>
+      <div className="banner-slider">
         <Slider {...themeSec2BannerSlider}>
           {banners.map((elem, i) => (
-            <OfferBanner classes={{ customHoverClass: 'banner-contain hover-effect' }} imgUrl={elem?.image_url} key={i} elem={elem} />
+            <OfferBanner
+              classes={{ customHoverClass: 'banner-contain hover-effect' }}
+              imgUrl={elem?.image_url}
+              key={i}
+              elem={elem}
+            />
           ))}
         </Slider>
       </div>

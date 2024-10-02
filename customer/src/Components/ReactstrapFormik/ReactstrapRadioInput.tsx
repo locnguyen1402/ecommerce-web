@@ -1,11 +1,23 @@
-import * as React from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import * as React from 'react';
+import { FormGroup, Input, Label } from 'reactstrap';
 
-const ReactstrapRadioInput = ({ field, form: { isSubmitting, setFieldValue, touched, errors, values }, disabled = false, ...props }) => {
+const ReactstrapRadioInput = ({
+  field,
+  form: { isSubmitting, setFieldValue, touched, errors, values },
+  disabled = false,
+  ...props
+}) => {
   return (
     <FormGroup check inline>
       <Label htmlFor={props.id}>
-        <Input {...props} type="radio" name={field.name} checked={values[field.name] === field.value} value={field.value} onChange={(event, value) => setFieldValue(field.name, field.value)} />
+        <Input
+          {...props}
+          type="radio"
+          name={field.name}
+          checked={values[field.name] === field.value}
+          value={field.value}
+          onChange={(event, value) => setFieldValue(field.name, field.value)}
+        />
         {props.label}
       </Label>
     </FormGroup>

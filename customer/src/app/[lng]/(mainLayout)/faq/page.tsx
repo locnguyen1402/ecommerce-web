@@ -1,9 +1,7 @@
-import BrowserFaq from "@/Components/Faq"
+import BrowserFaq from '@/Components/Faq';
 
 const Faqs = () => {
-    return (
-        <BrowserFaq />
-    )
-}
+  return <BrowserFaq />;
+};
 
-export default Faqs
+export default Faqs;

@@ -23,17 +23,20 @@ const HeaderTopBar = () => {
     };
   }, [i18Lang, pathName]);
   return (
-    <div className={`header-top${themeOption?.header?.page_top_bar_dark ? ' bg-dark' : ''}`} ref={addClass}>
-      <div className='container-fluid-lg'>
+    <div
+      className={`header-top${themeOption?.header?.page_top_bar_dark ? ' bg-dark' : ''}`}
+      ref={addClass}
+    >
+      <div className="container-fluid-lg">
         <Row>
           <TopbarLeft />
           <TopbarSlider />
           <Col lg={3}>
-            <ul className='about-list right-nav-about'>
-              <li className='right-nav-list'>
+            <ul className="about-list right-nav-about">
+              <li className="right-nav-list">
                 <TopLanguage />
               </li>
-              <li className='right-nav-list'>
+              <li className="right-nav-list">
                 <HeaderCurrency />
               </li>
             </ul>

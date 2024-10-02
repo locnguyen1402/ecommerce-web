@@ -9,10 +9,10 @@ const PlaceOrder = ({ values }) => {
   const { t } = useTranslation(i18Lang, 'common');
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/${i18Lang}/account/order/details/1000`)
+    router.push(`/${i18Lang}/account/order/details/1000`);
   };
   return (
-    <Btn className='btn-md fw-bold mt-4 text-white theme-bg-color w-100' onClick={handleClick}>
+    <Btn className="btn-md fw-bold mt-4 text-white theme-bg-color w-100" onClick={handleClick}>
       {t('PlaceOrder')}
     </Btn>
   );

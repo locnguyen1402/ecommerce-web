@@ -23,11 +23,15 @@ import Loader from '@/Layout/Loader';
 const OsakaTheme = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
-  const { data, isLoading, refetch, fetchStatus } = useQuery(['osaka'], () => request({ url: `${HomePageAPI}/osaka` }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch, fetchStatus } = useQuery(
+    ['osaka'],
+    () => request({ url: `${HomePageAPI}/osaka` }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   useEffect(() => {
     refetch();
   }, []);
@@ -53,7 +57,7 @@ const OsakaTheme = () => {
           <ProductSection2
             isHeadingVisible={true}
             dataAPI={data?.content?.categories_icon_list}
-            svgUrl={<LeafSVG className='icon-width' />}
+            svgUrl={<LeafSVG className="icon-width" />}
             classes={{ sliderOption: osakaCategoryOption, noCustomClass: true }}
           />
         </WrapperComponent>
@@ -63,21 +67,40 @@ const OsakaTheme = () => {
 
       <MiddleContent dataAPI={data?.content} />
 
-      {data?.content?.slider_products?.status && <TopSelling dataAPI={data?.content?.slider_products} classes={{ boxClass: 'category-menu', colClass: { sm: 6, xl: 4, xxl: 3 } }} />}
-
-      {data?.content?.featured_blogs?.status && data?.content?.featured_blogs?.blog_ids?.length > 0 && (
-        <WrapperComponent noRowCol={true}>
-          <CustomHeading title={data?.content?.featured_blogs?.title} subTitle={data?.content?.featured_blogs?.description} svgUrl={<LeafSVG className='icon-width' />} />
-          <Row>
-            <Col xs={12}>
-              <FeatureBlog dataAPI={data?.content?.featured_blogs} classes={{ sliderClass: 'slider-5 ratio_87', sliderOption: osakaFeatureBlogOption, height: 238, width: 417 }} />
-            </Col>
-          </Row>
-        </WrapperComponent>
+      {data?.content?.slider_products?.status && (
+        <TopSelling
+          dataAPI={data?.content?.slider_products}
+          classes={{ boxClass: 'category-menu', colClass: { sm: 6, xl: 4, xxl: 3 } }}
+        />
       )}
 
+      {data?.content?.featured_blogs?.status &&
+        data?.content?.featured_blogs?.blog_ids?.length > 0 && (
+          <WrapperComponent noRowCol={true}>
+            <CustomHeading
+              title={data?.content?.featured_blogs?.title}
+              subTitle={data?.content?.featured_blogs?.description}
+              svgUrl={<LeafSVG className="icon-width" />}
+            />
+            <Row>
+              <Col xs={12}>
+                <FeatureBlog
+                  dataAPI={data?.content?.featured_blogs}
+                  classes={{
+                    sliderClass: 'slider-5 ratio_87',
+                    sliderOption: osakaFeatureBlogOption,
+                    height: 238,
+                    width: 417,
+                  }}
+                />
+              </Col>
+            </Row>
+          </WrapperComponent>
+        )}
+
       {data?.content?.news_letter?.status && <NewsLetter dataAPI={data?.content?.news_letter} />}
-      {themeOption?.general?.sticky_cart_enable && themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
+      {themeOption?.general?.sticky_cart_enable &&
+        themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
     </>
   );
 };

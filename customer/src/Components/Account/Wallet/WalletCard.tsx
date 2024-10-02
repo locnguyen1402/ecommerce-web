@@ -17,11 +17,15 @@ const WalletCard = () => {
   const [page, setPage] = useState(1);
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
-  const { data, isLoading, refetch } = useQuery([WalletConsumerAPI], () => request({ url: WalletConsumerAPI, params: { page, paginate: 10 } }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch } = useQuery(
+    [WalletConsumerAPI],
+    () => request({ url: WalletConsumerAPI, params: { page, paginate: 10 } }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   const { convertCurrency } = useContext(SettingContext);
   useEffect(() => {
     refetch();
@@ -30,28 +34,28 @@ const WalletCard = () => {
   return (
     <>
       <AccountHeading title="MyWallet" />
-      <div className='total-box mt-0'>
+      <div className="total-box mt-0">
         <Row>
           <Col xs={12}>
-            <div className='total-contain wallet-bg'>
-              <Image src={walletImage} alt='walletImage' height={60} width={60} />
-              <div className='total-detail'>
-                <h5>{t("WalletBalance")}</h5>
+            <div className="total-contain wallet-bg">
+              <Image src={walletImage} alt="walletImage" height={60} width={60} />
+              <div className="total-detail">
+                <h5>{t('WalletBalance')}</h5>
                 <h3>{data ? convertCurrency(data?.balance) : 0}</h3>
               </div>
             </div>
           </Col>
         </Row>
-        <div className='wallet-table'>
-          <h4 className='user-dashboard-title'>{t("Transactions")}</h4>
+        <div className="wallet-table">
+          <h4 className="user-dashboard-title">{t('Transactions')}</h4>
           <Table>
             <tbody>
               <tr>
-                <th>{t("No.")}</th>
-                <th>{t("Date")}</th>
-                <th>{t("Amount")}</th>
-                <th>{t("Remark")}</th>
-                <th>{t("Status")}</th>
+                <th>{t('No.')}</th>
+                <th>{t('Date')}</th>
+                <th>{t('Amount')}</th>
+                <th>{t('Remark')}</th>
+                <th>{t('Status')}</th>
               </tr>
               {data?.transactions?.data?.map((transaction, i) => (
                 <tr key={i}>
@@ -69,8 +73,13 @@ const WalletCard = () => {
             </tbody>
           </Table>
         </div>
-        <nav className='custome-pagination'>
-          <Pagination current_page={data?.transactions?.current_page} total={data?.transactions?.total} per_page={data?.transactions?.per_page} setPage={setPage} />
+        <nav className="custome-pagination">
+          <Pagination
+            current_page={data?.transactions?.current_page}
+            total={data?.transactions?.total}
+            per_page={data?.transactions?.per_page}
+            setPage={setPage}
+          />
         </nav>
       </div>
     </>

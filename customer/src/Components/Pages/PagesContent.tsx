@@ -6,8 +6,11 @@ import PageCard from './PageCard';
 const PagesContent = ({ params }) => {
   return (
     <>
-      <Breadcrumb title={params.split('-').join(' ')} subNavigation={[{ name: 'Pages' }, { name: params }]} />
-      <section className='blog-section section-b-space'>
+      <Breadcrumb
+        title={params.split('-').join(' ')}
+        subNavigation={[{ name: 'Pages' }, { name: params }]}
+      />
+      <section className="blog-section section-b-space">
         <Container>
           <PageCard params={params} />
         </Container>

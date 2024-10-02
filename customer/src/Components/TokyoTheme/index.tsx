@@ -18,11 +18,15 @@ import Loader from '@/Layout/Loader';
 const TokyoTheme = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
-  const { data, isLoading, refetch, fetchStatus } = useQuery(['tokyo'], () => request({ url: `${HomePageAPI}/tokyo` }), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  const { data, isLoading, refetch, fetchStatus } = useQuery(
+    ['tokyo'],
+    () => request({ url: `${HomePageAPI}/tokyo` }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
   useEffect(() => {
     const headerTops = document.getElementsByClassName('header-top');
 
@@ -60,20 +64,40 @@ const TokyoTheme = () => {
     <>
       <HomeBanner dataAPI={data?.content?.home_banner} />
 
-      {data?.content?.categories_icon_list?.status && <CategoryMenu dataAPI={data?.content?.categories_icon_list} />}
+      {data?.content?.categories_icon_list?.status && (
+        <CategoryMenu dataAPI={data?.content?.categories_icon_list} />
+      )}
 
-      {data?.content?.coupons?.status && <OfferBanner dataAPI={data?.content?.coupons} height={138} width={1585} classes={{ fluidClass: 'sale-banner' }} />}
+      {data?.content?.coupons?.status && (
+        <OfferBanner
+          dataAPI={data?.content?.coupons}
+          height={138}
+          width={1585}
+          classes={{ fluidClass: 'sale-banner' }}
+        />
+      )}
 
-      {data?.content?.featured_banners?.status && data?.content?.featured_banners?.banners?.length > 0 && <FeatureBanner bannersData={data?.content?.featured_banners?.banners} />}
+      {data?.content?.featured_banners?.status &&
+        data?.content?.featured_banners?.banners?.length > 0 && (
+          <FeatureBanner bannersData={data?.content?.featured_banners?.banners} />
+        )}
 
       <ProductCard dataAPI={data?.content} />
 
-      {data?.content?.full_width_banner?.status && <OfferBanner dataAPI={data?.content?.full_width_banner} height={343} width={1524} />}
+      {data?.content?.full_width_banner?.status && (
+        <OfferBanner dataAPI={data?.content?.full_width_banner} height={343} width={1524} />
+      )}
 
-      {data?.content?.slider_products?.status && <TopSelling dataAPI={data?.content?.slider_products} classes={{ colClass: { sm: 6, xl: 4, xxl: 3 } }} />}
+      {data?.content?.slider_products?.status && (
+        <TopSelling
+          dataAPI={data?.content?.slider_products}
+          classes={{ colClass: { sm: 6, xl: 4, xxl: 3 } }}
+        />
+      )}
 
       {data?.content?.news_letter?.status && <NewsLetter dataAPI={data?.content?.news_letter} />}
-      {themeOption?.general?.sticky_cart_enable && themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
+      {themeOption?.general?.sticky_cart_enable &&
+        themeOption?.general?.cart_style !== 'cart_sidebar' && <StickyCart />}
     </>
   );
 };

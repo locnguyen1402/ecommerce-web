@@ -1,9 +1,7 @@
-import UpdatePasswordContent from "@/Components/Auth/UpdatePassword"
+import UpdatePasswordContent from '@/Components/Auth/UpdatePassword';
 
 const UpdatePassword = () => {
-    return (
-        <UpdatePasswordContent />
-    )
-}
+  return <UpdatePasswordContent />;
+};
 
-export default UpdatePassword
+export default UpdatePassword;

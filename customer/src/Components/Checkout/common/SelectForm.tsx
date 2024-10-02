@@ -16,8 +16,20 @@ const SelectForm = ({ values, data, setModal }) => {
       <Row>
         <SimpleInputField
           nameList={[
-            { name: 'title', placeholder: t('EnterTitle'), toplabel: 'Title', colprops: { xs: 12 }, require: 'true' },
-            { name: 'street', placeholder: t('EnterAddress'), toplabel: 'Address', colprops: { xs: 12 }, require: 'true' },
+            {
+              name: 'title',
+              placeholder: t('EnterTitle'),
+              toplabel: 'Title',
+              colprops: { xs: 12 },
+              require: 'true',
+            },
+            {
+              name: 'street',
+              placeholder: t('EnterAddress'),
+              toplabel: 'Address',
+              colprops: { xs: 12 },
+              require: 'true',
+            },
           ]}
         />
         <SearchableSelectInput
@@ -44,7 +56,11 @@ const SelectForm = ({ values, data, setModal }) => {
               inputprops: {
                 name: 'state_id',
                 id: 'state_id',
-                options: values?.['country_id'] ? data?.filter((country) => Number(country.id) === Number(values?.['country_id']))?.[0]?.['state'] : [],
+                options: values?.['country_id']
+                  ? data?.filter(
+                      (country) => Number(country.id) === Number(values?.['country_id'])
+                    )?.[0]?.['state']
+                  : [],
                 defaultOption: 'Select state',
               },
               disabled: values?.['country_id'] ? false : true,
@@ -53,13 +69,35 @@ const SelectForm = ({ values, data, setModal }) => {
         />
         <SimpleInputField
           nameList={[
-            { name: 'city', placeholder: t('EnterCity'), toplabel: 'City', colprops: { xxl: 6, lg: 12, sm: 6 }, require: 'true' },
-            { name: 'pincode', placeholder: t('EnterPincode'), toplabel: 'Pincode', colprops: { xxl: 6, lg: 12, sm: 6 }, require: 'true' },
+            {
+              name: 'city',
+              placeholder: t('EnterCity'),
+              toplabel: 'City',
+              colprops: { xxl: 6, lg: 12, sm: 6 },
+              require: 'true',
+            },
+            {
+              name: 'pincode',
+              placeholder: t('EnterPincode'),
+              toplabel: 'Pincode',
+              colprops: { xxl: 6, lg: 12, sm: 6 },
+              require: 'true',
+            },
           ]}
         />
-        <div className='country-input'>
+        <div className="country-input">
           <SimpleInputField
-            nameList={[{ name: 'phone', type: 'number', placeholder: t('EnterPhoneNumber'), require: 'true', toplabel: 'Phone', colprops: { xs: 12 }, colclass: 'country-input-box' }]}
+            nameList={[
+              {
+                name: 'phone',
+                type: 'number',
+                placeholder: t('EnterPhoneNumber'),
+                require: 'true',
+                toplabel: 'Phone',
+                colprops: { xs: 12 },
+                colclass: 'country-input-box',
+              },
+            ]}
           />
           <SearchableSelectInput
             nameList={[
@@ -75,9 +113,13 @@ const SelectForm = ({ values, data, setModal }) => {
             ]}
           />
         </div>
-        <ModalFooter className='ms-auto justify-content-end save-back-button'>
-          <Btn className='btn-md btn-theme-outline fw-bold' title='Cancel' onClick={() => setModal(false)} />
-          <Btn className='btn-md fw-bold text-light theme-bg-color' type='submit' title='Submit' />
+        <ModalFooter className="ms-auto justify-content-end save-back-button">
+          <Btn
+            className="btn-md btn-theme-outline fw-bold"
+            title="Cancel"
+            onClick={() => setModal(false)}
+          />
+          <Btn className="btn-md fw-bold text-light theme-bg-color" type="submit" title="Submit" />
         </ModalFooter>
       </Row>
     </Form>

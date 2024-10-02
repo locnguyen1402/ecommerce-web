@@ -9,17 +9,24 @@ const ImageOtherAttributes = ({ setVariant, productState, elem, soldOutAttribute
       {elem?.attribute_values?.map((item, index) => (
         <Fragment key={index}>
           {productState?.attributeValues?.includes(item?.id) && (
-            <li className={`${productState?.variantIds?.includes(item?.id) ? 'active' : ''} ${soldOutAttributesIds?.includes(item.id) ? 'disabled' : ''}`} title={item?.value}>
+            <li
+              className={`${productState?.variantIds?.includes(item?.id) ? 'active' : ''} ${soldOutAttributesIds?.includes(item.id) ? 'disabled' : ''}`}
+              title={item?.value}
+            >
               {elem?.style == 'image' ? (
                 <Image
-                  src={item?.variation_image ? item?.variation_image?.original_url : placeHolderImage}
+                  src={
+                    item?.variation_image ? item?.variation_image?.original_url : placeHolderImage
+                  }
                   onClick={() => setVariant(productState?.product?.variations, item)}
                   height={65}
                   width={65}
-                  alt='Product'
+                  alt="Product"
                 />
               ) : (
-                <Btn onClick={() => setVariant(productState?.product?.variations, item)}>{item?.value}</Btn>
+                <Btn onClick={() => setVariant(productState?.product?.variations, item)}>
+                  {item?.value}
+                </Btn>
               )}
             </li>
           )}

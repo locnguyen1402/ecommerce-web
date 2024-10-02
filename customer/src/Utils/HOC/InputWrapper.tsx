@@ -8,7 +8,12 @@ const InputWrapper = (WrappedComponent) => {
       {props?.notitle == 'true' ? (
         <WrappedComponent {...props} />
       ) : props?.inputaddon || props?.toplabel || props?.colprops ? (
-        <IconInputWrapper label={props?.toplabel} colprops={props?.colprops} colclass={props?.colclass} require={props?.require}>
+        <IconInputWrapper
+          label={props?.toplabel}
+          colprops={props?.colprops}
+          colclass={props?.colclass}
+          require={props?.require}
+        >
           <WrappedComponent {...props} />
         </IconInputWrapper>
       ) : props?.title && props?.label ? (
@@ -16,7 +21,11 @@ const InputWrapper = (WrappedComponent) => {
           <WrappedComponent {...props} />
         </FloatingInputWrapper>
       ) : (
-        <SimpleTitleWrapper title={props?.title} colProps={props?.colProps} colClass={props?.colClass}>
+        <SimpleTitleWrapper
+          title={props?.title}
+          colProps={props?.colProps}
+          colClass={props?.colClass}
+        >
           <WrappedComponent {...props} />
         </SimpleTitleWrapper>
       )}

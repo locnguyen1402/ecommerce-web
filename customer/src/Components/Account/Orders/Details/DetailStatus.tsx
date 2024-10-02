@@ -24,8 +24,8 @@ const DetailStatus = ({ data }) => {
     cancelled: cancelledImage,
   };
   return (
-    <div className='mb-4'>
-      <div className='tracking-panel'>
+    <div className="mb-4">
+      <div className="tracking-panel">
         {data && !data?.sub_orders?.length ? (
           <ul>
             {orderStatus?.length > 0
@@ -33,26 +33,47 @@ const DetailStatus = ({ data }) => {
                   <li
                     key={i}
                     className={`${elem?.sequence <= data?.order_status?.sequence ? 'active' : ''} ${
-                      (elem?.sequence >= data?.order_status?.sequence && data?.order_status?.slug == 'cancelled') || elem?.slug == 'cancelled' ? 'd-none' : ''
-                    }`}>
-                    <div className='panel-content'>
-                      <div className='icon'>
+                      (elem?.sequence >= data?.order_status?.sequence &&
+                        data?.order_status?.slug == 'cancelled') ||
+                      elem?.slug == 'cancelled'
+                        ? 'd-none'
+                        : ''
+                    }`}
+                  >
+                    <div className="panel-content">
+                      <div className="icon">
                         {elem?.slug && (
-                          <Image src={elem?.slug == 'out-for-delivery' ? imageObj['outfordelivery'] : imageObj[elem?.slug]} className='img-fluid' alt={elem?.slug} height={40} width={40} />
+                          <Image
+                            src={
+                              elem?.slug == 'out-for-delivery'
+                                ? imageObj['outfordelivery']
+                                : imageObj[elem?.slug]
+                            }
+                            className="img-fluid"
+                            alt={elem?.slug}
+                            height={40}
+                            width={40}
+                          />
                         )}
                       </div>
-                      <div className='status'>{elem?.name?.replace('_', ' ')}</div>
+                      <div className="status">{elem?.name?.replace('_', ' ')}</div>
                     </div>
                   </li>
                 ))
               : null}
             {data?.order_status?.slug == 'cancelled' ? (
-              <li className='active cancelled-box'>
-                <div className='panel-content'>
-                  <div className='icon'>
-                    <Image src={imageObj[data?.order_status?.slug] || cancelledImage} className='img-fluid' alt='image' height={40} width={40} />
+              <li className="active cancelled-box">
+                <div className="panel-content">
+                  <div className="icon">
+                    <Image
+                      src={imageObj[data?.order_status?.slug] || cancelledImage}
+                      className="img-fluid"
+                      alt="image"
+                      height={40}
+                      width={40}
+                    />
                   </div>
-                  <div className='status'>{data?.order_status.name.replace('_', ' ')}</div>
+                  <div className="status">{data?.order_status.name.replace('_', ' ')}</div>
                 </div>
               </li>
             ) : null}

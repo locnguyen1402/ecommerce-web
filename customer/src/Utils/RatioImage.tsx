@@ -18,7 +18,7 @@ const RatioImage = (props) => {
         background-position: center;
         background-repeat: no-repeat;
         display: block;
-        `,
+        `
       );
     }
   }, [props]);

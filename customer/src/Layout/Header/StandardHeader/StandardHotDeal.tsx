@@ -14,14 +14,14 @@ const StandardHotDeal = () => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <>
-      <div className='right-nav'>
-        <div className='nav-number'>
-          <Image src={headPhone} className='img-fluid' alt='nav-number' height={32} width={32} />
+      <div className="right-nav">
+        <div className="nav-number">
+          <Image src={headPhone} className="img-fluid" alt="nav-number" height={32} width={32} />
           <span>{themeOption?.header?.support_number}</span>
         </div>
-        <a className='btn theme-bg-color ms-3 fire-button' onClick={() => setModal(true)}>
-          <div className='fire'>
-            <Image src={HotSale} className='img-fluid' alt='fire' height={20} width={20} />
+        <a className="btn theme-bg-color ms-3 fire-button" onClick={() => setModal(true)}>
+          <div className="fire">
+            <Image src={HotSale} className="img-fluid" alt="fire" height={20} width={20} />
           </div>
           <span>{t('HotDeals')}</span>
         </a>

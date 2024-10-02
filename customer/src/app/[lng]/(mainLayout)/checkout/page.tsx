@@ -1,9 +1,7 @@
-import CheckoutContent from "@/Components/Checkout"
+import CheckoutContent from '@/Components/Checkout';
 
 const Checkout = () => {
-    return (
-        <CheckoutContent />
-    )
-}
+  return <CheckoutContent />;
+};
 
-export default Checkout
+export default Checkout;

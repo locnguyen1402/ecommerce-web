@@ -19,7 +19,13 @@ const AccountProvider = (props) => {
     }
   }, [isLoading, data]);
 
-  return <AccountContext.Provider value={{ ...props, accountData, setAccountData, refetch, mobileSideBar, setMobileSideBar }}>{props.children}</AccountContext.Provider>;
+  return (
+    <AccountContext.Provider
+      value={{ ...props, accountData, setAccountData, refetch, mobileSideBar, setMobileSideBar }}
+    >
+      {props.children}
+    </AccountContext.Provider>
+  );
 };
 
 export default AccountProvider;

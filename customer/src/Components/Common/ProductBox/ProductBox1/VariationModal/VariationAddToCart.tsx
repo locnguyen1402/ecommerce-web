@@ -9,7 +9,9 @@ const VariationAddToCart = ({ cloneVariation, setVariationModal }) => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   const { cartProducts, handleIncDec } = useContext(CartContext);
-  const productInStock = cloneVariation?.selectedVariation ? cloneVariation?.selectedVariation?.stock_status == 'in_stock' : cloneVariation?.product?.stock_status == 'in_stock';
+  const productInStock = cloneVariation?.selectedVariation
+    ? cloneVariation?.selectedVariation?.stock_status == 'in_stock'
+    : cloneVariation?.product?.stock_status == 'in_stock';
 
   const addToCart = (allProduct) => {
     if (cloneVariation?.selectedVariation) {
@@ -21,11 +23,16 @@ const VariationAddToCart = ({ cloneVariation, setVariationModal }) => {
     }
   };
   return (
-    <div className='addtocart_btn'>
+    <div className="addtocart_btn">
       <Btn
-        className='btn btn-md fw-bold icon text-white theme-bg-color view-button text-uppercase'
-        disabled={(cloneVariation?.selectedVariation && cloneVariation?.selectedVariation?.stock_status !== 'in_stock') || (cloneVariation?.product?.stock_status !== 'in_stock' && true)}
-        onClick={() => addToCart(cloneVariation.product)}>
+        className="btn btn-md fw-bold icon text-white theme-bg-color view-button text-uppercase"
+        disabled={
+          (cloneVariation?.selectedVariation &&
+            cloneVariation?.selectedVariation?.stock_status !== 'in_stock') ||
+          (cloneVariation?.product?.stock_status !== 'in_stock' && true)
+        }
+        onClick={() => addToCart(cloneVariation.product)}
+      >
         <RiShoppingCartLine />
         <span>{productInStock ? t('AddToCart') : t('SoldOut')}</span>
       </Btn>

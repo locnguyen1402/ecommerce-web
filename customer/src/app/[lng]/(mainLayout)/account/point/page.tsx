@@ -1,9 +1,7 @@
-import AccountPoints from '@/Components/Account/Points'
+import AccountPoints from '@/Components/Account/Points';
 
 const Points = () => {
-    return (
-        <AccountPoints />
-    )
-}
+  return <AccountPoints />;
+};
 
-export default Points
+export default Points;

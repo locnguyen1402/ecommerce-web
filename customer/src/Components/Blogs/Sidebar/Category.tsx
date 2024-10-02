@@ -13,14 +13,14 @@ const Category = () => {
   const categoryData = filterCategory('post');
   return (
     <AccordionItem>
-      <AccordionHeader targetId='2'>{t('Category')}</AccordionHeader>
-      <AccordionBody accordionId='2' className='p-0'>
-        <div className='category-list-box'>
+      <AccordionHeader targetId="2">{t('Category')}</AccordionHeader>
+      <AccordionBody accordionId="2" className="p-0">
+        <div className="category-list-box">
           <ul>
             {categoryData?.map((category, index) => (
               <li key={index}>
                 <Link href={{ pathname: `/${i18Lang}/blogs`, query: { category: category?.slug } }}>
-                  <div className='category-name'>
+                  <div className="category-name">
                     <h5>{category.name}</h5>
                     <span>({category?.blogs_count})</span>
                   </div>

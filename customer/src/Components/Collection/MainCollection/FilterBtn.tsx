@@ -11,7 +11,7 @@ const FilterBtn = ({ isOffcanvas }) => {
   return (
     <>
       {isOffcanvas && (
-        <div className='sidebar-filter-menu'>
+        <div className="sidebar-filter-menu">
           <a onClick={() => setOpenOffCanvas(!openOffCanvas)}>
             <RiFilter2Fill /> {t('FilterMenu')}
           </a>

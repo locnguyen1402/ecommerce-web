@@ -15,17 +15,22 @@ const ProductDetailsTab = ({ productState }) => {
   ];
   return (
     <Col xs={12}>
-      <div className='product-section-box mt-0'>
-        <NavTabTitles classes={{ navClass: 'nav-tabs custom-nav' }} titleList={ProductDetailsTabTitle} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <div className="product-section-box mt-0">
+        <NavTabTitles
+          classes={{ navClass: 'nav-tabs custom-nav' }}
+          titleList={ProductDetailsTabTitle}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
 
-        <TabContent className='custom-tab' activeTab={activeTab}>
+        <TabContent className="custom-tab" activeTab={activeTab}>
           <TabPane className={activeTab == 1 ? 'show active' : ''}>
             <TextLimit value={productState?.product?.description} />
           </TabPane>
 
           <TabPane className={activeTab == 2 ? 'show active' : ''}>
-            <div className='review-box'>
-              <Row className='g-4'>
+            <div className="review-box">
+              <Row className="g-4">
                 {productState?.product?.can_review || productState?.product?.reviews_count ? (
                   <CustomerReview productState={productState} />
                 ) : (

@@ -11,15 +11,18 @@ const FooterQuickPage = ({ footerMenu, setFooterMenu }) => {
   const { themeOption } = useContext(ThemeOptionContext);
   return (
     <Col xl={2} sm={3}>
-      <div className={`footer-title ${footerMenu == 'pages' ? 'show' : ''}`} onClick={() => setFooterMenu((prev) => (prev !== 'pages' ? 'pages' : ''))}>
+      <div
+        className={`footer-title ${footerMenu == 'pages' ? 'show' : ''}`}
+        onClick={() => setFooterMenu((prev) => (prev !== 'pages' ? 'pages' : ''))}
+      >
         <h4>{t('QuickPages')}</h4>
       </div>
 
-      <div className='footer-contain'>
+      <div className="footer-contain">
         <ul>
           {themeOption?.footer?.help_center?.map((elem, i) => (
             <li key={i}>
-              <Link href={`/${i18Lang}/${elem?.link}`} className='text-content'>
+              <Link href={`/${i18Lang}/${elem?.link}`} className="text-content">
                 {elem.label}
               </Link>
             </li>

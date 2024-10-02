@@ -1,9 +1,7 @@
-import RomeTheme from '@/Components/RomeTheme'
+import RomeTheme from '@/Components/RomeTheme';
 
 const Rome = () => {
-    return (
-        <RomeTheme />
-    )
-}
+  return <RomeTheme />;
+};
 
-export default Rome
+export default Rome;

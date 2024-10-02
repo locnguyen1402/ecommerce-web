@@ -1,4 +1,4 @@
-import AboutUsContent from "@/Components/AboutUs";
+import AboutUsContent from '@/Components/AboutUs';
 
 const AboutUs = () => {
   return <AboutUsContent />;

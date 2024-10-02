@@ -23,17 +23,29 @@ const ProductDetailContent = ({ params }) => {
   const queryProductLayout = searchParams.get('layout');
   // Getting Product Layout
   const isProductLayout = useMemo(() => {
-    return queryProductLayout ? queryProductLayout : themeOption?.product?.product_layout ?? 'product_thumbnail';
+    return queryProductLayout
+      ? queryProductLayout
+      : (themeOption?.product?.product_layout ?? 'product_thumbnail');
   }, [queryProductLayout, themeOption]);
 
-  const [productState, setProductState] = useState({ product: [], attributeValues: [], productQty: 1, selectedVariation: '', variantIds: [] });
+  const [productState, setProductState] = useState({
+    product: [],
+    attributeValues: [],
+    productQty: 1,
+    selectedVariation: '',
+    variantIds: [],
+  });
 
   // Calling Product API on slug
   const {
     data: ProductData,
     isLoading,
     refetch,
-  } = useQuery([params], () => request({ url: `${ProductAPI}/${params}` }, router), { enabled: false, refetchOnWindowFocus: false, select: (res) => res?.data });
+  } = useQuery([params], () => request({ url: `${ProductAPI}/${params}` }, router), {
+    enabled: false,
+    refetchOnWindowFocus: false,
+    select: (res) => res?.data,
+  });
 
   // Calling Product API when params is there
   useEffect(() => {
@@ -44,7 +56,11 @@ const ProductDetailContent = ({ params }) => {
   useEffect(() => {
     if (ProductData) {
       (ProductData?.cross_sell_products?.length > 0 || ProductData?.related_products?.length > 0) &&
-        setGetProductIds({ ids: Array.from(new Set([...ProductData?.cross_sell_products, ...ProductData?.related_products])).join(',') });
+        setGetProductIds({
+          ids: Array.from(
+            new Set([...ProductData?.cross_sell_products, ...ProductData?.related_products])
+          ).join(','),
+        });
       setProductState({ ...productState, product: ProductData });
     }
   }, [isLoading]);
@@ -74,17 +90,27 @@ const ProductDetailContent = ({ params }) => {
   if (isLoading) return <Loader />;
 
   const showProductLayout = {
-    product_thumbnail: <ProductThumbnail productState={productState} setProductState={setProductState} />,
+    product_thumbnail: (
+      <ProductThumbnail productState={productState} setProductState={setProductState} />
+    ),
     product_images: <Product4Image productState={productState} setProductState={setProductState} />,
     product_sticky: <ProductSticky productState={productState} setProductState={setProductState} />,
     product_slider: <ProductSlider productState={productState} setProductState={setProductState} />,
-    product_accordion: <ProductThumbnail productState={productState} setProductState={setProductState} customTab={true} />,
+    product_accordion: (
+      <ProductThumbnail
+        productState={productState}
+        setProductState={setProductState}
+        customTab={true}
+      />
+    ),
   };
   return (
     <>
       <Breadcrumb title={params} subNavigation={[{ name: 'Product' }, { name: params }]} />
       {showProductLayout[isProductLayout]}
-      {productState?.product?.related_products?.length > 0 && <RelatedProduct productState={productState} />}
+      {productState?.product?.related_products?.length > 0 && (
+        <RelatedProduct productState={productState} />
+      )}
       {ProductData && <StickyCheckout ProductData={ProductData} isLoading={isLoading} />}
     </>
   );

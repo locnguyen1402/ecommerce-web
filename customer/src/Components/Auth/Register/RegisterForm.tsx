@@ -3,7 +3,14 @@ import { Form, Formik } from 'formik';
 import { Col, Input, Label } from 'reactstrap';
 import { useTranslation } from '@/app/i18n/client';
 import I18NextContext from '@/Helper/I18NextContext';
-import { YupObject, emailSchema, nameSchema, passwordConfirmationSchema, passwordSchema, phoneSchema } from '@/Utils/Validation/ValidationSchemas';
+import {
+  YupObject,
+  emailSchema,
+  nameSchema,
+  passwordConfirmationSchema,
+  passwordSchema,
+  phoneSchema,
+} from '@/Utils/Validation/ValidationSchemas';
 import FormBtn from '@/Components/Common/FormBtn';
 import SimpleInputField from '@/Components/Common/InputFields/SimpleInputField';
 import { AllCountryCode } from '../../../../Data/AllCountryCode';
@@ -31,19 +38,37 @@ const RegisterForm = () => {
       })}
       onSubmit={(values) => {
         // Add your logic here
-      }}>
+      }}
+    >
       {({ values }) => (
-        <Form className='row g-md-4 g-3'>
+        <Form className="row g-md-4 g-3">
           <SimpleInputField
             nameList={[
               { name: 'name', placeholder: t('EmailAddress'), title: 'Name', label: 'FullName' },
-              { name: 'email', placeholder: t('EmailAddress'), title: 'Email', label: 'EmailAddress' },
-              { name: 'password', placeholder: t('Password'), type: 'password', title: 'Password', label: 'Password' },
-              { name: 'password_confirmation', type: 'password', placeholder: t('ConfirmPassword'), title: 'ConfirmPassword', label: 'ConfirmPassword' },
+              {
+                name: 'email',
+                placeholder: t('EmailAddress'),
+                title: 'Email',
+                label: 'EmailAddress',
+              },
+              {
+                name: 'password',
+                placeholder: t('Password'),
+                type: 'password',
+                title: 'Password',
+                label: 'Password',
+              },
+              {
+                name: 'password_confirmation',
+                type: 'password',
+                placeholder: t('ConfirmPassword'),
+                title: 'ConfirmPassword',
+                label: 'ConfirmPassword',
+              },
             ]}
           />
-          <Col xs='12'>
-            <div className='country-input'>
+          <Col xs="12">
+            <div className="country-input">
               <SearchableSelectInput
                 nameList={[
                   {
@@ -73,10 +98,14 @@ const RegisterForm = () => {
           </Col>
 
           <Col xs={12}>
-            <div className='forgot-box'>
-              <div className='form-check remember-box'>
-                <Input className='checkbox_animated check-box' type='checkbox' id='flexCheckDefault' />
-                <Label className='form-check-label' htmlFor='flexCheckDefault'>
+            <div className="forgot-box">
+              <div className="form-check remember-box">
+                <Input
+                  className="checkbox_animated check-box"
+                  type="checkbox"
+                  id="flexCheckDefault"
+                />
+                <Label className="form-check-label" htmlFor="flexCheckDefault">
                   {t('Iagreewith')}
                   <span>{t('Terms')}</span> {t('and')} <span>{t('Privacy')}</span>
                 </Label>

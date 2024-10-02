@@ -12,14 +12,14 @@ const EmailPassword = () => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <>
-      <div className='table-responsive'>
+      <div className="table-responsive">
         <Table>
           <tbody>
             <tr>
               <td>{t('Email')} :</td>
               <td>
                 {accountData?.email}
-                <span className='custom-anchor ms-2' onClick={() => setModal('email')}>
+                <span className="custom-anchor ms-2" onClick={() => setModal('email')}>
                   {t('Edit')}
                 </span>
               </td>
@@ -28,7 +28,7 @@ const EmailPassword = () => {
               <td>{t('Password')} :</td>
               <td>
                 ●●●●●●
-                <span className='custom-anchor ms-2' onClick={() => setModal('password')}>
+                <span className="custom-anchor ms-2" onClick={() => setModal('password')}>
                   {t('Edit')}
                 </span>
               </td>

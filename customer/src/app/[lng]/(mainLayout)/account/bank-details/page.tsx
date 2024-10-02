@@ -1,9 +1,7 @@
-import BankDetailsContent from "@/Components/Account/BankDetails"
+import BankDetailsContent from '@/Components/Account/BankDetails';
 
 const BankDetails = () => {
-    return (
-        <BankDetailsContent />
-    )
-}
+  return <BankDetailsContent />;
+};
 
-export default BankDetails
+export default BankDetails;

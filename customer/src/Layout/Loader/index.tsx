@@ -6,9 +6,9 @@ const Loader = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
   return (
-    <div className='loader-wrapper'>
+    <div className="loader-wrapper">
       <div>
-        <div className='loader'></div>
+        <div className="loader"></div>
         <h3>{t('Loading')}</h3>
       </div>
     </div>

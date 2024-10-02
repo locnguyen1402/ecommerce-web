@@ -17,11 +17,17 @@ const StandardSearchBar = () => {
     }
   };
   return (
-    <div className='middle-box'>
-      <div className='center-box'>
-        <div className='searchbar-box order-xl-1 d-none d-xl-block'>
-          <Input type='search' className='form-control' placeholder='search for product, delivered to your door...' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-          <Btn className='btn search-button' onClick={onHandleSearch}>
+    <div className="middle-box">
+      <div className="center-box">
+        <div className="searchbar-box order-xl-1 d-none d-xl-block">
+          <Input
+            type="search"
+            className="form-control"
+            placeholder="search for product, delivered to your door..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Btn className="btn search-button" onClick={onHandleSearch}>
             <RiSearchLine />
           </Btn>
         </div>

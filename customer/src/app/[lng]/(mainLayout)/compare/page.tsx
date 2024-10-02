@@ -1,9 +1,7 @@
-import CompareList from '@/Components/Compare'
+import CompareList from '@/Components/Compare';
 
 const Compare = () => {
-    return (
-        <CompareList />
-    )
-}
+  return <CompareList />;
+};
 
-export default Compare
+export default Compare;

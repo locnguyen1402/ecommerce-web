@@ -1,6 +1,12 @@
 import { Col, Row } from 'reactstrap';
 
-const WrapperComponent = ({ classes = {}, noRowCol = false, colProps = {}, customCol = false, ...props }) => {
+const WrapperComponent = ({
+  classes = {},
+  noRowCol = false,
+  colProps = {},
+  customCol = false,
+  ...props
+}) => {
   return (
     <section className={classes?.sectionClass ? classes?.sectionClass : ''} {...props}>
       <div className={`container-fluid-lg ${classes?.fluidClass ? classes?.fluidClass : ''}`}>

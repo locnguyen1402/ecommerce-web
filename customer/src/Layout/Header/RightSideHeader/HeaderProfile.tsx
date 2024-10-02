@@ -1,22 +1,25 @@
-import React, { useContext, useState } from "react";
-import Link from "next/link";
-import I18NextContext from "@/Helper/I18NextContext";
-import { useTranslation } from "@/app/i18n/client";
-import { useRouter } from "next/navigation";
-import { RiLogoutBoxRLine, RiUserLine } from "react-icons/ri";
-import { LogoutAPI } from "@/Utils/AxiosUtils/API";
-import useCreate from "@/Utils/Hooks/useCreate";
-import ConfirmationModal from "@/Components/Common/ConfirmationModal";
-import AccountContext from "@/Helper/AccountContext";
-import Avatar from "@/Components/Common/Avatar";
+import React, { useContext, useState } from 'react';
+import Link from 'next/link';
+import I18NextContext from '@/Helper/I18NextContext';
+import { useTranslation } from '@/app/i18n/client';
+import { useRouter } from 'next/navigation';
+import { RiLogoutBoxRLine, RiUserLine } from 'react-icons/ri';
+import { LogoutAPI } from '@/Utils/AxiosUtils/API';
+import useCreate from '@/Utils/Hooks/useCreate';
+import ConfirmationModal from '@/Components/Common/ConfirmationModal';
+import AccountContext from '@/Helper/AccountContext';
+import Avatar from '@/Components/Common/Avatar';
 
 const HeaderProfile = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { accountData } = useContext(AccountContext);
   const router = useRouter();
   const [modal, setModal] = useState(false);
-  const { t } = useTranslation(i18Lang, "common");
-  const { mutate, isLoading } = useCreate(LogoutAPI,false,false,"Logout Successfully", () => { router.push(`/${i18Lang}/auth/login`); setModal(false);});
+  const { t } = useTranslation(i18Lang, 'common');
+  const { mutate, isLoading } = useCreate(LogoutAPI, false, false, 'Logout Successfully', () => {
+    router.push(`/${i18Lang}/auth/login`);
+    setModal(false);
+  });
 
   const handleLogout = () => {
     mutate({});
@@ -37,9 +40,9 @@ const HeaderProfile = () => {
         </div>
         <div className="delivery-detail">
           <h6>
-            {t("Hi")}, { accountData?.name ?? t("User")}
+            {t('Hi')}, {accountData?.name ?? t('User')}
           </h6>
-          <h5>{t("MyAccount")}</h5>
+          <h5>{t('MyAccount')}</h5>
         </div>
       </div>
 
@@ -47,12 +50,12 @@ const HeaderProfile = () => {
         <ul className="user-box-name">
           <li className="product-box-contain">
             <Link href={`/${i18Lang}/account/dashboard`}>
-              <RiUserLine className="me-2" /> {t("MyAccount")}
+              <RiUserLine className="me-2" /> {t('MyAccount')}
             </Link>
           </li>
           <li className="product-box-contain" onClick={() => setModal(true)}>
             <a>
-              <RiLogoutBoxRLine className="me-2" /> {t("Logout")}
+              <RiLogoutBoxRLine className="me-2" /> {t('Logout')}
             </a>
           </li>
           <ConfirmationModal

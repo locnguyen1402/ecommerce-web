@@ -7,11 +7,11 @@ const CompareWrapper = ({ data = {}, children }) => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <>
-      <div className='detail-part'>
-        <div className='title-detail'>
+      <div className="detail-part">
+        <div className="title-detail">
           <h5>{t(data?.title)}</h5>
         </div>
-        <div className='inner-detail'>{children ? children : <p>{data?.value}</p>}</div>
+        <div className="inner-detail">{children ? children : <p>{data?.value}</p>}</div>
       </div>
     </>
   );

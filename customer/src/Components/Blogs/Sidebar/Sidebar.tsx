@@ -29,12 +29,22 @@ const Sidebar = () => {
     }
   };
   return (
-    <Col xxl={3} xl={4} lg={5} className={styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.class || ''}>
-      <div className='left-sidebar-box'>
+    <Col
+      xxl={3}
+      xl={4}
+      lg={5}
+      className={styleObj[querySidebar ?? themeOption?.blog?.blog_sidebar_type]?.class || ''}
+    >
+      <div className="left-sidebar-box">
         {blogContextLoader || categoryIsLoading ? (
           <SKBlogSidebar />
         ) : (
-          <UncontrolledAccordion className='left-accordion-box' open={open} toggle={toggle} defaultOpen={['1', '2', '3']}>
+          <UncontrolledAccordion
+            className="left-accordion-box"
+            open={open}
+            toggle={toggle}
+            defaultOpen={['1', '2', '3']}
+          >
             <RecentPost />
             <Category />
             <Tags />

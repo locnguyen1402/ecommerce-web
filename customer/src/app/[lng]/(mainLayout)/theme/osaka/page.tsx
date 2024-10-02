@@ -1,9 +1,7 @@
-import OsakaTheme from "@/Components/OsakaTheme"
+import OsakaTheme from '@/Components/OsakaTheme';
 
 const Osaka = () => {
-    return (
-        <OsakaTheme />
-    )
-}
+  return <OsakaTheme />;
+};
 
-export default Osaka
+export default Osaka;

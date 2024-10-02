@@ -29,19 +29,26 @@ const OTPVerificationForm = () => {
           email: '',
         }}
         validationSchema={ForgotPasswordSchema}
-        onSubmit={(values) => mutate(values)}>
+        onSubmit={(values) => mutate(values)}
+      >
         {() => (
-          <Form className='row g-2'>
-            <div className='log-in-title'>
-              <h3 className='text-content'>{t('OtpDescription')}</h3>
-              <h5 className='text-content'>{t('CodeSend') + ' '}</h5>
+          <Form className="row g-2">
+            <div className="log-in-title">
+              <h3 className="text-content">{t('OtpDescription')}</h3>
+              <h5 className="text-content">{t('CodeSend') + ' '}</h5>
             </div>
-            <div className='outer-otp'>
-              <div className='inner-otp'>
-                <Input type='text' className='no-background' maxLength='5' onChange={handleChange} value={otp} />
+            <div className="outer-otp">
+              <div className="inner-otp">
+                <Input
+                  type="text"
+                  className="no-background"
+                  maxLength="5"
+                  onChange={handleChange}
+                  value={otp}
+                />
               </div>
             </div>
-            <Btn title={'Validate'} type='button' className="btn-animation mt-3 w-100"/>
+            <Btn title={'Validate'} type="button" className="btn-animation mt-3 w-100" />
           </Form>
         )}
       </Formik>

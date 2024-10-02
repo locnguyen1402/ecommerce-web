@@ -1,6 +1,6 @@
-import attribute from './attribute.json'
-import { NextResponse } from "next/server";
+import attribute from './attribute.json';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-    return NextResponse.json(attribute)
+  return NextResponse.json(attribute);
 }

@@ -35,18 +35,21 @@ const ProductBox1Cart = ({ productObj }) => {
 
   return (
     <>
-      <div className='add-to-cart-box'>
+      <div className="add-to-cart-box">
         <Btn
-          className='btn-add-cart addcart-button'
+          className="btn-add-cart addcart-button"
           disabled={productObj?.stock_status !== 'in_stock' ? true : false}
           onClick={() => {
-            productObj?.stock_status == 'in_stock' && productObj?.type === 'classified' ? setVariationModal(productObj?.id) : handleIncDec(1, productObj, productQty, setProductQty, setIsOpen);
-          }}>
+            productObj?.stock_status == 'in_stock' && productObj?.type === 'classified'
+              ? setVariationModal(productObj?.id)
+              : handleIncDec(1, productObj, productQty, setProductQty, setIsOpen);
+          }}
+        >
           {productObj?.stock_status == 'in_stock' ? (
             <>
               {t('Add')}
-              <span className='add-icon'>
-                <RiAddLine/>
+              <span className="add-icon">
+                <RiAddLine />
               </span>
             </>
           ) : (
@@ -55,17 +58,53 @@ const ProductBox1Cart = ({ productObj }) => {
         </Btn>
         <div className={`cart_qty qty-box ${isOpen && productQty >= 1 ? 'open' : ''}`}>
           <InputGroup>
-            <Btn type='button' className='qty-left-minus' onClick={() => handleIncDec(-1, productObj, productQty, setProductQty, setIsOpen, getSelectedVariant ? getSelectedVariant : null)}>
-              <RiSubtractLine/>
+            <Btn
+              type="button"
+              className="qty-left-minus"
+              onClick={() =>
+                handleIncDec(
+                  -1,
+                  productObj,
+                  productQty,
+                  setProductQty,
+                  setIsOpen,
+                  getSelectedVariant ? getSelectedVariant : null
+                )
+              }
+            >
+              <RiSubtractLine />
             </Btn>
-            <Input className='form-control input-number qty-input' type='text' name='quantity' value={productQty} readOnly />
-            <Btn type='button' className='qty-right-plus' onClick={() => handleIncDec(1, productObj, productQty, setProductQty, setIsOpen, getSelectedVariant ? getSelectedVariant : null)}>
-              <RiAddLine/>
+            <Input
+              className="form-control input-number qty-input"
+              type="text"
+              name="quantity"
+              value={productQty}
+              readOnly
+            />
+            <Btn
+              type="button"
+              className="qty-right-plus"
+              onClick={() =>
+                handleIncDec(
+                  1,
+                  productObj,
+                  productQty,
+                  setProductQty,
+                  setIsOpen,
+                  getSelectedVariant ? getSelectedVariant : null
+                )
+              }
+            >
+              <RiAddLine />
             </Btn>
           </InputGroup>
         </div>
       </div>
-      <VariationModal setVariationModal={setVariationModal} variationModal={variationModal} productObj={productObj} />
+      <VariationModal
+        setVariationModal={setVariationModal}
+        variationModal={variationModal}
+        productObj={productObj}
+      />
     </>
   );
 };

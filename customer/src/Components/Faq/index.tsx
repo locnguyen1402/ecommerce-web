@@ -1,7 +1,15 @@
 'use client';
 import { useContext, useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Col, Container, Row } from 'reactstrap';
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  Col,
+  Container,
+  Row,
+} from 'reactstrap';
 import Breadcrumb from '../Common/Breadcrumb';
 import { useQuery } from '@tanstack/react-query';
 import request from '@/Utils/AxiosUtils';
@@ -21,27 +29,31 @@ const BrowserFaq = () => {
       setOpen(id);
     }
   };
-  const { data, isLoading } = useQuery([FaqAPI], () => request({ url: FaqAPI, params: { status: 1 } }), {
-    enabled: true,
-    refetchOnWindowFocus: false,
-    select: (data) => data?.data?.data,
-  });
+  const { data, isLoading } = useQuery(
+    [FaqAPI],
+    () => request({ url: FaqAPI, params: { status: 1 } }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      select: (data) => data?.data?.data,
+    }
+  );
 
   if (isLoading) return <Loader />;
   return (
     <>
       <Breadcrumb title={`Faq's`} subNavigation={[{ name: `Faq's` }]} />
-      <section className='faq-box-contain section-b-space'>
+      <section className="faq-box-contain section-b-space">
         <Container>
           <Row>
             <Col xl={5}>
-              <div className='faq-contain'>
+              <div className="faq-contain">
                 <h2>{t('FrequentlyAskedQuestions')}</h2>
                 <p>{t('faqDescription')}</p>
               </div>
             </Col>
             <Col xl={7}>
-              <div className='faq-accordion'>
+              <div className="faq-accordion">
                 <Accordion open={open} toggle={toggle}>
                   {data?.map((faq, i) => (
                     <AccordionItem>

@@ -12,20 +12,25 @@ const SellerSelling = () => {
   const { i18Lang } = useContext(I18NextContext);
   return (
     <WrapperComponent classes={{ sectionClass: 'selling-section section-b-space' }}>
-      <div className='vendor-title'>
+      <div className="vendor-title">
         <h5>{themeOption?.seller?.start_selling?.title}</h5>
         <p>{themeOption?.seller?.start_selling?.description}</p>
       </div>
-      <Form className='mt-3'>
-        <Row className='g-3'>
-          <Col sm='6'>
-            <Input type='email' placeholder='Email ID'></Input>
+      <Form className="mt-3">
+        <Row className="g-3">
+          <Col sm="6">
+            <Input type="email" placeholder="Email ID"></Input>
           </Col>
-          <Col sm='6'>
-            <Input type='number' placeholder='Phone Number'></Input>
+          <Col sm="6">
+            <Input type="number" placeholder="Phone Number"></Input>
           </Col>
         </Row>
-        <Btn title="Start Selling" type="button" className='text-light theme-bg-color d-inline-block mt-3' onClick={()=>router.push(`/${i18Lang}/auth/register`)} />
+        <Btn
+          title="Start Selling"
+          type="button"
+          className="text-light theme-bg-color d-inline-block mt-3"
+          onClick={() => router.push(`/${i18Lang}/auth/register`)}
+        />
       </Form>
     </WrapperComponent>
   );

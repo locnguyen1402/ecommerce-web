@@ -22,25 +22,32 @@ const StandardCategory = () => {
     return categoryData?.filter((elem) => themeOption?.header?.category_ids?.includes(elem.id));
   });
   return (
-    <div className='main-nav'>
-      <div className='header-nav-left'>
+    <div className="main-nav">
+      <div className="header-nav-left">
         <Btn className={`dropdown-category dropdown-category-2`}>
           <FiAlignLeft />
           <span>{t('AllCategories')}</span>
         </Btn>
-        <div className='category-dropdown'>
-          <div className='category-title'>
+        <div className="category-dropdown">
+          <div className="category-title">
             <h5>{t('Categories')}</h5>
-            <Btn type='button' className='p-0 close-button text-content'>
+            <Btn type="button" className="p-0 close-button text-content">
               <RiCloseLine />
             </Btn>
           </div>
 
-          <ul className='category-list'>
+          <ul className="category-list">
             {filteredCategories?.map((elem, i) => (
-              <li className='onhover-category-list' key={i}>
-                <Link href={`/${i18Lang}/collections?category=${elem?.slug}`} className='category-name'>
-                  <Avatar data={elem?.category_icon} placeHolder={placeHolderImage} name={elem.name} />
+              <li className="onhover-category-list" key={i}>
+                <Link
+                  href={`/${i18Lang}/collections?category=${elem?.slug}`}
+                  className="category-name"
+                >
+                  <Avatar
+                    data={elem?.category_icon}
+                    placeHolder={placeHolderImage}
+                    name={elem.name}
+                  />
                   <h6>{elem?.name}</h6>
                 </Link>
               </li>
@@ -49,19 +56,31 @@ const StandardCategory = () => {
         </div>
       </div>
 
-      <div className='main-nav navbar navbar-expand-xl navbar-light navbar-sticky'>
-        <div className={`offcanvas offcanvas-collapse order-xl-2 ${mobileSideBar ? "show" : ""} `} id='primaryMenu'>
-          <div className='offcanvas-header navbar-shadow'>
+      <div className="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+        <div
+          className={`offcanvas offcanvas-collapse order-xl-2 ${mobileSideBar ? 'show' : ''} `}
+          id="primaryMenu"
+        >
+          <div className="offcanvas-header navbar-shadow">
             <h5>{t('Menu')}</h5>
-            <Btn className='btn-close lead' type='button' onClick={() => setMobileSideBar(!mobileSideBar)}>
+            <Btn
+              className="btn-close lead"
+              type="button"
+              onClick={() => setMobileSideBar(!mobileSideBar)}
+            >
               <RiCloseLine />
             </Btn>
           </div>
-          <div className='offcanvas-body'>
+          <div className="offcanvas-body">
             <MainHeaderMenu />
           </div>
         </div>
-        {mobileSideBar && <div className={"offcanvas-backdrop fade show"} onClick={() => setMobileSideBar(!mobileSideBar)} />}
+        {mobileSideBar && (
+          <div
+            className={'offcanvas-backdrop fade show'}
+            onClick={() => setMobileSideBar(!mobileSideBar)}
+          />
+        )}
       </div>
       <StandardHotDeal />
     </div>

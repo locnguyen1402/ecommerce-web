@@ -21,7 +21,7 @@ const FooterContactUs = () => {
         ''
       )}
 
-      <div className='footer-contact'>
+      <div className="footer-contact">
         <ul>
           <FooterSupportNumber />
           <FooterSupportEmail />

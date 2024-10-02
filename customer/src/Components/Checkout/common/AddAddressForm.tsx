@@ -15,7 +15,8 @@ const AddAddressForm = ({ mutate, type, editAddress, setEditAddress, modal, setM
   const { data } = useQuery([CountryAPI], () => request({ url: CountryAPI }), {
     enabled: true,
     refetchOnWindowFocus: false,
-    select: (res) => res.data.map((country) => ({ id: country.id, name: country.name, state: country.state })),
+    select: (res) =>
+      res.data.map((country) => ({ id: country.id, name: country.name, state: country.state })),
   });
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, 'common');
@@ -47,8 +48,11 @@ const AddAddressForm = ({ mutate, type, editAddress, setEditAddress, modal, setM
         }
         values['pincode'] = values['pincode'].toString();
         mutate(values);
-      }}>
-      {({ values, setFieldValue }) => <SelectForm values={values} setFieldValue={setFieldValue} setModal={setModal} data={data} />}
+      }}
+    >
+      {({ values, setFieldValue }) => (
+        <SelectForm values={values} setFieldValue={setFieldValue} setModal={setModal} data={data} />
+      )}
     </Formik>
   );
 };

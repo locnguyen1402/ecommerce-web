@@ -8,9 +8,10 @@ const IconInputWrapper = (props) => {
   const { t } = useTranslation(i18Lang, 'common');
   return (
     <Col {...props?.colprops} className={props?.colclass ? props?.colclass : ''}>
-      <div className='custom-form mb-md-4 mb-3'>
-        <Label htmlFor={props?.label || ''} className='form-label'>
-          {t(props?.label)} {props?.require == 'true' && <span className='theme-color required-dot'>*</span>}
+      <div className="custom-form mb-md-4 mb-3">
+        <Label htmlFor={props?.label || ''} className="form-label">
+          {t(props?.label)}{' '}
+          {props?.require == 'true' && <span className="theme-color required-dot">*</span>}
         </Label>
         {props.children}
       </div>

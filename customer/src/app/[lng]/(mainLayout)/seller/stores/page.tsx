@@ -1,9 +1,7 @@
-import SellerStoreContent from "@/Components/Seller/Stores"
+import SellerStoreContent from '@/Components/Seller/Stores';
 
 const SellerStore = () => {
-    return (
-        <SellerStoreContent />
-    )
-}
+  return <SellerStoreContent />;
+};
 
-export default SellerStore
+export default SellerStore;
