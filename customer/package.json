@@ -36,5 +36,11 @@
     "sass": "^1.63.4",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.2"
   }
 }

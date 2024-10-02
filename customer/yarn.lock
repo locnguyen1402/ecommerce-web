@@ -95,6 +95,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mila/customer-web@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@mila/customer-web@workspace:."
+  dependencies:
+    "@tanstack/react-query": "npm:^4.29.15"
+    "@types/node": "npm:^20.7.4"
+    "@types/react": "npm:^18"
+    "@types/react-dom": "npm:^18.3.0"
+    accept-language: "npm:^3.0.18"
+    axios: "npm:^1.4.0"
+    bootstrap: "npm:^5.3.2"
+    eslint: "npm:8.43.0"
+    eslint-config-next: "npm:^14.0.3"
+    font-awesome: "npm:^4.7.0"
+    formik: "npm:^2.4.2"
+    i18next: "npm:^23.2.11"
+    i18next-browser-languagedetector: "npm:^7.1.0"
+    i18next-resources-to-backend: "npm:^1.1.4"
+    js-cookie: "npm:^3.0.5"
+    next: "npm:^14.0.3"
+    patch-package: "npm:^8.0.0"
+    react: "npm:^18.2.0"
+    react-cookie: "npm:^4.1.1"
+    react-dom: "npm:^18.2.0"
+    react-i18next: "npm:^13.3.0"
+    react-icons: "npm:^4.9.0"
+    react-slick: "npm:^0.29.0"
+    react-toastify: "npm:^9.1.3"
+    reactstrap: "npm:^9.2.0"
+    remixicon: "npm:^3.5.0"
+    sass: "npm:^1.63.4"
+    slick-carousel: "npm:^1.8.1"
+    typescript: "npm:^5.6.2"
+    yup: "npm:^0.32.11"
+  languageName: unknown
+  linkType: soft
+
 "@next/env@npm:14.2.14":
   version: 14.2.14
   resolution: "@next/env@npm:14.2.14"
@@ -310,6 +347,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^20.7.4":
+  version: 20.16.10
+  resolution: "@types/node@npm:20.16.10"
+  dependencies:
+    undici-types: "npm:~6.19.2"
+  checksum: c0c0c7ecb083ec638c2118e54b5242bb4c39a75608cbac9475cf15aaceb64b8bc997a87a0798e700a81d61651c8a7750ae0455be0f0996ada6e8b2bb818d90c5
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.13
   resolution: "@types/prop-types@npm:15.7.13"
@@ -317,7 +363,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
+"@types/react-dom@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*, @types/react@npm:^18":
   version: 18.3.10
   resolution: "@types/react@npm:18.3.10"
   dependencies:
@@ -2586,39 +2641,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"my-app@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "my-app@workspace:."
-  dependencies:
-    "@tanstack/react-query": "npm:^4.29.15"
-    accept-language: "npm:^3.0.18"
-    axios: "npm:^1.4.0"
-    bootstrap: "npm:^5.3.2"
-    eslint: "npm:8.43.0"
-    eslint-config-next: "npm:^14.0.3"
-    font-awesome: "npm:^4.7.0"
-    formik: "npm:^2.4.2"
-    i18next: "npm:^23.2.11"
-    i18next-browser-languagedetector: "npm:^7.1.0"
-    i18next-resources-to-backend: "npm:^1.1.4"
-    js-cookie: "npm:^3.0.5"
-    next: "npm:^14.0.3"
-    patch-package: "npm:^8.0.0"
-    react: "npm:^18.2.0"
-    react-cookie: "npm:^4.1.1"
-    react-dom: "npm:^18.2.0"
-    react-i18next: "npm:^13.3.0"
-    react-icons: "npm:^4.9.0"
-    react-slick: "npm:^0.29.0"
-    react-toastify: "npm:^9.1.3"
-    reactstrap: "npm:^9.2.0"
-    remixicon: "npm:^3.5.0"
-    sass: "npm:^1.63.4"
-    slick-carousel: "npm:^1.8.1"
-    yup: "npm:^0.32.11"
-  languageName: unknown
-  linkType: soft
-
 "nanoclone@npm:^0.2.1":
   version: 0.2.1
   resolution: "nanoclone@npm:0.2.1"
@@ -3783,6 +3805,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^5.6.2":
+  version: 5.6.2
+  resolution: "typescript@npm:5.6.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 3ed8297a8c7c56b7fec282532503d1ac795239d06e7c4966b42d4330c6cf433a170b53bcf93a130a7f14ccc5235de5560df4f1045eb7f3550b46ebed16d3c5e5
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+  version: 5.6.2
+  resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=e012d7"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: e6c1662e4852e22fe4bbdca471dca3e3edc74f6f1df043135c44a18a7902037023ccb0abdfb754595ca9028df8920f2f8492c00fc3cbb4309079aae8b7de71cd
+  languageName: node
+  linkType: hard
+
 "unbox-primitive@npm:^1.0.2":
   version: 1.0.2
   resolution: "unbox-primitive@npm:1.0.2"
@@ -3792,6 +3834,13 @@ __metadata:
     has-symbols: "npm:^1.0.3"
     which-boxed-primitive: "npm:^1.0.2"
   checksum: 81ca2e81134167cc8f75fa79fbcc8a94379d6c61de67090986a2273850989dd3bae8440c163121b77434b68263e34787a675cbdcb34bb2f764c6b9c843a11b66
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.19.2":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: 078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
   languageName: node
   linkType: hard
 
